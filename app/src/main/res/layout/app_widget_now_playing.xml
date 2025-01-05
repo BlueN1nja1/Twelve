@@ -74,10 +74,9 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_gravity="center"
-            android:background="?attr/selectableItemBackgroundBorderless"
+            android:background="@drawable/widget_button_shape"
             android:contentDescription="@string/content_description_play_pause"
             android:src="@drawable/ic_play_arrow"
-            android:tint="?attr/colorOnSurface"
             tools:ignore="UseAppTint" />
 
     </FrameLayout>
