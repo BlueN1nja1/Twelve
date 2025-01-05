@@ -122,6 +122,7 @@
     <string name="genre_appears_in_playlists_header">在播放列表中显示</string>
     <string name="genre_audios_header">音频</string>
     <string name="queue">队列</string>
+    <string name="sort_by_artist_name">艺术家</string>
     <string name="sort_by_creation_date">创建于</string>
     <string name="sort_by_last_modified">最近修改</string>
     <string name="sort_by_last_activity">最近活动</string>
@@ -132,6 +133,8 @@
     <string name="sort_by_unknown">未知</string>
     <string name="activity_most_played_albums">最常播放的专辑</string>
     <string name="activity_random_albums">随机专辑</string>
+    <string name="activity_random_artists">随机艺术家</string>
+    <string name="activity_random_genres">随机流派</string>
     <string name="activity_random_songs">随机歌曲</string>
     <string name="content_description_play_pause">播放/暂停</string>
     <string name="content_description_thumbnail">缩略图</string>

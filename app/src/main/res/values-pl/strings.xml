@@ -128,6 +128,7 @@
     <string name="genre_appears_in_playlists_header">Pojawia się na listach odtwarzania</string>
     <string name="genre_audios_header">Dźwięki</string>
     <string name="queue">Kolejka</string>
+    <string name="sort_by_artist_name">Nazwa wykonawcy</string>
     <string name="sort_by_creation_date">Daty utworzenia</string>
     <string name="sort_by_last_modified">Daty ostatniej modyfikacji</string>
     <string name="sort_by_last_activity">Daty ostatniej aktywności</string>
@@ -138,6 +139,8 @@
     <string name="sort_by_unknown">Nieokreślono</string>
     <string name="activity_most_played_albums">Najczęściej słuchane albumy</string>
     <string name="activity_random_albums">Losowe albumy</string>
+    <string name="activity_random_artists">Losowi wykonawcy</string>
+    <string name="activity_random_genres">Losowe gatunki</string>
     <string name="activity_random_songs">Losowe utwory</string>
     <string name="content_description_play_pause">Odtwórz/wstrzymaj</string>
     <string name="content_description_thumbnail">Miniaturka</string>

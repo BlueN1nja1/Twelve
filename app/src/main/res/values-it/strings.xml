@@ -124,6 +124,7 @@
     <string name="genre_appears_in_playlists_header">Compare nelle playlist</string>
     <string name="genre_audios_header">Audio</string>
     <string name="queue">Coda</string>
+    <string name="sort_by_artist_name">Nome artista</string>
     <string name="sort_by_creation_date">Creato il</string>
     <string name="sort_by_last_modified">Ultima modifica</string>
     <string name="sort_by_last_activity">Ultima attività</string>
@@ -134,6 +135,8 @@
     <string name="sort_by_unknown">Sconosciuto</string>
     <string name="activity_most_played_albums">Album più riprodotti</string>
     <string name="activity_random_albums">Album casuali</string>
+    <string name="activity_random_artists">Artisti casuali</string>
+    <string name="activity_random_genres">Generi casuali</string>
     <string name="activity_random_songs">Brani casuali</string>
     <string name="content_description_play_pause">Riproduci/metti in pausa</string>
     <string name="content_description_thumbnail">Miniatura</string>

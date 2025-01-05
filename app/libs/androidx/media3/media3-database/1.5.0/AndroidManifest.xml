@@ -17,6 +17,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="androidx.media3.database" >
 
-    <uses-sdk android:minSdkVersion="21" />
+    <uses-sdk android:minSdkVersion="30" />
 
 </manifest>

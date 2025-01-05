@@ -71,6 +71,8 @@
     <string name="now_playing_widget_dummy_artist">Artiste</string>
     <string name="now_playing_widget_dummy_album">Album</string>
     <string name="album_disc_header">Disque %1$d</string>
+    <string name="sort_by_artist_name">Nom de l\'artiste</string>
     <string name="sort_by_title">Titre</string>
     <string name="sort_by_unknown">Inconnu</string>
+    <string name="activity_random_artists">Artistes aléatoires</string>
 </resources>

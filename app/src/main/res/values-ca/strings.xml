@@ -122,6 +122,7 @@
     <string name="genre_appears_in_playlists_header">Apareix en les llistes de reproducció</string>
     <string name="genre_audios_header">Àudios</string>
     <string name="queue">Cua</string>
+    <string name="sort_by_artist_name">Nom de l\'artista</string>
     <string name="sort_by_creation_date">Creat el</string>
     <string name="sort_by_last_modified">Darrera modificació</string>
     <string name="sort_by_last_activity">Darrera activitat</string>
@@ -132,6 +133,8 @@
     <string name="sort_by_unknown">Desconegut</string>
     <string name="activity_most_played_albums">Àlbums més reproduïts</string>
     <string name="activity_random_albums">Àlbums aleatoris</string>
+    <string name="activity_random_artists">Artistes aleatoris</string>
+    <string name="activity_random_genres">Gèneres aleatoris</string>
     <string name="activity_random_songs">Cançons aleatòries</string>
     <string name="content_description_play_pause">Reprodueix/Pausa</string>
     <string name="content_description_thumbnail">Vista prèvia</string>

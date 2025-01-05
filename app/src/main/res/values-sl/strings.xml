@@ -128,6 +128,7 @@
     <string name="genre_appears_in_playlists_header">Pojavi se v seznamih predvajanja</string>
     <string name="genre_audios_header">Zvočni posnetki</string>
     <string name="queue">Čakalna vrsta</string>
+    <string name="sort_by_artist_name">Ime izvajalca</string>
     <string name="sort_by_creation_date">Ustvarjeno ob</string>
     <string name="sort_by_last_modified">Zadnjič spremenjeno</string>
     <string name="sort_by_last_activity">Zadnja dejavnost</string>
@@ -138,6 +139,8 @@
     <string name="sort_by_unknown">Neznano</string>
     <string name="activity_most_played_albums">Največkrat predvajani albumi</string>
     <string name="activity_random_albums">Naključni albumi</string>
+    <string name="activity_random_artists">Naključni izvajalci</string>
+    <string name="activity_random_genres">Naključne zvrsti</string>
     <string name="activity_random_songs">Naključne skladbe</string>
     <string name="content_description_play_pause">Predvajaj/premor</string>
     <string name="content_description_thumbnail">Sličica</string>

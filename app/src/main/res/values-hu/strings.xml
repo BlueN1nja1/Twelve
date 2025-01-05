@@ -124,6 +124,7 @@
     <string name="genre_appears_in_playlists_header">Megjelenések lejátszólistákban</string>
     <string name="genre_audios_header">Audiófájlok</string>
     <string name="queue">Várólista</string>
+    <string name="sort_by_artist_name">Az előadó neve</string>
     <string name="sort_by_creation_date">Létrehozás dátuma</string>
     <string name="sort_by_last_modified">Utolsó módosítás</string>
     <string name="sort_by_last_activity">Utolsó tevékenység</string>
@@ -134,6 +135,8 @@
     <string name="sort_by_unknown">Ismeretlen</string>
     <string name="activity_most_played_albums">A legtöbbet játszott lemezek</string>
     <string name="activity_random_albums">Véletlenszerűen választott lemezek</string>
+    <string name="activity_random_artists">Véletlenszerűen választott előadó</string>
+    <string name="activity_random_genres">Véletlenszerűen választott műfaj</string>
     <string name="activity_random_songs">Véletlenszerűen választott zeneszámok</string>
     <string name="content_description_play_pause">Lejátszás/Megállítás</string>
     <string name="content_description_thumbnail">Parancsikon</string>

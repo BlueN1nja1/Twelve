@@ -124,6 +124,7 @@
     <string name="genre_appears_in_playlists_header">Pleylistlərdə görünür</string>
     <string name="genre_audios_header">Səslər</string>
     <string name="queue">Növbə</string>
+    <string name="sort_by_artist_name">Sənətçi adı</string>
     <string name="sort_by_creation_date">Yaradılma tarixi</string>
     <string name="sort_by_last_modified">Son dəyişdirilmə</string>
     <string name="sort_by_last_activity">Son fəaliyyət</string>
@@ -134,6 +135,8 @@
     <string name="sort_by_unknown">Bilinmir</string>
     <string name="activity_most_played_albums">Ən çox oxudulan albomlar</string>
     <string name="activity_random_albums">Təsadüfi albomlar</string>
+    <string name="activity_random_artists">Təsadüfi sənətçi</string>
+    <string name="activity_random_genres">Təsadüfi janr</string>
     <string name="activity_random_songs">Təsadüfi mahnılar</string>
     <string name="content_description_play_pause">Oxut/fasilə ver</string>
     <string name="content_description_thumbnail">Kiçik şəkil</string>

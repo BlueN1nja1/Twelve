@@ -124,6 +124,7 @@
     <string name="genre_appears_in_playlists_header">Aparece en las listas de reproducción</string>
     <string name="genre_audios_header">Audios</string>
     <string name="queue">Cola</string>
+    <string name="sort_by_artist_name">Nombre del artista</string>
     <string name="sort_by_creation_date">Creado en</string>
     <string name="sort_by_last_modified">Última modificación</string>
     <string name="sort_by_last_activity">Actividad más reciente</string>
@@ -134,6 +135,8 @@
     <string name="sort_by_unknown">Desconocido</string>
     <string name="activity_most_played_albums">Álbumes más reproducidos</string>
     <string name="activity_random_albums">Álbumes aleatorios</string>
+    <string name="activity_random_artists">Artistas aleatorios</string>
+    <string name="activity_random_genres">Géneros aleatorios</string>
     <string name="activity_random_songs">Canciones aleatorias</string>
     <string name="content_description_play_pause">Reproducir/pausar</string>
     <string name="content_description_thumbnail">Miniatura</string>

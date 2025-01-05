@@ -130,6 +130,7 @@
     <string name="genre_appears_in_playlists_header">Le feiceáil i seinmliostaí</string>
     <string name="genre_audios_header">Fuaimeanna</string>
     <string name="queue">Scuaine</string>
+    <string name="sort_by_artist_name">Ainm ealaíontóra</string>
     <string name="sort_by_creation_date">Cruthaithe ag</string>
     <string name="sort_by_last_modified">Athraithe go deireanach</string>
     <string name="sort_by_last_activity">Gníomhaíocht dheireanach</string>
@@ -140,6 +141,8 @@
     <string name="sort_by_unknown">Anaithnid</string>
     <string name="activity_most_played_albums">Albam is mó seinnte</string>
     <string name="activity_random_albums">Albam randamach</string>
+    <string name="activity_random_artists">Ealaíontóirí randamacha</string>
+    <string name="activity_random_genres">Seánraí randamacha</string>
     <string name="activity_random_songs">Amhráin randamach</string>
     <string name="content_description_play_pause">Amhráin randamach</string>
     <string name="content_description_thumbnail">Mionsamhla</string>

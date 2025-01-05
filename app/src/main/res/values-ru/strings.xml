@@ -30,6 +30,7 @@
     <string name="no_playlists">Нет плейлистов</string>
     <string name="no_audios">Нет аудиозаписей</string>
     <string name="no_results">Результатов нет</string>
+    <string name="unknown">Неизвестно</string>
     <string name="album_unknown">Неизвестный альбом</string>
     <string name="artist_unknown">Неизвестный исполнитель</string>
     <string name="genre_unknown">Неизвестный жанр</string>
@@ -127,6 +128,7 @@
     <string name="genre_appears_in_playlists_header">Появляется в плейлистах</string>
     <string name="genre_audios_header">Аудиозаписи</string>
     <string name="queue">Очередь</string>
+    <string name="sort_by_artist_name">Имя исполнителя</string>
     <string name="sort_by_creation_date">Создан</string>
     <string name="sort_by_last_modified">Изменен</string>
     <string name="sort_by_last_activity">Последняя активность</string>

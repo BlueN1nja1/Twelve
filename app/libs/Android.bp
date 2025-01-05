@@ -9,7 +9,7 @@ android_library_import {
     name: "Twelve_androidx.media3_media3-common-nodeps",
     aars: ["androidx/media3/media3-common/1.5.0/media3-common-1.5.0.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -24,7 +24,7 @@ android_library_import {
 android_library {
     name: "Twelve_androidx.media3_media3-common",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -36,14 +36,13 @@ android_library {
         "androidx.annotation_annotation-experimental",
         "guava",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-common-ktx-nodeps",
     aars: ["androidx/media3/media3-common-ktx/1.5.0/media3-common-ktx-1.5.0.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -60,7 +59,7 @@ android_library_import {
 android_library {
     name: "Twelve_androidx.media3_media3-common-ktx",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -74,14 +73,13 @@ android_library {
         "kotlinx-coroutines-android",
         "kotlinx-coroutines-core",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-container-nodeps",
     aars: ["androidx/media3/media3-container/1.5.0/media3-container-1.5.0.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -95,7 +93,7 @@ android_library_import {
 android_library {
     name: "Twelve_androidx.media3_media3-container",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -106,14 +104,13 @@ android_library {
         "Twelve_androidx.media3_media3-common",
         "androidx.annotation_annotation",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-database-nodeps",
     aars: ["androidx/media3/media3-database/1.5.0/media3-database-1.5.0.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -127,7 +124,7 @@ android_library_import {
 android_library {
     name: "Twelve_androidx.media3_media3-database",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -138,14 +135,13 @@ android_library {
         "Twelve_androidx.media3_media3-common",
         "androidx.annotation_annotation",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-datasource-nodeps",
     aars: ["androidx/media3/media3-datasource/1.5.0/media3-datasource-1.5.0.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -161,7 +157,7 @@ android_library_import {
 android_library {
     name: "Twelve_androidx.media3_media3-datasource",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -174,14 +170,13 @@ android_library {
         "androidx.annotation_annotation",
         "androidx.exifinterface_exifinterface",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-decoder-nodeps",
     aars: ["androidx/media3/media3-decoder/1.5.0/media3-decoder-1.5.0.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -195,7 +190,7 @@ android_library_import {
 android_library {
     name: "Twelve_androidx.media3_media3-decoder",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -206,14 +201,13 @@ android_library {
         "Twelve_androidx.media3_media3-common",
         "androidx.annotation_annotation",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer-nodeps",
     aars: ["androidx/media3/media3-exoplayer/1.5.0/media3-exoplayer-1.5.0.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -235,7 +229,7 @@ android_library_import {
 android_library {
     name: "Twelve_androidx.media3_media3-exoplayer",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -254,14 +248,13 @@ android_library {
         "androidx.core_core",
         "androidx.exifinterface_exifinterface",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer-hls-nodeps",
     aars: ["androidx/media3/media3-exoplayer-hls/1.5.0/media3-exoplayer-hls-1.5.0.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -275,7 +268,7 @@ android_library_import {
 android_library {
     name: "Twelve_androidx.media3_media3-exoplayer-hls",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -286,14 +279,13 @@ android_library {
         "Twelve_androidx.media3_media3-exoplayer",
         "androidx.annotation_annotation",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer-midi-nodeps",
     aars: ["androidx/media3/media3-exoplayer-midi/1.5.0/media3-exoplayer-midi-1.5.0.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -311,7 +303,7 @@ android_library_import {
 android_library {
     name: "Twelve_androidx.media3_media3-exoplayer-midi",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -326,14 +318,13 @@ android_library {
         "Twelve_com.github.philburk_jsyn",
         "androidx.annotation_annotation",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer-rtsp-nodeps",
     aars: ["androidx/media3/media3-exoplayer-rtsp/1.5.0/media3-exoplayer-rtsp-1.5.0.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -347,7 +338,7 @@ android_library_import {
 android_library {
     name: "Twelve_androidx.media3_media3-exoplayer-rtsp",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -358,14 +349,13 @@ android_library {
         "Twelve_androidx.media3_media3-exoplayer",
         "androidx.annotation_annotation",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer-smoothstreaming-nodeps",
     aars: ["androidx/media3/media3-exoplayer-smoothstreaming/1.5.0/media3-exoplayer-smoothstreaming-1.5.0.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -379,7 +369,7 @@ android_library_import {
 android_library {
     name: "Twelve_androidx.media3_media3-exoplayer-smoothstreaming",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -390,14 +380,13 @@ android_library {
         "Twelve_androidx.media3_media3-exoplayer",
         "androidx.annotation_annotation",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-extractor-nodeps",
     aars: ["androidx/media3/media3-extractor/1.5.0/media3-extractor-1.5.0.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -413,7 +402,7 @@ android_library_import {
 android_library {
     name: "Twelve_androidx.media3_media3-extractor",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -426,14 +415,13 @@ android_library {
         "Twelve_androidx.media3_media3-decoder",
         "androidx.annotation_annotation",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-session-nodeps",
     aars: ["androidx/media3/media3-session/1.5.0/media3-session-1.5.0.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -450,7 +438,7 @@ android_library_import {
 android_library {
     name: "Twelve_androidx.media3_media3-session",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -464,14 +452,13 @@ android_library {
         "androidx.core_core",
         "androidx.media_media",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-ui-nodeps",
     aars: ["androidx/media3/media3-ui/1.5.0/media3-ui-1.5.0.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -487,7 +474,7 @@ android_library_import {
 android_library {
     name: "Twelve_androidx.media3_media3-ui",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -500,14 +487,13 @@ android_library {
         "androidx.media_media",
         "androidx.recyclerview_recyclerview",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_com.github.bogerchan_Nier-Visualizer-nodeps",
     aars: ["com/github/bogerchan/Nier-Visualizer/v0.1.3/Nier-Visualizer-v0.1.3.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -520,7 +506,7 @@ android_library_import {
 android_library {
     name: "Twelve_com.github.bogerchan_Nier-Visualizer",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -530,14 +516,13 @@ android_library {
         "Twelve_com.github.bogerchan_Nier-Visualizer-nodeps",
         "kotlin-stdlib-jdk7",
     ],
-    java_version: "1.7",
 }
 
 java_import {
     name: "Twelve_com.github.philburk_jsyn-nodeps",
     jars: ["com/github/philburk/jsyn/40a41092cbab558d7d410ec43d93bb1e4121e86a/jsyn-40a41092cbab558d7d410ec43d93bb1e4121e86a.jar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -547,7 +532,7 @@ java_import {
 java_library_static {
     name: "Twelve_com.github.philburk_jsyn",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -555,14 +540,13 @@ java_library_static {
     static_libs: [
         "Twelve_com.github.philburk_jsyn-nodeps",
     ],
-    java_version: "1.7",
 }
 
 java_import {
     name: "Twelve_com.squareup.okhttp3_okhttp-nodeps",
     jars: ["com/squareup/okhttp3/okhttp/4.12.0/okhttp-4.12.0.jar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -572,7 +556,7 @@ java_import {
 java_library_static {
     name: "Twelve_com.squareup.okhttp3_okhttp",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -582,13 +566,12 @@ java_library_static {
         "Twelve_com.squareup.okio_okio",
         "kotlin-stdlib-jdk8",
     ],
-    java_version: "1.7",
 }
 
 java_library_static {
     name: "Twelve_com.squareup.okio_okio",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -596,14 +579,13 @@ java_library_static {
     static_libs: [
         "Twelve_com.squareup.okio_okio-jvm",
     ],
-    java_version: "1.7",
 }
 
 java_import {
     name: "Twelve_com.squareup.okio_okio-jvm-nodeps",
     jars: ["com/squareup/okio/okio-jvm/3.9.1/okio-jvm-3.9.1.jar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -613,7 +595,7 @@ java_import {
 java_library_static {
     name: "Twelve_com.squareup.okio_okio-jvm",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -622,13 +604,12 @@ java_library_static {
         "Twelve_com.squareup.okio_okio-jvm-nodeps",
         "kotlin-stdlib",
     ],
-    java_version: "1.7",
 }
 
 java_library_static {
     name: "Twelve_io.coil-kt.coil3_coil",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -636,14 +617,13 @@ java_library_static {
     static_libs: [
         "Twelve_io.coil-kt.coil3_coil-android",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_io.coil-kt.coil3_coil-android-nodeps",
     aars: ["io/coil-kt/coil3/coil-android/3.0.4/coil-release.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -657,7 +637,7 @@ android_library_import {
 android_library {
     name: "Twelve_io.coil-kt.coil3_coil-android",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -668,13 +648,12 @@ android_library {
         "Twelve_io.coil-kt.coil3_coil-core",
         "kotlin-stdlib",
     ],
-    java_version: "1.7",
 }
 
 java_library_static {
     name: "Twelve_io.coil-kt.coil3_coil-core",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -682,14 +661,13 @@ java_library_static {
     static_libs: [
         "Twelve_io.coil-kt.coil3_coil-core-android",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_io.coil-kt.coil3_coil-core-android-nodeps",
     aars: ["io/coil-kt/coil3/coil-core-android/3.0.4/coil-core-release.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -711,7 +689,7 @@ android_library_import {
 android_library {
     name: "Twelve_io.coil-kt.coil3_coil-core-android",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -730,13 +708,12 @@ android_library {
         "kotlinx-coroutines-android",
         "kotlinx-coroutines-core",
     ],
-    java_version: "1.7",
 }
 
 java_library_static {
     name: "Twelve_io.coil-kt.coil3_coil-network-core",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -744,14 +721,13 @@ java_library_static {
     static_libs: [
         "Twelve_io.coil-kt.coil3_coil-network-core-android",
     ],
-    java_version: "1.7",
 }
 
 android_library_import {
     name: "Twelve_io.coil-kt.coil3_coil-network-core-android-nodeps",
     aars: ["io/coil-kt/coil3/coil-network-core-android/3.0.4/coil-network-core-release.aar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -766,7 +742,7 @@ android_library_import {
 android_library {
     name: "Twelve_io.coil-kt.coil3_coil-network-core-android",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -778,13 +754,12 @@ android_library {
         "androidx.core_core-ktx",
         "kotlin-stdlib",
     ],
-    java_version: "1.7",
 }
 
 java_library_static {
     name: "Twelve_io.coil-kt.coil3_coil-network-okhttp",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -792,14 +767,13 @@ java_library_static {
     static_libs: [
         "Twelve_io.coil-kt.coil3_coil-network-okhttp-jvm",
     ],
-    java_version: "1.7",
 }
 
 java_import {
     name: "Twelve_io.coil-kt.coil3_coil-network-okhttp-jvm-nodeps",
     jars: ["io/coil-kt/coil3/coil-network-okhttp-jvm/3.0.4/coil-network-okhttp-jvm-3.0.4.jar"],
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -809,7 +783,7 @@ java_import {
 java_library_static {
     name: "Twelve_io.coil-kt.coil3_coil-network-okhttp-jvm",
     sdk_version: "35",
-    min_sdk_version: "14",
+    min_sdk_version: "30",
     apex_available: [
         "//apex_available:platform",
         "//apex_available:anyapex",
@@ -821,5 +795,4 @@ java_library_static {
         "Twelve_io.coil-kt.coil3_coil-network-core",
         "kotlin-stdlib",
     ],
-    java_version: "1.7",
 }

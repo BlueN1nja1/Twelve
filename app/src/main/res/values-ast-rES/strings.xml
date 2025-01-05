@@ -4,10 +4,29 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
+    <string name="app_name">Música</string>
+    <string name="main_fragment_section_activity">Actividá</string>
+    <string name="main_fragment_section_search">Busca</string>
+    <string name="main_fragment_section_library">Biblioteca</string>
     <string name="search_hint">Buscar…</string>
+    <string name="library_fragment_menu_albums">Álbumes</string>
+    <string name="library_fragment_menu_artists">Artistes</string>
+    <string name="library_fragment_menu_genres">Xéneros</string>
     <string name="audio_effects">Efeutos d\'audiu</string>
     <string name="playback_speed">Velocidá de reproducción</string>
     <string name="visualizer">Visualizador</string>
+    <string name="audio_sample_rate_format">%1$s kHz</string>
+    <string name="audio_encoding">Codificación</string>
+    <string name="provider_argument_server">Sirvidor</string>
+    <string name="provider_argument_password">Contraseña</string>
+    <string name="providers">Fornidores</string>
+    <string name="argument_validation_error_title">Error</string>
+    <string name="title_activity_settings">Configuración</string>
+    <string name="now_playing_widget_description">En reproducción</string>
+    <string name="now_playing_widget_dummy_title">Títulu</string>
+    <string name="now_playing_widget_dummy_artist">Artista</string>
+    <string name="now_playing_widget_dummy_album">Álbum</string>
+    <string name="genre_appears_in_albums_header">Apaez nos álbumes</string>
     <string name="activity_most_played_albums">Los álbumes más reproducíos</string>
     <string name="activity_random_albums">Álbumes aleatorios</string>
     <string name="activity_random_songs">Canciones aleatories</string>

@@ -126,6 +126,7 @@
     <string name="genre_appears_in_playlists_header">Apare în playlist-uri</string>
     <string name="genre_audios_header">Audio</string>
     <string name="queue">Coadă</string>
+    <string name="sort_by_artist_name">Numele artistului</string>
     <string name="sort_by_creation_date">Creat la</string>
     <string name="sort_by_last_modified">Ultima modificare</string>
     <string name="sort_by_last_activity">Ultima activitate</string>
@@ -136,6 +137,8 @@
     <string name="sort_by_unknown">Necunoscut</string>
     <string name="activity_most_played_albums">Cele mai redate albume</string>
     <string name="activity_random_albums">Albume aleatoare</string>
+    <string name="activity_random_artists">Artişti aleatorii</string>
+    <string name="activity_random_genres">Genuri aleatorii</string>
     <string name="activity_random_songs">Melodii aleatorii</string>
     <string name="content_description_play_pause">Redă/pauză</string>
     <string name="content_description_thumbnail">Thumbnail</string>

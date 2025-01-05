@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="app_name">Musik</string>
+    <string name="app_permissions_toast">Izin tidak diberikan oleh pengguna</string>
+    <string name="request_status_error_type_not_found">Tidak ditemukan</string>
+    <string name="main_fragment_section_activity">Aktivitas</string>
+    <string name="save_provider_action">Simpan</string>
+    <string name="delete_provider_action">Hapus</string>
+    <string name="provider_name">Nama</string>
+</resources>

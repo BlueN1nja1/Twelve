@@ -124,6 +124,7 @@
     <string name="genre_appears_in_playlists_header">Verschijnt in afspeellijsten</string>
     <string name="genre_audios_header">Audio\'s</string>
     <string name="queue">Rij</string>
+    <string name="sort_by_artist_name">Naam van de artiest</string>
     <string name="sort_by_creation_date">Aangemaakt op</string>
     <string name="sort_by_last_modified">Laatst gewijzigd</string>
     <string name="sort_by_last_activity">Laatste activiteit</string>
@@ -134,6 +135,8 @@
     <string name="sort_by_unknown">Onbekend</string>
     <string name="activity_most_played_albums">Meest afgespeelde albums</string>
     <string name="activity_random_albums">Willekeurige albums</string>
+    <string name="activity_random_artists">Willekeurige artiesten</string>
+    <string name="activity_random_genres">Willekeurige genres</string>
     <string name="activity_random_songs">Willekeurige nummers</string>
     <string name="content_description_play_pause">Afspelen/Pauzeren</string>
     <string name="content_description_thumbnail">Miniatuur</string>
