@@ -21,6 +21,7 @@ import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
+import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.DefaultMediaNotificationProvider
 import androidx.media3.session.LibraryResult
@@ -279,6 +280,16 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
             .setHandleAudioBecomingNoisy(true)
             .setRenderersFactory(TurntableRenderersFactory(this))
             .setSkipSilenceEnabled(sharedPreferences.skipSilence)
+            .setLoadControl(
+                DefaultLoadControl.Builder()
+                    .setBufferDurationsMs(
+                        DefaultLoadControl.DEFAULT_MIN_BUFFER_MS,
+                        DefaultLoadControl.DEFAULT_MAX_BUFFER_MS,
+                        1000,
+                        2000
+                    )
+                    .build()
+            )
             .experimentalSetDynamicSchedulingEnabled(true)
             .build()
 
