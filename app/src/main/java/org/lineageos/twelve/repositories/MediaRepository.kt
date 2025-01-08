@@ -6,11 +6,15 @@
 package org.lineageos.twelve.repositories
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.os.storage.StorageManager
 import android.provider.MediaStore
 import androidx.core.os.bundleOf
+import androidx.preference.PreferenceManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,6 +22,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
@@ -27,11 +32,16 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import okhttp3.Cache
 import org.lineageos.twelve.database.TwelveDatabase
+import org.lineageos.twelve.datasources.DummyDataSource
 import org.lineageos.twelve.datasources.JellyfinDataSource
 import org.lineageos.twelve.datasources.LocalDataSource
 import org.lineageos.twelve.datasources.MediaDataSource
 import org.lineageos.twelve.datasources.MediaError
 import org.lineageos.twelve.datasources.SubsonicDataSource
+import org.lineageos.twelve.ext.SPLIT_LOCAL_DEVICES_KEY
+import org.lineageos.twelve.ext.preferenceFlow
+import org.lineageos.twelve.ext.splitLocalDevices
+import org.lineageos.twelve.ext.storageVolumesFlow
 import org.lineageos.twelve.models.Provider
 import org.lineageos.twelve.models.ProviderArgument.Companion.requireArgument
 import org.lineageos.twelve.models.ProviderType
@@ -52,10 +62,18 @@ class MediaRepository(
     scope: CoroutineScope,
     private val database: TwelveDatabase,
 ) {
+    // System services
+    private val storageManager = context.getSystemService(StorageManager::class.java)
+
     /**
      * Content resolver.
      */
     private val contentResolver = context.contentResolver
+
+    /**
+     * Shared preferences.
+     */
+    private val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
     /**
      * Local data source singleton.
@@ -67,13 +85,66 @@ class MediaRepository(
     )
 
     /**
-     * Local provider singleton.
+     * All the available real storage volumes.
      */
-    private val localProvider = Provider(
-        ProviderType.LOCAL,
-        LOCAL_PROVIDER_ID,
-        Build.MODEL,
-    )
+    private val mediaStoreVolumes = storageManager.storageVolumesFlow()
+        .mapLatest { storageVolumes ->
+            storageVolumes
+                .filter { it.state in storageVolumeMountedStates }
+                .filter { it.mediaStoreVolumeName != null }
+                .sortedBy { it.isPrimary.not() }
+        }
+        .distinctUntilChanged()
+        .flowOn(Dispatchers.IO)
+        .stateIn(
+            scope,
+            SharingStarted.WhileSubscribed(),
+            listOf()
+        )
+
+    private val mediaStoreProviders = combine(
+        sharedPreferences.preferenceFlow(
+            SPLIT_LOCAL_DEVICES_KEY,
+            getter = SharedPreferences::splitLocalDevices,
+        ),
+        mediaStoreVolumes,
+    ) { splitLocalDevices, mediaStoreVolumes ->
+        buildList {
+            add(
+                Provider(
+                    ProviderType.LOCAL,
+                    LOCAL_PROVIDER_ID,
+                    Build.MODEL,
+                    !splitLocalDevices,
+                ) to localDataSource
+            )
+
+            mediaStoreVolumes.forEach {
+                val mediaStoreVolumeName = it.mediaStoreVolumeName ?: throw Exception(
+                    "MediaStore volume name cannot be null"
+                )
+
+                add(
+                    Provider(
+                        ProviderType.LOCAL,
+                        mediaStoreVolumeName.hashCode().toLong(),
+                        it.getDescription(context),
+                        splitLocalDevices,
+                    ) to LocalDataSource(
+                        contentResolver,
+                        mediaStoreVolumeName,
+                        database,
+                    )
+                )
+            }
+        }
+    }
+        .flowOn(Dispatchers.IO)
+        .stateIn(
+            scope,
+            SharingStarted.WhileSubscribed(),
+            listOf()
+        )
 
     /**
      * HTTP cache
@@ -85,7 +156,7 @@ class MediaRepository(
      * All the providers. This is our single point of truth for the providers.
      */
     private val allProvidersToDataSource = combine(
-        flowOf(listOf(localProvider to localDataSource)),
+        mediaStoreProviders,
         database.getSubsonicProviderDao().getAll().mapLatest { subsonicProviders ->
             subsonicProviders.map {
                 val arguments = bundleOf(
@@ -100,6 +171,7 @@ class MediaRepository(
                     ProviderType.SUBSONIC,
                     it.id,
                     it.name,
+                    true,
                 ) to SubsonicDataSource(
                     arguments,
                     { datasource ->
@@ -123,6 +195,7 @@ class MediaRepository(
                     ProviderType.JELLYFIN,
                     it.id,
                     it.name,
+                    true,
                 ) to JellyfinDataSource(
                     context,
                     arguments,
@@ -144,62 +217,85 @@ class MediaRepository(
         .stateIn(
             scope,
             SharingStarted.Eagerly,
-            listOf(localProvider to localDataSource),
-        )
-
-    /**
-     * The current navigation provider's identifiers.
-     */
-    private var _navigationProvider = MutableStateFlow(
-        ProviderType.LOCAL to LOCAL_PROVIDER_ID
-    )
-
-    /**
-     * The current navigation provider's data source.
-     */
-    private val navigationDataSource = _navigationProvider
-        .flatMapLatest {
-            dataSource(it.first, it.second).mapLatest { dataSource ->
-                dataSource ?: localDataSource
-            }
-        }
-        .flowOn(Dispatchers.IO)
-        .stateIn(
-            scope,
-            SharingStarted.Eagerly,
-            localDataSource,
+            listOf(),
         )
 
     /**
      * All providers available to the app.
      */
-    val allProviders = allProvidersToDataSource.mapLatest {
+    private val allProviders = allProvidersToDataSource.mapLatest {
         it.map { (provider, _) -> provider }
     }
         .flowOn(Dispatchers.IO)
         .stateIn(
             scope,
             SharingStarted.Eagerly,
-            listOf(localProvider),
+            listOf(),
+        )
+
+    /**
+     * All providers that the user can be aware of.
+     */
+    val allVisibleProviders = allProviders
+        .mapLatest { it.filter { provider -> provider.visible } }
+        .flowOn(Dispatchers.IO)
+        .stateIn(
+            scope,
+            SharingStarted.Eagerly,
+            listOf(),
+        )
+
+    /**
+     * The current navigation provider's identifiers.
+     */
+    private val _navigationProvider = MutableStateFlow<Pair<ProviderType, Long>?>(null)
+
+    /**
+     * The current navigation provider and its data source.
+     */
+    private val navigationProviderToDataSource = combine(
+        _navigationProvider,
+        allProvidersToDataSource,
+    ) { navigationProvider, allProvidersToDataSource ->
+        navigationProvider?.let {
+            allProvidersToDataSource.firstOrNull { (provider, _) ->
+                provider.type == it.first && provider.typeId == it.second && provider.visible
+            }
+        } ?: allProvidersToDataSource.firstOrNull { it.first.visible }
+    }
+        .flowOn(Dispatchers.IO)
+        .stateIn(
+            scope,
+            SharingStarted.Eagerly,
+            null,
         )
 
     /**
      * The current navigation provider. This is used when the user looks for all media types,
      * like the home page, or with the search feature. In case the selected one disappears, the
-     * repository will automatically fallback to the local provider.
+     * repository will automatically fallback to the first provider available (this usually being
+     * the local provider). If no provider is available, this will return null.
      */
-    val navigationProvider = _navigationProvider
-        .flatMapLatest {
-            provider(it.first, it.second).mapLatest { currentNavigationProvider ->
-                // Default to local provider if not found
-                currentNavigationProvider ?: localProvider
-            }
-        }
+    val navigationProvider = navigationProviderToDataSource
+        .mapLatest { it?.first }
         .flowOn(Dispatchers.IO)
         .stateIn(
             scope,
             SharingStarted.Eagerly,
-            localProvider,
+            null,
+        )
+
+    /**
+     * The current navigation provider's data source. Even when no provider is available, a dummy
+     * data source will be used.
+     */
+    private val navigationDataSource = navigationProviderToDataSource
+        .mapLatest { it?.second ?: DummyDataSource }
+        .flowOn(Dispatchers.IO)
+        .stateIn(
+            scope,
+            SharingStarted.Eagerly,
+            DummyDataSource,
         )
 
     init {
@@ -542,21 +638,6 @@ class MediaRepository(
         }
 
     /**
-     * Get a flow of the [MediaDataSource] associated with the given [Provider].
-     *
-     * @param providerType The [ProviderType]
-     * @param providerTypeId The [ProviderType] specific provider ID
-     * @return The corresponding [MediaDataSource]
-     */
-    private fun dataSource(
-        providerType: ProviderType, providerTypeId: Long
-    ) = allProvidersToDataSource.mapLatest {
-        it.firstOrNull { (provider, _) ->
-            providerType == provider.type && providerTypeId == provider.typeId
-        }?.second
-    }
-
-    /**
      * Get the [MediaDataSource] associated with the given [Provider].
      *
      * @param providerType The [ProviderType]
@@ -609,6 +690,14 @@ class MediaRepository(
 
     companion object {
         private const val LOCAL_PROVIDER_ID = 0L
+
+        /**
+         * @see MediaStore.getExternalVolumeNames
+         */
+        private val storageVolumeMountedStates = arrayOf(
+            Environment.MEDIA_MOUNTED,
+            Environment.MEDIA_MOUNTED_READ_ONLY,
+        )
 
         val defaultAlbumsSortingRule = SortingRule(
             SortingStrategy.CREATION_DATE, true

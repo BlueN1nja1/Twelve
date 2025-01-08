@@ -15,7 +15,6 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ServiceLifecycleDispatcher
-import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.media3.common.AudioAttributes
 import androidx.media3.common.C
@@ -141,7 +140,7 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
         override fun onPlaybackResumption(
             mediaSession: MediaSession,
             controller: MediaSession.ControllerInfo
-        ) = lifecycle.coroutineScope.future {
+        ) = lifecycleScope.future {
             val resumptionPlaylist = resumptionPlaylistRepository.getResumptionPlaylist()
 
             var startIndex = resumptionPlaylist.startIndex
@@ -179,15 +178,15 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
             session: MediaLibrarySession,
             browser: MediaSession.ControllerInfo,
             params: LibraryParams?,
-        ) = lifecycle.coroutineScope.future {
-            LibraryResult.ofItem(mediaRepositoryTree.getRootMediaItem(), params)
+        ) = lifecycleScope.future {
+            LibraryResult.ofItem(mediaRepositoryTree.rootMediaItem, params)
         }
 
         override fun onGetItem(
             session: MediaLibrarySession,
             browser: MediaSession.ControllerInfo,
             mediaId: String,
-        ) = lifecycle.coroutineScope.future {
+        ) = lifecycleScope.future {
             mediaRepositoryTree.getItem(mediaId)?.let {
                 LibraryResult.ofItem(it, null)
             } ?: LibraryResult.ofError(SessionError.ERROR_BAD_VALUE)
@@ -201,7 +200,7 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
             page: Int,
             pageSize: Int,
             params: LibraryParams?,
-        ) = lifecycle.coroutineScope.future {
+        ) = lifecycleScope.future {
             LibraryResult.ofItemList(mediaRepositoryTree.getChildren(parentId), params)
         }
 
@@ -209,7 +208,7 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
             mediaSession: MediaSession,
             controller: MediaSession.ControllerInfo,
             mediaItems: List<MediaItem>,
-        ) = lifecycle.coroutineScope.future {
+        ) = lifecycleScope.future {
             mediaRepositoryTree.resolveMediaItems(mediaItems)
         }
 
@@ -220,7 +219,7 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
             mediaItems: List<MediaItem>,
             startIndex: Int,
             startPositionMs: Long,
-        ) = lifecycle.coroutineScope.future {
+        ) = lifecycleScope.future {
             val resolvedMediaItems = mediaRepositoryTree.resolveMediaItems(mediaItems)
 
             launch {
@@ -243,7 +242,7 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
             browser: MediaSession.ControllerInfo,
             query: String,
             params: LibraryParams?,
-        ) = lifecycle.coroutineScope.future {
+        ) = lifecycleScope.future {
             session.notifySearchResultChanged(
                 browser, query, mediaRepositoryTree.search(query).size, params
             )
@@ -257,7 +256,7 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
             page: Int,
             pageSize: Int,
             params: LibraryParams?,
-        ) = lifecycle.coroutineScope.future {
+        ) = lifecycleScope.future {
             LibraryResult.ofItemList(mediaRepositoryTree.search(query), params)
         }
 
@@ -266,7 +265,7 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
             controller: MediaSession.ControllerInfo,
             customCommand: SessionCommand,
             args: Bundle
-        ) = lifecycle.coroutineScope.future {
+        ) = lifecycleScope.future {
             when (CustomCommand.fromCustomAction(customCommand.customAction)) {
                 CustomCommand.TOGGLE_OFFLOAD -> {
                     args.getBoolean(CustomCommand.ARG_VALUE).let {
@@ -379,11 +378,17 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
     override fun onEvents(player: Player, events: Player.Events) {
         // Update startIndex and startPositionMs in resumption playlist.
         if (events.containsAny(Player.EVENT_MEDIA_ITEM_TRANSITION)) {
-            lifecycle.coroutineScope.launch {
+            lifecycleScope.launch {
                 resumptionPlaylistRepository.onPlaybackPositionChanged(
                     player.currentMediaItemIndex,
                     player.currentPosition
                 )
+            }
+
+            lifecycleScope.launch {
+                player.currentMediaItem?.localConfiguration?.uri?.let {
+                    mediaRepository.onAudioPlayed(it)
+                }
             }
         }
 
@@ -396,14 +401,6 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
         ) {
             lifecycleScope.launch {
                 NowPlayingAppWidgetProvider.update(this@PlaybackService)
-            }
-        }
-
-        if (events.contains(Player.EVENT_MEDIA_ITEM_TRANSITION)) {
-            lifecycleScope.launch {
-                player.currentMediaItem?.localConfiguration?.uri?.let {
-                    mediaRepository.onAudioPlayed(it)
-                }
             }
         }
     }

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -372,6 +372,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                         it?.let {
                             providerMaterialButton.text = it.name
                             providerMaterialButton.setIconResource(it.type.iconDrawableResId)
+                        } ?: run {
+                            providerMaterialButton.setText(R.string.no_provider)
+                            providerMaterialButton.setIconResource(R.drawable.ic_warning)
                         }
                     }
                 }

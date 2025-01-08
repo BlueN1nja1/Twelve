@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -18,7 +18,7 @@ import org.lineageos.twelve.models.RequestStatus
 
 open class ProvidersViewModel(application: Application) : TwelveViewModel(application) {
     @OptIn(ExperimentalCoroutinesApi::class)
-    val providers = mediaRepository.allProviders
+    val providers = mediaRepository.allVisibleProviders
         .mapLatest { RequestStatus.Success<_, Nothing>(it) }
         .flowOn(Dispatchers.IO)
         .stateIn(

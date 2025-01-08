@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -58,6 +58,12 @@ const val SKIP_SILENCE_KEY = "skip_silence"
 private const val SKIP_SILENCE_DEFAULT = false
 val SharedPreferences.skipSilence: Boolean
     get() = getBoolean(SKIP_SILENCE_KEY, SKIP_SILENCE_DEFAULT)
+
+// Experimental prefs
+const val SPLIT_LOCAL_DEVICES_KEY = "split_local_devices"
+private const val SPLIT_LOCAL_DEVICES_DEFAULT = false
+val SharedPreferences.splitLocalDevices: Boolean
+    get() = getBoolean(SPLIT_LOCAL_DEVICES_KEY, SPLIT_LOCAL_DEVICES_DEFAULT)
 
 // Playback prefs
 private const val TYPED_REPEAT_MODE_KEY = "typed_repeat_mode"

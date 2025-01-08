@@ -136,6 +136,7 @@
     <string name="provider_argument_validation_error_malformed_http_uri">Must be a valid HTTP or HTTPS URL (e.g. https://google.com)</string>
 
     <!-- Provider selector dialog fragment -->
+    <string name="no_provider">No provider</string>
     <string name="providers">Providers</string>
     <string name="add_provider_action">Add</string>
 
@@ -158,6 +159,7 @@
 
     <!-- Preference titles -->
     <string name="general_header">General</string>
+    <string name="experimental_header">Experimental</string>
 
     <!-- General preferences -->
     <string name="enable_offload">Enable offload</string>
@@ -166,6 +168,10 @@
     <string name="stop_playback_on_task_removed_summary">Stop playback when the app is cleared from recents</string>
     <string name="skip_silence">Skip silence</string>
     <string name="skip_silence_summary">Skip silence when playing audio</string>
+
+    <!-- Experimental preferences -->
+    <string name="split_local_devices">Split local devices</string>
+    <string name="split_local_devices_summary">If enabled, internal storage and external devices (SD cards, USB devices, etc.) will appear under different providers</string>
 
     <!-- Now playing widget -->
     <string name="now_playing_widget_description">Now playing</string>
@@ -210,4 +216,14 @@
 
     <!-- Play all -->
     <string name="play_all">Play all</string>
+
+    <!-- Media repository tree -->
+    <string name="library_item_no_permissions">No permissions</string>
+    <string name="library_item_no_permissions_description">The app doesn\'t have the necessary permissions</string>
+    <string name="library_item_albums">Albums</string>
+    <string name="library_item_artists">Artists</string>
+    <string name="library_item_genres">Genres</string>
+    <string name="library_item_playlists">Playlists</string>
+    <string name="library_item_change_provider">Change provider</string>
+    <string name="library_item_provider_changed">Provider changed, go back to main menu</string>
 </resources>

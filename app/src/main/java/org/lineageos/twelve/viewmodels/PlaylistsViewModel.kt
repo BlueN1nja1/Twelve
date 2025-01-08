@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -50,8 +50,10 @@ class PlaylistsViewModel(application: Application) : TwelveViewModel(application
     }
 
     suspend fun createPlaylist(name: String) {
-        withContext(Dispatchers.IO) {
-            mediaRepository.createPlaylist(mediaRepository.navigationProvider.value, name)
+        mediaRepository.navigationProvider.value?.let {
+            withContext(Dispatchers.IO) {
+                mediaRepository.createPlaylist(it, name)
+            }
         }
     }
 }

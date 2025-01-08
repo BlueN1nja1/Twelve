@@ -28,11 +28,13 @@ fun buildMediaItem(
     discNumber: Int? = null,
     trackNumber: Int? = null,
     durationMs: Long? = null,
+    subtitle: String? = null,
 ): MediaItem {
     val metadata =
         MediaMetadata.Builder()
             .setAlbumTitle(album)
             .setTitle(title)
+            .setSubtitle(subtitle)
             .setArtist(artist)
             .setGenre(genre)
             .setIsBrowsable(isBrowsable)
