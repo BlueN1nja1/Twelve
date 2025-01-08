@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -11,6 +11,7 @@ import android.media.audiofx.AudioEffect
 import android.os.Bundle
 import android.os.IBinder
 import androidx.annotation.OptIn
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ServiceLifecycleDispatcher
@@ -21,6 +22,7 @@ import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
+import androidx.media3.common.util.Util
 import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.session.DefaultMediaNotificationProvider
@@ -61,12 +63,25 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
          * Arguments:
          * - [ARG_VALUE] ([Boolean]): Whether to enable or disable skip silence
          */
-        TOGGLE_SKIP_SILENCE("toggle_skip_silence", Bundle.EMPTY);
+        TOGGLE_SKIP_SILENCE("toggle_skip_silence", Bundle.EMPTY),
+
+        /**
+         * Get the audio session ID.
+         *
+         * Response:
+         * - [RSP_VALUE] ([Int]): The audio session ID
+         */
+        GET_AUDIO_SESSION_ID("get_audio_session_id", Bundle.EMPTY);
 
         val sessionCommand = SessionCommand(value, extras)
 
         companion object {
             const val ARG_VALUE = "value"
+            const val RSP_VALUE = "value"
+
+            fun fromCustomAction(
+                customAction: String
+            ) = entries.firstOrNull { it.value == customAction }
 
             fun MediaController.sendCustomCommand(
                 customCommand: CustomCommand,
@@ -84,7 +99,7 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
     private val mediaRepositoryTree by lazy {
         MediaRepositoryTree(
             applicationContext,
-            (application as TwelveApplication).mediaRepository,
+            mediaRepository,
         )
     }
 
@@ -94,6 +109,14 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
 
     private val resumptionPlaylistRepository by lazy {
         (application as TwelveApplication).resumptionPlaylistRepository
+    }
+
+    private val mediaRepository by lazy {
+        (application as TwelveApplication).mediaRepository
+    }
+
+    private val audioSessionId by lazy {
+        Util.generateAudioSessionIdV21(this)
     }
 
     private val mediaLibrarySessionCallback = object : MediaLibrarySession.Callback {
@@ -244,8 +267,8 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
             customCommand: SessionCommand,
             args: Bundle
         ) = lifecycle.coroutineScope.future {
-            when (customCommand.customAction) {
-                CustomCommand.TOGGLE_OFFLOAD.value -> {
+            when (CustomCommand.fromCustomAction(customCommand.customAction)) {
+                CustomCommand.TOGGLE_OFFLOAD -> {
                     args.getBoolean(CustomCommand.ARG_VALUE).let {
                         mediaLibrarySession?.player?.setOffloadEnabled(it)
                     }
@@ -253,7 +276,7 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
                     SessionResult(SessionResult.RESULT_SUCCESS)
                 }
 
-                CustomCommand.TOGGLE_SKIP_SILENCE.value -> {
+                CustomCommand.TOGGLE_SKIP_SILENCE -> {
                     args.getBoolean(CustomCommand.ARG_VALUE).let {
                         ExoPlayer::class.cast(mediaLibrarySession?.player).skipSilenceEnabled = it
                     }
@@ -261,7 +284,14 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
                     SessionResult(SessionResult.RESULT_SUCCESS)
                 }
 
-                else -> SessionResult(SessionError.ERROR_NOT_SUPPORTED)
+                CustomCommand.GET_AUDIO_SESSION_ID -> {
+                    SessionResult(
+                        SessionResult.RESULT_SUCCESS,
+                        bundleOf(CustomCommand.RSP_VALUE to audioSessionId),
+                    )
+                }
+
+                null -> SessionResult(SessionError.ERROR_NOT_SUPPORTED)
             }
         }
     }
@@ -311,7 +341,7 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
                 }
         )
 
-        exoPlayer.audioSessionId = (application as TwelveApplication).audioSessionId
+        exoPlayer.audioSessionId = audioSessionId
         openAudioEffectSession()
     }
 
@@ -368,15 +398,20 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
                 NowPlayingAppWidgetProvider.update(this@PlaybackService)
             }
         }
+
+        if (events.contains(Player.EVENT_MEDIA_ITEM_TRANSITION)) {
+            lifecycleScope.launch {
+                player.currentMediaItem?.localConfiguration?.uri?.let {
+                    mediaRepository.onAudioPlayed(it)
+                }
+            }
+        }
     }
 
     private fun openAudioEffectSession() {
         Intent(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION).apply {
             putExtra(AudioEffect.EXTRA_PACKAGE_NAME, application.packageName)
-            putExtra(
-                AudioEffect.EXTRA_AUDIO_SESSION,
-                (application as TwelveApplication).audioSessionId
-            )
+            putExtra(AudioEffect.EXTRA_AUDIO_SESSION, audioSessionId)
             putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC)
             sendBroadcast(this)
         }
@@ -385,10 +420,7 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
     private fun closeAudioEffectSession() {
         Intent(AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION).apply {
             putExtra(AudioEffect.EXTRA_PACKAGE_NAME, application.packageName)
-            putExtra(
-                AudioEffect.EXTRA_AUDIO_SESSION,
-                (application as TwelveApplication).audioSessionId
-            )
+            putExtra(AudioEffect.EXTRA_AUDIO_SESSION, audioSessionId)
             putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC)
             sendBroadcast(this)
         }

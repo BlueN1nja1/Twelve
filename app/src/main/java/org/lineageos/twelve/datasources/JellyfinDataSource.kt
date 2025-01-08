@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -9,8 +9,10 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.mapLatest
 import okhttp3.Cache
@@ -26,11 +28,15 @@ import org.lineageos.twelve.models.ArtistWorks
 import org.lineageos.twelve.models.Audio
 import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.GenreContent
+import org.lineageos.twelve.models.LocalizedString
+import org.lineageos.twelve.models.MediaItem
 import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.Playlist
 import org.lineageos.twelve.models.ProviderArgument
 import org.lineageos.twelve.models.ProviderArgument.Companion.requireArgument
 import org.lineageos.twelve.models.RequestStatus
+import org.lineageos.twelve.models.RequestStatus.Companion.fold
+import org.lineageos.twelve.models.RequestStatus.Companion.map
 import org.lineageos.twelve.models.SortingRule
 import org.lineageos.twelve.models.SortingStrategy
 import org.lineageos.twelve.models.Thumbnail
@@ -48,6 +54,8 @@ class JellyfinDataSource(
     deviceIdentifier: String,
     tokenGetter: () -> String?,
     tokenSetter: (String) -> Unit,
+    private val lastPlayedGetter: (String) -> Flow<Uri?>,
+    private val lastPlayedSetter: suspend (String, Uri) -> Long,
     cache: Cache? = null,
 ) : MediaDataSource {
     private val server = arguments.requireArgument(ARG_SERVER)
@@ -100,7 +108,20 @@ class JellyfinDataSource(
         } ?: RequestStatus.Error(MediaError.NOT_FOUND)
     }
 
-    override fun activity() = flowOf(RequestStatus.Success<_, MediaError>(listOf<ActivityTab>()))
+    override fun activity() = lastPlayedItems().mapLatest { lastPlayedRs ->
+        lastPlayedRs.map { lastPlayed ->
+            listOf(
+                ActivityTab(
+                    "last_played",
+                    LocalizedString(
+                        "Last played",
+                        R.string.activity_last_played
+                    ),
+                    lastPlayed
+                ),
+            ).filter { it.items.isNotEmpty() }
+        }
+    }
 
     override fun albums(sortingRule: SortingRule) = suspend {
         client.getAlbums(sortingRule).toRequestStatus {
@@ -214,6 +235,11 @@ class JellyfinDataSource(
         }
     }
 
+    override fun lastPlayedAudio() = lastPlayedGetter(lastPlayedKey())
+        .flatMapLatest { uri ->
+            uri?.let(this::audio) ?: flowOf(RequestStatus.Error(MediaError.NOT_FOUND))
+        }
+
     override suspend fun createPlaylist(name: String) = run {
         client.createPlaylist(name).toRequestStatus {
             onPlaylistsChanged()
@@ -251,6 +277,20 @@ class JellyfinDataSource(
             onPlaylistsChanged()
         }
     }
+
+    override suspend fun onAudioPlayed(audioUri: Uri) =
+        if (audioUri.lastPathSegment == "stream") {
+            // When playing "stream?static=true" gets added to the audio URI.
+            // We don't want to store that.
+            Uri.parse(
+                audioUri.toString().removeSuffix("stream?static=true")
+            )
+        } else {
+            audioUri
+        }.let {
+            lastPlayedSetter(lastPlayedKey(), it)
+                .let { RequestStatus.Success<Unit, MediaError>(Unit) }
+        }
 
     private fun Item.toMediaItemAlbum() = Album(
         uri = getAlbumUri(id.toString()),
@@ -327,6 +367,34 @@ class JellyfinDataSource(
 
     private fun onPlaylistsChanged() {
         _playlistsChanged.value = Any()
+    }
+
+    private fun lastPlayedKey() = "jellyfin:$username@$server"
+
+    /**
+     * Get the latest played items (Audio and associated Album, if any).
+     * @see lastPlayedAudio
+     */
+    private fun lastPlayedItems() = lastPlayedAudio().flatMapLatest { audioRs ->
+        audioRs.fold(
+            onSuccess = { audio ->
+                val albumId = UUID.fromString(audio.albumUri.lastPathSegment!!)
+                suspend {
+                    client.getAlbum(albumId).toRequestStatus { toMediaItemAlbum() }
+                }.asFlow().mapLatest { albumRs ->
+                    val audioAsMediaItemList = listOf(audio as MediaItem<*>)
+                    RequestStatus.Success<List<MediaItem<*>>, MediaError>(
+                        albumRs.fold(
+                            onSuccess = { album -> audioAsMediaItemList + album },
+                            onLoading = { audioAsMediaItemList },
+                            onError = { audioAsMediaItemList },
+                        )
+                    )
+                }
+            },
+            onLoading = { flowOf(RequestStatus.Error(MediaError.NOT_FOUND)) },
+            onError = { flowOf(RequestStatus.Error(MediaError.NOT_FOUND)) },
+        )
     }
 
     companion object {

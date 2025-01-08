@@ -21,7 +21,9 @@ object PermissionsUtils {
         } else {
             add(Manifest.permission.READ_EXTERNAL_STORAGE)
         }
-
-        add(Manifest.permission.RECORD_AUDIO)
     }.toTypedArray()
+
+    val visualizerPermissions = arrayOf(
+        Manifest.permission.RECORD_AUDIO,
+    )
 }

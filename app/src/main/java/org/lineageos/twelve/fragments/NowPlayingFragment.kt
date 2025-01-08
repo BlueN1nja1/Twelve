@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -40,11 +40,11 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.slider.Slider
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import me.bogerchan.niervisualizer.NierVisualizerManager
 import org.lineageos.twelve.R
-import org.lineageos.twelve.TwelveApplication
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.loadThumbnail
 import org.lineageos.twelve.ext.navigateSafe
@@ -52,6 +52,9 @@ import org.lineageos.twelve.ext.updatePadding
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.models.RequestStatus
+import org.lineageos.twelve.ui.visualizer.VisualizerNVDataSource
+import org.lineageos.twelve.utils.PermissionsChecker
+import org.lineageos.twelve.utils.PermissionsUtils
 import org.lineageos.twelve.utils.TimestampFormatter
 import org.lineageos.twelve.viewmodels.NowPlayingViewModel
 import java.util.Locale
@@ -98,8 +101,6 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
     private var animator: ValueAnimator? = null
 
     // AudioFX
-    private val audioSessionId: Int
-        get() = (requireActivity().application as TwelveApplication).audioSessionId
     private val audioEffectsStartForResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             // Empty
@@ -107,25 +108,22 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
 
     // Visualizer
     private val visualizerManager = NierVisualizerManager()
+    private val visualizerNVDataSource by lazy { VisualizerNVDataSource() }
     private val visualizerViewLifecycleObserver = object : DefaultLifecycleObserver {
-        private var isVisualizerInitialized = false
         private var isVisualizerStarted = false
 
         override fun onCreate(owner: LifecycleOwner) {
-            val initResult = visualizerManager.init(audioSessionId)
-            isVisualizerInitialized = initResult == NierVisualizerManager.SUCCESS
+            visualizerManager.init(visualizerNVDataSource)
 
             owner.lifecycleScope.launch {
                 owner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                     viewModel.currentVisualizerType.collectLatest { currentVisualizerType ->
-                        if (isVisualizerInitialized) {
-                            currentVisualizerType.factory.invoke()?.let {
-                                visualizerManager.start(visualizerSurfaceView, it)
-                                isVisualizerStarted = true
-                            } ?: run {
-                                visualizerManager.stop()
-                                isVisualizerStarted = false
-                            }
+                        currentVisualizerType.factory.invoke()?.let {
+                            visualizerManager.start(visualizerSurfaceView, it)
+                            isVisualizerStarted = true
+                        } ?: run {
+                            visualizerManager.stop()
+                            isVisualizerStarted = false
                         }
                     }
                 }
@@ -152,12 +150,17 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
         }
 
         override fun onDestroy(owner: LifecycleOwner) {
-            if (isVisualizerInitialized) {
-                visualizerManager.release()
-            }
-            isVisualizerInitialized = false
+            visualizerManager.release()
         }
     }
+
+    // Permissions
+    private val visualizerPermissionsChecker = PermissionsChecker(
+        this,
+        PermissionsUtils.visualizerPermissions,
+        true,
+        R.string.visualizer_permissions_toast,
+    )
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -266,14 +269,16 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
 
         equalizerMaterialButton.setOnClickListener {
             // Open system equalizer
-            audioEffectsStartForResult.launch(
-                Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL).apply {
-                    putExtra(AudioEffect.EXTRA_PACKAGE_NAME, requireContext().packageName)
-                    putExtra(AudioEffect.EXTRA_AUDIO_SESSION, audioSessionId)
-                    putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC)
-                },
-                null
-            )
+            viewModel.audioSessionId.value?.let { audioSessionId ->
+                audioEffectsStartForResult.launch(
+                    Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL).apply {
+                        putExtra(AudioEffect.EXTRA_PACKAGE_NAME, requireContext().packageName)
+                        putExtra(AudioEffect.EXTRA_AUDIO_SESSION, audioSessionId)
+                        putExtra(AudioEffect.EXTRA_CONTENT_TYPE, AudioEffect.CONTENT_TYPE_MUSIC)
+                    },
+                    null
+                )
+            }
         }
 
         visualizerMaterialButton.setOnClickListener {
@@ -527,9 +532,20 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
                 }
 
                 launch {
-                    viewModel.currentVisualizerType.collectLatest {
-                        visualizerSurfaceView.isVisible =
-                            it != NowPlayingViewModel.VisualizerType.NONE
+                    viewModel.audioSessionId.collectLatest {
+                        visualizerNVDataSource.setAudioSessionId(it)
+                    }
+                }
+
+                launch {
+                    viewModel.isVisualizerEnabled.collectLatest {
+                        visualizerSurfaceView.isVisible = it
+
+                        if (it) {
+                            visualizerPermissionsChecker.withPermissionsGranted {
+                                visualizerNVDataSource.workFlow.collect()
+                            }
+                        }
                     }
                 }
             }

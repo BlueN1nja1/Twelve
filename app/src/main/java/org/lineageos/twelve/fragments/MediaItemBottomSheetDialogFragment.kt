@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -61,6 +61,7 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
     private val openArtistListItem by getViewProperty<ListItem>(R.id.openArtistListItem)
     private val openGenreListItem by getViewProperty<ListItem>(R.id.openGenreListItem)
     private val placeholderImageView by getViewProperty<ImageView>(R.id.placeholderImageView)
+    private val playNowListItem by getViewProperty<ListItem>(R.id.playNowListItem)
     private val playNextListItem by getViewProperty<ListItem>(R.id.playNextListItem)
     private val removeFromPlaylistListItem by getViewProperty<ListItem>(R.id.removeFromPlaylistListItem)
     private val thumbnailImageView by getViewProperty<ImageView>(R.id.thumbnailImageView)
@@ -87,6 +88,14 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        playNowListItem.setOnClickListener {
+            viewModel.tracks.value.takeIf { it.isNotEmpty() }?.let { tracks ->
+                viewModel.playAudio(tracks.toList(), 0)
+            }
+
+            findNavController().navigateUp()
+        }
 
         addToQueueListItem.setOnClickListener {
             viewModel.tracks.value.takeIf { it.isNotEmpty() }?.let { tracks ->
@@ -252,6 +261,7 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
             viewModel.tracks.collectLatest { tracks ->
                 val isNotEmpty = tracks.isNotEmpty()
 
+                playNowListItem.isVisible = isNotEmpty
                 addToQueueListItem.isVisible = isNotEmpty
                 playNextListItem.isVisible = isNotEmpty
             }

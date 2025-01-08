@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -42,6 +42,19 @@ sealed class RequestStatus<T, E> {
             is Loading -> Loading(progress)
             is Success -> Success(mapping(data))
             is Error -> Error(error, throwable)
+        }
+
+        /**
+         * Fold the request status.
+         */
+        fun <T, E, R> RequestStatus<T, E>.fold(
+            onLoading: (Int?) -> R,
+            onSuccess: (T) -> R,
+            onError: (E) -> R,
+        ): R = when (this) {
+            is Loading -> onLoading(progress)
+            is Success -> onSuccess(data)
+            is Error -> onError(error)
         }
     }
 }

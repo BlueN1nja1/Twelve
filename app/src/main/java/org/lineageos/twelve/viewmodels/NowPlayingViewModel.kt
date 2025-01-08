@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -7,6 +7,7 @@ package org.lineageos.twelve.viewmodels
 
 import android.app.Application
 import android.graphics.BitmapFactory
+import android.os.Bundle
 import androidx.lifecycle.viewModelScope
 import androidx.media3.common.C
 import androidx.media3.common.MediaMetadata
@@ -23,6 +24,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.guava.await
 import me.bogerchan.niervisualizer.renderer.IRenderer
 import me.bogerchan.niervisualizer.renderer.circle.CircleBarRenderer
 import me.bogerchan.niervisualizer.renderer.circle.CircleRenderer
@@ -45,6 +47,8 @@ import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.models.Thumbnail
+import org.lineageos.twelve.services.PlaybackService
+import org.lineageos.twelve.services.PlaybackService.CustomCommand.Companion.sendCustomCommand
 import org.lineageos.twelve.utils.MimeUtils
 
 open class NowPlayingViewModel(application: Application) : TwelveViewModel(application) {
@@ -266,6 +270,22 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
             initialValue = Triple(null, null, 1f)
         )
 
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val audioSessionId = mediaController
+        .filterNotNull()
+        .mapLatest { mediaController ->
+            mediaController.sendCustomCommand(
+                PlaybackService.CustomCommand.GET_AUDIO_SESSION_ID,
+                Bundle.EMPTY
+            ).await().extras.getInt(PlaybackService.CustomCommand.RSP_VALUE)
+        }
+        .flowOn(Dispatchers.Main)
+        .stateIn(
+            viewModelScope,
+            started = SharingStarted.WhileSubscribed(),
+            initialValue = null
+        )
+
     private val _currentVisualizerType = MutableStateFlow(VisualizerType.entries.first())
     val currentVisualizerType = combine(
         _currentVisualizerType,
@@ -278,6 +298,16 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
             initialValue = VisualizerType.NONE
+        )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val isVisualizerEnabled = currentVisualizerType
+        .mapLatest { it != VisualizerType.NONE }
+        .flowOn(Dispatchers.IO)
+        .stateIn(
+            viewModelScope,
+            started = SharingStarted.WhileSubscribed(),
+            initialValue = false
         )
 
     fun togglePlayPause() {

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -87,6 +87,13 @@
         <com.google.android.material.divider.MaterialDivider
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <org.lineageos.twelve.ui.views.ListItem
+            android:id="@+id/playNowListItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:headlineText="@string/action_play"
+            app:leadingIconImage="@drawable/ic_play_arrow" />
 
         <org.lineageos.twelve.ui.views.ListItem
             android:id="@+id/addToQueueListItem"

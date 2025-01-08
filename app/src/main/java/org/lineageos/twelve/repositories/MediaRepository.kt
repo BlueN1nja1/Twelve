@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -18,11 +18,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 import okhttp3.Cache
 import org.lineageos.twelve.database.TwelveDatabase
 import org.lineageos.twelve.datasources.JellyfinDataSource
@@ -98,7 +100,15 @@ class MediaRepository(
                     ProviderType.SUBSONIC,
                     it.id,
                     it.name,
-                ) to SubsonicDataSource(arguments, cache)
+                ) to SubsonicDataSource(
+                    arguments,
+                    { datasource ->
+                        database.getLastPlayedDao().get(datasource)
+                    }, { datasource, uri ->
+                        database.getLastPlayedDao().set(datasource, uri)
+                    },
+                    cache
+                )
             }
         },
         database.getJellyfinProviderDao().getAll().mapLatest { jellyfinProviders ->
@@ -113,11 +123,20 @@ class MediaRepository(
                     ProviderType.JELLYFIN,
                     it.id,
                     it.name,
-                ) to JellyfinDataSource(context, arguments, it.deviceIdentifier, {
-                    database.getJellyfinProviderDao().getToken(it.id)
-                }, { token ->
-                    database.getJellyfinProviderDao().updateToken(it.id, token)
-                }, cache)
+                ) to JellyfinDataSource(
+                    context,
+                    arguments,
+                    it.deviceIdentifier, {
+                        database.getJellyfinProviderDao().getToken(it.id)
+                    }, { token ->
+                        database.getJellyfinProviderDao().updateToken(it.id, token)
+                    }, { datasource ->
+                        database.getLastPlayedDao().get(datasource)
+                    }, { datasource, uri ->
+                        database.getLastPlayedDao().set(datasource, uri)
+                    },
+                    cache
+                )
             }
         }
     ) { providers -> providers.toList().flatten() }
@@ -182,6 +201,10 @@ class MediaRepository(
             SharingStarted.Eagerly,
             localProvider,
         )
+
+    init {
+        scope.launch { gcLocalMediaStats() }
+    }
 
     /**
      * Given a media item, get a flow of the provider that handles these media items' URIs.
@@ -511,6 +534,14 @@ class MediaRepository(
         }
 
     /**
+     * @see MediaDataSource.onAudioPlayed
+     */
+    suspend fun onAudioPlayed(audioUri: Uri) =
+        withMediaItemsDataSource(audioUri) {
+            onAudioPlayed(audioUri)
+        }
+
+    /**
      * Get a flow of the [MediaDataSource] associated with the given [Provider].
      *
      * @param providerType The [ProviderType]
@@ -594,5 +625,24 @@ class MediaRepository(
         val defaultPlaylistsSortingRule = SortingRule(
             SortingStrategy.MODIFICATION_DATE, true
         )
+    }
+
+    /**
+     * Remove items that are no longer in the local data source from the local media stats table.
+     */
+    private suspend fun gcLocalMediaStats() {
+        val statsDao = database.getLocalMediaStatsProviderDao()
+        val allStats = statsDao.getAll()
+        val inSource = localDataSource.audios().mapLatest { it }.first()
+
+        val removedMedia = buildList {
+            allStats.forEach {
+                if (inSource.none { audio -> audio.playbackUri == it.mediaUri }) {
+                    add(it.mediaUri)
+                }
+            }
+        }
+
+        statsDao.delete(removedMedia)
     }
 }
