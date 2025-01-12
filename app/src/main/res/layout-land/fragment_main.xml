@@ -31,6 +31,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
                 android:layout_marginEnd="16dp"
+                android:contentDescription="@string/title_activity_settings"
+                android:tooltipText="@string/title_activity_settings"
                 app:icon="@drawable/ic_settings" />
 
             <com.google.android.material.button.MaterialButton
@@ -39,7 +41,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginEnd="8dp"
                 tools:icon="@drawable/ic_shelves"
                 tools:text="Pixel 7 Pro" />
 

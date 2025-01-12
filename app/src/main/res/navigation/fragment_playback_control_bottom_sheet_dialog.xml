@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_playback_control_bottom_sheet_dialog"
+    app:startDestination="@id/playbackControlBottomSheetDialogFragment">
+
+    <dialog
+        android:id="@+id/playbackControlBottomSheetDialogFragment"
+        android:name="org.lineageos.twelve.fragments.PlaybackControlBottomSheetDialogFragment"
+        tools:layout="@layout/fragment_now_playing_stats_dialog" />
+
+</navigation>

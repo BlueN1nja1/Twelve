@@ -264,7 +264,9 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
 
         // Bottom bar buttons
         playbackSpeedMaterialButton.setOnClickListener {
-            viewModel.shufflePlaybackSpeed()
+            findNavController().navigateSafe(
+                R.id.action_nowPlayingFragment_to_fragment_playback_control_bottom_sheet_dialog
+            )
         }
 
         equalizerMaterialButton.setOnClickListener {
@@ -562,6 +564,6 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
     companion object {
         private val decimalFormatSymbols = DecimalFormatSymbols(Locale.ROOT)
 
-        private val playbackSpeedFormatter = DecimalFormat("0.#", decimalFormatSymbols)
+        private val playbackSpeedFormatter = DecimalFormat("0.##", decimalFormatSymbols)
     }
 }

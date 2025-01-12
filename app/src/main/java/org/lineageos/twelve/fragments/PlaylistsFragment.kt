@@ -171,7 +171,11 @@ class PlaylistsFragment : Fragment(R.layout.fragment_playlists) {
                         }
 
                         is RequestStatus.Error -> {
-                            Log.e(LOG_TAG, "Failed to load playlists, error: ${it.error}")
+                            Log.e(
+                                LOG_TAG,
+                                "Failed to load playlists, error: ${it.error}",
+                                it.throwable
+                            )
 
                             adapter.submitList(emptyList())
 

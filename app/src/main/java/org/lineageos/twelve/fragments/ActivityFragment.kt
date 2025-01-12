@@ -147,7 +147,7 @@ class ActivityFragment : Fragment(R.layout.fragment_activity) {
                 }
 
                 is RequestStatus.Error -> {
-                    Log.e(LOG_TAG, "Failed to load activity, error: ${it.error}")
+                    Log.e(LOG_TAG, "Failed to load activity, error: ${it.error}", it.throwable)
 
                     recyclerView.isVisible = false
                     noElementsLinearLayout.isVisible = true

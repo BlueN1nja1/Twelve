@@ -58,7 +58,7 @@ class PlaylistViewModel(application: Application) : TwelveViewModel(application)
     fun playPlaylist(position: Int = 0) {
         (playlist.value as? RequestStatus.Success)?.data?.second?.takeUnless {
             it.isEmpty()
-        }?.mapNotNull { it }?.let {
+        }?.let {
             playAudio(it, position)
         }
     }

@@ -39,7 +39,7 @@ abstract class TwelveViewModel(application: Application) : AndroidViewModel(appl
     final override fun <T : Application> getApplication() = super.getApplication<T>()
 
     protected val sharedPreferences by lazy {
-        PreferenceManager.getDefaultSharedPreferences(application)
+        PreferenceManager.getDefaultSharedPreferences(application)!!
     }
 
     private val sessionToken by lazy {

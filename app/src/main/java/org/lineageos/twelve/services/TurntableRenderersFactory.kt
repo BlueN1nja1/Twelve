@@ -13,9 +13,12 @@ import androidx.media3.exoplayer.audio.DefaultAudioOffloadSupportProvider
 import androidx.media3.exoplayer.audio.DefaultAudioSink
 
 @OptIn(UnstableApi::class)
-class TurntableRenderersFactory(context: Context) : DefaultRenderersFactory(context) {
+class TurntableRenderersFactory(
+    context: Context,
+    enableAudioFloatOutput: Boolean,
+) : DefaultRenderersFactory(context) {
     init {
-        setEnableAudioFloatOutput(true)
+        setEnableAudioFloatOutput(enableAudioFloatOutput)
         setEnableAudioTrackPlaybackParams(true)
         setEnableDecoderFallback(true)
     }

@@ -246,7 +246,11 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
                     }
 
                     is RequestStatus.Error -> {
-                        Log.e(LOG_TAG, "Failed to load media item, error: ${it.error}")
+                        Log.e(
+                            LOG_TAG,
+                            "Failed to load media item, error: ${it.error}",
+                            it.throwable
+                        )
 
                         if (it.error == MediaError.NOT_FOUND) {
                             // Get out of here

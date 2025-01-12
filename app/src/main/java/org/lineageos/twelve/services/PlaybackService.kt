@@ -20,6 +20,7 @@ import androidx.media3.common.AudioAttributes
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
+import androidx.media3.common.listen
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.common.util.Util
 import androidx.media3.exoplayer.DefaultLoadControl
@@ -38,6 +39,7 @@ import kotlinx.coroutines.launch
 import org.lineageos.twelve.MainActivity
 import org.lineageos.twelve.R
 import org.lineageos.twelve.TwelveApplication
+import org.lineageos.twelve.ext.enableFloatOutput
 import org.lineageos.twelve.ext.enableOffload
 import org.lineageos.twelve.ext.setOffloadEnabled
 import org.lineageos.twelve.ext.skipSilence
@@ -46,7 +48,7 @@ import org.lineageos.twelve.ui.widgets.NowPlayingAppWidgetProvider
 import kotlin.reflect.cast
 
 @OptIn(UnstableApi::class)
-class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
+class PlaybackService : MediaLibraryService(), LifecycleOwner {
     enum class CustomCommand(val value: String, extras: Bundle) {
         /**
          * Toggles audio offload mode.
@@ -93,6 +95,8 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
     override val lifecycle: Lifecycle
         get() = dispatcher.lifecycle
 
+    private val player: ExoPlayer
+        get() = mediaLibrarySession?.player as ExoPlayer
     private var mediaLibrarySession: MediaLibrarySession? = null
 
     private val mediaRepositoryTree by lazy {
@@ -307,7 +311,12 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
         val exoPlayer = ExoPlayer.Builder(this)
             .setAudioAttributes(audioAttributes, true)
             .setHandleAudioBecomingNoisy(true)
-            .setRenderersFactory(TurntableRenderersFactory(this))
+            .setRenderersFactory(
+                TurntableRenderersFactory(
+                    this,
+                    sharedPreferences.enableFloatOutput,
+                )
+            )
             .setSkipSilenceEnabled(sharedPreferences.skipSilence)
             .setLoadControl(
                 DefaultLoadControl.Builder()
@@ -321,8 +330,6 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
             )
             .experimentalSetDynamicSchedulingEnabled(true)
             .build()
-
-        exoPlayer.addListener(this)
 
         exoPlayer.setOffloadEnabled(sharedPreferences.enableOffload)
 
@@ -342,6 +349,38 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
 
         exoPlayer.audioSessionId = audioSessionId
         openAudioEffectSession()
+
+        lifecycleScope.launch {
+            exoPlayer.listen { events ->
+                // Update startIndex and startPositionMs in resumption playlist.
+                if (events.containsAny(Player.EVENT_MEDIA_ITEM_TRANSITION)) {
+                    lifecycleScope.launch {
+                        resumptionPlaylistRepository.onPlaybackPositionChanged(
+                            player.currentMediaItemIndex,
+                            player.currentPosition
+                        )
+                    }
+
+                    lifecycleScope.launch {
+                        player.currentMediaItem?.localConfiguration?.uri?.let {
+                            mediaRepository.onAudioPlayed(it)
+                        }
+                    }
+                }
+
+                // Update the now playing widget
+                if (events.containsAny(
+                        Player.EVENT_MEDIA_METADATA_CHANGED,
+                        Player.EVENT_PLAYBACK_STATE_CHANGED,
+                        Player.EVENT_PLAY_WHEN_READY_CHANGED,
+                    )
+                ) {
+                    lifecycleScope.launch {
+                        NowPlayingAppWidgetProvider.update(this@PlaybackService)
+                    }
+                }
+            }
+        }
     }
 
     override fun onBind(intent: Intent?): IBinder? {
@@ -356,7 +395,15 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
 
     override fun onTaskRemoved(rootIntent: Intent?) {
         if (sharedPreferences.stopPlaybackOnTaskRemoved || !isPlaybackOngoing) {
-            pauseAllPlayersAndStopSelf()
+            lifecycleScope.launch {
+                if (isPlaybackOngoing) {
+                    resumptionPlaylistRepository.onPlaybackPositionChanged(
+                        player.currentMediaItemIndex,
+                        player.currentPosition
+                    )
+                }
+                pauseAllPlayersAndStopSelf()
+            }
         }
     }
 
@@ -365,7 +412,6 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
 
         closeAudioEffectSession()
 
-        mediaLibrarySession?.player?.removeListener(this)
         mediaLibrarySession?.player?.release()
         mediaLibrarySession?.release()
         mediaLibrarySession = null
@@ -374,36 +420,6 @@ class PlaybackService : MediaLibraryService(), Player.Listener, LifecycleOwner {
     }
 
     override fun onGetSession(controllerInfo: MediaSession.ControllerInfo) = mediaLibrarySession
-
-    override fun onEvents(player: Player, events: Player.Events) {
-        // Update startIndex and startPositionMs in resumption playlist.
-        if (events.containsAny(Player.EVENT_MEDIA_ITEM_TRANSITION)) {
-            lifecycleScope.launch {
-                resumptionPlaylistRepository.onPlaybackPositionChanged(
-                    player.currentMediaItemIndex,
-                    player.currentPosition
-                )
-            }
-
-            lifecycleScope.launch {
-                player.currentMediaItem?.localConfiguration?.uri?.let {
-                    mediaRepository.onAudioPlayed(it)
-                }
-            }
-        }
-
-        // Update the now playing widget
-        if (events.containsAny(
-                Player.EVENT_MEDIA_METADATA_CHANGED,
-                Player.EVENT_PLAYBACK_STATE_CHANGED,
-                Player.EVENT_PLAY_WHEN_READY_CHANGED,
-            )
-        ) {
-            lifecycleScope.launch {
-                NowPlayingAppWidgetProvider.update(this@PlaybackService)
-            }
-        }
-    }
 
     private fun openAudioEffectSession() {
         Intent(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION).apply {

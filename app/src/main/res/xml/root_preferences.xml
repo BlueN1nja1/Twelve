@@ -19,6 +19,13 @@
         <SwitchPreference
             app:defaultValue="true"
             app:iconSpaceReserved="false"
+            app:key="enable_float_output"
+            app:summary="@string/enable_float_output_summary"
+            app:title="@string/enable_float_output" />
+
+        <SwitchPreference
+            app:defaultValue="true"
+            app:iconSpaceReserved="false"
             app:key="stop_playback_on_task_removed"
             app:summary="@string/stop_playback_on_task_removed_summary"
             app:title="@string/stop_playback_on_task_removed" />

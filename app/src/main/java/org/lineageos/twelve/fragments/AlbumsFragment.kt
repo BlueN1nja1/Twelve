@@ -143,7 +143,11 @@ class AlbumsFragment : Fragment(R.layout.fragment_albums) {
                         }
 
                         is RequestStatus.Error -> {
-                            Log.e(LOG_TAG, "Failed to load albums, error: ${it.error}")
+                            Log.e(
+                                LOG_TAG,
+                                "Failed to load albums, error: ${it.error}",
+                                it.throwable
+                            )
 
                             adapter.submitList(emptyList())
 

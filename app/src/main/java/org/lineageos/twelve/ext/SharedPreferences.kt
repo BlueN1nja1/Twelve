@@ -46,6 +46,14 @@ var SharedPreferences.enableOffload: Boolean
         putBoolean(ENABLE_OFFLOAD_KEY, value)
     }
 
+const val ENABLE_FLOAT_OUTPUT_KEY = "enable_float_output"
+private const val ENABLE_FLOAT_OUTPUT_DEFAULT = true
+var SharedPreferences.enableFloatOutput: Boolean
+    get() = getBoolean(ENABLE_FLOAT_OUTPUT_KEY, ENABLE_FLOAT_OUTPUT_DEFAULT)
+    set(value) = edit {
+        putBoolean(ENABLE_FLOAT_OUTPUT_KEY, value)
+    }
+
 private const val STOP_PLAYBACK_ON_TASK_REMOVED_KEY = "stop_playback_on_task_removed"
 private const val STOP_PLAYBACK_ON_TASK_REMOVED_DEFAULT = true
 var SharedPreferences.stopPlaybackOnTaskRemoved: Boolean

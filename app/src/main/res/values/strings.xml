@@ -85,12 +85,14 @@
     <string name="rename_playlist_positive">Rename</string>
     <string name="delete_playlist">Delete playlist</string>
     <string name="delete_playlist_message">Are you sure you want to delete this playlist?</string>
-    <string name="delete_playlist_positive">Delete</string>
 
     <!-- Now playing fragment -->
     <string name="audio_effects">Audio effects</string>
-    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_speed">Playback speed</string>
+    <string name="playback_speed_format">%1$s×</string>
+    <string name="playback_pitch_slider_description">Playback pitch</string>
+    <string name="playbacl_pitch_unlock">Unlock pitch change</string>
+    <string name="playback_warning">Speed and pitch may not work correctly while playback offload feature is enabled. Try toggling it in the app\'s settings.</string>
     <string name="visualizer">Visualizer</string>
 
     <!-- Now playing stats dialog fragment -->
@@ -164,6 +166,8 @@
     <!-- General preferences -->
     <string name="enable_offload">Enable offload</string>
     <string name="enable_offload_summary">Use the offload audio path for audio playback. Disabling this may increase power usage but can be useful if you experience issues with audio playback or post processing</string>
+    <string name="enable_float_output">Enable 32-bit floating point output</string>
+    <string name="enable_float_output_summary">Use 32-bit PCM floating point output when the audio quality can benefit from it. Audio effects like speed and pitch controls will stop working in this mode. Toggling this option requires an app restart</string>
     <string name="stop_playback_on_task_removed">Stop playback on app\'s removal from recents</string>
     <string name="stop_playback_on_task_removed_summary">Stop playback when the app is cleared from recents</string>
     <string name="skip_silence">Skip silence</string>
@@ -177,7 +181,6 @@
     <string name="now_playing_widget_description">Now playing</string>
     <string name="now_playing_widget_dummy_title">Title</string>
     <string name="now_playing_widget_dummy_artist">Artist</string>
-    <string name="now_playing_widget_dummy_album">Album</string>
 
     <!-- Album fragment -->
     <string name="album_disc_header">Disc %1$d</string>

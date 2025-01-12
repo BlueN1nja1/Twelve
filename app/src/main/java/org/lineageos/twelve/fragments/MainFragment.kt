@@ -442,7 +442,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                             is RequestStatus.Error -> {
                                 Log.e(
                                     LOG_TAG,
-                                    "Failed to load search results, error: ${it.error}"
+                                    "Failed to load search results, error: ${it.error}",
+                                    it.throwable
                                 )
 
                                 searchAdapter.submitList(listOf())

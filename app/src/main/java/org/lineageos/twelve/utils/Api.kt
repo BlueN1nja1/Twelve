@@ -1,11 +1,13 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
 package org.lineageos.twelve.utils
 
 import android.net.Uri
+import kotlinx.coroutines.CancellationException
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaType
@@ -78,8 +80,8 @@ class Api(val okHttpClient: OkHttpClient, private val serverUri: Uri) {
     // Helper function to execute the request
     suspend inline fun <reified T> executeRequest(
         request: Request,
-        emptyResponse: () -> T = {
-            throw IllegalStateException("No empty response provided")
+        onEmptyResponse: () -> T = {
+            throw IllegalStateException("No onEmptyResponse() provided, but the response is empty")
         }
     ) = runCatching {
         okHttpClient.newCall(request).executeAsync().let { response ->
@@ -87,26 +89,23 @@ class Api(val okHttpClient: OkHttpClient, private val serverUri: Uri) {
                 response.body?.use { body ->
                     val string = body.string()
                     if (string.isEmpty()) {
-                        MethodResult.Success(emptyResponse())
+                        MethodResult.Success(onEmptyResponse())
                     } else {
-                        runCatching {
-                            json.decodeFromString<T>(string)
-                        }.fold(
-                            onSuccess = { MethodResult.Success(it) },
-                            onFailure = { MethodResult.DeserializationError(it) }
-                        )
+                        MethodResult.Success(json.decodeFromString<T>(string))
                     }
-                } ?: MethodResult.Success(emptyResponse())
+                } ?: MethodResult.Success(onEmptyResponse())
             } else {
-                MethodResult.HttpError(response.code, response.message)
+                MethodResult.HttpError(response.code, Throwable(response.message))
             }
         }
     }.fold(
         onSuccess = { it },
         onFailure = { e ->
             when (e) {
-                is SocketTimeoutException -> MethodResult.HttpError(408)
-                else -> MethodResult.GenericError(e.message)
+                is SocketTimeoutException -> MethodResult.HttpError(408, e)
+                is SerializationException -> MethodResult.DeserializationError(e)
+                is CancellationException -> MethodResult.CancellationError(e)
+                else -> MethodResult.GenericError(e)
             }
         },
     )
@@ -114,9 +113,10 @@ class Api(val okHttpClient: OkHttpClient, private val serverUri: Uri) {
 
 sealed interface MethodResult<T> {
     data class Success<T>(val result: T) : MethodResult<T>
-    data class HttpError<T>(val code: Int, val message: String? = null) : MethodResult<T>
-    data class GenericError<T>(val message: String?) : MethodResult<T>
-    class DeserializationError<T>(val error: Throwable? = null) : MethodResult<T>
+    data class HttpError<T>(val code: Int, val error: Throwable? = null) : MethodResult<T>
+    data class GenericError<T>(val error: Throwable? = null) : MethodResult<T>
+    data class DeserializationError<T>(val error: Throwable? = null) : MethodResult<T>
+    data class CancellationError<T>(val error: Throwable? = null) : MethodResult<T>
 }
 
 suspend fun <T, O> MethodResult<T>.toRequestStatus(
@@ -130,19 +130,18 @@ suspend fun <T, O> MethodResult<T>.toRequestStatus(
             403 -> MediaError.INVALID_CREDENTIALS
             404 -> MediaError.NOT_FOUND
             else -> MediaError.IO
-        }
+        },
+        error
     )
 
-    is MethodResult.DeserializationError -> RequestStatus.Error(MediaError.DESERIALIZATION)
-
-    is MethodResult.GenericError -> RequestStatus.Error(MediaError.IO)
+    is MethodResult.DeserializationError -> RequestStatus.Error(MediaError.DESERIALIZATION, error)
+    is MethodResult.CancellationError -> RequestStatus.Error(MediaError.CANCELLED, error)
+    is MethodResult.GenericError -> RequestStatus.Error(MediaError.IO, error)
 }
 
 suspend fun <T, O> MethodResult<T>.toResult(
     resultGetter: suspend T.() -> O
-): O? = when (this) {
+) = when (this) {
     is MethodResult.Success -> result.resultGetter()
-    is MethodResult.HttpError -> null
-    is MethodResult.DeserializationError -> null
-    is MethodResult.GenericError -> null
+    else -> null
 }

@@ -1,10 +1,12 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
 package org.lineageos.twelve.datasources.subsonic.models
 
+import androidx.annotation.FloatRange
+import androidx.annotation.IntRange
 import kotlinx.serialization.Serializable
 
 @Suppress("PROVIDED_RUNTIME_TOO_LOW")
@@ -29,8 +31,8 @@ data class Child(
     val bitRate: Int? = null,
     val path: String? = null,
     val isVideo: Boolean? = null,
-    val userRating: UserRating? = null,
-    val averageRating: AverageRating? = null,
+    @IntRange(from = 1, to = 5) val userRating: Int? = null,
+    @FloatRange(from = 0.0, to = 5.0) val averageRating: Double? = null,
     val playCount: Long? = null,
     val discNumber: Int? = null,
     val created: InstantAsString? = null,

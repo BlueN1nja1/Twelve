@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.R
 import org.lineageos.twelve.ext.getViewProperty
+import org.lineageos.twelve.models.AudioOutputMode
 import org.lineageos.twelve.ui.views.ListItem
 import org.lineageos.twelve.viewmodels.NowPlayingStatsViewModel
 import java.util.Locale
@@ -116,10 +117,13 @@ class NowPlayingStatsDialogFragment : DialogFragment(R.layout.fragment_now_playi
 
                 launch {
                     viewModel.transcodingOutputMode.collectLatest {
-                        it?.let {
-                            transcodingOutputModeListItem.supportingText = it.displayName
-                        } ?: transcodingOutputModeListItem.setSupportingText(
-                            R.string.audio_encoding_unknown
+                        transcodingOutputModeListItem.setSupportingText(
+                            when (it) {
+                                AudioOutputMode.PCM -> R.string.audio_output_mode_pcm
+                                AudioOutputMode.OFFLOAD -> R.string.audio_output_mode_offload
+                                AudioOutputMode.PASSTHROUGH -> R.string.audio_output_mode_passthrough
+                                null -> R.string.audio_output_mode_unknown
+                            }
                         )
                     }
                 }

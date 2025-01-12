@@ -101,15 +101,6 @@
         <item name="iconTint">?attr/colorOnSecondaryContainer</item>
     </style>
 
-    <style name="Theme.Twelve.NowPlayingFragment.BottomBarButton.Marker" parent="">
-        <item name="android:layout_width">8dp</item>
-        <item name="android:layout_height">4dp</item>
-        <item name="android:layout_gravity">bottom|center_horizontal</item>
-        <item name="android:src">@drawable/now_playing_marker</item>
-        <item name="android:visibility">gone</item>
-        <item name="tint">?attr/colorOnSecondaryContainer</item>
-    </style>
-
     <!-- App widget -->
     <style name="Theme.Twelve.AppWidgetContainer" parent="Theme.Material3.DynamicColors.DayNight">
         <item name="appWidgetRadius">28dp</item>
