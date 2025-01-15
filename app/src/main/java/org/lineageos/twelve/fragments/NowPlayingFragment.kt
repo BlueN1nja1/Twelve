@@ -564,6 +564,6 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
     companion object {
         private val decimalFormatSymbols = DecimalFormatSymbols(Locale.ROOT)
 
-        private val playbackSpeedFormatter = DecimalFormat("0.##", decimalFormatSymbols)
+        private val playbackSpeedFormatter = DecimalFormat("0.#", decimalFormatSymbols)
     }
 }

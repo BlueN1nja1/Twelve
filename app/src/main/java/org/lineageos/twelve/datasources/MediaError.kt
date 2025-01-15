@@ -48,4 +48,9 @@ enum class MediaError {
      * The request was cancelled.
      */
     CANCELLED,
+
+    /**
+     * The server returned an invalid response.
+     */
+    INVALID_RESPONSE,
 }

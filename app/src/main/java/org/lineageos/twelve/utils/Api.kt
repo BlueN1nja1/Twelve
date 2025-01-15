@@ -28,7 +28,7 @@ class Api(val okHttpClient: OkHttpClient, private val serverUri: Uri) {
     // GET method
     suspend inline fun <reified T> get(
         path: List<String>,
-        queryParameters: List<Pair<String, Any>> = emptyList(),
+        queryParameters: List<Pair<String, Any?>> = emptyList(),
     ): MethodResult<T> {
         val url = buildUrl(path, queryParameters)
         val request = buildRequest(url, "GET")
@@ -38,7 +38,7 @@ class Api(val okHttpClient: OkHttpClient, private val serverUri: Uri) {
     // POST method
     suspend inline fun <reified T, reified E> post(
         path: List<String>,
-        queryParameters: List<Pair<String, Any>> = emptyList(),
+        queryParameters: List<Pair<String, Any?>> = emptyList(),
         data: T? = null,
         emptyResponse: () -> E = { Unit as E }
     ): MethodResult<E> {
@@ -51,7 +51,7 @@ class Api(val okHttpClient: OkHttpClient, private val serverUri: Uri) {
     // DELETE method
     suspend inline fun <reified T> delete(
         path: List<String>,
-        queryParameters: List<Pair<String, Any>> = emptyList(),
+        queryParameters: List<Pair<String, Any?>> = emptyList(),
     ): MethodResult<T> {
         val url = buildUrl(path, queryParameters)
         val request = buildRequest(url, "DELETE")
@@ -60,13 +60,13 @@ class Api(val okHttpClient: OkHttpClient, private val serverUri: Uri) {
 
     fun buildUrl(
         path: List<String>,
-        queryParameters: List<Pair<String, Any>> = emptyList()
+        queryParameters: List<Pair<String, Any?>> = emptyList()
     ) = serverUri.buildUpon().apply {
         path.forEach {
             appendPath(it)
         }
         queryParameters.forEach { (key, value) ->
-            appendQueryParameter(key, value.toString())
+            value?.let { appendQueryParameter(key, it.toString()) }
         }
     }.build().toString()
 
@@ -117,6 +117,7 @@ sealed interface MethodResult<T> {
     data class GenericError<T>(val error: Throwable? = null) : MethodResult<T>
     data class DeserializationError<T>(val error: Throwable? = null) : MethodResult<T>
     data class CancellationError<T>(val error: Throwable? = null) : MethodResult<T>
+    data class InvalidResponse<T>(val error: Throwable? = null) : MethodResult<T>
 }
 
 suspend fun <T, O> MethodResult<T>.toRequestStatus(
@@ -136,6 +137,7 @@ suspend fun <T, O> MethodResult<T>.toRequestStatus(
 
     is MethodResult.DeserializationError -> RequestStatus.Error(MediaError.DESERIALIZATION, error)
     is MethodResult.CancellationError -> RequestStatus.Error(MediaError.CANCELLED, error)
+    is MethodResult.InvalidResponse -> RequestStatus.Error(MediaError.INVALID_RESPONSE, error)
     is MethodResult.GenericError -> RequestStatus.Error(MediaError.IO, error)
 }
 

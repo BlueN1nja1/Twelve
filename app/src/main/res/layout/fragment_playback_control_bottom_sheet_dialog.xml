@@ -50,7 +50,7 @@
             android:textColor="?attr/colorOnPrimaryContainer"
             app:backgroundTint="?attr/colorPrimaryContainer"
             app:cornerRadius="8dp"
-            tool:text="1.25x" />
+            tool:text="1.5x" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/playbackSpeedPlusMaterialButton"

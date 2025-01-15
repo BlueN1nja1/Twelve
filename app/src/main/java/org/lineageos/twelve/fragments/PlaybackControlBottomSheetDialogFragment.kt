@@ -115,13 +115,19 @@ class PlaybackControlBottomSheetDialogFragment : BottomSheetDialogFragment(
                         playbackPitchSlider.isVisible = it
                     }
                 }
+
+                launch {
+                    viewModel.isPitchUnlockSwitchChecked.collectLatest {
+                        playbackPitchUnlockMaterialSwitch.isChecked = it
+                    }
+                }
             }
         }
     }
 
     companion object {
         private val decimalFormatSymbols = DecimalFormatSymbols(Locale.ROOT)
-        private val playbackSpeedFormatter = DecimalFormat("0.##", decimalFormatSymbols)
+        private val playbackSpeedFormatter = DecimalFormat("0.#", decimalFormatSymbols)
         private val playbackPitchFormatter = DecimalFormat("0.#", decimalFormatSymbols)
     }
 }

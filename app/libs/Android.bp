@@ -140,25 +140,6 @@ android_library_import {
 }
 
 android_library_import {
-    name: "Twelve_androidx.media3_media3-exoplayer-midi",
-    aars: ["androidx/media3/media3-exoplayer-midi/1.5.1/media3-exoplayer-midi-1.5.1.aar"],
-    sdk_version: "35",
-    min_sdk_version: "30",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    static_libs: [
-        "Twelve_androidx.media3_media3-common",
-        "Twelve_androidx.media3_media3-decoder",
-        "Twelve_androidx.media3_media3-exoplayer",
-        "Twelve_androidx.media3_media3-extractor",
-        "Twelve_com.github.philburk_jsyn",
-        "androidx.annotation_annotation",
-    ],
-}
-
-android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer-rtsp",
     aars: ["androidx/media3/media3-exoplayer-rtsp/1.5.1/media3-exoplayer-rtsp-1.5.1.aar"],
     sdk_version: "35",
@@ -251,19 +232,6 @@ android_library_import {
     ],
     static_libs: [
         "kotlin-stdlib-jdk7",
-    ],
-}
-
-java_import {
-    name: "Twelve_com.github.philburk_jsyn",
-    jars: ["com/github/philburk/jsyn/40a41092cbab558d7d410ec43d93bb1e4121e86a/jsyn-40a41092cbab558d7d410ec43d93bb1e4121e86a.jar"],
-    sdk_version: "35",
-    min_sdk_version: "30",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    static_libs: [
     ],
 }
 

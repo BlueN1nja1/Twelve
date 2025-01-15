@@ -52,7 +52,6 @@ android_app {
         "Twelve_androidx.media3_media3-common-ktx",
         "Twelve_androidx.media3_media3-exoplayer",
         "Twelve_androidx.media3_media3-exoplayer-hls",
-        "Twelve_androidx.media3_media3-exoplayer-midi",
         "Twelve_androidx.media3_media3-exoplayer-rtsp",
         "Twelve_androidx.media3_media3-exoplayer-smoothstreaming",
         "Twelve_androidx.media3_media3-session",

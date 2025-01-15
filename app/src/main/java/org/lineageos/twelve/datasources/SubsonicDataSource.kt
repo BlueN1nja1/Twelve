@@ -38,6 +38,7 @@ import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.models.SortingRule
 import org.lineageos.twelve.models.SortingStrategy
 import org.lineageos.twelve.models.Thumbnail
+import org.lineageos.twelve.utils.toRequestStatus
 
 /**
  * Subsonic based data source.
@@ -432,16 +433,6 @@ class SubsonicDataSource(
         )
 
         else -> Audio.Type.MUSIC
-    }
-
-    private suspend fun <T, O> SubsonicClient.MethodResult<T>.toRequestStatus(
-        resultGetter: suspend T.() -> O
-    ): RequestStatus<O, MediaError> = when (this) {
-        is SubsonicClient.MethodResult.Success -> RequestStatus.Success(result.resultGetter())
-        is SubsonicClient.MethodResult.HttpError -> RequestStatus.Error(MediaError.IO)
-        is SubsonicClient.MethodResult.SubsonicError -> RequestStatus.Error(
-            error?.code?.toRequestStatusType() ?: MediaError.IO
-        )
     }
 
     private fun Error.Code.toRequestStatusType() = when (this) {

@@ -312,7 +312,7 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
             .setAudioAttributes(audioAttributes, true)
             .setHandleAudioBecomingNoisy(true)
             .setRenderersFactory(
-                TurntableRenderersFactory(
+                TwelveRenderersFactory(
                     this,
                     sharedPreferences.enableFloatOutput,
                 )
