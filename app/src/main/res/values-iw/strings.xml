@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
+    <string name="playback_pitch_slider_description">גובה צליל נגינה</string>
+    <string name="playbacl_pitch_unlock">התר שינוי גובה צליל</string>
+    <string name="playback_warning">יתכן וגובה הצליל ומהירותו ישתבש כשמופעל מצב offload. נסה להפעיל ולכבות מצב offload בהגדרות האפליקציה.</string>
+    <string name="no_provider">אין ספק</string>
+    <string name="experimental_header">ניסיוני</string>
+    <string name="enable_float_output">הפעל פלט ב32 ביט מספר עשרוני</string>
+    <string name="enable_float_output_summary">השתמש בפלט 32 ביט PCM מספר עשרוני, כאשר איכות השמע משופרת. אפקטי שמע כמו בקרת מהירות וגובה צלי יפסיקו לפעול במצב זה. שינוי אפשרות זו דורשת הפעלה מחדש של האפליקציה.</string>
+    <string name="split_local_devices">פיצול התקנים מקומיים</string>
+    <string name="split_local_devices_summary">אם אפשרות זו מופעלת, האחסון הפנימי והתקנים חיצוניים (כרטיסי SD, מכשירי USB וכו\') יופיעו תחת ספקים שונים</string>
     <string name="sort_by_artist_name">שם האמן</string>
     <string name="activity_random_artists">אמנים אקראיים</string>
     <string name="activity_random_genres">ז\'אנרים אקראיים</string>
+    <string name="library_item_no_permissions">אין הרשאות</string>
+    <string name="library_item_no_permissions_description">לאפליקציה זו אין את ההרשאות הנדרשות</string>
+    <string name="library_item_albums">אלבומים</string>
+    <string name="library_item_artists">אמנים</string>
+    <string name="library_item_genres">ז\'אנרים</string>
+    <string name="library_item_playlists">רשימות השמעה</string>
+    <string name="library_item_change_provider">שינוי ספק</string>
+    <string name="library_item_provider_changed">הספק השתנה, חזור לתפריט הראשי</string>
 </resources>

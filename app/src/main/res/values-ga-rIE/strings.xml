@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">Ceol</string>
     <string name="app_permissions_toast">Ceadanna nár bhronn an t-úsáideoir.</string>
+    <string name="visualizer_permissions_toast">Teastaíonn cead taifeadta fuaime don léiritheoir.</string>
     <string name="request_status_error_type_unknown">Anaithnid</string>
     <string name="request_status_error_type_not_found">Gan aimsiú</string>
     <string name="request_status_error_type_io">Earráid I/O</string>
@@ -51,6 +52,7 @@
     <string name="artist_albums_header">Albaim</string>
     <string name="artist_appears_in_album_header">Le feiceáil san albam</string>
     <string name="artist_appears_in_playlist_header">Le feiceáil sa seinmliosta</string>
+    <string name="action_play">Seinn</string>
     <string name="audio_play_next">Seinn seo chugainn</string>
     <string name="audio_add_to_queue">Cuir leis an scuaine</string>
     <string name="audio_remove_from_playlist">Bain den seinmliosta</string>
@@ -62,10 +64,12 @@
     <string name="rename_playlist_positive">Athainmnigh</string>
     <string name="delete_playlist">Scrios seinmliosta</string>
     <string name="delete_playlist_message">An bhfuil tú cinnte gur mhaith leat an seinmliosta seo a scriosadh?</string>
-    <string name="delete_playlist_positive">Scrios</string>
     <string name="audio_effects">Éifeachtaí fuaime</string>
-    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_speed">Luas athsheinm</string>
+    <string name="playback_speed_format">%1$s×</string>
+    <string name="playback_pitch_slider_description">Tuinairde athsheinm</string>
+    <string name="playbacl_pitch_unlock">Díghlasáil athrú tuinairde</string>
+    <string name="playback_warning">Seans nach n-oibreoidh luas agus tuinairde i gceart agus an ghné díluchtaithe athsheinm cumasaithe. Bain triail as é a scoránú i socruithe na haipe.</string>
     <string name="visualizer">Amharcléiritheoir</string>
     <string name="audio_source">Foinse</string>
     <string name="audio_transcoding">Traschódú</string>
@@ -99,6 +103,7 @@
     <string name="provider_argument_use_legacy_authentication">Bain úsáid as fíordheimhniú oidhreachta</string>
     <string name="provider_argument_validation_error_required">Tá luach ag teastáil</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Ní mór gur URL bailí HTTP nó HTTPS é (m.sh. https://google.com)</string>
+    <string name="no_provider">Gan soláthraí</string>
     <string name="providers">Soláthraithe</string>
     <string name="add_provider_action">Cuir</string>
     <string name="add_provider">Cuir soláthraí leis</string>
@@ -115,16 +120,20 @@
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">Socruithe</string>
     <string name="general_header">Ginearálta</string>
+    <string name="experimental_header">Turgnamhach</string>
     <string name="enable_offload">Cumasaigh díluchtú</string>
     <string name="enable_offload_summary">Úsáid an cosán fuaime díluchtaithe le haghaidh athsheinm fuaime. Má dhéantar é seo a dhíchumasú, d’fhéadfadh méadú ar úsáid cumhachta ach d’fhéadfadh sé a bheith úsáideach má bhíonn fadhbanna agat le hathsheinm fuaime nó le próiseáil postála</string>
+    <string name="enable_float_output">Cumasaigh aschur snámhphointe 32-giotán</string>
+    <string name="enable_float_output_summary">Bain úsáid as aschur snámhphointe PCM 32-giotán nuair is féidir leis an gcáilíocht fuaime leas a bhaint as. Stopfaidh éifeachtaí fuaime ar nós rialtáin luais agus tuinairde ag oibriú sa mhód seo. Teastaíonn atosú aip chun an rogha seo a scor</string>
     <string name="stop_playback_on_task_removed">Cuir stop leis an athsheinm nuair a bhaintear feidhmchlár de na nuashonruithe</string>
     <string name="stop_playback_on_task_removed_summary">Cuir stop le hathsheinm nuair a bheidh an aip glanta ó na cinn is déanaí</string>
     <string name="skip_silence">Scip an ciúnas</string>
     <string name="skip_silence_summary">Scip an ciúnas agus fuaim á sheinm</string>
+    <string name="split_local_devices">Scoilt gléasanna áitiúla</string>
+    <string name="split_local_devices_summary">Má tá sé cumasaithe, beidh stóráil inmheánach agus feistí seachtracha (cártaí SD, feistí USB, etc.) le feiceáil faoi sholáthraithe éagsúla</string>
     <string name="now_playing_widget_description">Anois ag imirt</string>
     <string name="now_playing_widget_dummy_title">Teideal</string>
     <string name="now_playing_widget_dummy_artist">Ealaíontóir</string>
-    <string name="now_playing_widget_dummy_album">Albam</string>
     <string name="album_disc_header">Diosca %1$d</string>
     <string name="genre_appears_in_albums_header">Le feiceáil i albam</string>
     <string name="genre_appears_in_playlists_header">Le feiceáil i seinmliostaí</string>
@@ -139,6 +148,7 @@
     <string name="sort_by_release_date">Dáta scaoilte</string>
     <string name="sort_by_title">Teideal</string>
     <string name="sort_by_unknown">Anaithnid</string>
+    <string name="activity_last_played">Seinnte seo caite</string>
     <string name="activity_most_played_albums">Albam is mó seinnte</string>
     <string name="activity_random_albums">Albam randamach</string>
     <string name="activity_random_artists">Ealaíontóirí randamacha</string>
@@ -147,4 +157,12 @@
     <string name="content_description_play_pause">Amhráin randamach</string>
     <string name="content_description_thumbnail">Mionsamhla</string>
     <string name="play_all">Seinn ar fad</string>
+    <string name="library_item_no_permissions">Gan ceadanna</string>
+    <string name="library_item_no_permissions_description">Níl na ceadanna riachtanacha ag an aip</string>
+    <string name="library_item_albums">Albaim</string>
+    <string name="library_item_artists">Ealaíontóirí</string>
+    <string name="library_item_genres">Seánraí</string>
+    <string name="library_item_playlists">Seinmliostaí</string>
+    <string name="library_item_change_provider">Athraigh soláthraí</string>
+    <string name="library_item_provider_changed">Athraíodh an soláthraí, téigh ar ais go dtí an príomh-roghchlár</string>
 </resources>

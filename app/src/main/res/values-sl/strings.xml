@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">Glasba</string>
     <string name="app_permissions_toast">Dovoljenja niso odobrena od uporabnika</string>
+    <string name="visualizer_permissions_toast">Dovoljenje za snemanje zvoka je zahtevano za vizualizatorja.</string>
     <string name="request_status_error_type_unknown">Neznana</string>
     <string name="request_status_error_type_not_found">Ni najdena</string>
     <string name="request_status_error_type_io">Vhodno/izhodna napaka</string>
@@ -49,6 +50,7 @@
     <string name="artist_albums_header">Albumi</string>
     <string name="artist_appears_in_album_header">Pojavi se v albumu</string>
     <string name="artist_appears_in_playlist_header">Pojavi se v seznamu predvajanja</string>
+    <string name="action_play">Predvajaj</string>
     <string name="audio_play_next">Predvajaj naslednjo</string>
     <string name="audio_add_to_queue">Dodaj v čakalno vrsto</string>
     <string name="audio_remove_from_playlist">Odstrani iz seznama predvajanja</string>
@@ -60,10 +62,12 @@
     <string name="rename_playlist_positive">Preimenuj</string>
     <string name="delete_playlist">Izbriši seznam predvajanja</string>
     <string name="delete_playlist_message">Ali ste prepričani, da želite izbrisati ta seznam predvajanja?</string>
-    <string name="delete_playlist_positive">Izbriši</string>
     <string name="audio_effects">Zvočni učinki</string>
-    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_speed">Hitrost predvajanja</string>
+    <string name="playback_speed_format">%1$s×</string>
+    <string name="playback_pitch_slider_description">Višina tona predvajanja</string>
+    <string name="playbacl_pitch_unlock">Odkleni spremembo višine tona</string>
+    <string name="playback_warning">Hitrost in višina tona morda ne bosta delovali pravilno, ko je funkcija razbremenitve predvajanja omogočena. Poskusite jo preklopiti v nastavitvah aplikacije.</string>
     <string name="visualizer">Vizualizator</string>
     <string name="audio_source">Vir</string>
     <string name="audio_transcoding">Pretvarjanje</string>
@@ -97,6 +101,7 @@
     <string name="provider_argument_use_legacy_authentication">Uporabi stari sistem preverjena pristnosti</string>
     <string name="provider_argument_validation_error_required">Vrednost je zahtevana</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Mora biti veljaven HTTP ali HTTPS URL (npr. https://google.com)</string>
+    <string name="no_provider">Ni ponudnika</string>
     <string name="providers">Ponudniki</string>
     <string name="add_provider_action">Dodaj</string>
     <string name="add_provider">Dodaj ponudnika</string>
@@ -113,16 +118,20 @@
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">Nastavitve</string>
     <string name="general_header">Splošno</string>
+    <string name="experimental_header">Poskusno</string>
     <string name="enable_offload">Omogoči razbremenitev</string>
     <string name="enable_offload_summary">Uporabi razbremenitev zvočne poti za predvajanje zvoka. Onemogočenje tega lahko poveča porabo energije, vendar je lahko uporabno, če opažate težave s predvajanjem zvoka ali postprodukcijo</string>
+    <string name="enable_float_output">Omogoči 32-bitni izhod s plavajočo vejico</string>
+    <string name="enable_float_output_summary">Uporabi 32-bitni PCM izhod s plavajočo vejico, ko lahko ta izboljša kakovost zvoka. Zvočni učinki, kot sta hitrost in višina tona, bodo prenehali delovati v tem načinu. Preklapljanje te možnosti zahteva vnovični zagon aplikacije.</string>
     <string name="stop_playback_on_task_removed">Ustavi predvajanje ob odstranitvi aplikacije iz nedavnih</string>
     <string name="stop_playback_on_task_removed_summary">Ustavi predvajanje, ko je aplikacija počiščena iz nedavnih</string>
     <string name="skip_silence">Preskoči tišino</string>
     <string name="skip_silence_summary">Preskoči tišino med predvajanjem zvoka</string>
+    <string name="split_local_devices">Razdeli lokalne naprave</string>
+    <string name="split_local_devices_summary">Če je omogočeno, se bodo notranji pomnilnik in zunanje naprave (kartica SD, naprave USB, itd.) prikazali pod različnimi ponudniki.</string>
     <string name="now_playing_widget_description">Predvaja se</string>
     <string name="now_playing_widget_dummy_title">Naslov</string>
     <string name="now_playing_widget_dummy_artist">Izvajalec</string>
-    <string name="now_playing_widget_dummy_album">Album</string>
     <string name="album_disc_header">Disk %1$d</string>
     <string name="genre_appears_in_albums_header">Pojavi se v albumih</string>
     <string name="genre_appears_in_playlists_header">Pojavi se v seznamih predvajanja</string>
@@ -137,6 +146,7 @@
     <string name="sort_by_release_date">Datum izdaje</string>
     <string name="sort_by_title">Naslov</string>
     <string name="sort_by_unknown">Neznano</string>
+    <string name="activity_last_played">Zadnje predvajano</string>
     <string name="activity_most_played_albums">Največkrat predvajani albumi</string>
     <string name="activity_random_albums">Naključni albumi</string>
     <string name="activity_random_artists">Naključni izvajalci</string>
@@ -145,4 +155,12 @@
     <string name="content_description_play_pause">Predvajaj/premor</string>
     <string name="content_description_thumbnail">Sličica</string>
     <string name="play_all">Predvajaj vse</string>
+    <string name="library_item_no_permissions">Ni dovoljenj</string>
+    <string name="library_item_no_permissions_description">Ta aplikacija nima potrebnih dovoljenj</string>
+    <string name="library_item_albums">Albumi</string>
+    <string name="library_item_artists">Izvajalci</string>
+    <string name="library_item_genres">Zvrsti</string>
+    <string name="library_item_playlists">Seznami predvajanja</string>
+    <string name="library_item_change_provider">Spremeni ponudnika</string>
+    <string name="library_item_provider_changed">Ponudnik spremenjen, pojdite nazaj v glavni meni</string>
 </resources>

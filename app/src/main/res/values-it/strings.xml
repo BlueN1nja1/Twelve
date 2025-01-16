@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">Musica</string>
     <string name="app_permissions_toast">Autorizzazioni non concesse dall\'utente.</string>
+    <string name="visualizer_permissions_toast">Per il visualizzatore è richiesta l\'autorizzazione a registrare l\'audio.</string>
     <string name="request_status_error_type_unknown">Sconosciuto</string>
     <string name="request_status_error_type_not_found">Nessun risultato</string>
     <string name="request_status_error_type_io">Errore di I/O</string>
@@ -45,6 +46,7 @@
     <string name="artist_albums_header">Album</string>
     <string name="artist_appears_in_album_header">Compare nell\'album</string>
     <string name="artist_appears_in_playlist_header">Compare nella playlist</string>
+    <string name="action_play">Riproduci</string>
     <string name="audio_play_next">Riproduci successivo</string>
     <string name="audio_add_to_queue">Accoda</string>
     <string name="audio_remove_from_playlist">Rimuovi dalla playlist</string>
@@ -56,10 +58,12 @@
     <string name="rename_playlist_positive">Rinomina</string>
     <string name="delete_playlist">Elimina playlist</string>
     <string name="delete_playlist_message">Sei sicuro di voler eliminare questa playlist?</string>
-    <string name="delete_playlist_positive">Elimina</string>
     <string name="audio_effects">Effetti audio</string>
-    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_speed">Velocità di riproduzione</string>
+    <string name="playback_speed_format">%1$s×</string>
+    <string name="playback_pitch_slider_description">Tono di riproduzione</string>
+    <string name="playbacl_pitch_unlock">Sblocca cambio di tono</string>
+    <string name="playback_warning">La regolazione della velocità e del tono potrebbe non funzionare correttamente mentre la funzione di offload è abilitata. Prova a disattivarla nelle impostazioni dell\'applicazione.</string>
     <string name="visualizer">Visualizzatore</string>
     <string name="audio_source">Sorgente</string>
     <string name="audio_transcoding">Transcodifica</string>
@@ -93,6 +97,7 @@
     <string name="provider_argument_use_legacy_authentication">Usa autenticazione obsoleta</string>
     <string name="provider_argument_validation_error_required">È richiesto un valore</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Deve essere un URL HTTP o HTTPS valido (ad es. https://google.com)</string>
+    <string name="no_provider">Nessun provider</string>
     <string name="providers">Provider</string>
     <string name="add_provider_action">Aggiungi</string>
     <string name="add_provider">Aggiungi provider</string>
@@ -109,16 +114,20 @@
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">Impostazioni</string>
     <string name="general_header">Generali</string>
+    <string name="experimental_header">Funzioni sperimentali</string>
     <string name="enable_offload">Abilita offload</string>
     <string name="enable_offload_summary">Utilizzare l\'offload per la riproduzione. Disabilitare questa opzione potrebbe incrementare il consumo di energia ma può essere utile se si riscontrano problemi di riproduzione o elaborazione</string>
+    <string name="enable_float_output">Abilita l\'output a 32 bit in virgola mobile</string>
+    <string name="enable_float_output_summary">Utilizzare l\'output PCM a 32-bit in virgola mobile quando la qualità audio può beneficiarne. Gli effetti audio come la regolazione della velocità e del tono non funzioneranno in questa modalità. La modifica di questa opzione richiede un riavvio dell\'app</string>
     <string name="stop_playback_on_task_removed">Interrompi la riproduzione alla rimozione dalle app recenti</string>
     <string name="stop_playback_on_task_removed_summary">Interrompi la riproduzione quando l\'applicazione viene rimossa dalle app recenti</string>
     <string name="skip_silence">Salta i silenzi</string>
     <string name="skip_silence_summary">Salta i silenzi durante la riproduzione audio</string>
+    <string name="split_local_devices">Dividi dispositivi locali</string>
+    <string name="split_local_devices_summary">Se abilitato, la memoria interna e i dispositivi di archiviazione esterni (schede SD, dispositivi USB, ecc.) appariranno sotto diversi provider</string>
     <string name="now_playing_widget_description">In riproduzione</string>
     <string name="now_playing_widget_dummy_title">Titolo</string>
     <string name="now_playing_widget_dummy_artist">Artista</string>
-    <string name="now_playing_widget_dummy_album">Album</string>
     <string name="album_disc_header">Disco %1$d</string>
     <string name="genre_appears_in_albums_header">Compare negli album</string>
     <string name="genre_appears_in_playlists_header">Compare nelle playlist</string>
@@ -133,6 +142,7 @@
     <string name="sort_by_release_date">Data di uscita</string>
     <string name="sort_by_title">Titolo</string>
     <string name="sort_by_unknown">Sconosciuto</string>
+    <string name="activity_last_played">Ultima riproduzione</string>
     <string name="activity_most_played_albums">Album più riprodotti</string>
     <string name="activity_random_albums">Album casuali</string>
     <string name="activity_random_artists">Artisti casuali</string>
@@ -141,4 +151,12 @@
     <string name="content_description_play_pause">Riproduci/metti in pausa</string>
     <string name="content_description_thumbnail">Miniatura</string>
     <string name="play_all">Riproduci tutto</string>
+    <string name="library_item_no_permissions">Nessuna autorizzazione</string>
+    <string name="library_item_no_permissions_description">L\'app non ha le autorizzazioni necessarie</string>
+    <string name="library_item_albums">Album</string>
+    <string name="library_item_artists">Artisti</string>
+    <string name="library_item_genres">Generi</string>
+    <string name="library_item_playlists">Playlist</string>
+    <string name="library_item_change_provider">Cambia provider</string>
+    <string name="library_item_provider_changed">Provider modificato, torna al menu principale</string>
 </resources>

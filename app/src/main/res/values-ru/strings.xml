@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -49,6 +49,7 @@
     <string name="artist_albums_header">Альбомы</string>
     <string name="artist_appears_in_album_header">Появляется в альбоме</string>
     <string name="artist_appears_in_playlist_header">Встречается в плейлисте</string>
+    <string name="action_play">Воспр.</string>
     <string name="audio_play_next">Воспр. следующим</string>
     <string name="audio_add_to_queue">Добавить в очередь</string>
     <string name="audio_remove_from_playlist">Удалить из плейлиста</string>
@@ -60,10 +61,9 @@
     <string name="rename_playlist_positive">Переименовать</string>
     <string name="delete_playlist">Удалить плейлист</string>
     <string name="delete_playlist_message">Вы уверены, что хотите удалить этот плейлист?</string>
-    <string name="delete_playlist_positive">Удалить</string>
     <string name="audio_effects">Аудиоэффекты</string>
-    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_speed">Скорость воспроизведения</string>
+    <string name="playback_speed_format">%1$s×</string>
     <string name="visualizer">Визуализатор</string>
     <string name="audio_source">Источник</string>
     <string name="audio_transcoding">Перекодирование</string>
@@ -122,7 +122,6 @@
     <string name="now_playing_widget_description">Сейчас играет</string>
     <string name="now_playing_widget_dummy_title">Название</string>
     <string name="now_playing_widget_dummy_artist">Исполнитель</string>
-    <string name="now_playing_widget_dummy_album">Альбом</string>
     <string name="album_disc_header">Диск %1$d</string>
     <string name="genre_appears_in_albums_header">Появляется в альбомах</string>
     <string name="genre_appears_in_playlists_header">Появляется в плейлистах</string>
@@ -137,10 +136,20 @@
     <string name="sort_by_release_date">Дата релиза</string>
     <string name="sort_by_title">Заголовок</string>
     <string name="sort_by_unknown">Неизвестно</string>
+    <string name="activity_last_played">Последнее воспроизведенное</string>
     <string name="activity_most_played_albums">Самые популярные альбомы</string>
     <string name="activity_random_albums">Случайные альбомы</string>
+    <string name="activity_random_artists">Случайные исполнители</string>
+    <string name="activity_random_genres">Случайные жанры</string>
     <string name="activity_random_songs">Случайные песни</string>
     <string name="content_description_play_pause">Воспроизведение/пауза</string>
     <string name="content_description_thumbnail">Обложка</string>
     <string name="play_all">Воспроизвести все</string>
+    <string name="library_item_no_permissions">Нет разрешений</string>
+    <string name="library_item_no_permissions_description">Приложение не имеет необходимых разрешений</string>
+    <string name="library_item_albums">Альбомы</string>
+    <string name="library_item_artists">Исполнители</string>
+    <string name="library_item_genres">Жанры</string>
+    <string name="library_item_playlists">Плейлисты</string>
+    <string name="library_item_provider_changed">Поставщик изменен, вернуться в главное меню</string>
 </resources>

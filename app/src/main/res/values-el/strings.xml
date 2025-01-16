@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -56,10 +56,9 @@
     <string name="rename_playlist_positive">Μετονομασία</string>
     <string name="delete_playlist">Διαγραφή λίστας αναπαραγωγής</string>
     <string name="delete_playlist_message">Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτή τη λίστα αναπαραγωγής;</string>
-    <string name="delete_playlist_positive">Διαγραφή</string>
     <string name="audio_effects">Ηχητικά εφέ</string>
-    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_speed">Ταχύτητα αναπαραγωγής</string>
+    <string name="playback_speed_format">%1$s×</string>
     <string name="visualizer">Οπτικοποιητής</string>
     <string name="audio_source">Πηγή</string>
     <string name="audio_transcoding">Διακωδικοποίηση</string>
@@ -118,7 +117,6 @@
     <string name="now_playing_widget_description">Παίζεται τώρα</string>
     <string name="now_playing_widget_dummy_title">Τίτλος</string>
     <string name="now_playing_widget_dummy_artist">Καλλιτέχνης</string>
-    <string name="now_playing_widget_dummy_album">Άλμπουμ</string>
     <string name="album_disc_header">Δίσκος %1$d</string>
     <string name="genre_appears_in_albums_header">Εμφανίζεται στα άλμπουμ</string>
     <string name="genre_appears_in_playlists_header">Εμφανίζεται στις λίστες αναπαραγωγής</string>

@@ -1,10 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
+    <string name="app_name">இசை</string>
+    <string name="app_permissions_toast">பயனரால் அனுமதிகள் அளிக்கப்படவில்லை.</string>
+    <string name="visualizer_permissions_toast">அகக்காணிக்கு ஒலி பதிவு செய்வதற்கான அனுமதி தேவை.</string>
+    <string name="request_status_error_type_unknown">அறியா</string>
+    <string name="request_status_error_type_not_found">காணப்படவில்லை</string>
+    <string name="request_status_error_type_io">உ/வெ பிழை</string>
+    <string name="request_status_error_type_authentication_required">உறுதிப்படுத்தல் தேவை</string>
+    <string name="request_status_error_type_invalid_credentials">செல்லாச் சான்றுகள்</string>
+    <string name="main_fragment_section_activity">செயற்பாடு</string>
+    <string name="main_fragment_section_search">தேடுக</string>
+    <string name="main_fragment_section_library">ஒலியகம்</string>
+    <string name="search_hint">தேடுக...</string>
     <string name="library_fragment_menu_albums">தொகுப்புகள்</string>
     <string name="library_fragment_menu_artists">கலைஞர்</string>
+    <string name="library_fragment_menu_genres">பாணிகள்</string>
     <string name="library_fragment_menu_playlists">இசைப்பட்டியல்கள்</string>
+    <string name="create_playlist">புதிய இசைப்பட்டியலை உருவாக்குக</string>
+    <string name="no_playlists_comma">பட்டியல்கள் இல்லன,</string>
+    <string name="create_playlist_suggestion">புதிய ஒன்றை உருவாக்கவா?</string>
+    <string name="create_playlist_confirm">உருவாக்குக</string>
+    <string name="no_activity">செயற்பாடு இல</string>
+    <string name="no_albums">தொகுப்புகள் இல்லன</string>
+    <string name="no_artists">கலைஞர் இலர்</string>
+    <string name="no_genres">பாணிகள் இல்லன</string>
+    <string name="no_playlists">பட்டியல்கள் இல்லன</string>
+    <string name="no_audios">ஒலிகள் இல்லன</string>
+    <string name="no_results">முடிவுகள் இல்லன</string>
+    <string name="unknown">அறியா</string>
+    <string name="album_unknown">அறியாத் தொகுப்பு</string>
+    <string name="artist_unknown">அறியாக் கலைஞர்</string>
+    <string name="genre_unknown">அறியாப் பாணி</string>
+    <plurals name="tracks_count">
+        <item quantity="one">%d தடம்</item>
+        <item quantity="other">%d தடம்</item>
+    </plurals>
+    <plurals name="tracks_duration">
+        <item quantity="one">%d நுணுத்தம்</item>
+        <item quantity="other">%d நுணுத்தம்</item>
+    </plurals>
+    <string name="artist_albums_header">தொகுப்புகள்</string>
+    <string name="artist_appears_in_album_header">தொகுப்பில் தோன்றும்</string>
+    <string name="artist_appears_in_playlist_header">இசைப்பட்டியலில் தோன்றும்</string>
+    <string name="action_play">இசைக்க</string>
+    <string name="audio_play_next">அடுத்ததை இசைக்க</string>
+    <string name="audio_add_to_queue">சாரையில் சேர்க்க</string>
+    <string name="audio_remove_from_playlist">இசைப்பட்டியலிலிருந்து அகற்றுக</string>
+    <string name="audio_add_or_remove_from_playlists">பட்டியல்களில் சேர்க்க அல்லது அகற்றுக</string>
+    <string name="open_album">தொகுப்பைத் தறக்க</string>
+    <string name="open_artist">கலைஞனைத் திறக்க</string>
+    <string name="open_genre">பாணியைத் தறக்க</string>
+    <string name="rename_playlist">இசைப்பட்டியலை மறுபெயரிடுக</string>
+    <string name="rename_playlist_positive">மறுபெயரிடுக</string>
+    <string name="delete_playlist">இசைப்பட்டியலை நீக்குக</string>
+    <string name="delete_playlist_message">இப்பட்டியலை உறுதியாக நீக்க விரும்புகிறீரா?</string>
+    <string name="audio_effects">ஒலி விளைவுகள்</string>
+    <string name="playback_speed_format">%1$s×</string>
+    <string name="playback_pitch_slider_description">மீட்பொலி குரலெடுப்பு</string>
+    <string name="playbacl_pitch_unlock">குரலெடுப்பு மாற்றத்தைத் திறக்க</string>
+    <string name="visualizer">அகக்காணி</string>
+    <string name="audio_source">மூலம்</string>
+    <string name="audio_output">வெளியீடு</string>
+    <string name="audio_file_type">கோப்பு வகை</string>
+    <string name="audio_file_type_unknown">அறியா</string>
+    <string name="title_activity_settings">அமைப்புகள்</string>
+    <string name="general_header">பொது</string>
+    <string name="experimental_header">செய்முறை</string>
+    <string name="enable_offload">பளுகுறையை இயக்குக</string>
+    <string name="enable_offload_summary">ஒலி மீட்பொலித்தலுக்குப் பளுகுறை ஒலிப்பாதையைப் பயன்படுத்துக. இதை முடக்குவது மின் பயன்பாட்டை உயர்த்தக்கூடும்; ஆனால், ஒலி மீட்பொலித்தலுக்கோ பின் செயலாக்கத்திற்கோ சிக்கல்களைப் பட்டறிந்தால் பயனுள்ளதாக இருக்கும்.</string>
+    <string name="enable_float_output">32-இரும மிதப்புப்புள்ளி வெளியீட்டை இயக்குக</string>
+    <string name="skip_silence">ஒலியின்மை தவிர்க்க</string>
+    <string name="skip_silence_summary">ஒலி இயக்கும்போது, ஒலியின்மை தவிர்க்க</string>
+    <string name="now_playing_widget_dummy_title">தலைப்பு</string>
+    <string name="now_playing_widget_dummy_artist">கலைஞன்</string>
+    <string name="album_disc_header">வட்டு %1$d</string>
+    <string name="genre_appears_in_albums_header">தொகுப்பில் தோன்றும்</string>
+    <string name="genre_appears_in_playlists_header">இசைப்பட்டியலில் தோன்றும்</string>
+    <string name="genre_audios_header">ஒலிகள்</string>
+    <string name="queue">சாரை</string>
+    <string name="sort_by_artist_name">கலைஞன் பெயர்</string>
+    <string name="sort_by_creation_date">உருவாக்கப்பட்டது</string>
+    <string name="sort_by_last_modified">இறுதியாக மாற்றப்பட்டது</string>
+    <string name="sort_by_last_activity">இறுதி செயற்பாடு</string>
+    <string name="sort_by_name">பெயர்</string>
+    <string name="sort_by_play_count">இசை எண்ணிக்கை</string>
+    <string name="sort_by_release_date">வெளியீட்டு நாள்</string>
+    <string name="sort_by_title">தலைப்பு</string>
+    <string name="activity_random_albums">இயைபிலாத் தொகுப்புகள்</string>
+    <string name="activity_random_artists">இயைபிலாக் கலைஞர்</string>
+    <string name="activity_random_genres">இயைபிலாப் பாணிகள்</string>
+    <string name="activity_random_songs">இயைபிலாப் பாடல்கள்</string>
+    <string name="content_description_thumbnail">குறும்படம்</string>
+    <string name="play_all">இயக்குக யாவும்</string>
+    <string name="library_item_no_permissions">அனுமதிகள் இல்லன</string>
+    <string name="library_item_albums">தொகுப்புகள்</string>
+    <string name="library_item_artists">கலைஞர்</string>
+    <string name="library_item_genres">பாணிகள்</string>
+    <string name="library_item_playlists">இசைப்பட்டியல்கள்</string>
 </resources>

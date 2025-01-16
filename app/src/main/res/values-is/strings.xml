@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -46,7 +46,6 @@
     <string name="rename_playlist_positive">Endurnefna</string>
     <string name="delete_playlist">Eyða spilunarlista</string>
     <string name="delete_playlist_message">Ertu viss um að þú viljir eyða þessum spilunarlista?</string>
-    <string name="delete_playlist_positive">Eyða</string>
     <string name="audio_source">Upptök</string>
     <string name="audio_transcoding">Umkóðun</string>
     <string name="audio_output">Úttak</string>
@@ -91,7 +90,6 @@
     <string name="now_playing_widget_description">Í afspilun</string>
     <string name="now_playing_widget_dummy_title">Titill</string>
     <string name="now_playing_widget_dummy_artist">Flytjandi</string>
-    <string name="now_playing_widget_dummy_album">Hljómplata</string>
     <string name="album_disc_header">Diskur %1$d</string>
     <string name="genre_appears_in_albums_header">Birtist í hljómplötum</string>
     <string name="genre_appears_in_playlists_header">Birtist í spilunarlistum</string>

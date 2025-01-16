@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -50,7 +50,6 @@
     <string name="rename_playlist_positive">Umbenennen</string>
     <string name="delete_playlist">Wiedergabeliste löschen</string>
     <string name="delete_playlist_message">Möchtest du diese Wiedergabeliste wirklich löschen?</string>
-    <string name="delete_playlist_positive">Löschen</string>
     <string name="playback_speed_format">%1$s ×</string>
     <string name="audio_source">Quelle</string>
     <string name="audio_output">Ausgabe</string>
@@ -92,7 +91,6 @@
     <string name="enable_offload">Offload aktivieren</string>
     <string name="now_playing_widget_dummy_title">Titel</string>
     <string name="now_playing_widget_dummy_artist">Interpret</string>
-    <string name="now_playing_widget_dummy_album">Album</string>
     <string name="album_disc_header">Disc %1$d</string>
     <string name="genre_appears_in_albums_header">Kommt vor in Alben</string>
     <string name="genre_appears_in_playlists_header">Kommt vor in Wiedergabelisten</string>

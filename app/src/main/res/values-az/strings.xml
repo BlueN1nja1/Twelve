@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">Musiqi</string>
     <string name="app_permissions_toast">İstifadəçi tərəfindən verilməyən icazələr.</string>
+    <string name="visualizer_permissions_toast">Vizuallaşdırıcı üçün səs yazma icazəsi tələb olunur.</string>
     <string name="request_status_error_type_unknown">Bilinmir</string>
     <string name="request_status_error_type_not_found">Tapılmadı</string>
     <string name="request_status_error_type_io">Giriş/Çıxış xətası</string>
@@ -45,6 +46,7 @@
     <string name="artist_albums_header">Albomlar</string>
     <string name="artist_appears_in_album_header">Albomda görünür</string>
     <string name="artist_appears_in_playlist_header">Pleylistdə görünür</string>
+    <string name="action_play">Oxut</string>
     <string name="audio_play_next">Növbətini oxut</string>
     <string name="audio_add_to_queue">Növbəyə əlavə et</string>
     <string name="audio_remove_from_playlist">Pleylistdən sil</string>
@@ -56,10 +58,12 @@
     <string name="rename_playlist_positive">Yenidən adlandır</string>
     <string name="delete_playlist">Pleylisti sil</string>
     <string name="delete_playlist_message">Bu pleylisti silmək istədiyinizə əminsiniz?</string>
-    <string name="delete_playlist_positive">Sil</string>
     <string name="audio_effects">Səs effektləri</string>
-    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_speed">Oxutma sürəti</string>
+    <string name="playback_speed_format">%1$s×</string>
+    <string name="playback_pitch_slider_description">Oxutma ucalığı</string>
+    <string name="playbacl_pitch_unlock">Ucalıq dəyişdirmə kilidini aç</string>
+    <string name="playback_warning">Playback offload özəlliyi fəal olduqda sürət və ucalıq düzgün işləməyə bilər. Tətbiq ayarlarında açmağa çalışın.</string>
     <string name="visualizer">Vizuallaşdırıcı</string>
     <string name="audio_source">Mənbə</string>
     <string name="audio_transcoding">Transcoding</string>
@@ -93,6 +97,7 @@
     <string name="provider_argument_use_legacy_authentication">Köhnə kimlik doğrulamanı istifadə et</string>
     <string name="provider_argument_validation_error_required">Bir dəyər tələb olunur</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Yararlı bir HTTP və ya HTTPS URL olmalıdır (məsələn https://google.com)</string>
+    <string name="no_provider">Provayder yoxdur</string>
     <string name="providers">Provayderlər</string>
     <string name="add_provider_action">Əlavə et</string>
     <string name="add_provider">Provayder əlavə et</string>
@@ -109,16 +114,19 @@
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">Ayarlar</string>
     <string name="general_header">Ümumi</string>
+    <string name="experimental_header">Təcrübi</string>
     <string name="enable_offload">Offload-ı fəallaşdır</string>
     <string name="enable_offload_summary">Səs oxutma üçün offload audio path-ını istifadə edin. Bunu sıradan çıxartmaq, enerji istifadəsini artıra bilər, ancaq səs oxutma və ya son proseslə bağlı problemlə üzləşdikdə faydalı ola bilər</string>
+    <string name="enable_float_output_summary">Səs keyfiyyətindən faydalanmaq mümkün olduqda 32-bit PCM floating point output-u istifadə et. Sürət və ucalıq kontrolları kimi səs effektləri bu rejimdə çalışmağı dayandıracaq. Bu seçimi açmaq, tətbiqin yenidən başladılmasını tələb edir</string>
     <string name="stop_playback_on_task_removed">Tətbiq sonunculardan silindikdə oxutmanı dayandır</string>
     <string name="stop_playback_on_task_removed_summary">Tətbiq son tətbiqlərdən təmizləndikdə oxutmanı dayandır</string>
     <string name="skip_silence">Səssizliyi ötür</string>
     <string name="skip_silence_summary">Səs oxudularkən səssizliyi ötür</string>
+    <string name="split_local_devices">Daxili cihazları ayır</string>
+    <string name="split_local_devices_summary">Fəal olduqda, daxili anbar və xarici cihazlar (SD kart, USB cihazları və s.) fərqli provayderlər altında görünəcək</string>
     <string name="now_playing_widget_description">İndi oxudulur</string>
     <string name="now_playing_widget_dummy_title">Başlıq</string>
     <string name="now_playing_widget_dummy_artist">Sənətçi</string>
-    <string name="now_playing_widget_dummy_album">Albom</string>
     <string name="album_disc_header">Disk %1$d</string>
     <string name="genre_appears_in_albums_header">Albomlarda görünür</string>
     <string name="genre_appears_in_playlists_header">Pleylistlərdə görünür</string>
@@ -133,6 +141,7 @@
     <string name="sort_by_release_date">Buraxılış tarixi</string>
     <string name="sort_by_title">Başlıq</string>
     <string name="sort_by_unknown">Bilinmir</string>
+    <string name="activity_last_played">Son oxudulan</string>
     <string name="activity_most_played_albums">Ən çox oxudulan albomlar</string>
     <string name="activity_random_albums">Təsadüfi albomlar</string>
     <string name="activity_random_artists">Təsadüfi sənətçi</string>
@@ -141,4 +150,12 @@
     <string name="content_description_play_pause">Oxut/fasilə ver</string>
     <string name="content_description_thumbnail">Kiçik şəkil</string>
     <string name="play_all">Hamısını oxut</string>
+    <string name="library_item_no_permissions">İcazə yoxdur</string>
+    <string name="library_item_no_permissions_description">Tətbiqin lazımi icazələri yoxdur</string>
+    <string name="library_item_albums">Albomlar</string>
+    <string name="library_item_artists">Sənətçilər</string>
+    <string name="library_item_genres">Janrlar</string>
+    <string name="library_item_playlists">Pleylistlər</string>
+    <string name="library_item_change_provider">Provayderi dəyişdir</string>
+    <string name="library_item_provider_changed">Provayder dəyişdirildi, əsas menyuya qayıdın</string>
 </resources>

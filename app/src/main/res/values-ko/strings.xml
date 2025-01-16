@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">음악</string>
     <string name="app_permissions_toast">사용자에 의해 권한이 허용되어 있지 않습니다.</string>
+    <string name="visualizer_permissions_toast">시각화 기능을 사용하려면 오디오 녹음 권한이 필요합니다.</string>
     <string name="request_status_error_type_unknown">알 수 없음</string>
     <string name="request_status_error_type_not_found">찾을 수 없음</string>
     <string name="request_status_error_type_io">I/O 오류</string>
+    <string name="request_status_error_type_authentication_required">인증 필요</string>
+    <string name="request_status_error_type_invalid_credentials">잘못된 자격 증명</string>
     <string name="main_fragment_section_activity">액티비티</string>
     <string name="main_fragment_section_search">검색</string>
     <string name="main_fragment_section_library">라이브러리</string>
@@ -39,6 +42,9 @@
         <item quantity="other">%d분</item>
     </plurals>
     <string name="artist_albums_header">앨범</string>
+    <string name="artist_appears_in_album_header">이 아티스트의 앨범</string>
+    <string name="artist_appears_in_playlist_header">이 아티스트의 재생 목록</string>
+    <string name="action_play">재생</string>
     <string name="audio_play_next">다음 곡 재생</string>
     <string name="audio_add_to_queue">대기열에 추가</string>
     <string name="audio_remove_from_playlist">재생 목록에서 제거</string>
@@ -50,13 +56,17 @@
     <string name="rename_playlist_positive">이름 바꾸기</string>
     <string name="delete_playlist">재생 목록 삭제</string>
     <string name="delete_playlist_message">정말 이 재생목록을 삭제하시겠습니까?</string>
-    <string name="delete_playlist_positive">삭제</string>
     <string name="audio_effects">오디오 효과</string>
-    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_speed">재생 속도</string>
+    <string name="playback_speed_format">%1$s×</string>
+    <string name="playback_pitch_slider_description">재생 피치</string>
+    <string name="playbacl_pitch_unlock">피치 변경 잠금 해제</string>
+    <string name="playback_warning">속도 및 피치 컨트롤은 오프로드 옵션이 켜져 있는 경우 정상적으로 사용하지 못할 수 있습니다. 앱 설정에서 오프로드 옵션을 확인하세요.</string>
     <string name="visualizer">시각화</string>
     <string name="audio_source">소스</string>
+    <string name="audio_transcoding">트랜스코딩</string>
     <string name="audio_output">출력</string>
+    <string name="audio_output_not_available_in_current_configuration">현재 설정에서 출력 정보를 알 수 없음</string>
     <string name="audio_file_type">파일 형식</string>
     <string name="audio_file_type_unknown">알 수 없음</string>
     <string name="audio_sample_rate">샘플 레이트</string>
@@ -83,32 +93,45 @@
     <string name="provider_argument_username">사용자 이름</string>
     <string name="provider_argument_password">비밀번호</string>
     <string name="provider_argument_use_legacy_authentication">레거시 인증 방법 사용</string>
-    <string name="providers">공급자</string>
+    <string name="provider_argument_validation_error_required">비워둘 수 없는 값입니다.</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">유효한 HTTP 또는 HTTPS URL이어야 합니다. (예: https://google.com)</string>
+    <string name="no_provider">소스 없음</string>
+    <string name="providers">소스</string>
     <string name="add_provider_action">추가</string>
-    <string name="add_provider">공급자 추가</string>
-    <string name="manage_provider">공급자 관리</string>
+    <string name="add_provider">소스 추가</string>
+    <string name="manage_provider">소스 관리</string>
     <string name="save_provider_action">저장</string>
     <string name="delete_provider_action">삭제</string>
-    <string name="delete_provider_confirmation">정말 이 공급자를 삭제하시겠습니까?</string>
+    <string name="delete_provider_confirmation">정말 이 소스를 삭제하시겠습니까?</string>
     <string name="provider_name">이름</string>
-    <string name="provider_type">공급자 유형</string>
+    <string name="provider_name_error">이름 입력</string>
+    <string name="provider_type">소스 유형</string>
+    <string name="provider_type_error">소스 유형 선택</string>
     <string name="argument_validation_error_title">오류</string>
+    <string name="argument_validation_error_message">다음 인수를 분석하는 중 오류가 발생했습니다.\n%1$s</string>
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">설정</string>
     <string name="general_header">일반</string>
+    <string name="experimental_header">실험 기능</string>
     <string name="enable_offload">오프로드 사용</string>
     <string name="enable_offload_summary">오프로드 오디오 경로를 사용합니다. 이 옵션을 끄면 후처리 또는 오디오 재생 과정에서 생기는 오류를 해결할 수 있지만 배터리 사용량이 늘어납니다.</string>
+    <string name="enable_float_output">32비트 부동 소수점 출력 사용</string>
+    <string name="enable_float_output_summary">오디오 품질이 향상될 수 있는 경우 32비트 PCM 부동 소수점 출력을 사용합니다. 이 모드에서는 속도 및 피치 컨트롤 등의 오디오 효과가 작동하지 않습니다. 이 옵션을 변경하면 앱을 다시 시작해야 합니다.</string>
     <string name="stop_playback_on_task_removed">앱 종료 시 재생 정지</string>
     <string name="stop_playback_on_task_removed_summary">최근 앱 화면에서 앱을 지우면 재생 정지</string>
     <string name="skip_silence">무음 건너뛰기</string>
     <string name="skip_silence_summary">오디오를 재생할 때 무음 건너뛰기</string>
+    <string name="split_local_devices">로컬 기기를 구분하여 표시</string>
+    <string name="split_local_devices_summary">내부 저장소와 외부 저장소(SD 카드, USB 장치 등)를 각각 다른 소스로 인식합니다.</string>
     <string name="now_playing_widget_description">지금 재생 중</string>
     <string name="now_playing_widget_dummy_title">제목</string>
     <string name="now_playing_widget_dummy_artist">아티스트</string>
-    <string name="now_playing_widget_dummy_album">앨범</string>
     <string name="album_disc_header">디스크 %1$d</string>
+    <string name="genre_appears_in_albums_header">이 장르의 앨범</string>
+    <string name="genre_appears_in_playlists_header">이 장르의 재생 목록</string>
     <string name="genre_audios_header">오디오</string>
     <string name="queue">대기열</string>
+    <string name="sort_by_artist_name">아티스트 이름</string>
     <string name="sort_by_creation_date">만든 날짜</string>
     <string name="sort_by_last_modified">수정한 날짜</string>
     <string name="sort_by_last_activity">액세스한 날짜</string>
@@ -117,10 +140,21 @@
     <string name="sort_by_release_date">발매일</string>
     <string name="sort_by_title">제목</string>
     <string name="sort_by_unknown">알 수 없음</string>
-    <string name="activity_most_played_albums">가장 많이 재생한 앨범</string>
+    <string name="activity_last_played">요즘 들은 곡</string>
+    <string name="activity_most_played_albums">가장 많이 들은 앨범</string>
     <string name="activity_random_albums">무작위 앨범</string>
+    <string name="activity_random_artists">무작위 아티스트</string>
+    <string name="activity_random_genres">무작위 장르</string>
     <string name="activity_random_songs">무작위 곡</string>
     <string name="content_description_play_pause">재생/일시정지</string>
     <string name="content_description_thumbnail">섬네일</string>
     <string name="play_all">모두 재생</string>
+    <string name="library_item_no_permissions">권한 없음</string>
+    <string name="library_item_no_permissions_description">필요한 권한이 허용되어 있지 않습니다.</string>
+    <string name="library_item_albums">앨범</string>
+    <string name="library_item_artists">아티스트</string>
+    <string name="library_item_genres">장르</string>
+    <string name="library_item_playlists">재생 목록</string>
+    <string name="library_item_change_provider">소스 변경</string>
+    <string name="library_item_provider_changed">소스를 변경했습니다. 메인 메뉴로 이동해야 합니다.</string>
 </resources>

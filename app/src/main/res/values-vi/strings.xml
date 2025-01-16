@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">Nhạc</string>
     <string name="app_permissions_toast">Quyền không được cấp bởi người dùng.</string>
+    <string name="visualizer_permissions_toast">Trình trực quan hóa cần có quyền Ghi âm.</string>
     <string name="request_status_error_type_unknown">Không rõ</string>
     <string name="request_status_error_type_not_found">Không tìm thấy</string>
     <string name="request_status_error_type_io">Lỗi I/O</string>
@@ -43,6 +44,7 @@
     <string name="artist_albums_header">Album</string>
     <string name="artist_appears_in_album_header">Xuất hiện trong album</string>
     <string name="artist_appears_in_playlist_header">Xuất hiện trong danh sách phát</string>
+    <string name="action_play">Phát</string>
     <string name="audio_play_next">Phát tiếp theo</string>
     <string name="audio_add_to_queue">Thêm vào hàng đợi</string>
     <string name="audio_remove_from_playlist">Xoá khỏi danh sách phát</string>
@@ -54,10 +56,12 @@
     <string name="rename_playlist_positive">Đổi tên</string>
     <string name="delete_playlist">Xóa danh sách phát</string>
     <string name="delete_playlist_message">Bạn có chắc chắn muốn xóa danh sách phát này?</string>
-    <string name="delete_playlist_positive">Xóa</string>
     <string name="audio_effects">Hiệu ứng âm thanh</string>
-    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_speed">Tốc độ phát lại</string>
+    <string name="playback_speed_format">%1$s×</string>
+    <string name="playback_pitch_slider_description">Cao độ phát lại</string>
+    <string name="playbacl_pitch_unlock">Mở khóa thay đổi cao độ</string>
+    <string name="playback_warning">Tốc độ và cao độ có thể không hoạt động chính xác khi tính năng chuyển tải phát lại được bật. Hãy thử bật/tắt tính năng này trong cài đặt của ứng dụng.</string>
     <string name="visualizer">Sóng nhạc</string>
     <string name="audio_source">Nguồn</string>
     <string name="audio_transcoding">Chuyển mã</string>
@@ -72,7 +76,7 @@
     <string name="audio_channel_count_unknown"/>
     <string name="audio_encoding">Mã hóa</string>
     <string name="audio_encoding_unknown">Không rõ</string>
-    <string name="audio_float_mode">Chế độ nổi PCM</string>
+    <string name="audio_float_mode">Chế độ dấu chấm động PCM</string>
     <string name="audio_float_mode_unknown">Không rõ</string>
     <string name="audio_float_mode_enabled">Đã kích hoạt</string>
     <string name="audio_float_mode_disabled">Đã vô hiệu hóa</string>
@@ -91,6 +95,7 @@
     <string name="provider_argument_use_legacy_authentication">Sử dụng xác thực truyền thống</string>
     <string name="provider_argument_validation_error_required">Cần phải có một giá trị</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Phải là URL HTTP hoặc HTTPS hợp lệ (ví dụ: https://google.com)</string>
+    <string name="no_provider">Không có nhà cung cấp</string>
     <string name="providers">Nhà cung cấp</string>
     <string name="add_provider_action">Thêm</string>
     <string name="add_provider">Thêm nhà cung cấp</string>
@@ -107,21 +112,26 @@
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">Cài đặt</string>
     <string name="general_header">Chung</string>
+    <string name="experimental_header">Thử nghiệm</string>
     <string name="enable_offload">Kích hoạt offload</string>
-    <string name="enable_offload_summary">Sử dụng đường dẫn âm thanh offload để phát âm thanh. Vô hiệu hóa tùy chọn này có thể làm tăng mức tiêu thụ năng lượng nhưng có thể hữu ích nếu bạn gặp vấn đề với việc phát âm thanh hoặc xử lý hậu kỳ</string>
+    <string name="enable_offload_summary">Sử dụng đường dẫn chuyển tải âm thanh để phát âm thanh. Vô hiệu hóa tùy chọn này có thể làm tăng mức tiêu thụ năng lượng nhưng có thể hữu ích nếu bạn gặp vấn đề với việc phát âm thanh hoặc xử lý hậu kỳ</string>
+    <string name="enable_float_output">Kích hoạt đầu ra dấu chấm động PCM 32-bit</string>
+    <string name="enable_float_output_summary">Sử dụng đầu ra dấu chấm động PCM 32-bit khi chất lượng âm thanh có thể được cải thiện. Các hiệu ứng âm thanh như điều khiển tốc độ và cao độ sẽ ngừng hoạt động ở chế độ này. Bật/tắt tùy chọn này yêu cầu khởi động lại ứng dụng</string>
     <string name="stop_playback_on_task_removed">Dừng phát khi xóa ứng dụng khỏi danh sách gần đây</string>
     <string name="stop_playback_on_task_removed_summary">Dừng phát khi ứng dụng được xóa khỏi mục gần đây</string>
     <string name="skip_silence">Bỏ qua khoảng trống</string>
     <string name="skip_silence_summary">Bỏ qua khoảng trống khi phát âm thanh</string>
+    <string name="split_local_devices">Chia tách các thiết bị cục bộ</string>
+    <string name="split_local_devices_summary">Nếu được bật, bộ nhớ trong và thiết bị ngoài (thẻ SD, thiết bị USB, v.v.) sẽ xuất hiện trong các nhà cung cấp khác nhau</string>
     <string name="now_playing_widget_description">Đang phát</string>
     <string name="now_playing_widget_dummy_title">Tên</string>
     <string name="now_playing_widget_dummy_artist">Nghệ sĩ</string>
-    <string name="now_playing_widget_dummy_album">Album</string>
     <string name="album_disc_header">Đĩa %1$d</string>
     <string name="genre_appears_in_albums_header">Xuất hiện trong album</string>
     <string name="genre_appears_in_playlists_header">Xuất hiện trong danh sách phát</string>
     <string name="genre_audios_header">Âm thanh</string>
     <string name="queue">Hàng đợi</string>
+    <string name="sort_by_artist_name">Tên nghệ sĩ</string>
     <string name="sort_by_creation_date">Thời gian tạo</string>
     <string name="sort_by_last_modified">Lần sửa cuối</string>
     <string name="sort_by_last_activity">Lần hoạt động cuối</string>
@@ -130,10 +140,21 @@
     <string name="sort_by_release_date">Ngày phát hành</string>
     <string name="sort_by_title">Tiêu đề</string>
     <string name="sort_by_unknown">Không rõ</string>
+    <string name="activity_last_played">Đã phát lần cuối</string>
     <string name="activity_most_played_albums">Album được phát nhiều nhất</string>
     <string name="activity_random_albums">Album ngẫu nhiên</string>
+    <string name="activity_random_artists">Nghệ sĩ ngẫu nhiên</string>
+    <string name="activity_random_genres">Thể loại ngẫu nhiên</string>
     <string name="activity_random_songs">Bài hát ngẫu nhiên</string>
     <string name="content_description_play_pause">Phát/Tạm dừng</string>
     <string name="content_description_thumbnail">Hình thu nhỏ</string>
     <string name="play_all">Phát tất cả</string>
+    <string name="library_item_no_permissions">Không được cấp quyền</string>
+    <string name="library_item_no_permissions_description">Ứng dụng không được cấp các quyền cần thiết</string>
+    <string name="library_item_albums">Album</string>
+    <string name="library_item_artists">Nghệ sĩ</string>
+    <string name="library_item_genres">Thể loại</string>
+    <string name="library_item_playlists">Danh sách phát</string>
+    <string name="library_item_change_provider">Thay đổi nhà cung cấp</string>
+    <string name="library_item_provider_changed">Nhà cung cấp đã thay đổi, quay lại menu chính</string>
 </resources>

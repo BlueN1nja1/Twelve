@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">音乐</string>
     <string name="app_permissions_toast">用户没有授予权限。</string>
+    <string name="visualizer_permissions_toast">可视化需要录音权限</string>
     <string name="request_status_error_type_unknown">未知</string>
     <string name="request_status_error_type_not_found">未找到</string>
     <string name="request_status_error_type_io">I/O 错误</string>
@@ -43,6 +44,7 @@
     <string name="artist_albums_header">专辑</string>
     <string name="artist_appears_in_album_header">在专辑中显示</string>
     <string name="artist_appears_in_playlist_header">在播放列表中显示</string>
+    <string name="action_play">播放</string>
     <string name="audio_play_next">播放下一首</string>
     <string name="audio_add_to_queue">添加到队列</string>
     <string name="audio_remove_from_playlist">从播放列表中移除</string>
@@ -54,10 +56,12 @@
     <string name="rename_playlist_positive">重命名</string>
     <string name="delete_playlist">删除播放列表</string>
     <string name="delete_playlist_message">您确定要删除这些播放列表?</string>
-    <string name="delete_playlist_positive">删除</string>
     <string name="audio_effects">音效</string>
-    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_speed">播放速度</string>
+    <string name="playback_speed_format">%1$s×</string>
+    <string name="playback_pitch_slider_description">播放音调</string>
+    <string name="playbacl_pitch_unlock">解锁音调变化</string>
+    <string name="playback_warning">在启用播放卸载功能时，速度和音调可能无法正常工作。请尝试在应用的设置中切换此功能。</string>
     <string name="visualizer">可视化</string>
     <string name="audio_source">来源</string>
     <string name="audio_transcoding">转码中</string>
@@ -91,6 +95,7 @@
     <string name="provider_argument_use_legacy_authentication">使用旧认证</string>
     <string name="provider_argument_validation_error_required">需要一个值</string>
     <string name="provider_argument_validation_error_malformed_http_uri">必须是有效的 HTTP 或 HTTPS 地址（如 https://google.com）</string>
+    <string name="no_provider">无服务商</string>
     <string name="providers">提供商</string>
     <string name="add_provider_action">添加</string>
     <string name="add_provider">添加提供商</string>
@@ -107,16 +112,20 @@
     <string name="argument_validation_error_item">%1$s：%2$s</string>
     <string name="title_activity_settings">设置</string>
     <string name="general_header">常规</string>
+    <string name="experimental_header">实验性</string>
     <string name="enable_offload">启用减负</string>
     <string name="enable_offload_summary">使用减负音频路径进行音频播放。禁用此功能可能会增加功耗，但如果您在音频播放或后期处理时遇到问题，此功能可能会有所帮助。</string>
+    <string name="enable_float_output">启用32位浮点输出</string>
+    <string name="enable_float_output_summary">当需要提升音频质量时，使用32位PCM浮点输出。在此模式下，速度和音调控制等音频效果将无法工作。切换此选项需要重新启动应用程序</string>
     <string name="stop_playback_on_task_removed">在应用从最近任务中关闭时停止播放</string>
     <string name="stop_playback_on_task_removed_summary">当应用从最近任务中清除时停止播放</string>
     <string name="skip_silence">跳过无声片段</string>
     <string name="skip_silence_summary">播放音频时跳过无声片段</string>
+    <string name="split_local_devices">拆分本地设备</string>
+    <string name="split_local_devices_summary">如果启用此功能，内部存储和外部存储（例如SD卡、USB设备等）将会出现在不同的服务商下</string>
     <string name="now_playing_widget_description">正在播放</string>
     <string name="now_playing_widget_dummy_title">标题</string>
     <string name="now_playing_widget_dummy_artist">艺术家</string>
-    <string name="now_playing_widget_dummy_album">专辑</string>
     <string name="album_disc_header">碟片 %1$d</string>
     <string name="genre_appears_in_albums_header">在专辑中显示</string>
     <string name="genre_appears_in_playlists_header">在播放列表中显示</string>
@@ -131,6 +140,7 @@
     <string name="sort_by_release_date">发布日期</string>
     <string name="sort_by_title">标题</string>
     <string name="sort_by_unknown">未知</string>
+    <string name="activity_last_played">最后播放</string>
     <string name="activity_most_played_albums">最常播放的专辑</string>
     <string name="activity_random_albums">随机专辑</string>
     <string name="activity_random_artists">随机艺术家</string>
@@ -139,4 +149,12 @@
     <string name="content_description_play_pause">播放/暂停</string>
     <string name="content_description_thumbnail">缩略图</string>
     <string name="play_all">播放全部</string>
+    <string name="library_item_no_permissions">无权限</string>
+    <string name="library_item_no_permissions_description">应用没有必要的权限</string>
+    <string name="library_item_albums">专辑</string>
+    <string name="library_item_artists">艺术家</string>
+    <string name="library_item_genres">流派</string>
+    <string name="library_item_playlists">播放列表</string>
+    <string name="library_item_change_provider">更改内容服务商</string>
+    <string name="library_item_provider_changed">服务商已更改，将返回主菜单</string>
 </resources>

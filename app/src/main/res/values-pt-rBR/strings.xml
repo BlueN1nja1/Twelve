@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">Música</string>
     <string name="app_permissions_toast">Permissões não foram concedidas pelo usuário.</string>
+    <string name="visualizer_permissions_toast">Permissão para gravar áudio é necessária para o visualizador.</string>
     <string name="request_status_error_type_unknown">Desconhecido</string>
     <string name="request_status_error_type_not_found">Não encontrado</string>
     <string name="request_status_error_type_io">Erro de E/S</string>
@@ -18,16 +19,16 @@
     <string name="library_fragment_menu_albums">Álbuns</string>
     <string name="library_fragment_menu_artists">Artistas</string>
     <string name="library_fragment_menu_genres">Gêneros</string>
-    <string name="library_fragment_menu_playlists">Listas de reprodução</string>
-    <string name="create_playlist">Criar uma nova lista de reprodução</string>
-    <string name="no_playlists_comma">Nenhuma lista de reprodução,</string>
+    <string name="library_fragment_menu_playlists">Playlists</string>
+    <string name="create_playlist">Criar uma nova playlist</string>
+    <string name="no_playlists_comma">Nenhuma playlist,</string>
     <string name="create_playlist_suggestion">Criar uma nova?</string>
     <string name="create_playlist_confirm">Criar</string>
     <string name="no_activity">Nenhuma atividade</string>
     <string name="no_albums">Nenhum álbum</string>
     <string name="no_artists">Nenhum artista</string>
     <string name="no_genres">Nenhum gênero</string>
-    <string name="no_playlists">Nenhuma lista de reprodução</string>
+    <string name="no_playlists">Nenhuma playlist</string>
     <string name="no_audios">Nenhum áudio</string>
     <string name="no_results">Nenhum resultado</string>
     <string name="unknown">Desconhecido</string>
@@ -44,22 +45,25 @@
     </plurals>
     <string name="artist_albums_header">Álbuns</string>
     <string name="artist_appears_in_album_header">Aparece no álbum</string>
-    <string name="artist_appears_in_playlist_header">Aparece na lista de reprodução</string>
+    <string name="artist_appears_in_playlist_header">Aparece na playlist</string>
+    <string name="action_play">Reproduzir</string>
     <string name="audio_play_next">Tocar em seguida</string>
     <string name="audio_add_to_queue">Adicionar à fila</string>
-    <string name="audio_remove_from_playlist">Remover da lista de reprodução</string>
-    <string name="audio_add_or_remove_from_playlists">Adicionar ou remover das listas de reprodução</string>
+    <string name="audio_remove_from_playlist">Remover da playlist</string>
+    <string name="audio_add_or_remove_from_playlists">Adicionar ou remover das playlists</string>
     <string name="open_album">Abrir álbum</string>
     <string name="open_artist">Abrir artista</string>
     <string name="open_genre">Abrir gênero</string>
-    <string name="rename_playlist">Renomear lista de reprodução</string>
+    <string name="rename_playlist">Renomear playlist</string>
     <string name="rename_playlist_positive">Renomear</string>
-    <string name="delete_playlist">Excluir lista de reprodução</string>
-    <string name="delete_playlist_message">Tem certeza que deseja excluir esta lista de reprodução?</string>
-    <string name="delete_playlist_positive">Excluir</string>
+    <string name="delete_playlist">Excluir playlist</string>
+    <string name="delete_playlist_message">Tem certeza que deseja excluir esta playlist?</string>
     <string name="audio_effects">Efeitos de áudio</string>
-    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_speed">Velocidade de reprodução</string>
+    <string name="playback_speed_format">%1$s×</string>
+    <string name="playback_pitch_slider_description">Tom de reprodução</string>
+    <string name="playbacl_pitch_unlock">Desbloquear mudança de tom</string>
+    <string name="playback_warning">Velocidade e tom podem não funcionar corretamente enquanto o recurso de offload da reprodução estiver ativado. Tente mudá-lo nas configurações do aplicativo.</string>
     <string name="visualizer">Visualizador</string>
     <string name="audio_source">Fonte</string>
     <string name="audio_transcoding">Transcodificação</string>
@@ -93,6 +97,7 @@
     <string name="provider_argument_use_legacy_authentication">Usar autenticação legada</string>
     <string name="provider_argument_validation_error_required">É necessário um valor</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Deve ser uma URL HTTP ou HTTPS válida (por exemplo, https://google.com)</string>
+    <string name="no_provider">Sem provedores</string>
     <string name="providers">Provedores</string>
     <string name="add_provider_action">Adicionar</string>
     <string name="add_provider">Adicionar provedor</string>
@@ -109,19 +114,23 @@
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">Configurações</string>
     <string name="general_header">Geral</string>
+    <string name="experimental_header">Experimental</string>
     <string name="enable_offload">Ativar offload</string>
     <string name="enable_offload_summary">Use o caminho de áudio offload para reprodução de áudio. Desativar isso pode aumentar o uso de energia, mas pode ser útil se você tiver problemas com a reprodução de áudio ou pós processamento</string>
+    <string name="enable_float_output">Ativar saída de ponto flutuante em 32 bits</string>
+    <string name="enable_float_output_summary">Use a saída do ponto flutuante PCM de 32 bits quando a qualidade de áudio puder se beneficiar dele. Efeitos de áudio como controle de velocidade e ajuste de tom  deixarão de funcionar neste modo. Ao mudar esta opção é necessário reiniciar o aplicativo</string>
     <string name="stop_playback_on_task_removed"> Parar a reprodução quando o app for removido da lista de recentes</string>
     <string name="stop_playback_on_task_removed_summary">Interromper a reprodução quando o app é removido da lista de recentes</string>
     <string name="skip_silence">Pular silêncio</string>
     <string name="skip_silence_summary">Pular silêncio ao reproduzir áudio</string>
+    <string name="split_local_devices">Dividir dispositivos locais</string>
+    <string name="split_local_devices_summary">Se ativado, o armazenamento interno e dispositivos externos (cartões SD, dispositivos USB, etc.) aparecerão sob diferentes provedores</string>
     <string name="now_playing_widget_description">Tocando agora</string>
     <string name="now_playing_widget_dummy_title">Título</string>
     <string name="now_playing_widget_dummy_artist">Artista</string>
-    <string name="now_playing_widget_dummy_album">Álbum</string>
     <string name="album_disc_header">Disco %1$d</string>
     <string name="genre_appears_in_albums_header">Aparece nos álbuns</string>
-    <string name="genre_appears_in_playlists_header">Aparece nas listas de reprodução</string>
+    <string name="genre_appears_in_playlists_header">Aparece nas playlists</string>
     <string name="genre_audios_header">Áudios</string>
     <string name="queue">Fila</string>
     <string name="sort_by_artist_name">Nome do artista</string>
@@ -133,6 +142,7 @@
     <string name="sort_by_release_date">Data de lançamento</string>
     <string name="sort_by_title">Título</string>
     <string name="sort_by_unknown">Desconhecido</string>
+    <string name="activity_last_played">Última reprodução</string>
     <string name="activity_most_played_albums">Álbuns mais tocados</string>
     <string name="activity_random_albums">Álbuns aleatórios</string>
     <string name="activity_random_artists">Artistas aleatórios</string>
@@ -141,4 +151,12 @@
     <string name="content_description_play_pause">Tocar/pausar</string>
     <string name="content_description_thumbnail">Miniatura</string>
     <string name="play_all">Tocar tudo</string>
+    <string name="library_item_no_permissions">Sem permissões</string>
+    <string name="library_item_no_permissions_description">O app não tem as permissões necessárias</string>
+    <string name="library_item_albums">Álbuns</string>
+    <string name="library_item_artists">Artistas</string>
+    <string name="library_item_genres">Gêneros</string>
+    <string name="library_item_playlists">Playlists</string>
+    <string name="library_item_change_provider">Alterar provedor</string>
+    <string name="library_item_provider_changed">Provedor alterado, volte ao menu principal</string>
 </resources>

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">Muzică</string>
     <string name="app_permissions_toast">Permisiuni care nu sunt acordate de utilizator.</string>
+    <string name="visualizer_permissions_toast">Pentru vizualizator este necesară permisiunea de înregistrare audio.</string>
     <string name="request_status_error_type_unknown">Necunoscut</string>
     <string name="request_status_error_type_not_found">Negăsit</string>
     <string name="request_status_error_type_io">Eroare I/O</string>
@@ -47,6 +48,7 @@
     <string name="artist_albums_header">Albume</string>
     <string name="artist_appears_in_album_header">Apare în album</string>
     <string name="artist_appears_in_playlist_header">Apare în playlist</string>
+    <string name="action_play">Redați</string>
     <string name="audio_play_next">Redă urmatorul</string>
     <string name="audio_add_to_queue">Adaugă la coadă</string>
     <string name="audio_remove_from_playlist">Elimină din playlist</string>
@@ -58,10 +60,12 @@
     <string name="rename_playlist_positive">Redenumire</string>
     <string name="delete_playlist">Șterge playlist-ul</string>
     <string name="delete_playlist_message">Sunteți sigur că doriți să ștergeți acest playlist?</string>
-    <string name="delete_playlist_positive">Șterge</string>
     <string name="audio_effects">Efecte audio</string>
-    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_speed">Viteza de redare</string>
+    <string name="playback_speed_format">%1$s×</string>
+    <string name="playback_pitch_slider_description">Ton de redare</string>
+    <string name="playbacl_pitch_unlock">Deblochează schimbarea tonului</string>
+    <string name="playback_warning">Viteza și tonul ar putea să nu funcționeze corect în timp ce funcția de redare offload este activată. Încercați să o schimbați în setările aplicației.</string>
     <string name="visualizer">Vizualizator</string>
     <string name="audio_source">Sursă</string>
     <string name="audio_transcoding">Transcodare</string>
@@ -95,6 +99,7 @@
     <string name="provider_argument_use_legacy_authentication">Folosește autentificarea legacy</string>
     <string name="provider_argument_validation_error_required">Este necesară o valoare</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Trebuie să fie un URL valid HTTP sau HTTPS (de ex. https://google.com)</string>
+    <string name="no_provider">Niciun furnizor</string>
     <string name="providers">Furnizori</string>
     <string name="add_provider_action">Adaugă</string>
     <string name="add_provider">Adăugare furnizor</string>
@@ -111,16 +116,20 @@
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">Setări</string>
     <string name="general_header">General</string>
+    <string name="experimental_header">Experimental</string>
     <string name="enable_offload">Activează offload</string>
     <string name="enable_offload_summary">Utilizați calea audio offload pentru redarea audio. Dezactivarea acestei opțiuni poate crește consumul de energie, dar poate fi utilă dacă întâmpinați probleme cu redarea audio sau cu post processing-ul</string>
+    <string name="enable_float_output">Activare output cu 32-bit floating point</string>
+    <string name="enable_float_output_summary">Folosește output-ul 32-bit PCM floating point când calitatea audio poate beneficia de pe urma sa. Efectele audio cum ar fi viteza și controlul tonului vor înceta să mai funcționeze în acest mod. Schimbarea acestei opțiuni necesită repornirea aplicației</string>
     <string name="stop_playback_on_task_removed">Oprește redarea la eliminarea aplicației din recente</string>
     <string name="stop_playback_on_task_removed_summary">Oprește redarea atunci când aplicația este ștearsă din recente</string>
     <string name="skip_silence">Omite tăcerea</string>
     <string name="skip_silence_summary">Omite tăcerea la redarea audio</string>
+    <string name="split_local_devices">Împarte dispozitivele locale</string>
+    <string name="split_local_devices_summary">Dacă este activat, stocarea internă și dispozitivele externe (cardurile SD, dispozitivele USB etc.) vor apărea la diferiți furnizori</string>
     <string name="now_playing_widget_description">Se redă acum</string>
     <string name="now_playing_widget_dummy_title">Titlu</string>
     <string name="now_playing_widget_dummy_artist">Artist</string>
-    <string name="now_playing_widget_dummy_album">Album</string>
     <string name="album_disc_header">Disc %1$d</string>
     <string name="genre_appears_in_albums_header">Apare în albume</string>
     <string name="genre_appears_in_playlists_header">Apare în playlist-uri</string>
@@ -135,6 +144,7 @@
     <string name="sort_by_release_date">Data lansării</string>
     <string name="sort_by_title">Titlu</string>
     <string name="sort_by_unknown">Necunoscut</string>
+    <string name="activity_last_played">Redat ultima oară</string>
     <string name="activity_most_played_albums">Cele mai redate albume</string>
     <string name="activity_random_albums">Albume aleatoare</string>
     <string name="activity_random_artists">Artişti aleatorii</string>
@@ -143,4 +153,12 @@
     <string name="content_description_play_pause">Redă/pauză</string>
     <string name="content_description_thumbnail">Thumbnail</string>
     <string name="play_all">Redă tot</string>
+    <string name="library_item_no_permissions">Fără permisiuni</string>
+    <string name="library_item_no_permissions_description">Aplicația nu are permisiunile necesare</string>
+    <string name="library_item_albums">Albume</string>
+    <string name="library_item_artists">Artiști</string>
+    <string name="library_item_genres">Genuri</string>
+    <string name="library_item_playlists">Liste de redare</string>
+    <string name="library_item_change_provider">Schimbare furnizor</string>
+    <string name="library_item_provider_changed">Furnizor modificat, mergeți înapoi la meniul principal</string>
 </resources>

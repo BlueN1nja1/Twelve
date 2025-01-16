@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">Zene</string>
     <string name="app_permissions_toast">A felhasználó nem adta meg a jogosultságot.</string>
+    <string name="visualizer_permissions_toast">A vizualizációhoz hangfelvételi jogosultság szükséges.</string>
     <string name="request_status_error_type_unknown">Ismeretlen</string>
     <string name="request_status_error_type_not_found">Nem található</string>
     <string name="request_status_error_type_io">I/O hiba</string>
@@ -45,6 +46,7 @@
     <string name="artist_albums_header">Albumok</string>
     <string name="artist_appears_in_album_header">Megjelenés albumban</string>
     <string name="artist_appears_in_playlist_header">Megjelenés lejátszólistában</string>
+    <string name="action_play">Lejátszás</string>
     <string name="audio_play_next">A következő lejátszása</string>
     <string name="audio_add_to_queue">Hozzáadás a lejátszólistához</string>
     <string name="audio_remove_from_playlist">Eltávolítás a lejátszólistából</string>
@@ -56,10 +58,12 @@
     <string name="rename_playlist_positive">Átnevezés</string>
     <string name="delete_playlist">A lejátszólista törlése</string>
     <string name="delete_playlist_message">Biztosan törli ezt a lejátszólistát?</string>
-    <string name="delete_playlist_positive">Törlés</string>
     <string name="audio_effects">Hangeffektek</string>
-    <string name="playback_speed_format">%1$sx</string>
     <string name="playback_speed">Lejátszási sebesség</string>
+    <string name="playback_speed_format">%1$sx</string>
+    <string name="playback_pitch_slider_description">Lejátszási hangmagasság</string>
+    <string name="playbacl_pitch_unlock">A torzítás feloldása</string>
+    <string name="playback_warning">Előfordulhat, hogy a sebesség és a hangmagasság nem működik megfelelően, ha a lejátszási tehermentesítés funkció engedélyezve van. Próbálja meg átkapcsolni az alkalmazás beállításaiban.</string>
     <string name="visualizer">Vizualizáló</string>
     <string name="audio_source">Forrás</string>
     <string name="audio_transcoding">Átkódolás</string>
@@ -93,6 +97,7 @@
     <string name="provider_argument_use_legacy_authentication">Örökölt hitelesítő használata</string>
     <string name="provider_argument_validation_error_required">Érték megadása kötelező</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Érvényes HTTP vagy HTTPS URL-nek kell lennie (pl. https://google.com)</string>
+    <string name="no_provider">Nincs szolgáltató</string>
     <string name="providers">Szolgáltatók</string>
     <string name="add_provider_action">Hozzáadás</string>
     <string name="add_provider">Szolgáltató hozzáadása</string>
@@ -109,16 +114,20 @@
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">Beállítások</string>
     <string name="general_header">Általános</string>
+    <string name="experimental_header">Kísérleti</string>
     <string name="enable_offload">A tehermentesített bekapcsolása</string>
     <string name="enable_offload_summary">A hanglejátszáshoz a leválasztott audió-útvonalat használja. Letiltása növelheti az energiafogyasztást, de hasznos lehet, ha problémákat tapasztal a hanglejátszás vagy a feldolgozás során</string>
+    <string name="enable_float_output">Engedélyezze a 32-bites lebegőpontos kimenetet</string>
+    <string name="enable_float_output_summary">Használjon 32-bites PCM lebegőpontos kimenetet, ha a hangminőség ettől jobb lesz.  Ebben a módban az audioeffektusok, például a sebesség- és hangmagasság-vezérlők nem működnek. Váltáshoz az alkalmazás újraindítása szükséges</string>
     <string name="stop_playback_on_task_removed">A lejátszás leállítása, ha eltávolításra került az előzmények közül</string>
     <string name="stop_playback_on_task_removed_summary">A lejátszás leállítása, ha törlésre került az előzmények közül</string>
     <string name="skip_silence">Átugrott némítás</string>
     <string name="skip_silence_summary">A némítás kihagyása, ha épp audiófájlt játszik le</string>
+    <string name="split_local_devices">Helyi eszközök szétosztása</string>
+    <string name="split_local_devices_summary">Ha engedélyezett, a belső tárhely és a külső eszközök (SD-kártyák, USB-eszközök stb.) különböző szolgáltatók alatt jelennek meg</string>
     <string name="now_playing_widget_description">Most hallható</string>
     <string name="now_playing_widget_dummy_title">Cím</string>
     <string name="now_playing_widget_dummy_artist">Előadó</string>
-    <string name="now_playing_widget_dummy_album">Album</string>
     <string name="album_disc_header">Lemez %1$d</string>
     <string name="genre_appears_in_albums_header">Megjelenések albumokban</string>
     <string name="genre_appears_in_playlists_header">Megjelenések lejátszólistákban</string>
@@ -133,6 +142,7 @@
     <string name="sort_by_release_date">Kiadási dátum</string>
     <string name="sort_by_title">Cím</string>
     <string name="sort_by_unknown">Ismeretlen</string>
+    <string name="activity_last_played">Utoljára lejátszott</string>
     <string name="activity_most_played_albums">A legtöbbet játszott lemezek</string>
     <string name="activity_random_albums">Véletlenszerűen választott lemezek</string>
     <string name="activity_random_artists">Véletlenszerűen választott előadó</string>
@@ -141,4 +151,12 @@
     <string name="content_description_play_pause">Lejátszás/Megállítás</string>
     <string name="content_description_thumbnail">Parancsikon</string>
     <string name="play_all">Az összes lejátszása</string>
+    <string name="library_item_no_permissions">Hiányzó jogosultság</string>
+    <string name="library_item_no_permissions_description">Az alkalmazás nem rendelkezik a szükséges engedélyekkel</string>
+    <string name="library_item_albums">Albumok</string>
+    <string name="library_item_artists">Előadók</string>
+    <string name="library_item_genres">Műfajok</string>
+    <string name="library_item_playlists">Lejátszólisták</string>
+    <string name="library_item_change_provider">Szolgáltatómódosítás</string>
+    <string name="library_item_provider_changed">A módosítás sikeres, visszalépés a főmenübe</string>
 </resources>

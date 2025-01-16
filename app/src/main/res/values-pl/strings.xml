@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">Muzyka</string>
     <string name="app_permissions_toast">Uprawnienia nie zostały przyznane przez użytkownika.</string>
+    <string name="visualizer_permissions_toast">Nagrywanie dźwięku jest wymagane dla wizualizacji.</string>
     <string name="request_status_error_type_unknown">Nieznany</string>
     <string name="request_status_error_type_not_found">Nie znaleziono</string>
     <string name="request_status_error_type_io">Błąd wejścia/wyjścia</string>
@@ -49,6 +50,7 @@
     <string name="artist_albums_header">Albumy</string>
     <string name="artist_appears_in_album_header">Pojawia się w albumie</string>
     <string name="artist_appears_in_playlist_header">Pojawia się na liście odtwarzania</string>
+    <string name="action_play">Odtwórz</string>
     <string name="audio_play_next">Odtwórz następny</string>
     <string name="audio_add_to_queue">Dodaj do kolejki</string>
     <string name="audio_remove_from_playlist">Usuń z listy odtwarzania</string>
@@ -60,10 +62,12 @@
     <string name="rename_playlist_positive">Zmień nazwę</string>
     <string name="delete_playlist">Usuń listę odtwarzania</string>
     <string name="delete_playlist_message">Czy na pewno chcesz usunąć tę listę odtwarzania?</string>
-    <string name="delete_playlist_positive">Usuń</string>
     <string name="audio_effects">Efekty dźwiękowe</string>
-    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_speed">Prędkość odtwarzania</string>
+    <string name="playback_speed_format">%1$s×</string>
+    <string name="playback_pitch_slider_description">Tonacja odtwarzania</string>
+    <string name="playbacl_pitch_unlock">Odblokuj zmianę tonacji</string>
+    <string name="playback_warning">Prędkość i wysokość dźwięku mogą nie działać poprawnie, gdy włączona jest funkcja odciążania odtwarzania. Spróbuj wyłączyć tę funkcję w ustawieniach aplikacji.</string>
     <string name="visualizer">Wizualizacja</string>
     <string name="audio_source">Źródło</string>
     <string name="audio_transcoding">Przetwarzanie</string>
@@ -97,6 +101,7 @@
     <string name="provider_argument_use_legacy_authentication">Uwierzytelnianie starszego typu</string>
     <string name="provider_argument_validation_error_required">Wymagana jest wartość</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Musi być prawidłowym adresem HTTP lub HTTPS (np. https://google.com)</string>
+    <string name="no_provider">Brak dostawcy</string>
     <string name="providers">Dostawcy</string>
     <string name="add_provider_action">Dodaj</string>
     <string name="add_provider">Dodaj dostawcę</string>
@@ -113,16 +118,20 @@
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">Ustawienia</string>
     <string name="general_header">Ogólne</string>
+    <string name="experimental_header">Eksperymentalne</string>
     <string name="enable_offload">Włącz odciążenie</string>
     <string name="enable_offload_summary">Używaj ścieżki odciążenia audio do odtwarzania dźwięku. Wyłączenie tej opcji może zwiększyć zużycie energii, ale może być przydatne w przypadku problemów z odtwarzaniem dźwięku lub przetwarzaniem końcowym</string>
+    <string name="enable_float_output">Włącz 32-bitowe wyjście zmiennoprzecinkowe</string>
+    <string name="enable_float_output_summary">Używaj 32-bitowego wyjścia zmiennoprzecinkowego PCM, gdy jakość dźwięku może na tym skorzystać. Efekty dźwiękowe, takie jak sterowanie prędkością i wysokością dźwięku, przestaną działać w tym trybie. Przełączenie tej opcji wymaga ponownego uruchomienia aplikacji.</string>
     <string name="stop_playback_on_task_removed">Zatrzymuj odtwarzanie po usunięciu aplikacji z ostatnio używanych</string>
     <string name="stop_playback_on_task_removed_summary">Zatrzymuj odtwarzanie, gdy aplikacja została usunięta z ostatnio używanych</string>
     <string name="skip_silence">Pomijaj ciszę</string>
     <string name="skip_silence_summary">Pomijaj ciszę podczas odtwarzania dźwięku</string>
+    <string name="split_local_devices">Rozdziel lokalne urządzenia</string>
+    <string name="split_local_devices_summary">Jeśli ta opcja jest włączona, pamięć wewnętrzna i urządzenia zewnętrzne (karty SD, urządzenia USB itp.) będą wyświetlane pod różnymi dostawcami</string>
     <string name="now_playing_widget_description">Teraz odtwarzane</string>
     <string name="now_playing_widget_dummy_title">Tytuł</string>
     <string name="now_playing_widget_dummy_artist">Wykonawca</string>
-    <string name="now_playing_widget_dummy_album">Album</string>
     <string name="album_disc_header">Dysk %1$d</string>
     <string name="genre_appears_in_albums_header">Pojawia się w albumach</string>
     <string name="genre_appears_in_playlists_header">Pojawia się na listach odtwarzania</string>
@@ -137,6 +146,7 @@
     <string name="sort_by_release_date">Daty wydania</string>
     <string name="sort_by_title">Tytułu</string>
     <string name="sort_by_unknown">Nieokreślono</string>
+    <string name="activity_last_played">Ostatnio odtwarzane</string>
     <string name="activity_most_played_albums">Najczęściej słuchane albumy</string>
     <string name="activity_random_albums">Losowe albumy</string>
     <string name="activity_random_artists">Losowi wykonawcy</string>
@@ -145,4 +155,12 @@
     <string name="content_description_play_pause">Odtwórz/wstrzymaj</string>
     <string name="content_description_thumbnail">Miniaturka</string>
     <string name="play_all">Odtwórz wszystko</string>
+    <string name="library_item_no_permissions">Brak uprawnień</string>
+    <string name="library_item_no_permissions_description">Aplikacja nie posiada wystarczających uprawnień</string>
+    <string name="library_item_albums">Albumy</string>
+    <string name="library_item_artists">Wykonawcy</string>
+    <string name="library_item_genres">Gatunki</string>
+    <string name="library_item_playlists">Listy odtwarzania</string>
+    <string name="library_item_change_provider">Zmień dostawcę</string>
+    <string name="library_item_provider_changed">Dostawca został zmieniony, wróć do menu głównego</string>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -30,10 +30,14 @@
     </plurals>
     <string name="artist_albums_header">Albums</string>
     <string name="audio_play_next">Lire le suivant</string>
+    <string name="audio_add_to_queue">Ajouter à la file d\'attente</string>
+    <string name="audio_remove_from_playlist">Supprimer de la liste de lecture</string>
     <string name="open_album">Ouvrir l\'album</string>
     <string name="open_artist">Ouvrir l\'artiste</string>
+    <string name="rename_playlist">Renommer la liste de lecture</string>
     <string name="rename_playlist_positive">Renommer</string>
-    <string name="delete_playlist_positive">Supprimer</string>
+    <string name="delete_playlist">Supprimer la liste de lecture</string>
+    <string name="delete_playlist_message">Voulez-vous vraiment supprimer cette liste de lecture ?</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="audio_source">Source</string>
     <string name="audio_output">Sortie</string>
@@ -69,10 +73,12 @@
     <string name="title_activity_settings">Paramètres</string>
     <string name="now_playing_widget_dummy_title">Titre</string>
     <string name="now_playing_widget_dummy_artist">Artiste</string>
-    <string name="now_playing_widget_dummy_album">Album</string>
     <string name="album_disc_header">Disque %1$d</string>
     <string name="sort_by_artist_name">Nom de l\'artiste</string>
     <string name="sort_by_title">Titre</string>
     <string name="sort_by_unknown">Inconnu</string>
+    <string name="activity_random_albums">Albums aléatoires</string>
     <string name="activity_random_artists">Artistes aléatoires</string>
+    <string name="play_all">Tout lire</string>
+    <string name="library_item_no_permissions_description">L\'application n\'a pas les autorisations nécessaires</string>
 </resources>

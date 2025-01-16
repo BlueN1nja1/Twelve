@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">Música</string>
     <string name="app_permissions_toast">Permisos no concedits per l\'usuari.</string>
+    <string name="visualizer_permissions_toast">Cal el permís d\'enregistrament d\'àudio per al visualitzador.</string>
     <string name="request_status_error_type_unknown">Desconegut</string>
     <string name="request_status_error_type_not_found">No s\'ha trobat</string>
     <string name="request_status_error_type_io">Error d\'E/S</string>
@@ -45,6 +46,7 @@
     <string name="artist_albums_header">Àlbums</string>
     <string name="artist_appears_in_album_header">Apareix a l\'àlbum</string>
     <string name="artist_appears_in_playlist_header">Apareix a la llista de reproducció</string>
+    <string name="action_play">Reprodueix</string>
     <string name="audio_play_next">Reprodueix a continuació</string>
     <string name="audio_add_to_queue">Afegeix a la cua</string>
     <string name="audio_remove_from_playlist">Elimina de la llista de reproducció</string>
@@ -56,10 +58,12 @@
     <string name="rename_playlist_positive">Canvia el nom</string>
     <string name="delete_playlist">Suprimeix la llista de reproducció</string>
     <string name="delete_playlist_message">Esteu segur que voleu suprimir aquesta llista de reproducció?</string>
-    <string name="delete_playlist_positive">Suprimeix</string>
     <string name="audio_effects">Efectes d\'àudio</string>
-    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_speed">Velocitat de reproducció</string>
+    <string name="playback_speed_format">%1$s×</string>
+    <string name="playback_pitch_slider_description">To de reproducció</string>
+    <string name="playbacl_pitch_unlock">Desbloca el canvi de to</string>
+    <string name="playback_warning">És possible que la velocitat i el to no funcionin correctament mentre la funció de baixada de reproducció està activada. Proveu de canviar-lo a la configuració de l\'aplicació.</string>
     <string name="visualizer">Visualitzador</string>
     <string name="audio_source">Font</string>
     <string name="audio_transcoding">Transcodificant</string>
@@ -93,6 +97,7 @@
     <string name="provider_argument_use_legacy_authentication">Fes servir l\'autenticació heretada</string>
     <string name="provider_argument_validation_error_required">Cal un valor</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Ha de ser un URL HTTP o HTTPS vàlid (p. ex., https://google.com)</string>
+    <string name="no_provider">Sense proveïdors</string>
     <string name="providers">Proveïdors</string>
     <string name="add_provider_action">Afegeix</string>
     <string name="add_provider">Afegeix un proveïdor</string>
@@ -109,14 +114,18 @@
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">Configuració</string>
     <string name="general_header">General</string>
+    <string name="experimental_header">Experimental</string>
     <string name="enable_offload">Activa la descàrrega</string>
     <string name="enable_offload_summary">Utilitza la ruta d\'àudio de descàrrega per a la reproducció d\'àudio. Desactivar això pot augmentar l\'ús d\'energia, però pot ser útil si teniu problemes amb la reproducció d\'àudio o el postprocessament</string>
+    <string name="enable_float_output">Activa la sortida de coma flotant de 32 bits</string>
+    <string name="enable_float_output_summary">Utilitza la sortida de coma flotant PCM de 32 bits quan la qualitat d\'àudio se\'n pugui beneficiar. Els efectes d\'àudio com els controls de velocitat i to deixaran de funcionar en aquest mode. Commutar aquesta opció requereix reiniciar l\'aplicació</string>
     <string name="stop_playback_on_task_removed">Atura la reproducció quan l\'aplicació s\'elimina dels recents</string>
     <string name="stop_playback_on_task_removed_summary">Atura la reproducció quan l\'aplicació s\'esborra dels recents</string>
+    <string name="split_local_devices">Divideix els dispositius locals</string>
+    <string name="split_local_devices_summary">En activar-se, l\'emmagatzematge intern i els dispositius externs (targetes SD, dispositius USB, etc.) apareixeran amb diferents proveïdors.</string>
     <string name="now_playing_widget_description">Reproducció en curs</string>
     <string name="now_playing_widget_dummy_title">Títol</string>
     <string name="now_playing_widget_dummy_artist">Artista</string>
-    <string name="now_playing_widget_dummy_album">Àlbum</string>
     <string name="album_disc_header">Disc %1$d</string>
     <string name="genre_appears_in_albums_header">Apareix als àlbums</string>
     <string name="genre_appears_in_playlists_header">Apareix en les llistes de reproducció</string>
@@ -131,6 +140,7 @@
     <string name="sort_by_release_date">Data de publicació</string>
     <string name="sort_by_title">Títol</string>
     <string name="sort_by_unknown">Desconegut</string>
+    <string name="activity_last_played">Última reproducció</string>
     <string name="activity_most_played_albums">Àlbums més reproduïts</string>
     <string name="activity_random_albums">Àlbums aleatoris</string>
     <string name="activity_random_artists">Artistes aleatoris</string>
@@ -139,4 +149,12 @@
     <string name="content_description_play_pause">Reprodueix/Pausa</string>
     <string name="content_description_thumbnail">Vista prèvia</string>
     <string name="play_all">Reprodueix-ho tot</string>
+    <string name="library_item_no_permissions">Sense permisos</string>
+    <string name="library_item_no_permissions_description">L\'aplicació no té els permisos necessaris</string>
+    <string name="library_item_albums">Àlbums</string>
+    <string name="library_item_artists">Artistes</string>
+    <string name="library_item_genres">Gèneres</string>
+    <string name="library_item_playlists">Llistes de reproducció</string>
+    <string name="library_item_change_provider">Canvia de proveïdor</string>
+    <string name="library_item_provider_changed">S\'ha canviat de proveïdor, torneu al menú principal</string>
 </resources>

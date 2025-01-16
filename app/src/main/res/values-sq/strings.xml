@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -14,6 +14,7 @@
     <string name="main_fragment_section_activity">Aktiviteti</string>
     <string name="main_fragment_section_search">Kërko</string>
     <string name="main_fragment_section_library">Libraria</string>
+    <string name="search_hint">Kerko…</string>
     <string name="library_fragment_menu_albums">Albumet</string>
     <string name="library_fragment_menu_artists">Artistët</string>
     <string name="library_fragment_menu_genres">Zhanri</string>
@@ -22,6 +23,83 @@
     <string name="no_playlists_comma">S\'ka listë për luajtje </string>
     <string name="create_playlist_suggestion">Krijo një të re?</string>
     <string name="create_playlist_confirm">Krijo</string>
+    <string name="no_activity">S\'ka aktivitetet</string>
     <string name="no_albums">Nuk ka albume.</string>
     <string name="no_artists">Nuk ka artistë.</string>
+    <string name="no_genres">Nuk ka asnjë zhanre.</string>
+    <string name="no_playlists">Nuk ka asnjë list</string>
+    <string name="no_audios">Nuk ka asnjë audio</string>
+    <string name="no_results">Nuk ka resultate.</string>
+    <string name="unknown">I panjohur</string>
+    <string name="album_unknown">Album i panjohur</string>
+    <string name="artist_unknown">Artist i panjohur</string>
+    <string name="genre_unknown">Zhanër i panjohur</string>
+    <plurals name="tracks_count">
+        <item quantity="one">%d këngë</item>
+        <item quantity="other">%d këngë</item>
+    </plurals>
+    <plurals name="tracks_duration">
+        <item quantity="one">%d minutë</item>
+        <item quantity="other">%d minuta</item>
+    </plurals>
+    <string name="artist_albums_header">Albume</string>
+    <string name="artist_appears_in_album_header">Është në album</string>
+    <string name="artist_appears_in_playlist_header">Shfaqet në listën e muzikës</string>
+    <string name="audio_play_next">Luaj më pas</string>
+    <string name="audio_add_to_queue">Shto në radhë</string>
+    <string name="audio_remove_from_playlist">Hiq nga lista e musikës</string>
+    <string name="audio_add_or_remove_from_playlists">Shto ose hiq nga listat e musikës</string>
+    <string name="open_album">Hap albumin</string>
+    <string name="open_artist">Hap artistin</string>
+    <string name="open_genre">Hap zhanrën</string>
+    <string name="rename_playlist">Riemëtoni listen e këngëve</string>
+    <string name="rename_playlist_positive">Riemërto</string>
+    <string name="delete_playlist">Fshij listën e këngëve</string>
+    <string name="delete_playlist_message">Jeni të sigurtë që doni të fshini këtë list muzike?</string>
+    <string name="audio_effects">Efektet audio</string>
+    <string name="playback_speed">Shpejtësia e luajtjes</string>
+    <string name="playback_speed_format">%1$s×</string>
+    <string name="visualizer">Vizualizues</string>
+    <string name="audio_source">Burim</string>
+    <string name="audio_transcoding">Transkodim</string>
+    <string name="audio_output">Dalje</string>
+    <string name="audio_output_not_available_in_current_configuration">Informacioni i audios nuk është i disponueshëm në konfigurim.</string>
+    <string name="audio_file_type">Lloji i skedarit</string>
+    <string name="audio_file_type_unknown">E panjohur</string>
+    <string name="audio_sample_rate">Norma e mostrës</string>
+    <string name="audio_sample_rate_format">%1$s kHz</string>
+    <string name="audio_sample_rate_unknown">E panjohur</string>
+    <string name="audio_channel_count">Numri i kanaleve</string>
+    <string name="audio_channel_count_unknown">E panjohur</string>
+    <string name="audio_encoding">Kodimi</string>
+    <string name="audio_encoding_unknown">E panjohur</string>
+    <string name="audio_float_mode">Modaliti \"PCM Float\"</string>
+    <string name="audio_float_mode_unknown">E panjohur</string>
+    <string name="audio_float_mode_enabled">E aktivizuar</string>
+    <string name="audio_float_mode_disabled">E çaktivizuar</string>
+    <string name="audio_output_mode">Modaliti i daljes</string>
+    <string name="audio_output_mode_unknown">E panjohur</string>
+    <string name="audio_output_mode_pcm">PCM</string>
+    <string name="audio_output_mode_offload">Offload?</string>
+    <string name="audio_output_mode_passthrough">Mbikalim</string>
+    <string name="audio_bitrate">Bitrate</string>
+    <string name="audio_bitrate_unknown">E panjohur</string>
+    <string name="audio_bitrate_format">%1$s kbps</string>
+    <string name="provider_type_local">Lokale</string>
+    <string name="provider_argument_server">Server</string>
+    <string name="provider_argument_username">Emri i përdoruesit</string>
+    <string name="provider_argument_password">Fjalëkalimi</string>
+    <string name="provider_argument_use_legacy_authentication">Përdor vërtetimin e trashëgimisë</string>
+    <string name="provider_argument_validation_error_required">Një vlerë është e detyrueshme</string>
+    <string name="stop_playback_on_task_removed">Ndalo riprodhimin në heqjen e aplikacionit nga të fundit</string>
+    <string name="stop_playback_on_task_removed_summary">Ndalo riprodhimin kur aplikacioni pastrohet nga të fundit</string>
+    <string name="sort_by_artist_name">Emri i artistit</string>
+    <string name="activity_most_played_albums">Albumet më të luajtura</string>
+    <string name="activity_random_albums">Albume të rastësishme</string>
+    <string name="activity_random_artists">Artistë të rastësishëm</string>
+    <string name="activity_random_genres">Zhanre të rastësishme</string>
+    <string name="activity_random_songs">Këngë të rastësishme</string>
+    <string name="content_description_play_pause">Luaj/Pauzo</string>
+    <string name="content_description_thumbnail">Miniatura</string>
+    <string name="play_all">Luaji të gjitha</string>
 </resources>

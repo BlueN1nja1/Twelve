@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <string name="app_name">Muziek</string>
     <string name="app_permissions_toast">Machtigingen niet toegekend door de gebruiker.</string>
+    <string name="visualizer_permissions_toast">Toestemming voor audio-opname is vereist voor de visualizer.</string>
     <string name="request_status_error_type_unknown">Onbekend</string>
     <string name="request_status_error_type_not_found">Niet gevonden</string>
     <string name="request_status_error_type_io">I/O-fout</string>
@@ -45,6 +46,7 @@
     <string name="artist_albums_header">Albums</string>
     <string name="artist_appears_in_album_header">Verschijnt in album</string>
     <string name="artist_appears_in_playlist_header">Verschijnt in afspeellijst</string>
+    <string name="action_play">Speel af</string>
     <string name="audio_play_next">Speel volgende af</string>
     <string name="audio_add_to_queue">Voeg toe aan wachtrij</string>
     <string name="audio_remove_from_playlist">Verwijderen uit afspeellijst</string>
@@ -56,10 +58,12 @@
     <string name="rename_playlist_positive">Hernoem</string>
     <string name="delete_playlist">Verwijder afspeellijst</string>
     <string name="delete_playlist_message">Weet u zeker dat u deze playlist wil verwijderen?</string>
-    <string name="delete_playlist_positive">Verwijder</string>
     <string name="audio_effects">Geluidseffecten</string>
-    <string name="playback_speed_format">%1$sx</string>
     <string name="playback_speed">Afspeelsnelheid</string>
+    <string name="playback_speed_format">%1$sx</string>
+    <string name="playback_pitch_slider_description">Afspeeltoonhoogte</string>
+    <string name="playbacl_pitch_unlock">Veranderen van afsperltoonhoogte ontgrendelen</string>
+    <string name="playback_warning">Mogelijk werkt de afsperlsnelheid en  - toonhoogte niet goed als het afspelen van de functie is ingeschakeld. Zet deze aan in de instellingen van de app.</string>
     <string name="visualizer">Visualisatie</string>
     <string name="audio_source">Bron</string>
     <string name="audio_transcoding">Transcoderen</string>
@@ -93,6 +97,7 @@
     <string name="provider_argument_use_legacy_authentication">Gebruik verouderde authenticatie</string>
     <string name="provider_argument_validation_error_required">Een waarde is vereist</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Moet een geldige HTTP of HTTPS URL zijn (bijv. https://google.com)</string>
+    <string name="no_provider"/>
     <string name="providers">Aanbieders</string>
     <string name="add_provider_action">Voeg toe</string>
     <string name="add_provider">Voeg aanbieder toe</string>
@@ -109,16 +114,20 @@
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">Instellingen</string>
     <string name="general_header">Algemeen</string>
+    <string name="experimental_header"/>
     <string name="enable_offload">Schakel ontladen in</string>
     <string name="enable_offload_summary">Gebruik het ontladen audiopad voor het afspelen van audio. Dit uitschakelen kan het energieverbruik verhogen, maar kan handig zijn als u problemen ondervindt met het afspelen van audio of na het achtetaf verwerken</string>
+    <string name="enable_float_output"/>
+    <string name="enable_float_output_summary">Gebruik 32-bits PCM floating point output als de audiokwaliteit er van kan profiteren. Audio-effecten zoals snelheid en toonhoogtebesturing zullen niet meer werken in deze modus. Als u deze optie inschakelt, moet u de app opnieuw opstarten</string>
     <string name="stop_playback_on_task_removed">Afspelen stoppen bij verwijdering van app uit recente apps</string>
     <string name="stop_playback_on_task_removed_summary">Afspelen stoppen als de app is gewist van de recente apps</string>
     <string name="skip_silence">Sla stilte over</string>
     <string name="skip_silence_summary">Sla stilte over bij het afspelen van audio</string>
+    <string name="split_local_devices"/>
+    <string name="split_local_devices_summary">Indien ingeschakeld, zullen interne opslag en externe apparaten (SD-kaarten, USB-apparaten, etc.) onder verschillende providers verschijnen</string>
     <string name="now_playing_widget_description">Nu aan het afspelen</string>
     <string name="now_playing_widget_dummy_title">Titel</string>
     <string name="now_playing_widget_dummy_artist">Artiest</string>
-    <string name="now_playing_widget_dummy_album">Album</string>
     <string name="album_disc_header">Schijf %1$d</string>
     <string name="genre_appears_in_albums_header">Verschijnt in albums</string>
     <string name="genre_appears_in_playlists_header">Verschijnt in afspeellijsten</string>
@@ -133,6 +142,7 @@
     <string name="sort_by_release_date">Datum van verschijnen</string>
     <string name="sort_by_title">Titel</string>
     <string name="sort_by_unknown">Onbekend</string>
+    <string name="activity_last_played">Laatst afgespeeld</string>
     <string name="activity_most_played_albums">Meest afgespeelde albums</string>
     <string name="activity_random_albums">Willekeurige albums</string>
     <string name="activity_random_artists">Willekeurige artiesten</string>
@@ -141,4 +151,12 @@
     <string name="content_description_play_pause">Afspelen/Pauzeren</string>
     <string name="content_description_thumbnail">Miniatuur</string>
     <string name="play_all">Speel alles af</string>
+    <string name="library_item_no_permissions"/>
+    <string name="library_item_no_permissions_description"/>
+    <string name="library_item_albums"/>
+    <string name="library_item_artists"/>
+    <string name="library_item_genres"/>
+    <string name="library_item_playlists"/>
+    <string name="library_item_change_provider">Verander aanbieder</string>
+    <string name="library_item_provider_changed">Leverancier gewijzigd, ga terug naar het hoofdmenu</string>
 </resources>
