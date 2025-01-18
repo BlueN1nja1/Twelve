@@ -28,6 +28,7 @@ import org.lineageos.twelve.models.Artist
 import org.lineageos.twelve.models.ArtistWorks
 import org.lineageos.twelve.models.Audio
 import org.lineageos.twelve.models.ColumnIndexCache
+import org.lineageos.twelve.models.DataSourceInformation
 import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.GenreContent
 import org.lineageos.twelve.models.LocalizedString
@@ -180,6 +181,10 @@ class LocalDataSource(
         )
     }
 
+    override fun status() = flowOf(
+        RequestStatus.Success<_, MediaError>(listOf<DataSourceInformation>())
+    )
+
     override fun isMediaItemCompatible(mediaItemUri: Uri) = listOf(
         albumsUri,
         artistsUri,
@@ -217,8 +222,7 @@ class LocalDataSource(
                 lastPlayed.map {
                     ActivityTab(
                         "last_played",
-                        LocalizedString(
-                            "Last played",
+                        LocalizedString.StringResIdLocalizedString(
                             R.string.activity_last_played,
                         ),
                         it,
@@ -227,8 +231,7 @@ class LocalDataSource(
                 mostPlayed.map {
                     ActivityTab(
                         "most_played_albums",
-                        LocalizedString(
-                            "Most played albums",
+                        LocalizedString.StringResIdLocalizedString(
                             R.string.activity_most_played_albums
                         ),
                         it,
@@ -237,8 +240,7 @@ class LocalDataSource(
                 albums.map {
                     ActivityTab(
                         "random_albums",
-                        LocalizedString(
-                            "Random albums",
+                        LocalizedString.StringResIdLocalizedString(
                             R.string.activity_random_albums
                         ),
                         it.shuffled(Random(now.dayOfYear)),
@@ -247,8 +249,7 @@ class LocalDataSource(
                 artists.map {
                     ActivityTab(
                         "random_artists",
-                        LocalizedString(
-                            "Random artists",
+                        LocalizedString.StringResIdLocalizedString(
                             R.string.activity_random_artists
                         ),
                         it.shuffled(Random(now.dayOfYear)),
@@ -257,8 +258,7 @@ class LocalDataSource(
                 genres.map {
                     ActivityTab(
                         "random_genres",
-                        LocalizedString(
-                            "Random genres",
+                        LocalizedString.StringResIdLocalizedString(
                             R.string.activity_random_genres
                         ),
                         it.shuffled(Random(now.dayOfYear)),

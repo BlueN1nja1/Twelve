@@ -48,7 +48,6 @@
     <string name="shrug" translatable="false">¯\\_(ツ)_/¯</string>
 
     <!-- Unknown items -->
-    <string name="unknown">Unknown</string>
     <string name="album_unknown">Unknown album</string>
     <string name="artist_unknown">Unknown artist</string>
     <string name="genre_unknown">Unknown genre</string>
@@ -229,4 +228,28 @@
     <string name="library_item_playlists">Playlists</string>
     <string name="library_item_change_provider">Change provider</string>
     <string name="library_item_provider_changed">Provider changed, go back to main menu</string>
+
+    <!-- Localized string - generic values -->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="unknown">Unknown</string>
+
+    <!-- Data source information -->
+    <string name="local_volume_name">Volume name</string>
+
+    <!-- Data source information - Subsonic -->
+    <string name="subsonic_version">Subsonic version</string>
+    <string name="subsonic_version_format" translatable="false">%1$d.%2$d.%3$d</string>
+    <string name="subsonic_server_type">Server type</string>
+    <string name="subsonic_server_version">Server version</string>
+    <string name="subsonic_supports_opensubsonic">Supports OpenSubsonic extensions</string>
+    <string name="subsonic_license">License</string>
+    <string name="subsonic_license_valid">Valid</string>
+    <string name="subsonic_license_invalid">Invalid</string>
+
+    <!-- Data source information - Jellyfin -->
+    <string name="jellyfin_server_name">Server name</string>
+    <string name="jellyfin_version">Version</string>
+    <string name="jellyfin_product_name">Product name</string>
+    <string name="jellyfin_operating_system">Operating system</string>
 </resources>

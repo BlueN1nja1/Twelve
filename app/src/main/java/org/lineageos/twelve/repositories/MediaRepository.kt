@@ -499,6 +499,13 @@ class MediaRepository(
     }
 
     /**
+     * @see MediaDataSource.status
+     */
+    fun status(provider: Provider) = withProviderDataSource(provider) {
+        status()
+    }
+
+    /**
      * @see MediaDataSource.mediaTypeOf
      */
     suspend fun mediaTypeOf(mediaItemUri: Uri) = withMediaItemsDataSource(mediaItemUri) {
@@ -657,6 +664,37 @@ class MediaRepository(
      * @return The corresponding [MediaDataSource]
      */
     private fun getDataSource(provider: Provider) = getDataSource(provider.type, provider.typeId)
+
+    /**
+     * Find the [MediaDataSource] that matches the given [Provider] and call the given predicate on
+     * it.
+     *
+     * @param providerType The [ProviderType]
+     * @param providerTypeId The [ProviderType] specific provider ID
+     * @return A flow containing the result of the predicate. It will emit a not found error if
+     *   no [MediaDataSource] matches the given provider
+     */
+    private fun <T> withProviderDataSource(
+        providerType: ProviderType, providerTypeId: Long,
+        predicate: MediaDataSource.() -> Flow<RequestStatus<T, MediaError>>
+    ) = allProvidersToDataSource.flatMapLatest {
+        it.firstOrNull { (provider, _) ->
+            providerType == provider.type && providerTypeId == provider.typeId
+        }?.second?.predicate() ?: flowOf(RequestStatus.Error(MediaError.NOT_FOUND))
+    }
+
+    /**
+     * Find the [MediaDataSource] that matches the given [Provider] and call the given predicate on
+     * it.
+     *
+     * @param provider The provider
+     * @return A flow containing the result of the predicate. It will emit a not found error if
+     *   no [MediaDataSource] matches the given provider
+     */
+    private fun <T> withProviderDataSource(
+        provider: Provider,
+        predicate: MediaDataSource.() -> Flow<RequestStatus<T, MediaError>>
+    ) = withProviderDataSource(provider.type, provider.typeId, predicate)
 
     /**
      * Find the [MediaDataSource] that handles the given URIs and call the given predicate on it.

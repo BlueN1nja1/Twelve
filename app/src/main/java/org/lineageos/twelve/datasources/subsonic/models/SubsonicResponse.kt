@@ -30,7 +30,7 @@ data class SubsonicResponse(
     val playlist: PlaylistWithSongs? = null,
     val jukeboxStatus: TODO = null,
     val jukeboxPlaylist: TODO = null,
-    val license: TODO = null,
+    val license: License? = null,
     val users: TODO = null,
     val user: TODO = null,
     val chatMessages: TODO = null,

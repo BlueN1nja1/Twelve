@@ -19,6 +19,7 @@
     <include app:graph="@navigation/fragment_now_playing_stats_dialog" />
     <include app:graph="@navigation/fragment_playback_control_bottom_sheet_dialog" />
     <include app:graph="@navigation/fragment_playlist" />
+    <include app:graph="@navigation/fragment_provider_information_bottom_sheet_dialog" />
     <include app:graph="@navigation/fragment_provider_selector_dialog" />
     <include app:graph="@navigation/fragment_queue" />
 
@@ -79,6 +80,14 @@
         <action
             android:id="@+id/action_mainFragment_to_fragment_provider_selector_dialog"
             app:destination="@+id/fragment_provider_selector_dialog"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
+            android:id="@+id/action_mainFragment_to_fragment_provider_information_bottom_sheet_dialog"
+            app:destination="@+id/fragment_provider_information_bottom_sheet_dialog"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"

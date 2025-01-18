@@ -23,6 +23,14 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
+        <action
+            android:id="@+id/action_providerSelectorDialogFragment_to_fragment_provider_information_bottom_sheet_dialog"
+            app:destination="@+id/fragment_provider_information_bottom_sheet_dialog"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
     </dialog>
 
 </navigation>

@@ -307,6 +307,15 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 R.id.action_mainFragment_to_fragment_provider_selector_dialog
             )
         }
+        providerMaterialButton.setOnLongClickListener {
+            providersViewModel.navigationProvider.value?.let {
+                findNavController().navigateSafe(
+                    R.id.action_mainFragment_to_fragment_provider_information_bottom_sheet_dialog,
+                    ManageProviderFragment.createBundle(it.type, it.typeId),
+                )
+                true
+            } ?: false
+        }
 
         settingsMaterialButton.setOnClickListener {
             val intent = Intent(context, SettingsActivity::class.java)

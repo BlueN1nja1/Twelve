@@ -12,6 +12,7 @@ import org.lineageos.twelve.models.Album
 import org.lineageos.twelve.models.Artist
 import org.lineageos.twelve.models.ArtistWorks
 import org.lineageos.twelve.models.Audio
+import org.lineageos.twelve.models.DataSourceInformation
 import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.GenreContent
 import org.lineageos.twelve.models.MediaItem
@@ -26,6 +27,14 @@ typealias MediaRequestStatus<T> = RequestStatus<T, MediaError>
  * A data source for media.
  */
 interface MediaDataSource {
+    /**
+     * Get the current status of the data source.
+     *
+     * @return [RequestStatus.Success] with a list of [DataSourceInformation] if everything is fine,
+     *   else [RequestStatus.Error]
+     */
+    fun status(): Flow<MediaRequestStatus<List<DataSourceInformation>>>
+
     /**
      * Check whether this data source can handle the given media item.
      *

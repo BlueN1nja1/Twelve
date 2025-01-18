@@ -12,6 +12,7 @@ import org.lineageos.twelve.models.Album
 import org.lineageos.twelve.models.Artist
 import org.lineageos.twelve.models.ArtistWorks
 import org.lineageos.twelve.models.Audio
+import org.lineageos.twelve.models.DataSourceInformation
 import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.GenreContent
 import org.lineageos.twelve.models.MediaItem
@@ -26,6 +27,10 @@ import org.lineageos.twelve.models.SortingRule
  * No [Uri] is compatible as well.
  */
 object DummyDataSource : MediaDataSource {
+    override fun status() = flowOf(
+        RequestStatus.Success<_, MediaError>(listOf<DataSourceInformation>())
+    )
+
     override fun isMediaItemCompatible(mediaItemUri: Uri) = false
 
     override suspend fun mediaTypeOf(mediaItemUri: Uri) =

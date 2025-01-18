@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
@@ -21,7 +22,6 @@ import org.lineageos.twelve.R
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.models.Provider
-import org.lineageos.twelve.models.ProviderType
 import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.recyclerview.UniqueItemDiffCallback
@@ -53,10 +53,13 @@ class ProviderSelectorDialogFragment : DialogFragment(R.layout.fragment_provider
             }
 
             view.setOnLongClickListener {
-                item?.takeIf { it.type != ProviderType.LOCAL }?.let {
+                item?.let {
                     findNavController().navigateSafe(
-                        R.id.action_providerSelectorDialogFragment_to_fragment_manage_provider,
-                        ManageProviderFragment.createBundle(it.type, it.typeId)
+                        R.id.action_providerSelectorDialogFragment_to_fragment_provider_information_bottom_sheet_dialog,
+                        ManageProviderFragment.createBundle(it.type, it.typeId),
+                        NavOptions.Builder()
+                            .setPopUpTo(R.id.mainFragment, false)
+                            .build(),
                     )
                 }
 

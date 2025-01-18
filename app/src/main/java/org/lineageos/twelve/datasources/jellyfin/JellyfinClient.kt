@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -13,10 +13,12 @@ import org.lineageos.twelve.datasources.jellyfin.models.CreatePlaylistResult
 import org.lineageos.twelve.datasources.jellyfin.models.Item
 import org.lineageos.twelve.datasources.jellyfin.models.PlaylistItems
 import org.lineageos.twelve.datasources.jellyfin.models.QueryResult
+import org.lineageos.twelve.datasources.jellyfin.models.SystemInfo
 import org.lineageos.twelve.datasources.jellyfin.models.UpdatePlaylist
 import org.lineageos.twelve.models.SortingRule
 import org.lineageos.twelve.models.SortingStrategy
 import org.lineageos.twelve.utils.Api
+import org.lineageos.twelve.utils.ApiRequest
 import java.util.UUID
 
 /**
@@ -61,46 +63,46 @@ class JellyfinClient(
 
     private val api = Api(okHttpClient, serverUri)
 
-    suspend fun getAlbums(sortingRule: SortingRule) = api.get<QueryResult>(
+    suspend fun getAlbums(sortingRule: SortingRule) = ApiRequest.get<QueryResult>(
         listOf("Items"),
         queryParameters = listOf(
             "IncludeItemTypes" to "MusicAlbum",
             "Recursive" to true,
         ) + getSortParameter(sortingRule),
-    )
+    ).execute(api)
 
-    suspend fun getArtists(sortingRule: SortingRule) = api.get<QueryResult>(
+    suspend fun getArtists(sortingRule: SortingRule) = ApiRequest.get<QueryResult>(
         listOf("Artists"),
         queryParameters = listOf(
             "IncludeItemTypes" to "Audio",
             "Recursive" to true,
         ) + getSortParameter(sortingRule),
-    )
+    ).execute(api)
 
-    suspend fun getGenres(sortingRule: SortingRule) = api.get<QueryResult>(
+    suspend fun getGenres(sortingRule: SortingRule) = ApiRequest.get<QueryResult>(
         listOf("Genres"),
         queryParameters = listOf(
             "IncludeItemTypes" to "Audio",
             "Recursive" to true,
         ) + getSortParameter(sortingRule),
-    )
+    ).execute(api)
 
-    suspend fun getPlaylists(sortingRule: SortingRule) = api.get<QueryResult>(
+    suspend fun getPlaylists(sortingRule: SortingRule) = ApiRequest.get<QueryResult>(
         listOf("Items"),
         queryParameters = listOf(
             "IncludeItemTypes" to "Playlist",
             "Recursive" to true,
         ) + getSortParameter(sortingRule),
-    )
+    ).execute(api)
 
-    suspend fun getItems(query: String) = api.get<QueryResult>(
+    suspend fun getItems(query: String) = ApiRequest.get<QueryResult>(
         listOf("Items"),
         queryParameters = listOf(
             "SearchTerm" to query,
             "IncludeItemTypes" to "Playlist,MusicAlbum,MusicArtist,MusicGenre,Audio",
             "Recursive" to true,
         ),
-    )
+    ).execute(api)
 
     suspend fun getAlbum(id: UUID) = getItem(id)
 
@@ -118,47 +120,47 @@ class JellyfinClient(
 
     fun getGenreThumbnail(id: UUID) = getItemThumbnail(id)
 
-    suspend fun getAlbumTracks(id: UUID) = api.get<QueryResult>(
+    suspend fun getAlbumTracks(id: UUID) = ApiRequest.get<QueryResult>(
         listOf("Items"),
         queryParameters = listOf(
             "ParentId" to id,
             "IncludeItemTypes" to "Audio",
             "Recursive" to true,
         ),
-    )
+    ).execute(api)
 
-    suspend fun getArtistWorks(id: UUID) = api.get<QueryResult>(
+    suspend fun getArtistWorks(id: UUID) = ApiRequest.get<QueryResult>(
         listOf("Items"),
         queryParameters = listOf(
             "ArtistIds" to id,
             "IncludeItemTypes" to "MusicAlbum",
             "Recursive" to true,
         ),
-    )
+    ).execute(api)
 
-    suspend fun getPlaylistItemIds(id: UUID) = api.get<PlaylistItems>(
+    suspend fun getPlaylistItemIds(id: UUID) = ApiRequest.get<PlaylistItems>(
         listOf(
             "Playlists",
             id.toString(),
         ),
-    )
+    ).execute(api)
 
-    suspend fun getPlaylistTracks(id: UUID) = api.get<QueryResult>(
+    suspend fun getPlaylistTracks(id: UUID) = ApiRequest.get<QueryResult>(
         listOf(
             "Playlists",
             id.toString(),
             "Items",
         ),
-    )
+    ).execute(api)
 
-    suspend fun getGenreContent(id: UUID) = api.get<QueryResult>(
+    suspend fun getGenreContent(id: UUID) = ApiRequest.get<QueryResult>(
         listOf("Items"),
         queryParameters = listOf(
             "GenreIds" to id,
             "IncludeItemTypes" to "MusicAlbum,Playlist,Audio",
             "Recursive" to true,
         ),
-    )
+    ).execute(api)
 
     suspend fun getAudio(id: UUID) = getItem(id)
 
@@ -173,17 +175,18 @@ class JellyfinClient(
         ),
     )
 
-    suspend fun createPlaylist(name: String) = api.post<CreatePlaylist, CreatePlaylistResult>(
-        listOf("Playlists"),
-        data = CreatePlaylist(
-            name = name,
-            ids = listOf(),
-            users = listOf(),
-            isPublic = true,
-        ),
-    )
+    suspend fun createPlaylist(name: String) =
+        ApiRequest.post<CreatePlaylist, CreatePlaylistResult>(
+            listOf("Playlists"),
+            data = CreatePlaylist(
+                name = name,
+                ids = listOf(),
+                users = listOf(),
+                isPublic = true,
+            ),
+        ).execute(api)
 
-    suspend fun renamePlaylist(id: UUID, name: String) = api.post<UpdatePlaylist, Unit>(
+    suspend fun renamePlaylist(id: UUID, name: String) = ApiRequest.post<UpdatePlaylist, Unit>(
         listOf(
             "Playlists",
             id.toString(),
@@ -191,9 +194,9 @@ class JellyfinClient(
         data = UpdatePlaylist(
             name = name,
         ),
-    )
+    ).execute(api)
 
-    suspend fun addItemToPlaylist(id: UUID, audioId: UUID) = api.post<Any, Unit>(
+    suspend fun addItemToPlaylist(id: UUID, audioId: UUID) = ApiRequest.post<Any, Unit>(
         listOf(
             "Playlists",
             id.toString(),
@@ -202,9 +205,9 @@ class JellyfinClient(
         queryParameters = listOf(
             "Ids" to audioId,
         ),
-    )
+    ).execute(api)
 
-    suspend fun removeItemFromPlaylist(id: UUID, audioId: UUID) = api.delete<Unit>(
+    suspend fun removeItemFromPlaylist(id: UUID, audioId: UUID) = ApiRequest.delete<Unit>(
         listOf(
             "Playlists",
             id.toString(),
@@ -213,14 +216,22 @@ class JellyfinClient(
         queryParameters = listOf(
             "EntryIds" to audioId,
         ),
-    )
+    ).execute(api)
 
-    private suspend fun getItem(id: UUID) = api.get<Item>(
+    suspend fun getSystemInfo() = ApiRequest.get<SystemInfo>(
+        listOf(
+            "System",
+            "Info",
+            "Public",
+        ),
+    ).execute(api)
+
+    private suspend fun getItem(id: UUID) = ApiRequest.get<Item>(
         listOf(
             "Items",
             id.toString(),
         ),
-    )
+    ).execute(api)
 
     private fun getItemThumbnail(id: UUID) = api.buildUrl(
         listOf(

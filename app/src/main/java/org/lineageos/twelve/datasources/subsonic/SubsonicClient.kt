@@ -14,6 +14,7 @@ import org.lineageos.twelve.datasources.subsonic.models.ResponseStatus
 import org.lineageos.twelve.datasources.subsonic.models.SubsonicResponse
 import org.lineageos.twelve.datasources.subsonic.models.Version
 import org.lineageos.twelve.utils.Api
+import org.lineageos.twelve.utils.ApiRequest
 import org.lineageos.twelve.utils.MethodResult
 
 /**
@@ -58,9 +59,9 @@ class SubsonicClient(
      *
      * @since 1.0.0
      */
-    suspend fun ping() = api.get<ResponseRoot>(
+    suspend fun ping() = ApiRequest.get<ResponseRoot>(
         listOf("ping")
-    ).mapResponse { }
+    ).execute(api).mapResponse { this }
 
     /**
      * Get details about the software license. Takes no extra parameters. Please note that access to
@@ -69,18 +70,18 @@ class SubsonicClient(
      *
      * @since 1.0.0
      */
-    suspend fun getLicense() = api.get<ResponseRoot>(
+    suspend fun getLicense() = ApiRequest.get<ResponseRoot>(
         listOf("getLicense")
-    ).mapResponse(SubsonicResponse::license)
+    ).execute(api).mapResponse(SubsonicResponse::license)
 
     /**
      * Returns all configured top-level music folders. Takes no extra parameters.
      *
      * @since 1.0.0
      */
-    suspend fun getMusicFolders() = api.get<ResponseRoot>(
+    suspend fun getMusicFolders() = ApiRequest.get<ResponseRoot>(
         listOf("getMusicFolders")
-    ).mapResponse(SubsonicResponse::musicFolders)
+    ).execute(api).mapResponse(SubsonicResponse::musicFolders)
 
     /**
      * Returns an indexed structure of all artists.
@@ -94,13 +95,13 @@ class SubsonicClient(
     suspend fun getIndexes(
         musicFolderId: Int? = null,
         ifModifiedSince: Long? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getIndexes"),
         queryParameters = listOf(
             "musicFolderId" to musicFolderId,
             "ifModifiedSince" to ifModifiedSince,
         )
-    ).mapResponse(SubsonicResponse::indexes)
+    ).execute(api).mapResponse(SubsonicResponse::indexes)
 
     /**
      * Returns a listing of all files in a music directory. Typically used to get list of albums for
@@ -112,21 +113,21 @@ class SubsonicClient(
      */
     suspend fun getMusicDirectory(
         id: String,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getMusicDirectory"),
         queryParameters = listOf(
             "id" to id,
         )
-    ).mapResponse(SubsonicResponse::directory)
+    ).execute(api).mapResponse(SubsonicResponse::directory)
 
     /**
      * Returns all genres.
      *
      * @since 1.9.0
      */
-    suspend fun getGenres() = api.get<ResponseRoot>(
+    suspend fun getGenres() = ApiRequest.get<ResponseRoot>(
         listOf("getGenres")
-    ).mapResponse(SubsonicResponse::genres)
+    ).execute(api).mapResponse(SubsonicResponse::genres)
 
     /**
      * Similar to getIndexes, but organizes music according to ID3 tags.
@@ -137,12 +138,12 @@ class SubsonicClient(
      */
     suspend fun getArtists(
         musicFolderId: Int? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getArtists"),
         queryParameters = listOf(
             "musicFolderId" to musicFolderId,
         )
-    ).mapResponse(SubsonicResponse::artists)
+    ).execute(api).mapResponse(SubsonicResponse::artists)
 
     /**
      * Returns details for an artist, including a list of albums. This method organizes music
@@ -153,12 +154,12 @@ class SubsonicClient(
      */
     suspend fun getArtist(
         id: String,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getArtist"),
         queryParameters = listOf(
             "id" to id,
         )
-    ).mapResponse(SubsonicResponse::artist)
+    ).execute(api).mapResponse(SubsonicResponse::artist)
 
     /**
      * Returns details for an album, including a list of songs. This method organizes music
@@ -169,12 +170,12 @@ class SubsonicClient(
      */
     suspend fun getAlbum(
         id: String,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getAlbum"),
         queryParameters = listOf(
             "id" to id,
         )
-    ).mapResponse(SubsonicResponse::album)
+    ).execute(api).mapResponse(SubsonicResponse::album)
 
     /**
      * Returns details for a song.
@@ -184,21 +185,21 @@ class SubsonicClient(
      */
     suspend fun getSong(
         id: String,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getSong"),
         queryParameters = listOf(
             "id" to id,
         )
-    ).mapResponse(SubsonicResponse::song)
+    ).execute(api).mapResponse(SubsonicResponse::song)
 
     /**
      * Returns all video files.
      *
      * @since 1.8.0
      */
-    suspend fun getVideos() = api.get<ResponseRoot>(
+    suspend fun getVideos() = ApiRequest.get<ResponseRoot>(
         listOf("getVideos")
-    ).mapResponse(SubsonicResponse::videos)
+    ).execute(api).mapResponse(SubsonicResponse::videos)
 
     /**
      * Returns details for a video, including information about available audio tracks, subtitles
@@ -209,12 +210,12 @@ class SubsonicClient(
      */
     suspend fun getVideoInfo(
         id: String,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getVideoInfo"),
         queryParameters = listOf(
             "id" to id,
         )
-    ).mapResponse(SubsonicResponse::videoInfo)
+    ).execute(api).mapResponse(SubsonicResponse::videoInfo)
 
     /**
      * Returns artist info with biography, image URLs and similar artists, using data from last.fm.
@@ -228,14 +229,14 @@ class SubsonicClient(
         id: String,
         count: Int? = null,
         includeNotPresent: Boolean? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getArtistInfo"),
         queryParameters = listOf(
             "id" to id,
             "count" to count,
             "includeNotPresent" to includeNotPresent,
         )
-    ).mapResponse(SubsonicResponse::artistInfo)
+    ).execute(api).mapResponse(SubsonicResponse::artistInfo)
 
     /**
      * Similar to [getArtistInfo], but organizes music according to ID3 tags.
@@ -249,14 +250,14 @@ class SubsonicClient(
         id: String,
         count: Int? = null,
         includeNotPresent: Boolean? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getArtistInfo2"),
         queryParameters = listOf(
             "id" to id,
             "count" to count,
             "includeNotPresent" to includeNotPresent,
         )
-    ).mapResponse(SubsonicResponse::artistInfo2)
+    ).execute(api).mapResponse(SubsonicResponse::artistInfo2)
 
     /**
      * Returns album notes, image URLs etc, using data from last.fm.
@@ -266,12 +267,12 @@ class SubsonicClient(
      */
     suspend fun getAlbumInfo(
         id: String,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getAlbumInfo"),
         queryParameters = listOf(
             "id" to id,
         )
-    ).mapResponse(SubsonicResponse::albumInfo)
+    ).execute(api).mapResponse(SubsonicResponse::albumInfo)
 
     /**
      * Similar to [getAlbumInfo], but organizes music according to ID3 tags.
@@ -281,12 +282,12 @@ class SubsonicClient(
      */
     suspend fun getAlbumInfo2(
         id: String,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getAlbumInfo2"),
         queryParameters = listOf(
             "id" to id,
         )
-    ).mapResponse(SubsonicResponse::albumInfo)
+    ).execute(api).mapResponse(SubsonicResponse::albumInfo)
 
     /**
      * Returns a random collection of songs from the given artist and similar artists, using data
@@ -299,13 +300,13 @@ class SubsonicClient(
     suspend fun getSimilarSongs(
         id: String,
         count: Int? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getSimilarSongs"),
         queryParameters = listOf(
             "id" to id,
             "count" to count,
         )
-    ).mapResponse(SubsonicResponse::similarSongs)
+    ).execute(api).mapResponse(SubsonicResponse::similarSongs)
 
     /**
      * Similar to [getSimilarSongs], but organizes music according to ID3 tags.
@@ -317,13 +318,13 @@ class SubsonicClient(
     suspend fun getSimilarSongs2(
         id: String,
         count: Int? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getSimilarSongs2"),
         queryParameters = listOf(
             "id" to id,
             "count" to count,
         )
-    ).mapResponse(SubsonicResponse::similarSongs2)
+    ).execute(api).mapResponse(SubsonicResponse::similarSongs2)
 
     /**
      * Returns top songs for the given artist, using data from last.fm.
@@ -335,13 +336,13 @@ class SubsonicClient(
     suspend fun getTopSongs(
         artist: String,
         count: Int? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getTopSongs"),
         queryParameters = listOf(
             "artist" to artist,
             "count" to count,
         )
-    ).mapResponse(SubsonicResponse::topSongs)
+    ).execute(api).mapResponse(SubsonicResponse::topSongs)
 
     /**
      * Returns a list of random, newest, highest rated etc. albums. Similar to the album lists on
@@ -369,7 +370,7 @@ class SubsonicClient(
         toYear: Int? = null,
         genre: String? = null,
         musicFolderId: Int? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getAlbumList"),
         queryParameters = listOf(
             "type" to type,
@@ -380,7 +381,7 @@ class SubsonicClient(
             "genre" to genre,
             "musicFolderId" to musicFolderId,
         )
-    ).mapResponse(SubsonicResponse::albumList)
+    ).execute(api).mapResponse(SubsonicResponse::albumList)
 
     /**
      * Similar to [getAlbumList], but organizes music according to ID3 tags.
@@ -407,7 +408,7 @@ class SubsonicClient(
         toYear: Int? = null,
         genre: String? = null,
         musicFolderId: Int? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getAlbumList2"),
         queryParameters = listOf(
             "type" to type,
@@ -418,7 +419,7 @@ class SubsonicClient(
             "genre" to genre,
             "musicFolderId" to musicFolderId,
         )
-    ).mapResponse(SubsonicResponse::albumList2)
+    ).execute(api).mapResponse(SubsonicResponse::albumList2)
 
     /**
      * Returns random songs matching the given criteria.
@@ -437,7 +438,7 @@ class SubsonicClient(
         fromYear: Int? = null,
         toYear: Int? = null,
         musicFolderId: Int? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getRandomSongs"),
         queryParameters = listOf(
             "size" to size,
@@ -446,7 +447,7 @@ class SubsonicClient(
             "toYear" to toYear,
             "musicFolderId" to musicFolderId,
         )
-    ).mapResponse(SubsonicResponse::randomSongs)
+    ).execute(api).mapResponse(SubsonicResponse::randomSongs)
 
     /**
      * Returns songs in a given genre.
@@ -463,7 +464,7 @@ class SubsonicClient(
         count: Int? = null,
         offset: Int? = null,
         musicFolderId: Int? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getSongsByGenre"),
         queryParameters = listOf(
             "genre" to genre,
@@ -471,16 +472,16 @@ class SubsonicClient(
             "offset" to offset,
             "musicFolderId" to musicFolderId,
         )
-    ).mapResponse(SubsonicResponse::songsByGenre)
+    ).execute(api).mapResponse(SubsonicResponse::songsByGenre)
 
     /**
      * Returns what is currently being played by all users. Takes no extra parameters.
      *
      * @since 1.0.0
      */
-    suspend fun getNowPlaying() = api.get<ResponseRoot>(
+    suspend fun getNowPlaying() = ApiRequest.get<ResponseRoot>(
         listOf("getNowPlaying")
-    ).mapResponse(SubsonicResponse::nowPlaying)
+    ).execute(api).mapResponse(SubsonicResponse::nowPlaying)
 
     /**
      * Returns starred songs, albums and artists.
@@ -491,12 +492,12 @@ class SubsonicClient(
      */
     suspend fun getStarred(
         musicFolderId: Int? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getStarred"),
         queryParameters = listOf(
             "musicFolderId" to musicFolderId,
         )
-    ).mapResponse(SubsonicResponse::starred)
+    ).execute(api).mapResponse(SubsonicResponse::starred)
 
     /**
      * Similar to [getStarred], but organizes music according to ID3 tags.
@@ -507,12 +508,12 @@ class SubsonicClient(
      */
     suspend fun getStarred2(
         musicFolderId: Int? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getStarred2"),
         queryParameters = listOf(
             "musicFolderId" to musicFolderId,
         )
-    ).mapResponse(SubsonicResponse::starred2)
+    ).execute(api).mapResponse(SubsonicResponse::starred2)
 
     /**
      * Returns a listing of files matching the given search criteria. Supports paging through the
@@ -537,7 +538,7 @@ class SubsonicClient(
         count: Int? = null,
         offset: Int? = null,
         newerThan: Long? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("search"),
         queryParameters = listOf(
             "artist" to artist,
@@ -548,7 +549,7 @@ class SubsonicClient(
             "offset" to offset,
             "newerThan" to newerThan,
         )
-    ).mapResponse(SubsonicResponse::searchResult)
+    ).execute(api).mapResponse(SubsonicResponse::searchResult)
 
     /**
      * Returns albums, artists and songs matching the given search criteria. Supports paging through the result.
@@ -573,7 +574,7 @@ class SubsonicClient(
         songCount: Int? = null,
         songOffset: Int? = null,
         musicFolderId: Int? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("search2"),
         queryParameters = listOf(
             "query" to query,
@@ -585,7 +586,7 @@ class SubsonicClient(
             "songOffset" to songOffset,
             "musicFolderId" to musicFolderId,
         )
-    ).mapResponse(SubsonicResponse::searchResult2)
+    ).execute(api).mapResponse(SubsonicResponse::searchResult2)
 
     /**
      * Similar to [search2], but organizes music according to ID3 tags.
@@ -610,7 +611,7 @@ class SubsonicClient(
         songCount: Int? = null,
         songOffset: Int? = null,
         musicFolderId: Int? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("search3"),
         queryParameters = listOf(
             "query" to query,
@@ -622,7 +623,7 @@ class SubsonicClient(
             "songOffset" to songOffset,
             "musicFolderId" to musicFolderId,
         )
-    ).mapResponse(SubsonicResponse::searchResult3)
+    ).execute(api).mapResponse(SubsonicResponse::searchResult3)
 
     /**
      * Returns all playlists a user is allowed to play.
@@ -634,12 +635,12 @@ class SubsonicClient(
      */
     suspend fun getPlaylists(
         username: String? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getPlaylists"),
         queryParameters = listOf(
             "username" to username,
         )
-    ).mapResponse(SubsonicResponse::playlists)
+    ).execute(api).mapResponse(SubsonicResponse::playlists)
 
     /**
      * Returns a listing of files in a saved playlist.
@@ -649,12 +650,12 @@ class SubsonicClient(
      */
     suspend fun getPlaylist(
         id: String,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getPlaylist"),
         queryParameters = listOf(
             "id" to id,
         )
-    ).mapResponse(SubsonicResponse::playlist)
+    ).execute(api).mapResponse(SubsonicResponse::playlist)
 
     /**
      * Creates (or updates) a playlist.
@@ -669,14 +670,14 @@ class SubsonicClient(
         playlistId: String? = null,
         name: String? = null,
         songIds: List<Int>,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("createPlaylist"),
         queryParameters = listOf(
             "playlistId" to playlistId,
             "name" to name,
             *songIds.map { "songId" to it }.toTypedArray(),
         )
-    ).mapResponse(SubsonicResponse::playlist)
+    ).execute(api).mapResponse(SubsonicResponse::playlist)
 
     /**
      * Updates a playlist. Only the owner of a playlist is allowed to update it.
@@ -697,7 +698,7 @@ class SubsonicClient(
         public: Boolean? = null,
         songIdsToAdd: List<String>? = null,
         songIndexesToRemove: List<Int>? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("updatePlaylist"),
         queryParameters = listOf(
             "playlistId" to playlistId,
@@ -707,7 +708,7 @@ class SubsonicClient(
             *songIdsToAdd?.map { "songIdToAdd" to it }?.toTypedArray().orEmpty(),
             *songIndexesToRemove?.map { "songIndexToRemove" to it }?.toTypedArray().orEmpty(),
         )
-    ).mapResponse(SubsonicResponse::playlist)
+    ).execute(api).mapResponse(SubsonicResponse::playlist)
 
     /**
      * Deletes a saved playlist.
@@ -717,12 +718,12 @@ class SubsonicClient(
      */
     suspend fun deletePlaylist(
         id: Int,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("deletePlaylist"),
         queryParameters = listOf(
             "id" to id,
         )
-    ).mapResponse { }
+    ).execute(api).mapResponse { }
 
     /**
      * Streams a given media file.
@@ -901,14 +902,14 @@ class SubsonicClient(
         ids: List<String>? = null,
         albumIds: List<String>? = null,
         artistIds: List<String>? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("star"),
         queryParameters = listOf(
             *ids?.map { "id" to it }?.toTypedArray().orEmpty(),
             *albumIds?.map { "albumId" to it }?.toTypedArray().orEmpty(),
             *artistIds?.map { "artistId" to it }?.toTypedArray().orEmpty(),
         )
-    ).mapResponse { }
+    ).execute(api).mapResponse { }
 
     /**
      * Removes the star from a song, album or artist.
@@ -927,14 +928,14 @@ class SubsonicClient(
         ids: List<String>? = null,
         albumIds: List<String>? = null,
         artistIds: List<String>? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("unstar"),
         queryParameters = listOf(
             *ids?.map { "id" to it }?.toTypedArray().orEmpty(),
             *albumIds?.map { "albumId" to it }?.toTypedArray().orEmpty(),
             *artistIds?.map { "artistId" to it }?.toTypedArray().orEmpty(),
         )
-    ).mapResponse { }
+    ).execute(api).mapResponse { }
 
     /**
      * Sets the rating for a music file.
@@ -947,13 +948,13 @@ class SubsonicClient(
     suspend fun setRating(
         id: String,
         rating: Int,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("setRating"),
         queryParameters = listOf(
             "id" to id,
             "rating" to rating,
         )
-    ).mapResponse { }
+    ).execute(api).mapResponse { }
 
     /**
      * Registers the local playback of one or more media files. Typically used when playing media
@@ -977,14 +978,14 @@ class SubsonicClient(
         ids: List<String>,
         time: Long? = null,
         submission: Boolean? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("scrobble"),
         queryParameters = listOf(
             *ids.map { "id" to it }.toTypedArray(),
             "time" to time,
             "submission" to submission,
         )
-    ).mapResponse { }
+    ).execute(api).mapResponse { }
 
     /**
      * Returns information about shared media this user is allowed to manage. Takes no extra
@@ -992,9 +993,9 @@ class SubsonicClient(
      *
      * @since 1.6.0
      */
-    suspend fun getShares() = api.get<ResponseRoot>(
+    suspend fun getShares() = ApiRequest.get<ResponseRoot>(
         listOf("getShares"),
-    ).mapResponse(SubsonicResponse::shares)
+    ).execute(api).mapResponse(SubsonicResponse::shares)
 
     /**
      * Creates a public URL that can be used by anyone to stream music or video from the Subsonic
@@ -1013,14 +1014,14 @@ class SubsonicClient(
         id: String,
         description: String? = null,
         expires: Long? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("createShare"),
         queryParameters = listOf(
             "id" to id,
             "description" to description,
             "expires" to expires,
         )
-    ).mapResponse(SubsonicResponse::shares)
+    ).execute(api).mapResponse(SubsonicResponse::shares)
 
     /**
      * Updates the description and/or expiration date for an existing share.
@@ -1036,14 +1037,14 @@ class SubsonicClient(
         id: String,
         description: String? = null,
         expires: Long? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("updateShare"),
         queryParameters = listOf(
             "id" to id,
             "description" to description,
             "expires" to expires,
         )
-    ).mapResponse { }
+    ).execute(api).mapResponse { }
 
     /**
      * Deletes an existing share.
@@ -1053,12 +1054,12 @@ class SubsonicClient(
      */
     suspend fun deleteShare(
         id: String,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("deleteShare"),
         queryParameters = listOf(
             "id" to id,
         )
-    ).mapResponse { }
+    ).execute(api).mapResponse { }
 
     /**
      * Returns all Podcast channels the server subscribes to, and (optionally) their episodes. This
@@ -1074,13 +1075,13 @@ class SubsonicClient(
     suspend fun getPodcasts(
         includeEpisodes: Boolean? = null,
         id: String? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getPodcasts"),
         queryParameters = listOf(
             "includeEpisodes" to includeEpisodes,
             "id" to id,
         )
-    ).mapResponse(SubsonicResponse::podcasts)
+    ).execute(api).mapResponse(SubsonicResponse::podcasts)
 
     /**
      * Returns the most recently published Podcast episodes.
@@ -1090,12 +1091,12 @@ class SubsonicClient(
      */
     suspend fun getNewestPodcasts(
         count: Int? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("getNewestPodcasts"),
         queryParameters = listOf(
             "count" to count,
         )
-    ).mapResponse(SubsonicResponse::newestPodcasts)
+    ).execute(api).mapResponse(SubsonicResponse::newestPodcasts)
 
     /**
      * Requests the server to check for new Podcast episodes. Note: The user must be authorized for
@@ -1103,9 +1104,9 @@ class SubsonicClient(
      *
      * @since 1.9.0
      */
-    suspend fun refreshPodcasts() = api.get<ResponseRoot>(
+    suspend fun refreshPodcasts() = ApiRequest.get<ResponseRoot>(
         listOf("refreshPodcasts"),
-    ).mapResponse { }
+    ).execute(api).mapResponse { }
 
     /**
      * Adds a new Podcast channel. Note: The user must be authorized for Podcast administration (see
@@ -1116,12 +1117,12 @@ class SubsonicClient(
      */
     suspend fun createPodcastChannel(
         url: String,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("createPodcastChannel"),
         queryParameters = listOf(
             "url" to url,
         )
-    ).mapResponse { }
+    ).execute(api).mapResponse { }
 
     /**
      * Deletes a Podcast channel. Note: The user must be authorized for Podcast administration (see
@@ -1132,12 +1133,12 @@ class SubsonicClient(
      */
     suspend fun deletePodcastChannel(
         id: String,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("deletePodcastChannel"),
         queryParameters = listOf(
             "id" to id,
         )
-    ).mapResponse { }
+    ).execute(api).mapResponse { }
 
     /**
      * Deletes a Podcast episode. Note: The user must be authorized for Podcast administration (see
@@ -1148,12 +1149,12 @@ class SubsonicClient(
      */
     suspend fun deletePodcastEpisode(
         id: String,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("deletePodcastEpisode"),
         queryParameters = listOf(
             "id" to id,
         )
-    ).mapResponse { }
+    ).execute(api).mapResponse { }
 
     /**
      * Request the server to start downloading a given Podcast episode. Note: The user must be
@@ -1165,12 +1166,12 @@ class SubsonicClient(
      */
     suspend fun downloadPodcastEpisode(
         id: String,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("downloadPodcastEpisode"),
         queryParameters = listOf(
             "id" to id,
         )
-    ).mapResponse { }
+    ).execute(api).mapResponse { }
 
     /**
      * Controls the jukebox, i.e., playback directly on the server's audio hardware. Note: The user
@@ -1194,7 +1195,7 @@ class SubsonicClient(
         offset: Int? = null,
         ids: List<String>? = null,
         gain: Float? = null,
-    ) = api.get<ResponseRoot>(
+    ) = ApiRequest.get<ResponseRoot>(
         listOf("jukeboxControl"),
         queryParameters = listOf(
             "action" to action,
@@ -1203,16 +1204,16 @@ class SubsonicClient(
             *ids?.map { "id" to it }?.toTypedArray().orEmpty(),
             "gain" to gain,
         )
-    ).mapResponse { }
+    ).execute(api).mapResponse { }
 
     /**
      * Returns all internet radio stations. Takes no extra parameters.
      *
      * @since 1.9.0
      */
-    suspend fun getInternetRadioStations() = api.get<ResponseRoot>(
+    suspend fun getInternetRadioStations() = ApiRequest.get<ResponseRoot>(
         listOf("getInternetRadioStations"),
-    ).mapResponse(SubsonicResponse::internetRadioStations)
+    ).execute(api).mapResponse(SubsonicResponse::internetRadioStations)
 
     // TODO
 
