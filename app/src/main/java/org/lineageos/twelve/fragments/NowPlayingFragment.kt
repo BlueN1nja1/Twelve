@@ -269,6 +269,22 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
             )
         }
 
+        addOrRemoveFromPlaylistsMaterialButton.setOnClickListener {
+            when (val value = viewModel.audio.value) {
+                is RequestStatus.Success -> {
+                    val audio = value.data
+                    findNavController().navigateSafe(
+                        R.id.action_nowPlayingFragment_to_fragment_add_or_remove_from_playlists,
+                        AddOrRemoveFromPlaylistsFragment.createBundle(audio.uri)
+                    )
+                }
+
+                else -> {
+                    // Do nothing
+                }
+            }
+        }
+
         equalizerMaterialButton.setOnClickListener {
             // Open system equalizer
             viewModel.audioSessionId.value?.let { audioSessionId ->
@@ -316,16 +332,8 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
                 }
 
                 launch {
-                    viewModel.mediaItem.collectLatest { mediaItem ->
-                        addOrRemoveFromPlaylistsMaterialButton.setOnClickListener {
-                            mediaItem?.localConfiguration?.uri?.let { uri ->
-                                findNavController().navigateSafe(
-                                    R.id.action_nowPlayingFragment_to_fragment_add_or_remove_from_playlists,
-                                    AddOrRemoveFromPlaylistsFragment.createBundle(uri)
-                                )
-                            }
-                        }
-                    }
+                    // Collect audio for add or remove from playlists button
+                    viewModel.audio.collect()
                 }
 
                 launch {

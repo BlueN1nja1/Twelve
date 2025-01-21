@@ -7,6 +7,7 @@ package org.lineageos.twelve.viewmodels
 
 import android.app.Application
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import androidx.lifecycle.viewModelScope
 import androidx.media3.common.C
@@ -43,6 +44,7 @@ import org.lineageos.twelve.ext.playbackStateFlow
 import org.lineageos.twelve.ext.repeatModeFlow
 import org.lineageos.twelve.ext.shuffleModeFlow
 import org.lineageos.twelve.ext.tracksFlow
+import org.lineageos.twelve.models.Audio
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.models.RequestStatus
@@ -79,6 +81,20 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         .filterNotNull()
         .flatMapLatest { it.mediaItemFlow() }
         .flowOn(Dispatchers.Main)
+        .stateIn(
+            viewModelScope,
+            started = SharingStarted.WhileSubscribed(),
+            initialValue = null
+        )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val audio = mediaItem
+        .filterNotNull()
+        .flatMapLatest {
+            val audioUri = Uri.parse(it.mediaId.removePrefix(Audio.AUDIO_MEDIA_ITEM_ID_PREFIX))
+            mediaRepository.audio(audioUri)
+        }
+        .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
