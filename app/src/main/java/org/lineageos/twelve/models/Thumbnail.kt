@@ -15,7 +15,7 @@ import androidx.media3.common.MediaMetadata
  *
  * @param uri The URI of the thumbnail.
  * @param bitmap The bitmap of the thumbnail.
- * @param type the type of the thumbnail.
+ * @param type The type of the thumbnail.
  */
 data class Thumbnail(
     val uri: Uri? = null,
@@ -133,9 +133,11 @@ data class Thumbnail(
         PUBLISHER_STUDIO_LOGO(MediaMetadata.PICTURE_TYPE_PUBLISHER_STUDIO_LOGO);
 
         companion object {
-            fun fromMedia3Value(value: @MediaMetadata.PictureType Int) = entries.firstOrNull {
-                it.media3Value == value
-            } ?: throw Exception("Unknown picture type $value")
+            fun fromMedia3Value(value: @MediaMetadata.PictureType Int?) = value?.let {
+                entries.firstOrNull { entry ->
+                    entry.media3Value == it
+                } ?: throw Exception("Unknown picture type $value")
+            }
         }
     }
 
@@ -150,17 +152,54 @@ data class Thumbnail(
         Thumbnail::uri,
         Thumbnail::type,
     ).let {
-        if (it == 0) {
-            return@let when (this.bitmap?.sameAs(other.bitmap)) {
+        when {
+            it != 0 -> it
+            this.bitmap == null && other.bitmap == null -> 0
+            this.bitmap == null -> -1
+            other.bitmap == null -> 1
+            else -> when (this.bitmap.sameAs(other.bitmap)) {
                 true -> 0
                 false -> 1
-                null -> when (other.bitmap == null) {
-                    true -> 0
-                    false -> -1
-                }
             }
-        } else {
-            it
+        }
+    }
+
+    class Builder {
+        private var uri: Uri? = null
+        private var bitmap: Bitmap? = null
+        private var type: Type? = null
+
+        /**
+         * @see Thumbnail.uri
+         */
+        fun setUri(uri: Uri?) = apply {
+            this.uri = uri
+        }
+
+        /**
+         * @see Thumbnail.bitmap
+         */
+        fun setBitmap(bitmap: Bitmap?) = apply {
+            this.bitmap = bitmap
+        }
+
+        /**
+         * @see Thumbnail.type
+         */
+        fun setType(type: Type?) = apply {
+            this.type = type
+        }
+
+        /**
+         * Build the [Thumbnail] if we have at least one source, else will return null.
+         */
+        fun build() = when {
+            uri == null && bitmap == null -> null
+            else -> Thumbnail(
+                uri = uri,
+                bitmap = bitmap,
+                type = type ?: Type.OTHER,
+            )
         }
     }
 }

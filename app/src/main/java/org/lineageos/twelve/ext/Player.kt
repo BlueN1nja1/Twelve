@@ -6,6 +6,7 @@
 package org.lineageos.twelve.ext
 
 import androidx.annotation.OptIn
+import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.PlaybackParameters
@@ -15,6 +16,7 @@ import androidx.media3.common.TrackSelectionParameters
 import androidx.media3.common.Tracks
 import androidx.media3.common.util.UnstableApi
 import kotlinx.coroutines.channels.awaitClose
+import org.lineageos.twelve.models.PlaybackProgress
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.QueueItem
 import org.lineageos.twelve.models.RepeatMode
@@ -178,6 +180,44 @@ fun Player.queueFlow() = conflatedCallbackFlow {
 
     addListener(listener)
     emitQueue()
+
+    awaitClose {
+        removeListener(listener)
+    }
+}
+
+fun Player.playbackProgressFlow() = conflatedCallbackFlow {
+    val emitPlaybackProgress = {
+        val durationMs = duration.takeIf { it != C.TIME_UNSET }
+
+        trySend(
+            PlaybackProgress(
+                isPlaying = isPlaying,
+                durationMs = durationMs,
+                currentPositionMs = currentPosition
+                    .takeIf { durationMs != null }
+                    ?.coerceAtMost(durationMs ?: 0),
+                playbackSpeed = playbackParameters.speed,
+            )
+        )
+    }
+
+    val listener = object : Player.Listener {
+        override fun onEvents(player: Player, events: Player.Events) {
+            when {
+                events.containsAny(
+                    Player.EVENT_IS_PLAYING_CHANGED,
+                    Player.EVENT_MEDIA_ITEM_TRANSITION,
+                    Player.EVENT_PLAYBACK_PARAMETERS_CHANGED,
+                    Player.EVENT_POSITION_DISCONTINUITY,
+                    Player.EVENT_TIMELINE_CHANGED,
+                ) -> emitPlaybackProgress()
+            }
+        }
+    }
+
+    addListener(listener)
+    emitPlaybackProgress()
 
     awaitClose {
         removeListener(listener)

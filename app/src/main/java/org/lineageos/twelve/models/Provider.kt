@@ -8,8 +8,7 @@ package org.lineageos.twelve.models
 import org.lineageos.twelve.datasources.MediaDataSource
 
 /**
- * A provider instance. Two instances are the same if they have the same [typeId] and [type].
- * The [type] determines how data should be retrieved from the provider.
+ * A provider instance. The [type] determines how data should be retrieved from the provider.
  * Each provider has an associated [MediaDataSource] and related arguments, but those are not
  * exposed outside of the media repository.
  *
@@ -19,11 +18,11 @@ import org.lineageos.twelve.datasources.MediaDataSource
  * @param visible Whether the user should be aware of it
  */
 class Provider(
-    val type: ProviderType,
-    val typeId: Long,
+    type: ProviderType,
+    typeId: Long,
     val name: String,
     val visible: Boolean,
-) : UniqueItem<Provider> {
+) : ProviderIdentifier(type, typeId), UniqueItem<Provider> {
     override fun areItemsTheSame(other: Provider) = compareValuesBy(
         this,
         other,

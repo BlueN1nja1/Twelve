@@ -80,7 +80,10 @@ class LocalDataSource(
         val uri = ContentUris.withAppendedId(albumsUri, albumId)
         val artistUri = ContentUris.withAppendedId(artistsUri, artistId)
 
-        val thumbnail = Thumbnail(uri = uri, type = Thumbnail.Type.FRONT_COVER)
+        val thumbnail = Thumbnail.Builder()
+            .setUri(uri)
+            .setType(Thumbnail.Type.FRONT_COVER)
+            .build()
 
         Album(
             uri,
@@ -98,7 +101,10 @@ class LocalDataSource(
 
         val uri = ContentUris.withAppendedId(artistsUri, artistId)
 
-        val thumbnail = Thumbnail(uri = uri, type = Thumbnail.Type.BAND_ARTIST_LOGO)
+        val thumbnail = Thumbnail.Builder()
+            .setUri(uri)
+            .setType(Thumbnail.Type.BAND_ARTIST_LOGO)
+            .build()
 
         Artist(
             uri,

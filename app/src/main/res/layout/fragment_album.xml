@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -96,24 +96,13 @@
         android:indeterminate="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <FrameLayout
+    <include layout="@layout/play_buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:paddingBottom="16dp"
         app:layout_anchor="@+id/recyclerView"
         app:layout_anchorGravity="bottom|end"
-        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior">
-
-        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/playAllExtendedFloatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="@string/play_all"
-            app:icon="@drawable/ic_play_arrow"
-            tools:visibility="visible" />
-
-    </FrameLayout>
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

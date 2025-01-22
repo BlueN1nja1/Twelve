@@ -20,8 +20,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.animation.doOnEnd
-import androidx.core.animation.doOnStart
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
@@ -49,6 +47,7 @@ import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.loadThumbnail
 import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.ext.updatePadding
+import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.models.RequestStatus
@@ -69,10 +68,10 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
     private val viewModel by viewModels<NowPlayingViewModel>()
 
     // Views
-    private val addOrRemoveFromPlaylistsMaterialButton by getViewProperty<MaterialButton>(R.id.addOrRemoveFromPlaylistsMaterialButton)
     private val albumArtConstraintLayout by getViewProperty<ConstraintLayout?>(R.id.albumArtConstraintLayout)
     private val albumArtImageView by getViewProperty<ImageView>(R.id.albumArtImageView)
     private val albumTitleTextView by getViewProperty<TextView>(R.id.albumTitleTextView)
+    private val audioInformationMaterialButton by getViewProperty<MaterialButton>(R.id.audioInformationMaterialButton)
     private val audioTitleTextView by getViewProperty<TextView>(R.id.audioTitleTextView)
     private val artistNameTextView by getViewProperty<TextView>(R.id.artistNameTextView)
     private val currentTimestampTextView by getViewProperty<TextView>(R.id.currentTimestampTextView)
@@ -122,8 +121,10 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
                             visualizerManager.start(visualizerSurfaceView, it)
                             isVisualizerStarted = true
                         } ?: run {
-                            visualizerManager.stop()
-                            isVisualizerStarted = false
+                            if (isVisualizerStarted) {
+                                visualizerManager.stop()
+                                isVisualizerStarted = false
+                            }
                         }
                     }
                 }
@@ -269,13 +270,17 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
             )
         }
 
-        addOrRemoveFromPlaylistsMaterialButton.setOnClickListener {
+        audioInformationMaterialButton.setOnClickListener {
             when (val value = viewModel.audio.value) {
                 is RequestStatus.Success -> {
                     val audio = value.data
                     findNavController().navigateSafe(
-                        R.id.action_nowPlayingFragment_to_fragment_add_or_remove_from_playlists,
-                        AddOrRemoveFromPlaylistsFragment.createBundle(audio.uri)
+                        R.id.action_nowPlayingFragment_to_fragment_media_item_bottom_sheet_dialog,
+                        MediaItemBottomSheetDialogFragment.createBundle(
+                            audio.uri,
+                            MediaType.AUDIO,
+                            fromNowPlaying = true,
+                        )
                     )
                 }
 
@@ -423,88 +428,46 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
                 }
 
                 launch {
-                    // Restart animation based on this value being changed
-                    var oldValue = 0f
+                    viewModel.playbackProgress.collectLatest { playbackProgress ->
+                        // Stop the old animator, we'll make a new one anyway
+                        animator?.cancel()
+                        animator = null
 
-                    viewModel.durationCurrentPositionMs.collectLatest { durationCurrentPositionMs ->
-                        val (durationMs, currentPositionMs, playbackSpeed) =
-                            durationCurrentPositionMs.let {
-                                Triple(
-                                    it.first ?: 0L,
-                                    it.second ?: 0L,
-                                    it.third
-                                )
-                            }
+                        val durationMs = playbackProgress.durationMs ?: 0L
+                        val currentPositionMs = playbackProgress.currentPositionMs ?: 0L
 
-                        // We want to lose ms precision with the slider
-                        val durationSecs = durationMs / 1000
-                        val currentPositionSecs = currentPositionMs / 1000
+                        val newValueTo = durationMs.toFloat().takeIf { it > 0 } ?: 1f
+                        val newValue = currentPositionMs.toFloat()
 
-                        val newValueTo = (durationSecs * 1000).toFloat().takeIf { it > 0 } ?: 1f
-                        val newValue = (currentPositionSecs * 1000).toFloat()
+                        progressSlider.valueTo = newValueTo
 
-                        val valueToChanged = progressSlider.valueTo != newValueTo
-                        val valueChanged = oldValue != newValue
+                        if (!playbackProgress.isPlaying) {
+                            // We don't need animation, just update to the current values
+                            progressSlider.value = newValue
 
-                        // Only +1s should be animated
-                        val shouldBeAnimated = (newValue - oldValue) == 1000f
+                            currentTimestampTextView.text =
+                                TimestampFormatter.formatTimestampMillis(currentPositionMs)
+                        } else {
+                            ValueAnimator.ofFloat(newValue, newValueTo).apply {
+                                interpolator = LinearInterpolator()
+                                duration = (newValueTo - newValue).toLong()
+                                    .div(playbackProgress.playbackSpeed.roundToLong())
+                                addUpdateListener {
+                                    val value = it.animatedValue as Float
 
-                        val newAnimator = ValueAnimator.ofFloat(
-                            progressSlider.value, newValue
-                        ).apply {
-                            interpolator = LinearInterpolator()
-                            duration = 1000 / playbackSpeed.roundToLong()
-                            doOnStart {
-                                // Update valueTo at the start of the animation
-                                if (progressSlider.valueTo != newValueTo) {
-                                    progressSlider.valueTo = newValueTo
+                                    if (!isProgressSliderDragging) {
+                                        progressSlider.value = value
+                                    }
+
+                                    currentTimestampTextView.text =
+                                        TimestampFormatter.formatTimestampMillis(value)
                                 }
-                            }
-                            addUpdateListener {
-                                progressSlider.value = (it.animatedValue as Float)
+                            }.also {
+                                animator = it
+                                it.start()
                             }
                         }
 
-                        oldValue = newValue
-
-                        /**
-                         * Update only if:
-                         * - The value changed and the user isn't dragging the slider
-                         * - valueTo changed
-                         */
-                        if ((!isProgressSliderDragging && valueChanged) || valueToChanged) {
-                            val afterOldAnimatorEnded = {
-                                if (shouldBeAnimated) {
-                                    animator = newAnimator
-                                    newAnimator.start()
-                                } else {
-                                    animator = null
-                                    // Update both valueTo and value
-                                    progressSlider.valueTo = newValueTo
-                                    progressSlider.value = newValue
-                                }
-                            }
-
-                            animator?.also { oldAnimator ->
-                                // Start the new animation right after old one finishes
-                                oldAnimator.doOnEnd {
-                                    afterOldAnimatorEnded()
-                                }
-
-                                if (oldAnimator.isRunning) {
-                                    oldAnimator.cancel()
-                                } else {
-                                    oldAnimator.end()
-                                }
-                            } ?: run {
-                                // This is the first animation
-                                afterOldAnimatorEnded()
-                            }
-                        }
-
-                        currentTimestampTextView.text = TimestampFormatter.formatTimestampMillis(
-                            currentPositionMs
-                        )
                         durationTimestampTextView.text = TimestampFormatter.formatTimestampMillis(
                             durationMs
                         )

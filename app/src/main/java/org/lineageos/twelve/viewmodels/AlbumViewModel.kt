@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -145,6 +145,14 @@ class AlbumViewModel(application: Application) : TwelveViewModel(application) {
             (it as? AlbumContent.AudioItem)?.audio
         }.takeUnless { it.isEmpty() }?.let { audios ->
             playAudio(audios, startFrom?.let { audios.indexOf(it) } ?: 0)
+        }
+    }
+
+    fun shufflePlayAlbum() {
+        albumContent.value.mapNotNull {
+            (it as? AlbumContent.AudioItem)?.audio
+        }.takeUnless { it.isEmpty() }?.let { audios ->
+            playAudio(audios.shuffled(), 0)
         }
     }
 }

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -135,7 +135,7 @@ class ManageProviderFragment : Fragment(R.layout.fragment_manage_provider) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.setProvider(
+        viewModel.setProviderIds(
             providerType?.let { providerType ->
                 providerTypeId?.let {
                     providerType to it
@@ -242,11 +242,9 @@ class ManageProviderFragment : Fragment(R.layout.fragment_manage_provider) {
                             }
 
                             is RequestStatus.Success -> {
-                                it.data?.let { provider ->
-                                    providerNameTextInputLayout.editText?.setText(
-                                        provider.name
-                                    )
-                                }
+                                val provider = it.data
+
+                                providerNameTextInputLayout.editText?.setText(provider.name)
                             }
 
                             is RequestStatus.Error -> {

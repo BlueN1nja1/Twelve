@@ -21,6 +21,7 @@ import org.lineageos.twelve.models.Audio
 import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.Playlist
 import org.lineageos.twelve.models.Provider
+import org.lineageos.twelve.models.ProviderIdentifier
 import org.lineageos.twelve.models.ProviderType
 import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.repositories.MediaRepository
@@ -309,7 +310,7 @@ class MediaRepositoryTree(
         val providerType = ProviderType.valueOf(type)
         val providerTypeId = typeId.toLong()
 
-        return repository.provider(providerType, providerTypeId).first()
+        return repository.provider(ProviderIdentifier(providerType, providerTypeId)).first()
     }
 
     companion object {

@@ -23,10 +23,10 @@
             tools:text="1×" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/addOrRemoveFromPlaylistsMaterialButton"
+            android:id="@+id/audioInformationMaterialButton"
             style="@style/Theme.Twelve.NowPlayingFragment.BottomBarButton"
-            android:tooltipText="@string/audio_add_or_remove_from_playlists"
-            app:icon="@drawable/ic_playlist_add" />
+            android:tooltipText="@string/audio_information"
+            app:icon="@drawable/ic_info" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/equalizerMaterialButton"

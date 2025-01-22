@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
@@ -67,7 +68,11 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
     private val playAllExtendedFloatingActionButton by getViewProperty<ExtendedFloatingActionButton>(
         R.id.playAllExtendedFloatingActionButton
     )
+    private val playButtonsLinearLayout by getViewProperty<LinearLayout>(R.id.playButtonsLinearLayout)
     private val recyclerView by getViewProperty<RecyclerView>(R.id.recyclerView)
+    private val shufflePlayExtendedFloatingActionButton by getViewProperty<ExtendedFloatingActionButton>(
+        R.id.shufflePlayExtendedFloatingActionButton
+    )
     private val thumbnailImageView by getViewProperty<ImageView>(R.id.thumbnailImageView)
     private val toolbar by getViewProperty<MaterialToolbar>(R.id.toolbar)
     private val tracksInfoTextView by getViewProperty<TextView>(R.id.tracksInfoTextView)
@@ -223,7 +228,7 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
         }
 
         ViewCompat.setOnApplyWindowInsetsListener(
-            playAllExtendedFloatingActionButton
+            playButtonsLinearLayout
         ) { v, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
 
@@ -241,6 +246,12 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
 
         playAllExtendedFloatingActionButton.setOnClickListener {
             viewModel.playAlbum()
+
+            findNavController().navigateSafe(R.id.action_albumFragment_to_fragment_now_playing)
+        }
+
+        shufflePlayExtendedFloatingActionButton.setOnClickListener {
+            viewModel.shufflePlayAlbum()
 
             findNavController().navigateSafe(R.id.action_albumFragment_to_fragment_now_playing)
         }
@@ -350,8 +361,15 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
                     recyclerView.isVisible = !isEmpty
                     noElementsNestedScrollView.isVisible = isEmpty
                     when (isEmpty) {
-                        true -> playAllExtendedFloatingActionButton.hide()
-                        false -> playAllExtendedFloatingActionButton.show()
+                        true -> {
+                            playAllExtendedFloatingActionButton.hide()
+                            shufflePlayExtendedFloatingActionButton.hide()
+                        }
+
+                        false -> {
+                            playAllExtendedFloatingActionButton.show()
+                            shufflePlayExtendedFloatingActionButton.show()
+                        }
                     }
                 }
             }

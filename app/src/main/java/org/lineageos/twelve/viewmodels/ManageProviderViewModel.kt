@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -15,22 +15,15 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
-import org.lineageos.twelve.datasources.MediaError
 import org.lineageos.twelve.models.ProviderType
 import org.lineageos.twelve.models.RequestStatus
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class ManageProviderViewModel(application: Application) : ProvidersViewModel(application) {
-    /**
-     * The provider identifiers to manage.
-     */
-    private val providerIds = MutableStateFlow<Pair<ProviderType, Long>?>(null)
-
+class ManageProviderViewModel(application: Application) : ProviderViewModel(application) {
     /**
      * The user defined provider type. The one in [providerIds] will always take
      * precedence over this.
@@ -40,7 +33,7 @@ class ManageProviderViewModel(application: Application) : ProvidersViewModel(app
     /**
      * Whether we're managing an existing provider or adding a new one.
      */
-    val inEditMode = providerIds
+    val inEditMode = providerIdentifier
         .mapLatest { it != null }
         .flowOn(Dispatchers.IO)
         .stateIn(
@@ -50,33 +43,12 @@ class ManageProviderViewModel(application: Application) : ProvidersViewModel(app
         )
 
     /**
-     * The provider to manage.
-     */
-    val provider = providerIds.flatMapLatest {
-        it?.let { providerIds ->
-            mediaRepository.provider(
-                providerIds.first, providerIds.second
-            ).mapLatest { maybeProvider ->
-                maybeProvider?.let { provider ->
-                    RequestStatus.Success<_, MediaError>(provider)
-                } ?: RequestStatus.Error(MediaError.NOT_FOUND)
-            }
-        } ?: flowOf(RequestStatus.Success(null))
-    }
-        .flowOn(Dispatchers.IO)
-        .stateIn(
-            viewModelScope,
-            started = SharingStarted.WhileSubscribed(),
-            initialValue = RequestStatus.Success(null)
-        )
-
-    /**
      * The [Bundle] containing the arguments of the provider to manage.
      */
-    private val providerArguments = providerIds
+    private val providerArguments = providerIdentifier
         .filterNotNull()
         .flatMapLatest {
-            mediaRepository.providerArguments(it.first, it.second)
+            mediaRepository.providerArguments(it)
         }
         .flowOn(Dispatchers.IO)
         .stateIn(
@@ -94,7 +66,7 @@ class ManageProviderViewModel(application: Application) : ProvidersViewModel(app
     ) { selectedProviderType, provider ->
         when (provider) {
             is RequestStatus.Success -> {
-                provider.data?.type
+                provider.data.type
             }
 
             else -> null
@@ -123,13 +95,6 @@ class ManageProviderViewModel(application: Application) : ProvidersViewModel(app
             initialValue = null to null
         )
 
-    /**
-     * Set the provider to manage. When null, we're adding a new provider.
-     */
-    fun setProvider(provider: Pair<ProviderType, Long>?) {
-        providerIds.value = provider
-    }
-
     fun setProviderType(providerType: ProviderType?) {
         _selectedProviderType.value = providerType
     }
@@ -149,21 +114,10 @@ class ManageProviderViewModel(application: Application) : ProvidersViewModel(app
      * Update the provider.
      */
     suspend fun updateProvider(name: String, arguments: Bundle) {
-        val (providerType, providerTypeId) = providerIds.value ?: return
+        val providerIdentifier = providerIdentifier.value ?: return
 
         withContext(Dispatchers.IO) {
-            mediaRepository.updateProvider(providerType, providerTypeId, name, arguments)
-        }
-    }
-
-    /**
-     * Delete the provider.
-     */
-    suspend fun deleteProvider() {
-        val (providerType, providerTypeId) = providerIds.value ?: return
-
-        withContext(Dispatchers.IO) {
-            mediaRepository.deleteProvider(providerType, providerTypeId)
+            mediaRepository.updateProvider(providerIdentifier, name, arguments)
         }
     }
 }

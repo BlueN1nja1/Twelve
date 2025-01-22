@@ -333,17 +333,17 @@ class JellyfinDataSource(
         artistUri = getArtistUri(id.toString()),
         artistName = artists?.firstOrNull(),
         year = productionYear,
-        thumbnail = Thumbnail(
-            uri = Uri.parse(client.getAlbumThumbnail(id)),
-        ),
+        thumbnail = Thumbnail.Builder()
+            .setUri(Uri.parse(client.getAlbumThumbnail(id)))
+            .build(),
     )
 
     private fun Item.toMediaItemArtist() = Artist(
         uri = getArtistUri(id.toString()),
         name = name,
-        thumbnail = Thumbnail(
-            uri = Uri.parse(client.getArtistThumbnail(id)),
-        ),
+        thumbnail = Thumbnail.Builder()
+            .setUri(Uri.parse(client.getArtistThumbnail(id)))
+            .build(),
     )
 
     private fun Item.toMediaItemAudio() = Audio(
@@ -367,17 +367,17 @@ class JellyfinDataSource(
     private fun Item.toMediaItemGenre() = Genre(
         uri = getGenreUri(id.toString()),
         name = name,
-        thumbnail = Thumbnail(
-            uri = Uri.parse(client.getGenreThumbnail(id)),
-        ),
+        thumbnail = Thumbnail.Builder()
+            .setUri(Uri.parse(client.getGenreThumbnail(id)))
+            .build()
     )
 
     private fun Item.toMediaItemPlaylist() = Playlist(
         uri = getPlaylistUri(id.toString()),
         name = name ?: "",
-        thumbnail = Thumbnail(
-            uri = Uri.parse(client.getPlaylistThumbnail(id)),
-        ),
+        thumbnail = Thumbnail.Builder()
+            .setUri(Uri.parse(client.getPlaylistThumbnail(id)))
+            .build(),
     )
 
     private fun getAlbumUri(albumId: String) = albumsUri.buildUpon()

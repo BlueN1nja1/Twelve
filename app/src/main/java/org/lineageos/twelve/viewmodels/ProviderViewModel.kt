@@ -19,26 +19,39 @@ import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
 import org.lineageos.twelve.datasources.MediaError
+import org.lineageos.twelve.models.ProviderIdentifier
 import org.lineageos.twelve.models.ProviderType
 import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.models.RequestStatus.Companion.fold
 
-class ProviderViewModel(application: Application) : TwelveViewModel(application) {
+open class ProviderViewModel(application: Application) : TwelveViewModel(application) {
     /**
      * The provider identifiers to manage.
      */
     private val providerIds = MutableStateFlow<Pair<ProviderType, Long>?>(null)
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val provider = providerIds
-        .filterNotNull()
-        .flatMapLatest {
-            mediaRepository.provider(it.first, it.second)
+    protected val providerIdentifier = providerIds
+        .mapLatest {
+            it?.let { ProviderIdentifier(it.first, it.second) }
         }
-        .mapLatest { provider ->
-            provider?.let {
-                RequestStatus.Success<_, MediaError>(it)
-            } ?: RequestStatus.Error(MediaError.NOT_FOUND)
+        .flowOn(Dispatchers.IO)
+        .stateIn(
+            viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = null
+        )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val provider = providerIdentifier
+        .flatMapLatest {
+            it?.let { providerIdentifier ->
+                mediaRepository.provider(providerIdentifier).mapLatest { maybeProvider ->
+                    maybeProvider?.let { provider ->
+                        RequestStatus.Success<_, MediaError>(provider)
+                    } ?: RequestStatus.Error(MediaError.NOT_FOUND)
+                }
+            } ?: flowOf(RequestStatus.Loading())
         }
         .flowOn(Dispatchers.IO)
         .stateIn(
@@ -94,10 +107,10 @@ class ProviderViewModel(application: Application) : TwelveViewModel(application)
      * Delete the provider.
      */
     suspend fun deleteProvider() {
-        val (providerType, providerTypeId) = providerIds.value ?: return
+        val providerIdentifier = providerIdentifier.value ?: return
 
         withContext(Dispatchers.IO) {
-            mediaRepository.deleteProvider(providerType, providerTypeId)
+            mediaRepository.deleteProvider(providerIdentifier)
         }
     }
 }

@@ -6,7 +6,6 @@
 package org.lineageos.twelve.viewmodels
 
 import android.app.Application
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import androidx.lifecycle.viewModelScope
@@ -34,21 +33,24 @@ import me.bogerchan.niervisualizer.renderer.columnar.ColumnarType2Renderer
 import me.bogerchan.niervisualizer.renderer.columnar.ColumnarType3Renderer
 import me.bogerchan.niervisualizer.renderer.columnar.ColumnarType4Renderer
 import me.bogerchan.niervisualizer.renderer.line.LineRenderer
+import org.lineageos.twelve.ext.applicationContext
 import org.lineageos.twelve.ext.availableCommandsFlow
 import org.lineageos.twelve.ext.isPlayingFlow
 import org.lineageos.twelve.ext.mediaItemFlow
 import org.lineageos.twelve.ext.mediaMetadataFlow
 import org.lineageos.twelve.ext.next
 import org.lineageos.twelve.ext.playbackParametersFlow
+import org.lineageos.twelve.ext.playbackProgressFlow
 import org.lineageos.twelve.ext.playbackStateFlow
 import org.lineageos.twelve.ext.repeatModeFlow
 import org.lineageos.twelve.ext.shuffleModeFlow
+import org.lineageos.twelve.ext.toThumbnail
 import org.lineageos.twelve.ext.tracksFlow
 import org.lineageos.twelve.models.Audio
+import org.lineageos.twelve.models.PlaybackProgress
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.models.RequestStatus
-import org.lineageos.twelve.models.Thumbnail
 import org.lineageos.twelve.services.PlaybackService
 import org.lineageos.twelve.services.PlaybackService.CustomCommand.Companion.sendCustomCommand
 import org.lineageos.twelve.utils.MimeUtils
@@ -98,7 +100,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = null
+            initialValue = RequestStatus.Loading()
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -162,16 +164,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
     ) { mediaMetadata, playbackState ->
         when (playbackState) {
             PlaybackState.BUFFERING -> RequestStatus.Loading()
-
-            else -> RequestStatus.Success<_, Nothing>(
-                mediaMetadata.artworkUri?.let {
-                    Thumbnail(uri = it)
-                } ?: mediaMetadata.artworkData?.let {
-                    BitmapFactory.decodeByteArray(it, 0, it.size)?.let { bitmap ->
-                        Thumbnail(bitmap = bitmap)
-                    }
-                }
-            )
+            else -> RequestStatus.Success<_, Nothing>(mediaMetadata.toThumbnail(applicationContext))
         }
     }
         .flowOn(Dispatchers.IO)
@@ -255,13 +248,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
             flow {
                 while (true) {
                     val duration = mediaController.duration.takeIf { it != C.TIME_UNSET }
-                    emit(
-                        Triple(
-                            duration,
-                            duration?.let { mediaController.currentPosition },
-                            mediaController.playbackParameters.speed,
-                        )
-                    )
+                    emit(duration to duration?.let { mediaController.currentPosition })
                     delay(200)
                 }
             }
@@ -270,7 +257,18 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = Triple(null, null, 1f)
+            initialValue = null to null
+        )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val playbackProgress = mediaController
+        .filterNotNull()
+        .flatMapLatest { it.playbackProgressFlow() }
+        .flowOn(Dispatchers.Main)
+        .stateIn(
+            viewModelScope,
+            started = SharingStarted.WhileSubscribed(),
+            initialValue = PlaybackProgress.EMPTY
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
