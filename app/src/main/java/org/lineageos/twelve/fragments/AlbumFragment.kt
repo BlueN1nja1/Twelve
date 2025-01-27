@@ -241,6 +241,22 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
         }
 
         toolbar.setupWithNavController(findNavController())
+        toolbar.inflateMenu(R.menu.fragment_album_toolbar)
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.addToQueue -> {
+                    viewModel.addToQueue()
+                    true
+                }
+
+                R.id.playNext -> {
+                    viewModel.playNext()
+                    true
+                }
+
+                else -> false
+            }
+        }
 
         recyclerView.adapter = adapter
 

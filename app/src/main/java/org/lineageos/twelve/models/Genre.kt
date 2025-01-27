@@ -33,7 +33,7 @@ data class Genre(
 
     override fun toMedia3MediaItem() = buildMediaItem(
         title = name,
-        mediaId = "$GENRE_MEDIA_ITEM_ID_PREFIX${uri}",
+        mediaId = uri.toString(),
         isPlayable = false,
         isBrowsable = true,
         mediaType = MediaMetadata.MEDIA_TYPE_GENRE,
@@ -42,8 +42,4 @@ data class Genre(
         artworkType = thumbnail?.type?.media3Value,
         artworkUri = thumbnail?.uri,
     )
-
-    companion object {
-        const val GENRE_MEDIA_ITEM_ID_PREFIX = "[genre]"
-    }
 }

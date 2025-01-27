@@ -34,6 +34,7 @@ import androidx.media3.session.SessionCommand
 import androidx.media3.session.SessionError
 import androidx.media3.session.SessionResult
 import androidx.preference.PreferenceManager
+import kotlinx.coroutines.guava.await
 import kotlinx.coroutines.guava.future
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.MainActivity
@@ -84,10 +85,10 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
                 customAction: String
             ) = entries.firstOrNull { it.value == customAction }
 
-            fun MediaController.sendCustomCommand(
+            suspend fun MediaController.sendCustomCommand(
                 customCommand: CustomCommand,
                 extras: Bundle
-            ) = sendCustomCommand(customCommand.sessionCommand, extras)
+            ) = sendCustomCommand(customCommand.sessionCommand, extras).await()
         }
     }
 

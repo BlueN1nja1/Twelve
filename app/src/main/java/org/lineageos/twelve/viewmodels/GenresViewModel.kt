@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -27,12 +27,6 @@ class GenresViewModel(application: Application) : TwelveViewModel(application) {
         GENRES_SORTING_REVERSE_KEY,
         getter = SharedPreferences::genresSortingRule,
     )
-        .flowOn(Dispatchers.IO)
-        .stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(),
-            sharedPreferences.genresSortingRule
-        )
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val genres = sortingRule

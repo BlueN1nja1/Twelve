@@ -32,7 +32,7 @@ data class Artist(
 
     override fun toMedia3MediaItem() = buildMediaItem(
         title = name,
-        mediaId = "$ARTIST_MEDIA_ITEM_ID_PREFIX${uri}",
+        mediaId = uri.toString(),
         isPlayable = false,
         isBrowsable = true,
         mediaType = MediaMetadata.MEDIA_TYPE_ARTIST,
@@ -41,8 +41,4 @@ data class Artist(
         artworkType = thumbnail?.type?.media3Value,
         artworkUri = thumbnail?.uri,
     )
-
-    companion object {
-        const val ARTIST_MEDIA_ITEM_ID_PREFIX = "[artist]"
-    }
 }

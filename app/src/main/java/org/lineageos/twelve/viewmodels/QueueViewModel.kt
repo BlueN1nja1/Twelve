@@ -10,7 +10,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
@@ -18,8 +17,7 @@ import org.lineageos.twelve.ext.queueFlow
 
 class QueueViewModel(application: Application) : TwelveViewModel(application) {
     @OptIn(ExperimentalCoroutinesApi::class)
-    val queue = mediaController
-        .filterNotNull()
+    val queue = mediaControllerFlow
         .flatMapLatest { it.queueFlow() }
         .flowOn(Dispatchers.Main)
         .stateIn(

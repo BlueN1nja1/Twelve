@@ -125,7 +125,7 @@ class Api(
                             if (string.isEmpty()) {
                                 MethodResult.Success(onEmptyResponse())
                             } else {
-                                @Suppress("Unchecked_Cast")
+                                @Suppress("UNCHECKED_CAST")
                                 val serializer =
                                     json.serializersModule.serializer(type) as KSerializer<T>
                                 MethodResult.Success(json.decodeFromString(serializer, string))

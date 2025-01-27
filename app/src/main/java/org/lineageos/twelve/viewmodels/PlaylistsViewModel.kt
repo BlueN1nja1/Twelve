@@ -28,12 +28,6 @@ class PlaylistsViewModel(application: Application) : TwelveViewModel(application
         PLAYLISTS_SORTING_REVERSE_KEY,
         getter = SharedPreferences::playlistsSortingRule,
     )
-        .flowOn(Dispatchers.IO)
-        .stateIn(
-            viewModelScope,
-            SharingStarted.WhileSubscribed(),
-            sharedPreferences.playlistsSortingRule
-        )
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val playlists = sortingRule

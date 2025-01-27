@@ -11,6 +11,8 @@ import android.os.Bundle
 import androidx.lifecycle.viewModelScope
 import androidx.media3.common.C
 import androidx.media3.common.MediaMetadata
+import androidx.media3.common.PlaybackParameters
+import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -21,10 +23,10 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.guava.await
 import me.bogerchan.niervisualizer.renderer.IRenderer
 import me.bogerchan.niervisualizer.renderer.circle.CircleBarRenderer
 import me.bogerchan.niervisualizer.renderer.circle.CircleRenderer
@@ -33,6 +35,7 @@ import me.bogerchan.niervisualizer.renderer.columnar.ColumnarType2Renderer
 import me.bogerchan.niervisualizer.renderer.columnar.ColumnarType3Renderer
 import me.bogerchan.niervisualizer.renderer.columnar.ColumnarType4Renderer
 import me.bogerchan.niervisualizer.renderer.line.LineRenderer
+import org.lineageos.twelve.datasources.MediaError
 import org.lineageos.twelve.ext.applicationContext
 import org.lineageos.twelve.ext.availableCommandsFlow
 import org.lineageos.twelve.ext.isPlayingFlow
@@ -46,7 +49,6 @@ import org.lineageos.twelve.ext.repeatModeFlow
 import org.lineageos.twelve.ext.shuffleModeFlow
 import org.lineageos.twelve.ext.toThumbnail
 import org.lineageos.twelve.ext.tracksFlow
-import org.lineageos.twelve.models.Audio
 import org.lineageos.twelve.models.PlaybackProgress
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
@@ -68,8 +70,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val mediaMetadata = mediaController
-        .filterNotNull()
+    val mediaMetadata = mediaControllerFlow
         .flatMapLatest { it.mediaMetadataFlow() }
         .flowOn(Dispatchers.Main)
         .stateIn(
@@ -79,8 +80,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val mediaItem = mediaController
-        .filterNotNull()
+    val mediaItem = mediaControllerFlow
         .flatMapLatest { it.mediaItemFlow() }
         .flowOn(Dispatchers.Main)
         .stateIn(
@@ -93,8 +93,11 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
     val audio = mediaItem
         .filterNotNull()
         .flatMapLatest {
-            val audioUri = Uri.parse(it.mediaId.removePrefix(Audio.AUDIO_MEDIA_ITEM_ID_PREFIX))
-            mediaRepository.audio(audioUri)
+            runCatching {
+                Uri.parse(it.mediaId)
+            }.getOrNull()?.let { mediaItemUri ->
+                mediaRepository.audio(mediaItemUri)
+            } ?: flowOf(RequestStatus.Error(MediaError.NOT_FOUND))
         }
         .flowOn(Dispatchers.IO)
         .stateIn(
@@ -104,19 +107,17 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val playbackState = mediaController
-        .filterNotNull()
+    val playbackState = mediaControllerFlow
         .flatMapLatest { it.playbackStateFlow() }
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = null
+            initialValue = PlaybackState.IDLE
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val isPlaying = mediaController
-        .filterNotNull()
+    val isPlaying = mediaControllerFlow
         .flatMapLatest { it.isPlayingFlow() }
         .flowOn(Dispatchers.Main)
         .stateIn(
@@ -126,8 +127,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val shuffleMode = mediaController
-        .filterNotNull()
+    val shuffleMode = mediaControllerFlow
         .flatMapLatest { it.shuffleModeFlow() }
         .flowOn(Dispatchers.Main)
         .stateIn(
@@ -137,8 +137,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val repeatMode = mediaController
-        .filterNotNull()
+    val repeatMode = mediaControllerFlow
         .flatMapLatest { it.repeatModeFlow() }
         .flowOn(Dispatchers.Main)
         .stateIn(
@@ -148,14 +147,13 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val playbackParameters = mediaController
-        .filterNotNull()
+    val playbackParameters = mediaControllerFlow
         .flatMapLatest { it.playbackParametersFlow() }
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = null
+            initialValue = PlaybackParameters.DEFAULT
         )
 
     val mediaArtwork = combine(
@@ -176,8 +174,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
 
     @androidx.annotation.OptIn(UnstableApi::class)
     @OptIn(ExperimentalCoroutinesApi::class)
-    val currentTrackFormat = mediaController
-        .filterNotNull()
+    val currentTrackFormat = mediaControllerFlow
         .flatMapLatest { it.tracksFlow() }
         .flowOn(Dispatchers.Main)
         .mapLatest { tracks ->
@@ -231,19 +228,17 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val availableCommands = mediaController
-        .filterNotNull()
+    val availableCommands = mediaControllerFlow
         .flatMapLatest { it.availableCommandsFlow() }
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = null
+            initialValue = Player.Commands.EMPTY
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val durationCurrentPositionMs = mediaController
-        .filterNotNull()
+    val durationCurrentPositionMs = mediaControllerFlow
         .flatMapLatest { mediaController ->
             flow {
                 while (true) {
@@ -261,8 +256,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val playbackProgress = mediaController
-        .filterNotNull()
+    val playbackProgress = mediaControllerFlow
         .flatMapLatest { it.playbackProgressFlow() }
         .flowOn(Dispatchers.Main)
         .stateIn(
@@ -272,13 +266,12 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val audioSessionId = mediaController
-        .filterNotNull()
+    val audioSessionId = mediaControllerFlow
         .mapLatest { mediaController ->
             mediaController.sendCustomCommand(
                 PlaybackService.CustomCommand.GET_AUDIO_SESSION_ID,
                 Bundle.EMPTY
-            ).await().extras.getInt(PlaybackService.CustomCommand.RSP_VALUE)
+            ).extras.getInt(PlaybackService.CustomCommand.RSP_VALUE)
         }
         .flowOn(Dispatchers.Main)
         .stateIn(

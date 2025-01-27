@@ -92,7 +92,7 @@ data class Audio(
 
     override fun toMedia3MediaItem() = buildMediaItem(
         title = title,
-        mediaId = "$AUDIO_MEDIA_ITEM_ID_PREFIX${uri}",
+        mediaId = uri.toString(),
         isPlayable = true,
         isBrowsable = false,
         mediaType = type.media3MediaType,
@@ -105,8 +105,4 @@ data class Audio(
         trackNumber = trackNumber,
         durationMs = durationMs,
     )
-
-    companion object {
-        const val AUDIO_MEDIA_ITEM_ID_PREFIX = "[audio]"
-    }
 }

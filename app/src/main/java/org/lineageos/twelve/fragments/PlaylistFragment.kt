@@ -196,7 +196,7 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
         }
 
         toolbar.setupWithNavController(findNavController())
-        toolbar.inflateMenu(R.menu.fragment_podcast_toolbar)
+        toolbar.inflateMenu(R.menu.fragment_playlist_toolbar)
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.renamePlaylist -> {

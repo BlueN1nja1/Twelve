@@ -17,6 +17,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.guava.await
 import org.lineageos.twelve.TwelveApplication
@@ -49,7 +50,7 @@ abstract class TwelveViewModel(application: Application) : AndroidViewModel(appl
         )
     }
 
-    private val mediaControllerFlow = channelFlow {
+    protected val mediaControllerFlow = channelFlow {
         val mediaController = MediaController.Builder(applicationContext, sessionToken)
             .buildAsync()
             .await()
@@ -60,9 +61,14 @@ abstract class TwelveViewModel(application: Application) : AndroidViewModel(appl
             mediaController.release()
         }
     }
+        .flowOn(Dispatchers.Main)
+        .shareIn(
+            viewModelScope,
+            SharingStarted.Eagerly,
+            replay = 1
+        )
 
     protected val mediaController = mediaControllerFlow
-        .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
             started = SharingStarted.Eagerly,

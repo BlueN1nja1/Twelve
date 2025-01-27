@@ -135,7 +135,7 @@
 
     <!-- Provider arguments validation errors -->
     <string name="provider_argument_validation_error_required">A value is required</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Must be a valid HTTP or HTTPS URL (e.g. https://google.com)</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Must be a valid HTTP or HTTPS URL (e.g. http://192.168.1.100 or https://google.com)</string>
 
     <!-- Provider selector dialog fragment -->
     <string name="no_provider">No provider</string>
@@ -172,6 +172,13 @@
     <string name="stop_playback_on_task_removed_summary">Stop playback when the app is cleared from recents</string>
     <string name="skip_silence">Skip silence</string>
     <string name="skip_silence_summary">Skip silence when playing audio</string>
+
+    <!-- Reset local stats -->
+    <string name="reset_local_stats">Reset local media playback statistics</string>
+    <string name="reset_local_stats_confirm_title">Reset local stats</string>
+    <string name="reset_local_stats_confirm_message">Are you sure you want to reset all local media playback statistics? This action cannot be undone.</string>
+    <string name="reset_local_stats_confirm_positive">Reset</string>
+    <string name="reset_local_stats_success">Local media playback statistics have been reset</string>
 
     <!-- Experimental preferences -->
     <string name="split_local_devices">Split local devices</string>

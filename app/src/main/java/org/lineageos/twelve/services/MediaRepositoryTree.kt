@@ -15,11 +15,7 @@ import kotlinx.coroutines.flow.mapNotNull
 import org.lineageos.twelve.R
 import org.lineageos.twelve.ext.buildMediaItem
 import org.lineageos.twelve.ext.permissionsGranted
-import org.lineageos.twelve.models.Album
-import org.lineageos.twelve.models.Artist
-import org.lineageos.twelve.models.Audio
-import org.lineageos.twelve.models.Genre
-import org.lineageos.twelve.models.Playlist
+import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.Provider
 import org.lineageos.twelve.models.ProviderIdentifier
 import org.lineageos.twelve.models.ProviderType
@@ -154,7 +150,7 @@ class MediaRepositoryTree(
             mediaId.startsWith(PROVIDER_MEDIA_ITEM_ID_PREFIX) ->
                 mediaIdToProvider(mediaId)?.toMedia3MediaItem()
 
-            else -> mediaIdToUniqueItem(mediaId)?.toMedia3MediaItem()
+            else -> mediaIdToMediaItem(mediaId)?.toMedia3MediaItem()
         }
     }
 
@@ -198,51 +194,59 @@ class MediaRepositoryTree(
             it.toMedia3MediaItem()
         }
 
-        else -> when (val it = mediaIdToUniqueItem(mediaId)) {
-            is Album -> repository.album(it.uri).toOneShotResult().second.map { albumAudios ->
-                albumAudios.toMedia3MediaItem()
-            }
-
-            is Artist -> repository.artist(it.uri).toOneShotResult().second.let { artistWorks ->
-                listOf(
-                    artistWorks.albums,
-                    artistWorks.appearsInAlbum,
-                ).flatten().map { allRelatedAlbums ->
-                    allRelatedAlbums.toMedia3MediaItem()
+        else -> when {
+            mediaId.startsWith(PROVIDER_MEDIA_ITEM_ID_PREFIX) -> {
+                mediaIdToProvider(mediaId)?.let { provider ->
+                    repository.setNavigationProvider(provider)
                 }
+
+                listOf(providerChangedMediaItem)
             }
 
-            is Audio -> listOf()
-
-            is Genre -> repository.genre(it.uri).toOneShotResult().second.let { genreContent ->
-                listOf(
-                    genreContent.appearsInAlbums,
-                    genreContent.appearsInPlaylists,
-                    genreContent.audios,
-                ).flatten().map { allRelatedMediaItems ->
-                    allRelatedMediaItems.toMedia3MediaItem()
-                }
-            }
-
-            is Playlist -> repository.playlist(
-                it.uri
-            ).toOneShotResult().second.map { playlistAudio ->
-                playlistAudio.toMedia3MediaItem()
-            }
-
-            null -> when {
-                mediaId.startsWith(PROVIDER_MEDIA_ITEM_ID_PREFIX) -> {
-                    mediaIdToProvider(mediaId)?.let { provider ->
-                        repository.setNavigationProvider(provider)
+            else -> mediaIdToMediaItemUri(mediaId)?.let { mediaItemUri ->
+                when (mediaItemUriToMediaType(mediaItemUri)) {
+                    MediaType.ALBUM -> repository.album(
+                        mediaItemUri
+                    ).toOneShotResult().second.map { albumAudios ->
+                        albumAudios.toMedia3MediaItem()
                     }
 
-                    listOf(providerChangedMediaItem)
-                }
+                    MediaType.ARTIST -> repository.artist(
+                        mediaItemUri
+                    ).toOneShotResult().second.let { artistWorks ->
+                        listOf(
+                            artistWorks.albums,
+                            artistWorks.appearsInAlbum,
+                        ).flatten().map { allRelatedAlbums ->
+                            allRelatedAlbums.toMedia3MediaItem()
+                        }
+                    }
 
-                else -> listOf()
+                    MediaType.AUDIO -> listOf()
+
+                    MediaType.GENRE -> repository.genre(
+                        mediaItemUri
+                    ).toOneShotResult().second.let { genreContent ->
+                        listOf(
+                            genreContent.appearsInAlbums,
+                            genreContent.appearsInPlaylists,
+                            genreContent.audios,
+                        ).flatten().map { allRelatedMediaItems ->
+                            allRelatedMediaItems.toMedia3MediaItem()
+                        }
+                    }
+
+                    MediaType.PLAYLIST -> repository.playlist(
+                        mediaItemUri
+                    ).toOneShotResult().second.map { playlistAudio ->
+                        playlistAudio.toMedia3MediaItem()
+                    }
+
+                    null -> null
+                }
             }
         }
-    }
+    } ?: emptyList()
 
     /**
      * Given a list of media items, gets an equivalent list of items that can be passed to the
@@ -261,35 +265,36 @@ class MediaRepositoryTree(
     }
 
     /**
+     * Convert this media ID to a [Uri] if valid.
+     */
+    private fun mediaIdToMediaItemUri(mediaId: String) = runCatching {
+        Uri.parse(mediaId)
+    }.getOrNull()
+
+    private suspend fun mediaItemUriToMediaType(
+        mediaItemUri: Uri
+    ) = repository.mediaTypeOf(mediaItemUri).let {
+        when (it) {
+            is RequestStatus.Loading -> throw Exception("Cannot get RequestStatus.Loading")
+            is RequestStatus.Success -> it.data
+            is RequestStatus.Error -> null
+        }
+    }
+
+    /**
      * Given a media ID, get the item from the repository.
      */
-    private suspend fun mediaIdToUniqueItem(mediaId: String) = when {
-        mediaId.startsWith(Album.ALBUM_MEDIA_ITEM_ID_PREFIX) -> {
-            repository.album(Uri.parse(mediaId.removePrefix(Album.ALBUM_MEDIA_ITEM_ID_PREFIX)))
-                .toOneShotResult().first
+    private suspend fun mediaIdToMediaItem(
+        mediaId: String
+    ) = mediaIdToMediaItemUri(mediaId)?.let { uri ->
+        when (mediaItemUriToMediaType(uri)) {
+            MediaType.ALBUM -> repository.album(uri).toOneShotResult().first
+            MediaType.ARTIST -> repository.artist(uri).toOneShotResult().first
+            MediaType.AUDIO -> repository.audio(uri).toOneShotResult()
+            MediaType.GENRE -> repository.genre(uri).toOneShotResult().first
+            MediaType.PLAYLIST -> repository.playlist(uri).toOneShotResult().first
+            null -> null
         }
-
-        mediaId.startsWith(Artist.ARTIST_MEDIA_ITEM_ID_PREFIX) -> {
-            repository.artist(Uri.parse(mediaId.removePrefix(Artist.ARTIST_MEDIA_ITEM_ID_PREFIX)))
-                .toOneShotResult().first
-        }
-
-        mediaId.startsWith(Audio.AUDIO_MEDIA_ITEM_ID_PREFIX) -> {
-            repository.audio(Uri.parse(mediaId.removePrefix(Audio.AUDIO_MEDIA_ITEM_ID_PREFIX)))
-                .toOneShotResult()
-        }
-
-        mediaId.startsWith(Genre.GENRE_MEDIA_ITEM_ID_PREFIX) -> {
-            repository.genre(Uri.parse(mediaId.removePrefix(Genre.GENRE_MEDIA_ITEM_ID_PREFIX)))
-                .toOneShotResult().first
-        }
-
-        mediaId.startsWith(Playlist.PLAYLIST_MEDIA_ITEM_ID_PREFIX) -> {
-            repository.playlist(Uri.parse(mediaId.removePrefix(Playlist.PLAYLIST_MEDIA_ITEM_ID_PREFIX)))
-                .toOneShotResult().first
-        }
-
-        else -> null
     }
 
     private fun Provider.toMedia3MediaItem() = buildMediaItem(

@@ -20,6 +20,12 @@ interface MediaStatsDao {
     suspend fun delete(mediaUris: List<Uri>)
 
     /**
+     * Delete all entries.
+     */
+    @Query("DELETE FROM LocalMediaStats")
+    suspend fun deleteAll()
+
+    /**
      * Increase the play count of an entry by 1.
      */
     @Query("INSERT OR REPLACE INTO LocalMediaStats (media_uri, play_count) VALUES (:mediaUri, COALESCE((SELECT play_count + 1 FROM LocalMediaStats WHERE media_uri = :mediaUri), 1))")

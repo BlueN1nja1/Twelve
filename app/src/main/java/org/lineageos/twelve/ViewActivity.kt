@@ -250,12 +250,10 @@ class ViewActivity : AppCompatActivity(R.layout.activity_view) {
 
                 launch {
                     localPlayerViewModel.playbackParameters.collectLatest {
-                        it?.also {
-                            playbackSpeedMaterialButton.text = getString(
-                                R.string.playback_speed_format,
-                                playbackSpeedFormatter.format(it.speed),
-                            )
-                        }
+                        playbackSpeedMaterialButton.text = getString(
+                            R.string.playback_speed_format,
+                            playbackSpeedFormatter.format(it.speed),
+                        )
                     }
                 }
 
@@ -316,31 +314,29 @@ class ViewActivity : AppCompatActivity(R.layout.activity_view) {
 
                 launch {
                     localPlayerViewModel.availableCommands.collectLatest {
-                        it?.let {
-                            playPauseMaterialButton.isEnabled = it.contains(
-                                Player.COMMAND_PLAY_PAUSE
-                            )
+                        playPauseMaterialButton.isEnabled = it.contains(
+                            Player.COMMAND_PLAY_PAUSE
+                        )
 
-                            playbackSpeedMaterialButton.isEnabled = it.contains(
-                                Player.COMMAND_SET_SPEED_AND_PITCH
-                            )
+                        playbackSpeedMaterialButton.isEnabled = it.contains(
+                            Player.COMMAND_SET_SPEED_AND_PITCH
+                        )
 
-                            shuffleMaterialButton.isEnabled = it.contains(
-                                Player.COMMAND_SET_SHUFFLE_MODE
-                            )
+                        shuffleMaterialButton.isEnabled = it.contains(
+                            Player.COMMAND_SET_SHUFFLE_MODE
+                        )
 
-                            repeatMaterialButton.isEnabled = it.contains(
-                                Player.COMMAND_SET_REPEAT_MODE
-                            )
+                        repeatMaterialButton.isEnabled = it.contains(
+                            Player.COMMAND_SET_REPEAT_MODE
+                        )
 
-                            previousTrackMaterialButton.isEnabled = it.contains(
-                                Player.COMMAND_SEEK_TO_PREVIOUS
-                            )
+                        previousTrackMaterialButton.isEnabled = it.contains(
+                            Player.COMMAND_SEEK_TO_PREVIOUS
+                        )
 
-                            nextTrackMaterialButton.isEnabled = it.contains(
-                                Player.COMMAND_SEEK_TO_NEXT
-                            )
-                        }
+                        nextTrackMaterialButton.isEnabled = it.contains(
+                            Player.COMMAND_SEEK_TO_NEXT
+                        )
                     }
                 }
             }

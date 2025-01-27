@@ -41,7 +41,7 @@ data class Album(
 
     override fun toMedia3MediaItem() = buildMediaItem(
         title = title,
-        mediaId = "${ALBUM_MEDIA_ITEM_ID_PREFIX}${uri}",
+        mediaId = uri.toString(),
         isPlayable = false,
         isBrowsable = true,
         mediaType = MediaMetadata.MEDIA_TYPE_ALBUM,
@@ -50,8 +50,4 @@ data class Album(
         artworkType = thumbnail?.type?.media3Value,
         artworkUri = thumbnail?.uri,
     )
-
-    companion object {
-        const val ALBUM_MEDIA_ITEM_ID_PREFIX = "[album]"
-    }
 }

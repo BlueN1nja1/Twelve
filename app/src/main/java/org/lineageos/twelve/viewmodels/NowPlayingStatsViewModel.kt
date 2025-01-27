@@ -98,11 +98,6 @@ class NowPlayingStatsViewModel(application: Application) : NowPlayingViewModel(a
         )
 
     val transcodingBitrate = ProxyDefaultAudioTrackBufferSizeProvider.bitrateFlow
-        .stateIn(
-            viewModelScope,
-            started = SharingStarted.WhileSubscribed(),
-            initialValue = null
-        )
 
     /**
      * Whether the output has valid information.

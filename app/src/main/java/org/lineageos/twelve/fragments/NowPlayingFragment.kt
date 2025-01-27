@@ -329,10 +329,8 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
                 }
 
                 launch {
-                    viewModel.playbackState.collectLatest { playbackState ->
-                        playbackState?.let {
-                            linearProgressIndicator.isVisible = it == PlaybackState.BUFFERING
-                        }
+                    viewModel.playbackState.collectLatest {
+                        linearProgressIndicator.isVisible = it == PlaybackState.BUFFERING
                     }
                 }
 
@@ -387,12 +385,10 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
 
                 launch {
                     viewModel.playbackParameters.collectLatest {
-                        it?.also {
-                            playbackSpeedMaterialButton.text = getString(
-                                R.string.playback_speed_format,
-                                playbackSpeedFormatter.format(it.speed),
-                            )
-                        }
+                        playbackSpeedMaterialButton.text = getString(
+                            R.string.playback_speed_format,
+                            playbackSpeedFormatter.format(it.speed),
+                        )
                     }
                 }
 
@@ -476,31 +472,29 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
 
                 launch {
                     viewModel.availableCommands.collectLatest {
-                        it?.let {
-                            shuffleMaterialButton.isEnabled = it.contains(
-                                Player.COMMAND_SET_SHUFFLE_MODE
-                            )
+                        shuffleMaterialButton.isEnabled = it.contains(
+                            Player.COMMAND_SET_SHUFFLE_MODE
+                        )
 
-                            previousTrackMaterialButton.isEnabled = it.contains(
-                                Player.COMMAND_SEEK_TO_PREVIOUS
-                            )
+                        previousTrackMaterialButton.isEnabled = it.contains(
+                            Player.COMMAND_SEEK_TO_PREVIOUS
+                        )
 
-                            playPauseMaterialButton.isEnabled = it.contains(
-                                Player.COMMAND_PLAY_PAUSE
-                            )
+                        playPauseMaterialButton.isEnabled = it.contains(
+                            Player.COMMAND_PLAY_PAUSE
+                        )
 
-                            nextTrackMaterialButton.isEnabled = it.contains(
-                                Player.COMMAND_SEEK_TO_NEXT
-                            )
+                        nextTrackMaterialButton.isEnabled = it.contains(
+                            Player.COMMAND_SEEK_TO_NEXT
+                        )
 
-                            repeatMaterialButton.isEnabled = it.contains(
-                                Player.COMMAND_SET_REPEAT_MODE
-                            )
+                        repeatMaterialButton.isEnabled = it.contains(
+                            Player.COMMAND_SET_REPEAT_MODE
+                        )
 
-                            playbackSpeedMaterialButton.isEnabled = it.contains(
-                                Player.COMMAND_SET_SPEED_AND_PITCH
-                            )
-                        }
+                        playbackSpeedMaterialButton.isEnabled = it.contains(
+                            Player.COMMAND_SET_SPEED_AND_PITCH
+                        )
                     }
                 }
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/addToQueue"
+        android:icon="@drawable/ic_add_to_queue"
+        android:title="@string/audio_add_to_queue"
+        app:iconTint="?attr/colorOnSurface"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/playNext"
+        android:icon="@drawable/ic_queue_play_next"
+        android:title="@string/audio_play_next"
+        app:iconTint="?attr/colorOnSurface"
+        app:showAsAction="ifRoom" />
+
+</menu>

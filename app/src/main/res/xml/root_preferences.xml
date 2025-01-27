@@ -37,6 +37,11 @@
             app:summary="@string/skip_silence_summary"
             app:title="@string/skip_silence" />
 
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="reset_local_stats"
+            app:title="@string/reset_local_stats" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

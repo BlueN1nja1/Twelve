@@ -20,7 +20,7 @@
 
     <item
         android:id="@+id/libraryFragment"
-        android:icon="@drawable/ic_library_music"
+        android:icon="@drawable/ic_lineage_library"
         android:title="@string/main_fragment_section_library"
         app:tint="?attr/colorOnSurface" />
 

@@ -13,6 +13,8 @@ import androidx.media3.common.AudioAttributes
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
+import androidx.media3.common.PlaybackParameters
+import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.Dispatchers
@@ -71,20 +73,15 @@ class LocalPlayerViewModel(application: Application) : AndroidViewModel(applicat
         .setHandleAudioBecomingNoisy(true)
         .build()
 
+    private val playbackState = exoPlayer.playbackStateFlow()
+        .flowOn(Dispatchers.Main)
+
     val mediaMetadata = exoPlayer.mediaMetadataFlow()
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
             initialValue = MediaMetadata.EMPTY
-        )
-
-    val playbackState = exoPlayer.playbackStateFlow()
-        .flowOn(Dispatchers.Main)
-        .stateIn(
-            viewModelScope,
-            started = SharingStarted.WhileSubscribed(),
-            initialValue = null
         )
 
     val isPlaying = exoPlayer.isPlayingFlow()
@@ -140,7 +137,7 @@ class LocalPlayerViewModel(application: Application) : AndroidViewModel(applicat
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = null
+            initialValue = PlaybackParameters.DEFAULT
         )
 
     val availableCommands = exoPlayer.availableCommandsFlow()
@@ -148,7 +145,7 @@ class LocalPlayerViewModel(application: Application) : AndroidViewModel(applicat
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = null
+            initialValue = Player.Commands.EMPTY
         )
 
     override fun onCleared() {

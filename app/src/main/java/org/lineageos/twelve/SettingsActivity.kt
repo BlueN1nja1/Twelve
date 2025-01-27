@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.CallSuper
 import androidx.annotation.Px
@@ -21,10 +22,12 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.updatePadding
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.SwitchPreference
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.ext.ENABLE_OFFLOAD_KEY
 import org.lineageos.twelve.ext.SKIP_SILENCE_KEY
@@ -143,6 +146,7 @@ class SettingsActivity : AppCompatActivity(R.layout.activity_settings) {
     class RootSettingsFragment : SettingsFragment(R.xml.root_preferences) {
         // Preferences
         private val enableOffload by lazy { findPreference<SwitchPreference>(ENABLE_OFFLOAD_KEY)!! }
+        private val resetLocalStats by lazy { findPreference<Preference>("reset_local_stats")!! }
         private val skipSilence by lazy { findPreference<SwitchPreference>(SKIP_SILENCE_KEY)!! }
 
         override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -161,6 +165,31 @@ class SettingsActivity : AppCompatActivity(R.layout.activity_settings) {
                 }
                 true
             }
+
+            resetLocalStats.setOnPreferenceClickListener {
+                showResetLocalStatsDialog()
+                true
+            }
+        }
+
+        private fun showResetLocalStatsDialog() {
+            val context = requireActivity()
+            MaterialAlertDialogBuilder(context)
+                .setTitle(R.string.reset_local_stats_confirm_title)
+                .setMessage(R.string.reset_local_stats_confirm_message)
+                .setPositiveButton(R.string.reset_local_stats_confirm_positive) { _, _ ->
+                    lifecycleScope.launch {
+                        viewModel.resetLocalStats()
+
+                        Toast.makeText(
+                            context,
+                            R.string.reset_local_stats_success,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+                }
+                .setNegativeButton(android.R.string.cancel) { _, _ -> /* Do nothing */ }
+                .show()
         }
     }
 }

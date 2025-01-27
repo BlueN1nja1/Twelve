@@ -552,6 +552,7 @@ class SubsonicDataSource(
         reverse: Boolean,
         selector: ((T) -> Comparable<*>?)?,
     ) = selector?.let {
+        @Suppress("UNCHECKED_CAST")
         sortedBy { t -> it(t) as? Comparable<Any?> }.asMaybeReversed(reverse)
     } ?: this
 

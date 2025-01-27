@@ -98,12 +98,6 @@ class MediaRepository(
                 .sortedBy { it.isPrimary.not() }
         }
         .distinctUntilChanged()
-        .flowOn(Dispatchers.IO)
-        .stateIn(
-            scope,
-            SharingStarted.WhileSubscribed(),
-            listOf()
-        )
 
     private val mediaStoreProviders = combine(
         sharedPreferences.preferenceFlow(
@@ -142,12 +136,6 @@ class MediaRepository(
             }
         }
     }
-        .flowOn(Dispatchers.IO)
-        .stateIn(
-            scope,
-            SharingStarted.WhileSubscribed(),
-            listOf()
-        )
 
     /**
      * HTTP cache
@@ -505,6 +493,13 @@ class MediaRepository(
      */
     fun setNavigationProvider(providerIdentifier: ProviderIdentifier) {
         sharedPreferences.defaultProvider = providerIdentifier
+    }
+
+    /**
+     * Delete all local stats entries.
+     */
+    suspend fun resetLocalStats() {
+        database.getLocalMediaStatsProviderDao().deleteAll()
     }
 
     /**

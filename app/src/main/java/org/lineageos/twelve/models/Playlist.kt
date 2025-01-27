@@ -33,7 +33,7 @@ data class Playlist(
 
     override fun toMedia3MediaItem() = buildMediaItem(
         title = name,
-        mediaId = "$PLAYLIST_MEDIA_ITEM_ID_PREFIX${uri}",
+        mediaId = uri.toString(),
         isPlayable = false,
         isBrowsable = true,
         mediaType = MediaMetadata.MEDIA_TYPE_PLAYLIST,
@@ -42,8 +42,4 @@ data class Playlist(
         artworkType = thumbnail?.type?.media3Value,
         artworkUri = thumbnail?.uri,
     )
-
-    companion object {
-        const val PLAYLIST_MEDIA_ITEM_ID_PREFIX = "[playlist]"
-    }
 }
