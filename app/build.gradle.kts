@@ -23,7 +23,7 @@ android {
         minSdk = 31
         targetSdk = 35
         versionCode = 100
-        versionName = "1.0.0.1"
+        versionName = "1.0.0.2"
 
         kapt {
             arguments {
