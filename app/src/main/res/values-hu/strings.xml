@@ -31,7 +31,6 @@
     <string name="no_playlists">Nincsenek lejátszólisták</string>
     <string name="no_audios">Nincsenek audiófájlok</string>
     <string name="no_results">Nincsenek találatok</string>
-    <string name="unknown">Ismeretlen</string>
     <string name="album_unknown">Ismeretlen lemez</string>
     <string name="artist_unknown">Ismeretlen előadó</string>
     <string name="genre_unknown">Ismeretlen műfaj</string>
@@ -58,6 +57,7 @@
     <string name="rename_playlist_positive">Átnevezés</string>
     <string name="delete_playlist">A lejátszólista törlése</string>
     <string name="delete_playlist_message">Biztosan törli ezt a lejátszólistát?</string>
+    <string name="audio_information">Audióinformációk</string>
     <string name="audio_effects">Hangeffektek</string>
     <string name="playback_speed">Lejátszási sebesség</string>
     <string name="playback_speed_format">%1$sx</string>
@@ -96,7 +96,7 @@
     <string name="provider_argument_password">Jelszó</string>
     <string name="provider_argument_use_legacy_authentication">Örökölt hitelesítő használata</string>
     <string name="provider_argument_validation_error_required">Érték megadása kötelező</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Érvényes HTTP vagy HTTPS URL-nek kell lennie (pl. https://google.com)</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Érvényes HTTP vagy HTTPS URL-nek kell lennie (pl. http://197.109.28.100 vagy https://google.com)</string>
     <string name="no_provider">Nincs szolgáltató</string>
     <string name="providers">Szolgáltatók</string>
     <string name="add_provider_action">Hozzáadás</string>
@@ -123,6 +123,11 @@
     <string name="stop_playback_on_task_removed_summary">A lejátszás leállítása, ha törlésre került az előzmények közül</string>
     <string name="skip_silence">Átugrott némítás</string>
     <string name="skip_silence_summary">A némítás kihagyása, ha épp audiófájlt játszik le</string>
+    <string name="reset_local_stats">Helyi médialejátszási statisztikák visszaállítása</string>
+    <string name="reset_local_stats_confirm_title">Helyi statisztikák visszaállítása</string>
+    <string name="reset_local_stats_confirm_message">Biztosan visszaállítja az összes helyi médialejátszási statisztikát?  Ez a művelet nem vonható vissza.</string>
+    <string name="reset_local_stats_confirm_positive">Visszaállitás</string>
+    <string name="reset_local_stats_success">A helyi médialejátszási statisztikák visszaállításra kerültek</string>
     <string name="split_local_devices">Helyi eszközök szétosztása</string>
     <string name="split_local_devices_summary">Ha engedélyezett, a belső tárhely és a külső eszközök (SD-kártyák, USB-eszközök stb.) különböző szolgáltatók alatt jelennek meg</string>
     <string name="now_playing_widget_description">Most hallható</string>
@@ -151,6 +156,7 @@
     <string name="content_description_play_pause">Lejátszás/Megállítás</string>
     <string name="content_description_thumbnail">Parancsikon</string>
     <string name="play_all">Az összes lejátszása</string>
+    <string name="shuffle_play">Véletlenszerű lejátszás</string>
     <string name="library_item_no_permissions">Hiányzó jogosultság</string>
     <string name="library_item_no_permissions_description">Az alkalmazás nem rendelkezik a szükséges engedélyekkel</string>
     <string name="library_item_albums">Albumok</string>
@@ -159,4 +165,19 @@
     <string name="library_item_playlists">Lejátszólisták</string>
     <string name="library_item_change_provider">Szolgáltatómódosítás</string>
     <string name="library_item_provider_changed">A módosítás sikeres, visszalépés a főmenübe</string>
+    <string name="yes">Igen</string>
+    <string name="no">Nem</string>
+    <string name="unknown">Ismeretlen</string>
+    <string name="local_volume_name">Kötetnév</string>
+    <string name="subsonic_version">Szubszonikus verzió</string>
+    <string name="subsonic_server_type">Szervertípus</string>
+    <string name="subsonic_server_version">Szerververzió</string>
+    <string name="subsonic_supports_opensubsonic">Támogatja az OpenSubsonic bővítményeket</string>
+    <string name="subsonic_license">Licensz</string>
+    <string name="subsonic_license_valid">Érvényes</string>
+    <string name="subsonic_license_invalid">Érvénytelen</string>
+    <string name="jellyfin_server_name">Szervernév</string>
+    <string name="jellyfin_version">Verzió</string>
+    <string name="jellyfin_product_name">Terméknév</string>
+    <string name="jellyfin_operating_system">Operációs rendszer</string>
 </resources>

@@ -31,7 +31,6 @@
     <string name="no_playlists">No hay listas de reproducción</string>
     <string name="no_audios">No hay audios</string>
     <string name="no_results">No hay resultados</string>
-    <string name="unknown">Desconocidos</string>
     <string name="album_unknown">Álbum desconocido</string>
     <string name="artist_unknown">Artista desconocido</string>
     <string name="genre_unknown">Género desconocido</string>
@@ -58,11 +57,13 @@
     <string name="rename_playlist_positive">Cambiar el nombre</string>
     <string name="delete_playlist">Eliminar la lista de reproducción</string>
     <string name="delete_playlist_message">¿Seguro que quieres eliminar esta lista de reproducción?</string>
+    <string name="audio_information">Información de audio</string>
     <string name="audio_effects">Efectos de sonido</string>
     <string name="playback_speed">Velocidad de reproducción</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Tono de reproducción</string>
     <string name="playbacl_pitch_unlock">Desbloquear cambio de tono</string>
+    <string name="playback_warning">Es posible que la velocidad y el tono no funcionen correctamente si la función de descarga de reproducción está activada. Prueba a desactivarla en los ajustes de la aplicación.</string>
     <string name="visualizer">Visualizador</string>
     <string name="audio_source">Origen</string>
     <string name="audio_transcoding">Transcodificación</string>
@@ -95,7 +96,6 @@
     <string name="provider_argument_password">Contraseña</string>
     <string name="provider_argument_use_legacy_authentication">Usar la autenticación heredada</string>
     <string name="provider_argument_validation_error_required">Se requiere un valor</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Debe ser una URL HTTP o HTTPS válida (por ejemplo, https://google.com)</string>
     <string name="no_provider">Sin proveedores</string>
     <string name="providers">Proveedores</string>
     <string name="add_provider_action">Añadir</string>
@@ -116,6 +116,8 @@
     <string name="experimental_header">Experimental</string>
     <string name="enable_offload">Activar la descarga</string>
     <string name="enable_offload_summary">Utiliza la ruta de descarga de audio para la reproducción de audio. Desactivar esta opción puede aumentar el consumo de energía, pero puede resultar útil si tiene problemas con la reproducción de audio o el post-procesamiento.</string>
+    <string name="enable_float_output">Activar salida de coma flotante de 32 bits</string>
+    <string name="enable_float_output_summary">Utiliza la salida PCM de 32 bits en coma flotante cuando la calidad de audio pueda beneficiarse de ello. Los efectos de audio, como los controles de velocidad y tono, dejarán de funcionar en este modo. Para activar esta opción es necesario reiniciar la aplicación.</string>
     <string name="stop_playback_on_task_removed">Detener la reproducción al eliminar la aplicación de recientes</string>
     <string name="stop_playback_on_task_removed_summary">Detener la reproducción cuando la aplicación se borre de recientes</string>
     <string name="skip_silence">Saltar los silencios</string>
@@ -148,6 +150,7 @@
     <string name="content_description_play_pause">Reproducir/pausar</string>
     <string name="content_description_thumbnail">Miniatura</string>
     <string name="play_all">Reproducir todo</string>
+    <string name="shuffle_play">Reproducción aleatoria</string>
     <string name="library_item_no_permissions">Sin permisos</string>
     <string name="library_item_no_permissions_description">La aplicación no tiene los permisos necesarios</string>
     <string name="library_item_albums">Álbumes</string>
@@ -156,4 +159,19 @@
     <string name="library_item_playlists">Listas de reproducción</string>
     <string name="library_item_change_provider">Cambiar de proveedor</string>
     <string name="library_item_provider_changed">Proveedor cambiado, volver al menú principal</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="unknown">Desconocidos</string>
+    <string name="local_volume_name">Nombre del volumen</string>
+    <string name="subsonic_version">Versión Subsonic</string>
+    <string name="subsonic_server_type">Tipo de servidor</string>
+    <string name="subsonic_server_version">Versión del servidor</string>
+    <string name="subsonic_supports_opensubsonic">Soporta extensiones OpenSubsonic</string>
+    <string name="subsonic_license">Licencia</string>
+    <string name="subsonic_license_valid">Válida</string>
+    <string name="subsonic_license_invalid">No válida</string>
+    <string name="jellyfin_server_name">Nombre del servidor</string>
+    <string name="jellyfin_version">Versión</string>
+    <string name="jellyfin_product_name">Nombre del producto</string>
+    <string name="jellyfin_operating_system">Sistema operativo</string>
 </resources>

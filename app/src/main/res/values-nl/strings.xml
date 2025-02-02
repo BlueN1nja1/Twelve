@@ -31,7 +31,6 @@
     <string name="no_playlists">Geen afspeellijsten</string>
     <string name="no_audios">Geen audio</string>
     <string name="no_results">Geen resultaten</string>
-    <string name="unknown">Onbekend</string>
     <string name="album_unknown">Onbekend album</string>
     <string name="artist_unknown">Onbekende artiest</string>
     <string name="genre_unknown">Onbekend genre</string>
@@ -58,6 +57,7 @@
     <string name="rename_playlist_positive">Hernoem</string>
     <string name="delete_playlist">Verwijder afspeellijst</string>
     <string name="delete_playlist_message">Weet u zeker dat u deze playlist wil verwijderen?</string>
+    <string name="audio_information">Audio-informatie</string>
     <string name="audio_effects">Geluidseffecten</string>
     <string name="playback_speed">Afspeelsnelheid</string>
     <string name="playback_speed_format">%1$sx</string>
@@ -96,7 +96,7 @@
     <string name="provider_argument_password">Wachtwoord</string>
     <string name="provider_argument_use_legacy_authentication">Gebruik verouderde authenticatie</string>
     <string name="provider_argument_validation_error_required">Een waarde is vereist</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Moet een geldige HTTP of HTTPS URL zijn (bijv. https://google.com)</string>
+    <string name="provider_argument_validation_error_malformed_http_uri"/>
     <string name="no_provider"/>
     <string name="providers">Aanbieders</string>
     <string name="add_provider_action">Voeg toe</string>
@@ -123,6 +123,11 @@
     <string name="stop_playback_on_task_removed_summary">Afspelen stoppen als de app is gewist van de recente apps</string>
     <string name="skip_silence">Sla stilte over</string>
     <string name="skip_silence_summary">Sla stilte over bij het afspelen van audio</string>
+    <string name="reset_local_stats">Reset afspeelstatistieken van lokale media</string>
+    <string name="reset_local_stats_confirm_title">Reset lokale statistieken </string>
+    <string name="reset_local_stats_confirm_message"/>
+    <string name="reset_local_stats_confirm_positive">Reset</string>
+    <string name="reset_local_stats_success"/>
     <string name="split_local_devices"/>
     <string name="split_local_devices_summary">Indien ingeschakeld, zullen interne opslag en externe apparaten (SD-kaarten, USB-apparaten, etc.) onder verschillende providers verschijnen</string>
     <string name="now_playing_widget_description">Nu aan het afspelen</string>
@@ -151,6 +156,7 @@
     <string name="content_description_play_pause">Afspelen/Pauzeren</string>
     <string name="content_description_thumbnail">Miniatuur</string>
     <string name="play_all">Speel alles af</string>
+    <string name="shuffle_play">Door elkaar afspelen</string>
     <string name="library_item_no_permissions"/>
     <string name="library_item_no_permissions_description"/>
     <string name="library_item_albums"/>
@@ -159,4 +165,18 @@
     <string name="library_item_playlists"/>
     <string name="library_item_change_provider">Verander aanbieder</string>
     <string name="library_item_provider_changed">Leverancier gewijzigd, ga terug naar het hoofdmenu</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nee</string>
+    <string name="unknown">Onbekend</string>
+    <string name="subsonic_version">Subsonic versie</string>
+    <string name="subsonic_server_type">Servertype</string>
+    <string name="subsonic_server_version">Serverversie</string>
+    <string name="subsonic_supports_opensubsonic"/>
+    <string name="subsonic_license">Licentie</string>
+    <string name="subsonic_license_valid">Geldig</string>
+    <string name="subsonic_license_invalid">Ongeldig</string>
+    <string name="jellyfin_server_name">Servernaam</string>
+    <string name="jellyfin_version">Versie</string>
+    <string name="jellyfin_product_name">Productnaam</string>
+    <string name="jellyfin_operating_system">Besturingssysteem</string>
 </resources>

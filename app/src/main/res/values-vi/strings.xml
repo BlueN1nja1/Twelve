@@ -31,7 +31,6 @@
     <string name="no_playlists">Không có danh sách phát</string>
     <string name="no_audios">Không có âm thanh</string>
     <string name="no_results">Không có kết quả</string>
-    <string name="unknown">Không rõ</string>
     <string name="album_unknown">Không rõ album</string>
     <string name="artist_unknown">Không rõ nghệ sĩ</string>
     <string name="genre_unknown">Không rõ thể loại</string>
@@ -94,7 +93,6 @@
     <string name="provider_argument_password">Mật khẩu</string>
     <string name="provider_argument_use_legacy_authentication">Sử dụng xác thực truyền thống</string>
     <string name="provider_argument_validation_error_required">Cần phải có một giá trị</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Phải là URL HTTP hoặc HTTPS hợp lệ (ví dụ: https://google.com)</string>
     <string name="no_provider">Không có nhà cung cấp</string>
     <string name="providers">Nhà cung cấp</string>
     <string name="add_provider_action">Thêm</string>
@@ -157,4 +155,5 @@
     <string name="library_item_playlists">Danh sách phát</string>
     <string name="library_item_change_provider">Thay đổi nhà cung cấp</string>
     <string name="library_item_provider_changed">Nhà cung cấp đã thay đổi, quay lại menu chính</string>
+    <string name="unknown">Không rõ</string>
 </resources>

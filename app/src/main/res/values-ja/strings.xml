@@ -31,7 +31,6 @@
     <string name="no_playlists">プレイリストなし</string>
     <string name="no_audios">オーディオなし</string>
     <string name="no_results">検索結果なし</string>
-    <string name="unknown">不明</string>
     <string name="album_unknown">不明なアルバム</string>
     <string name="artist_unknown">不明なアーティスト</string>
     <string name="genre_unknown">不明なジャンル</string>
@@ -56,6 +55,7 @@
     <string name="rename_playlist_positive">名前の変更</string>
     <string name="delete_playlist">プレイリストを削除</string>
     <string name="delete_playlist_message">このプレイリストを削除してもよろしいですか？</string>
+    <string name="audio_information">オーディオ情報</string>
     <string name="audio_effects">オーディオ エフェクト</string>
     <string name="playback_speed">再生速度</string>
     <string name="playback_speed_format">%1$s×</string>
@@ -94,7 +94,7 @@
     <string name="provider_argument_password">パスワード</string>
     <string name="provider_argument_use_legacy_authentication">レガシー認証を使用する</string>
     <string name="provider_argument_validation_error_required">この項目は必須です</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">有効な HTTP または HTTPS URL である必要があります (例: https://google.com)</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">有効な HTTP または HTTPS URL (例： http://192.168.1.100 や https://google.com) である必要があります</string>
     <string name="no_provider">プロバイダがありません</string>
     <string name="providers">プロバイダ</string>
     <string name="add_provider_action">追加</string>
@@ -121,6 +121,11 @@
     <string name="stop_playback_on_task_removed_summary">アプリが履歴から削除されたときに再生を停止します</string>
     <string name="skip_silence">無音をスキップ</string>
     <string name="skip_silence_summary">音声再生中に無音部分をスキップします</string>
+    <string name="reset_local_stats">ローカルメディアの再生統計をリセット</string>
+    <string name="reset_local_stats_confirm_title">ローカル統計をリセット</string>
+    <string name="reset_local_stats_confirm_message">すべてのローカルメディア再生統計をリセットしてもよろしいですか？この操作は元に戻せません。</string>
+    <string name="reset_local_stats_confirm_positive">リセット</string>
+    <string name="reset_local_stats_success">ローカルメディアの再生統計をリセットしました</string>
     <string name="split_local_devices">ローカルデバイスを分割</string>
     <string name="split_local_devices_summary">有効にすると、内部ストレージと外部デバイス (SD カード、USB デバイスなど) が異なるプロバイダの下に表示されます</string>
     <string name="now_playing_widget_description">再生中の楽曲</string>
@@ -149,6 +154,7 @@
     <string name="content_description_play_pause">再生 / 一時停止</string>
     <string name="content_description_thumbnail">サムネイル</string>
     <string name="play_all">すべてを再生</string>
+    <string name="shuffle_play">シャッフル再生</string>
     <string name="library_item_no_permissions">権限がありません</string>
     <string name="library_item_no_permissions_description">アプリに必要な権限がありません</string>
     <string name="library_item_albums">アルバム</string>
@@ -157,4 +163,19 @@
     <string name="library_item_playlists">プレイリスト</string>
     <string name="library_item_change_provider">プロバイダを変更</string>
     <string name="library_item_provider_changed">プロバイダを変更しました。メインメニューに戻ってください</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+    <string name="unknown">不明</string>
+    <string name="local_volume_name">ボリューム名</string>
+    <string name="subsonic_version">Subsonic バージョン</string>
+    <string name="subsonic_server_type">サーバータイプ</string>
+    <string name="subsonic_server_version">サーバーバージョン</string>
+    <string name="subsonic_supports_opensubsonic">OpenSubsonic 拡張機能サポート</string>
+    <string name="subsonic_license">ライセンス</string>
+    <string name="subsonic_license_valid">有効</string>
+    <string name="subsonic_license_invalid">無効</string>
+    <string name="jellyfin_server_name">サーバー名</string>
+    <string name="jellyfin_version">バージョン</string>
+    <string name="jellyfin_product_name">製品名</string>
+    <string name="jellyfin_operating_system">OS</string>
 </resources>

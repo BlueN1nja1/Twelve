@@ -30,7 +30,6 @@
     <string name="no_playlists">Δεν υπάρχουν λίστες αναπαραγωγής</string>
     <string name="no_audios">Δεν υπάρχουν ήχοι</string>
     <string name="no_results">Δεν υπάρχουν αποτελέσματα</string>
-    <string name="unknown">Άγνωστο</string>
     <string name="album_unknown">Άγνωστο άλμπουμ</string>
     <string name="artist_unknown">Άγνωστος καλλιτέχνης</string>
     <string name="genre_unknown">Άγνωστο είδος</string>
@@ -91,7 +90,6 @@
     <string name="provider_argument_password">Κωδικός πρόσβασης</string>
     <string name="provider_argument_use_legacy_authentication">Χρήση ταυτοποίησης παλαιού τύπου</string>
     <string name="provider_argument_validation_error_required">Απαιτείται μια τιμή</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Πρέπει να είναι μια έγκυρη διεύθυνση URL HTTP ή HTTPS (π.χ. https://google.com)</string>
     <string name="providers">Πάροχοι</string>
     <string name="add_provider_action">Προσθήκη</string>
     <string name="add_provider">Προσθήκη παρόχου</string>
@@ -136,4 +134,5 @@
     <string name="content_description_play_pause">Αναπαραγωγή/παύση</string>
     <string name="content_description_thumbnail">Μικρογραφία</string>
     <string name="play_all">Αναπαραγωγή όλων</string>
+    <string name="unknown">Άγνωστο</string>
 </resources>

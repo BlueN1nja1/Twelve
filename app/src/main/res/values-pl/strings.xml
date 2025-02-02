@@ -31,7 +31,6 @@
     <string name="no_playlists">Brak list odtwarzania</string>
     <string name="no_audios">Brak dźwięków</string>
     <string name="no_results">Brak wyników</string>
-    <string name="unknown">Nieznane</string>
     <string name="album_unknown">Nieznany album</string>
     <string name="artist_unknown">Nieznany wykonawca</string>
     <string name="genre_unknown">Nieznany gatunek</string>
@@ -62,6 +61,7 @@
     <string name="rename_playlist_positive">Zmień nazwę</string>
     <string name="delete_playlist">Usuń listę odtwarzania</string>
     <string name="delete_playlist_message">Czy na pewno chcesz usunąć tę listę odtwarzania?</string>
+    <string name="audio_information">Informacje o dźwięku</string>
     <string name="audio_effects">Efekty dźwiękowe</string>
     <string name="playback_speed">Prędkość odtwarzania</string>
     <string name="playback_speed_format">%1$s×</string>
@@ -100,7 +100,7 @@
     <string name="provider_argument_password">Hasło</string>
     <string name="provider_argument_use_legacy_authentication">Uwierzytelnianie starszego typu</string>
     <string name="provider_argument_validation_error_required">Wymagana jest wartość</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Musi być prawidłowym adresem HTTP lub HTTPS (np. https://google.com)</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Musi być prawidłowym adresem HTTP lub HTTPS (np. http://192.168.1.100 lub https://google.com)</string>
     <string name="no_provider">Brak dostawcy</string>
     <string name="providers">Dostawcy</string>
     <string name="add_provider_action">Dodaj</string>
@@ -127,6 +127,11 @@
     <string name="stop_playback_on_task_removed_summary">Zatrzymuj odtwarzanie, gdy aplikacja została usunięta z ostatnio używanych</string>
     <string name="skip_silence">Pomijaj ciszę</string>
     <string name="skip_silence_summary">Pomijaj ciszę podczas odtwarzania dźwięku</string>
+    <string name="reset_local_stats">Zresetuj lokalne statystyki odtwarzania multimediów</string>
+    <string name="reset_local_stats_confirm_title">Zresetuj lokalne statystyki</string>
+    <string name="reset_local_stats_confirm_message">Czy na pewno chcesz zresetować wszystkie lokalne statystyki odtwarzania? Tego działania nie można cofnąć.</string>
+    <string name="reset_local_stats_confirm_positive">Zresetuj</string>
+    <string name="reset_local_stats_success">Statystyki odtwarzania lokalnych multimediów zostały zresetowane</string>
     <string name="split_local_devices">Rozdziel lokalne urządzenia</string>
     <string name="split_local_devices_summary">Jeśli ta opcja jest włączona, pamięć wewnętrzna i urządzenia zewnętrzne (karty SD, urządzenia USB itp.) będą wyświetlane pod różnymi dostawcami</string>
     <string name="now_playing_widget_description">Teraz odtwarzane</string>
@@ -155,6 +160,7 @@
     <string name="content_description_play_pause">Odtwórz/wstrzymaj</string>
     <string name="content_description_thumbnail">Miniaturka</string>
     <string name="play_all">Odtwórz wszystko</string>
+    <string name="shuffle_play">Odtwarzanie losowe</string>
     <string name="library_item_no_permissions">Brak uprawnień</string>
     <string name="library_item_no_permissions_description">Aplikacja nie posiada wystarczających uprawnień</string>
     <string name="library_item_albums">Albumy</string>
@@ -163,4 +169,19 @@
     <string name="library_item_playlists">Listy odtwarzania</string>
     <string name="library_item_change_provider">Zmień dostawcę</string>
     <string name="library_item_provider_changed">Dostawca został zmieniony, wróć do menu głównego</string>
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+    <string name="unknown">Nieznane</string>
+    <string name="local_volume_name">Nazwa wolumenu</string>
+    <string name="subsonic_version">Wersja Subsonic</string>
+    <string name="subsonic_server_type">Typ serwera</string>
+    <string name="subsonic_server_version">Wersja serwera</string>
+    <string name="subsonic_supports_opensubsonic">Obsługuje rozszerzenia OpenSubsonic</string>
+    <string name="subsonic_license">Licencja</string>
+    <string name="subsonic_license_valid">Aktualna</string>
+    <string name="subsonic_license_invalid">Nieaktualna</string>
+    <string name="jellyfin_server_name">Nazwa serwera</string>
+    <string name="jellyfin_version">Wersja</string>
+    <string name="jellyfin_product_name">Nazwa produktu</string>
+    <string name="jellyfin_operating_system">System operacyjny</string>
 </resources>

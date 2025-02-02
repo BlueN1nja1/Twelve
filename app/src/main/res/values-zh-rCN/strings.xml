@@ -31,7 +31,6 @@
     <string name="no_playlists">没有播放列表</string>
     <string name="no_audios">没有音频</string>
     <string name="no_results">无结果</string>
-    <string name="unknown">未知</string>
     <string name="album_unknown">未知专辑</string>
     <string name="artist_unknown">未知艺术家</string>
     <string name="genre_unknown">未知流派</string>
@@ -56,6 +55,7 @@
     <string name="rename_playlist_positive">重命名</string>
     <string name="delete_playlist">删除播放列表</string>
     <string name="delete_playlist_message">您确定要删除这些播放列表?</string>
+    <string name="audio_information">音频信息</string>
     <string name="audio_effects">音效</string>
     <string name="playback_speed">播放速度</string>
     <string name="playback_speed_format">%1$s×</string>
@@ -94,7 +94,7 @@
     <string name="provider_argument_password">密码</string>
     <string name="provider_argument_use_legacy_authentication">使用旧认证</string>
     <string name="provider_argument_validation_error_required">需要一个值</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">必须是有效的 HTTP 或 HTTPS 地址（如 https://google.com）</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">必须是有效的 HTTP 或 HTTPS 地址（如 http://192.168.1.100 或 https://google.com）</string>
     <string name="no_provider">无服务商</string>
     <string name="providers">提供商</string>
     <string name="add_provider_action">添加</string>
@@ -121,6 +121,11 @@
     <string name="stop_playback_on_task_removed_summary">当应用从最近任务中清除时停止播放</string>
     <string name="skip_silence">跳过无声片段</string>
     <string name="skip_silence_summary">播放音频时跳过无声片段</string>
+    <string name="reset_local_stats">重置本地媒体播放统计</string>
+    <string name="reset_local_stats_confirm_title">重置本地统计</string>
+    <string name="reset_local_stats_confirm_message">您确定要重置所有本地媒体播放统计？此操作无法撤消。</string>
+    <string name="reset_local_stats_confirm_positive">重置</string>
+    <string name="reset_local_stats_success">本地媒体播放统计已被重置</string>
     <string name="split_local_devices">拆分本地设备</string>
     <string name="split_local_devices_summary">如果启用此功能，内部存储和外部存储（例如SD卡、USB设备等）将会出现在不同的服务商下</string>
     <string name="now_playing_widget_description">正在播放</string>
@@ -149,6 +154,7 @@
     <string name="content_description_play_pause">播放/暂停</string>
     <string name="content_description_thumbnail">缩略图</string>
     <string name="play_all">播放全部</string>
+    <string name="shuffle_play">随机播放</string>
     <string name="library_item_no_permissions">无权限</string>
     <string name="library_item_no_permissions_description">应用没有必要的权限</string>
     <string name="library_item_albums">专辑</string>
@@ -157,4 +163,19 @@
     <string name="library_item_playlists">播放列表</string>
     <string name="library_item_change_provider">更改内容服务商</string>
     <string name="library_item_provider_changed">服务商已更改，将返回主菜单</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="unknown">未知</string>
+    <string name="local_volume_name">存储卷名称</string>
+    <string name="subsonic_version">Subsonic 版本 </string>
+    <string name="subsonic_server_type">服务器类型</string>
+    <string name="subsonic_server_version">服务器版本</string>
+    <string name="subsonic_supports_opensubsonic">支持 OpenSubsonic 扩展</string>
+    <string name="subsonic_license">许可证 </string>
+    <string name="subsonic_license_valid">有效</string>
+    <string name="subsonic_license_invalid">无效</string>
+    <string name="jellyfin_server_name">服务器名</string>
+    <string name="jellyfin_version">版本</string>
+    <string name="jellyfin_product_name">产品名称</string>
+    <string name="jellyfin_operating_system">操作系统</string>
 </resources>

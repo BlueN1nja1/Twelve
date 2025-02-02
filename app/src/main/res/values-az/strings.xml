@@ -31,7 +31,6 @@
     <string name="no_playlists">Pleylist yoxdur</string>
     <string name="no_audios">Səs yoxdur</string>
     <string name="no_results">Nəticə yoxdur</string>
-    <string name="unknown">Bilinmir</string>
     <string name="album_unknown">Bilinməyən albom</string>
     <string name="artist_unknown">Bilinməyən sənətçi</string>
     <string name="genre_unknown">Bilinməyən janr</string>
@@ -58,6 +57,7 @@
     <string name="rename_playlist_positive">Yenidən adlandır</string>
     <string name="delete_playlist">Pleylisti sil</string>
     <string name="delete_playlist_message">Bu pleylisti silmək istədiyinizə əminsiniz?</string>
+    <string name="audio_information">Səs məlumatları</string>
     <string name="audio_effects">Səs effektləri</string>
     <string name="playback_speed">Oxutma sürəti</string>
     <string name="playback_speed_format">%1$s×</string>
@@ -96,7 +96,7 @@
     <string name="provider_argument_password">Parol</string>
     <string name="provider_argument_use_legacy_authentication">Köhnə kimlik doğrulamanı istifadə et</string>
     <string name="provider_argument_validation_error_required">Bir dəyər tələb olunur</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Yararlı bir HTTP və ya HTTPS URL olmalıdır (məsələn https://google.com)</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Yararlı bir HTTP və ya HTTPS URL olmalıdır (məsələn, http://192.168.1.100 və ya https://google.com)</string>
     <string name="no_provider">Provayder yoxdur</string>
     <string name="providers">Provayderlər</string>
     <string name="add_provider_action">Əlavə et</string>
@@ -117,11 +117,17 @@
     <string name="experimental_header">Təcrübi</string>
     <string name="enable_offload">Offload-ı fəallaşdır</string>
     <string name="enable_offload_summary">Səs oxutma üçün offload audio path-ını istifadə edin. Bunu sıradan çıxartmaq, enerji istifadəsini artıra bilər, ancaq səs oxutma və ya son proseslə bağlı problemlə üzləşdikdə faydalı ola bilər</string>
+    <string name="enable_float_output">32-bit üzən nöqtə çıxışını fəallaşdır</string>
     <string name="enable_float_output_summary">Səs keyfiyyətindən faydalanmaq mümkün olduqda 32-bit PCM floating point output-u istifadə et. Sürət və ucalıq kontrolları kimi səs effektləri bu rejimdə çalışmağı dayandıracaq. Bu seçimi açmaq, tətbiqin yenidən başladılmasını tələb edir</string>
     <string name="stop_playback_on_task_removed">Tətbiq sonunculardan silindikdə oxutmanı dayandır</string>
     <string name="stop_playback_on_task_removed_summary">Tətbiq son tətbiqlərdən təmizləndikdə oxutmanı dayandır</string>
     <string name="skip_silence">Səssizliyi ötür</string>
     <string name="skip_silence_summary">Səs oxudularkən səssizliyi ötür</string>
+    <string name="reset_local_stats">Lokal media oxutma statistikalarını sıfırla</string>
+    <string name="reset_local_stats_confirm_title">Lokal statistikaları sıfırla</string>
+    <string name="reset_local_stats_confirm_message">Bütün lokal media oxutma statistikalarını sıfırlamaq istədiyinizə əminsiniz? Bu əməliyyatın geri dönüşü yoxdur.</string>
+    <string name="reset_local_stats_confirm_positive">Sıfırla</string>
+    <string name="reset_local_stats_success">Lokal media oxutma statistikaları sıfırlandı</string>
     <string name="split_local_devices">Daxili cihazları ayır</string>
     <string name="split_local_devices_summary">Fəal olduqda, daxili anbar və xarici cihazlar (SD kart, USB cihazları və s.) fərqli provayderlər altında görünəcək</string>
     <string name="now_playing_widget_description">İndi oxudulur</string>
@@ -150,6 +156,7 @@
     <string name="content_description_play_pause">Oxut/fasilə ver</string>
     <string name="content_description_thumbnail">Kiçik şəkil</string>
     <string name="play_all">Hamısını oxut</string>
+    <string name="shuffle_play">Qarışıq oxut</string>
     <string name="library_item_no_permissions">İcazə yoxdur</string>
     <string name="library_item_no_permissions_description">Tətbiqin lazımi icazələri yoxdur</string>
     <string name="library_item_albums">Albomlar</string>
@@ -158,4 +165,19 @@
     <string name="library_item_playlists">Pleylistlər</string>
     <string name="library_item_change_provider">Provayderi dəyişdir</string>
     <string name="library_item_provider_changed">Provayder dəyişdirildi, əsas menyuya qayıdın</string>
+    <string name="yes">Bəli</string>
+    <string name="no">Xeyr</string>
+    <string name="unknown">Bilinmir</string>
+    <string name="local_volume_name">Həcm adı</string>
+    <string name="subsonic_version">Subsonic versiya</string>
+    <string name="subsonic_server_type">Server növü</string>
+    <string name="subsonic_server_version">Server versiyası</string>
+    <string name="subsonic_supports_opensubsonic">OpenSubsonic uzantılarını dəstəkləyir</string>
+    <string name="subsonic_license">Lisenziya</string>
+    <string name="subsonic_license_valid">Yararlı</string>
+    <string name="subsonic_license_invalid">Yararsız</string>
+    <string name="jellyfin_server_name">Server adı</string>
+    <string name="jellyfin_version">Versiya</string>
+    <string name="jellyfin_product_name">Məhsul adı</string>
+    <string name="jellyfin_operating_system">Əməliyyat sistemi</string>
 </resources>

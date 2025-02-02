@@ -31,7 +31,6 @@
     <string name="no_playlists">Niciun playlist</string>
     <string name="no_audios">Niciun audio</string>
     <string name="no_results">Niciun rezultat</string>
-    <string name="unknown">Necunoscut</string>
     <string name="album_unknown">Album necunoscut</string>
     <string name="artist_unknown">Artist necunoscut</string>
     <string name="genre_unknown">Gen necunoscut</string>
@@ -60,6 +59,7 @@
     <string name="rename_playlist_positive">Redenumire</string>
     <string name="delete_playlist">Șterge playlist-ul</string>
     <string name="delete_playlist_message">Sunteți sigur că doriți să ștergeți acest playlist?</string>
+    <string name="audio_information">Informaţii audio</string>
     <string name="audio_effects">Efecte audio</string>
     <string name="playback_speed">Viteza de redare</string>
     <string name="playback_speed_format">%1$s×</string>
@@ -98,7 +98,7 @@
     <string name="provider_argument_password">Parolă</string>
     <string name="provider_argument_use_legacy_authentication">Folosește autentificarea legacy</string>
     <string name="provider_argument_validation_error_required">Este necesară o valoare</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Trebuie să fie un URL valid HTTP sau HTTPS (de ex. https://google.com)</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Trebuie să fie un URL valid HTTP sau HTTPS (de ex. http://192.168.1.100 sau https://google.com)</string>
     <string name="no_provider">Niciun furnizor</string>
     <string name="providers">Furnizori</string>
     <string name="add_provider_action">Adaugă</string>
@@ -125,6 +125,11 @@
     <string name="stop_playback_on_task_removed_summary">Oprește redarea atunci când aplicația este ștearsă din recente</string>
     <string name="skip_silence">Omite tăcerea</string>
     <string name="skip_silence_summary">Omite tăcerea la redarea audio</string>
+    <string name="reset_local_stats">Resetează statisticile locale ale redării media</string>
+    <string name="reset_local_stats_confirm_title">Resetare statistici locale</string>
+    <string name="reset_local_stats_confirm_message">Sunteți sigur(ă) că vreți să resetați toate statisticile redării media locale? Această acțiune nu poate fi anulată.</string>
+    <string name="reset_local_stats_confirm_positive">Resetare</string>
+    <string name="reset_local_stats_success">Statisticile locale ale redării media au fost resetate</string>
     <string name="split_local_devices">Împarte dispozitivele locale</string>
     <string name="split_local_devices_summary">Dacă este activat, stocarea internă și dispozitivele externe (cardurile SD, dispozitivele USB etc.) vor apărea la diferiți furnizori</string>
     <string name="now_playing_widget_description">Se redă acum</string>
@@ -153,6 +158,7 @@
     <string name="content_description_play_pause">Redă/pauză</string>
     <string name="content_description_thumbnail">Thumbnail</string>
     <string name="play_all">Redă tot</string>
+    <string name="shuffle_play">Redare amestecată</string>
     <string name="library_item_no_permissions">Fără permisiuni</string>
     <string name="library_item_no_permissions_description">Aplicația nu are permisiunile necesare</string>
     <string name="library_item_albums">Albume</string>
@@ -161,4 +167,19 @@
     <string name="library_item_playlists">Liste de redare</string>
     <string name="library_item_change_provider">Schimbare furnizor</string>
     <string name="library_item_provider_changed">Furnizor modificat, mergeți înapoi la meniul principal</string>
+    <string name="yes">Da</string>
+    <string name="no">Nu</string>
+    <string name="unknown">Necunoscut</string>
+    <string name="local_volume_name">Denumire volum</string>
+    <string name="subsonic_version">Versiune subsonică</string>
+    <string name="subsonic_server_type">Tip server</string>
+    <string name="subsonic_server_version">Versiune server</string>
+    <string name="subsonic_supports_opensubsonic">Suportă extensii OpenSubsonic</string>
+    <string name="subsonic_license">Licenţă</string>
+    <string name="subsonic_license_valid">Validă</string>
+    <string name="subsonic_license_invalid">Invalidă</string>
+    <string name="jellyfin_server_name">Nume server</string>
+    <string name="jellyfin_version">Versiune</string>
+    <string name="jellyfin_product_name">Nume produs</string>
+    <string name="jellyfin_operating_system">Sistem de operare</string>
 </resources>

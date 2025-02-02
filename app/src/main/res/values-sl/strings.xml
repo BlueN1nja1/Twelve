@@ -31,7 +31,6 @@
     <string name="no_playlists">Ni seznamov predvajanja</string>
     <string name="no_audios">Ni zvočnih posnetkov</string>
     <string name="no_results">Ni rezultatov</string>
-    <string name="unknown">Neznano</string>
     <string name="album_unknown">Neznan album</string>
     <string name="artist_unknown">Neznan izvajalec</string>
     <string name="genre_unknown">Neznana zvrst</string>
@@ -62,6 +61,7 @@
     <string name="rename_playlist_positive">Preimenuj</string>
     <string name="delete_playlist">Izbriši seznam predvajanja</string>
     <string name="delete_playlist_message">Ali ste prepričani, da želite izbrisati ta seznam predvajanja?</string>
+    <string name="audio_information">Zvočni podatki</string>
     <string name="audio_effects">Zvočni učinki</string>
     <string name="playback_speed">Hitrost predvajanja</string>
     <string name="playback_speed_format">%1$s×</string>
@@ -100,7 +100,7 @@
     <string name="provider_argument_password">Geslo</string>
     <string name="provider_argument_use_legacy_authentication">Uporabi stari sistem preverjena pristnosti</string>
     <string name="provider_argument_validation_error_required">Vrednost je zahtevana</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Mora biti veljaven HTTP ali HTTPS URL (npr. https://google.com)</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Mora biti veljaven HTTP ali HTTPS URL (npr. http://192.168.1.100 ali https://google.com)</string>
     <string name="no_provider">Ni ponudnika</string>
     <string name="providers">Ponudniki</string>
     <string name="add_provider_action">Dodaj</string>
@@ -127,6 +127,11 @@
     <string name="stop_playback_on_task_removed_summary">Ustavi predvajanje, ko je aplikacija počiščena iz nedavnih</string>
     <string name="skip_silence">Preskoči tišino</string>
     <string name="skip_silence_summary">Preskoči tišino med predvajanjem zvoka</string>
+    <string name="reset_local_stats">Ponastavi predvajalne statistike lokalnih predstavnosti</string>
+    <string name="reset_local_stats_confirm_title">Ponastavi lokalne statistike</string>
+    <string name="reset_local_stats_confirm_message">Ali ste prepričani, da želite ponastaviti predvajalne statistike lokalnih predstavnosti? Tega dejanja ni mogoče razveljaviti.</string>
+    <string name="reset_local_stats_confirm_positive">Ponastavi</string>
+    <string name="reset_local_stats_success">Predvajalne statistike lokalnih predstavnosti so bile ponastavljene</string>
     <string name="split_local_devices">Razdeli lokalne naprave</string>
     <string name="split_local_devices_summary">Če je omogočeno, se bodo notranji pomnilnik in zunanje naprave (kartica SD, naprave USB, itd.) prikazali pod različnimi ponudniki.</string>
     <string name="now_playing_widget_description">Predvaja se</string>
@@ -155,6 +160,7 @@
     <string name="content_description_play_pause">Predvajaj/premor</string>
     <string name="content_description_thumbnail">Sličica</string>
     <string name="play_all">Predvajaj vse</string>
+    <string name="shuffle_play">Premešano predvajanje</string>
     <string name="library_item_no_permissions">Ni dovoljenj</string>
     <string name="library_item_no_permissions_description">Ta aplikacija nima potrebnih dovoljenj</string>
     <string name="library_item_albums">Albumi</string>
@@ -163,4 +169,19 @@
     <string name="library_item_playlists">Seznami predvajanja</string>
     <string name="library_item_change_provider">Spremeni ponudnika</string>
     <string name="library_item_provider_changed">Ponudnik spremenjen, pojdite nazaj v glavni meni</string>
+    <string name="yes">Da</string>
+    <string name="no">Ne</string>
+    <string name="unknown">Neznano</string>
+    <string name="local_volume_name">Ime glasnosti</string>
+    <string name="subsonic_version">Subsonic različica</string>
+    <string name="subsonic_server_type">Vrsta strežnika</string>
+    <string name="subsonic_server_version">Različica strežnika</string>
+    <string name="subsonic_supports_opensubsonic">Podpira OpenSubsonic razširitve</string>
+    <string name="subsonic_license">Licenca</string>
+    <string name="subsonic_license_valid">Veljavna</string>
+    <string name="subsonic_license_invalid">Neveljavna</string>
+    <string name="jellyfin_server_name">Ime strežnika</string>
+    <string name="jellyfin_version">Različica</string>
+    <string name="jellyfin_product_name">Ime izdelka</string>
+    <string name="jellyfin_operating_system">Operacijski sistem</string>
 </resources>

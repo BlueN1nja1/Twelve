@@ -31,7 +31,6 @@
     <string name="no_playlists">Nenhuma playlist</string>
     <string name="no_audios">Nenhum áudio</string>
     <string name="no_results">Nenhum resultado</string>
-    <string name="unknown">Desconhecido</string>
     <string name="album_unknown">Álbum desconhecido</string>
     <string name="artist_unknown">Artista desconhecido</string>
     <string name="genre_unknown">Gênero desconhecido</string>
@@ -58,6 +57,7 @@
     <string name="rename_playlist_positive">Renomear</string>
     <string name="delete_playlist">Excluir playlist</string>
     <string name="delete_playlist_message">Tem certeza que deseja excluir esta playlist?</string>
+    <string name="audio_information">Informações de áudio</string>
     <string name="audio_effects">Efeitos de áudio</string>
     <string name="playback_speed">Velocidade de reprodução</string>
     <string name="playback_speed_format">%1$s×</string>
@@ -96,7 +96,6 @@
     <string name="provider_argument_password">Senha</string>
     <string name="provider_argument_use_legacy_authentication">Usar autenticação legada</string>
     <string name="provider_argument_validation_error_required">É necessário um valor</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Deve ser uma URL HTTP ou HTTPS válida (por exemplo, https://google.com)</string>
     <string name="no_provider">Sem provedores</string>
     <string name="providers">Provedores</string>
     <string name="add_provider_action">Adicionar</string>
@@ -151,6 +150,7 @@
     <string name="content_description_play_pause">Tocar/pausar</string>
     <string name="content_description_thumbnail">Miniatura</string>
     <string name="play_all">Tocar tudo</string>
+    <string name="shuffle_play">Reprodução aleatória</string>
     <string name="library_item_no_permissions">Sem permissões</string>
     <string name="library_item_no_permissions_description">O app não tem as permissões necessárias</string>
     <string name="library_item_albums">Álbuns</string>
@@ -159,4 +159,19 @@
     <string name="library_item_playlists">Playlists</string>
     <string name="library_item_change_provider">Alterar provedor</string>
     <string name="library_item_provider_changed">Provedor alterado, volte ao menu principal</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+    <string name="unknown">Desconhecido</string>
+    <string name="local_volume_name">Nome do volume</string>
+    <string name="subsonic_version">Versão do Subsonic</string>
+    <string name="subsonic_server_type">Tipo de servidor</string>
+    <string name="subsonic_server_version">Versão do servidor</string>
+    <string name="subsonic_supports_opensubsonic">Suporta extensões OpenSubsonic</string>
+    <string name="subsonic_license">Licença</string>
+    <string name="subsonic_license_valid">Válida</string>
+    <string name="subsonic_license_invalid">Inválida</string>
+    <string name="jellyfin_server_name">Nome do servidor</string>
+    <string name="jellyfin_version">Versão</string>
+    <string name="jellyfin_product_name">Nome de produto</string>
+    <string name="jellyfin_operating_system">Sistema operacional</string>
 </resources>

@@ -30,7 +30,6 @@
     <string name="no_playlists">Нет плейлистов</string>
     <string name="no_audios">Нет аудиозаписей</string>
     <string name="no_results">Результатов нет</string>
-    <string name="unknown">Неизвестно</string>
     <string name="album_unknown">Неизвестный альбом</string>
     <string name="artist_unknown">Неизвестный исполнитель</string>
     <string name="genre_unknown">Неизвестный жанр</string>
@@ -96,7 +95,6 @@
     <string name="provider_argument_password">Пароль</string>
     <string name="provider_argument_use_legacy_authentication">Использовать устаревшую аутентификацию</string>
     <string name="provider_argument_validation_error_required">Требуется значение</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Должен быть действительный URL (например, https://google.com)</string>
     <string name="providers">Поставщики</string>
     <string name="add_provider_action">Добавить</string>
     <string name="add_provider">Добавить провайдера</string>
@@ -145,6 +143,7 @@
     <string name="content_description_play_pause">Воспроизведение/пауза</string>
     <string name="content_description_thumbnail">Обложка</string>
     <string name="play_all">Воспроизвести все</string>
+    <string name="shuffle_play">Перемешать</string>
     <string name="library_item_no_permissions">Нет разрешений</string>
     <string name="library_item_no_permissions_description">Приложение не имеет необходимых разрешений</string>
     <string name="library_item_albums">Альбомы</string>
@@ -152,4 +151,17 @@
     <string name="library_item_genres">Жанры</string>
     <string name="library_item_playlists">Плейлисты</string>
     <string name="library_item_provider_changed">Поставщик изменен, вернуться в главное меню</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="unknown">Неизвестно</string>
+    <string name="local_volume_name">Название тома</string>
+    <string name="subsonic_server_type">Тип сервера</string>
+    <string name="subsonic_server_version">Версия сервера</string>
+    <string name="subsonic_license">Лицензия</string>
+    <string name="subsonic_license_valid">Действительна</string>
+    <string name="subsonic_license_invalid">Недействительна</string>
+    <string name="jellyfin_server_name">Имя сервера</string>
+    <string name="jellyfin_version">Версия</string>
+    <string name="jellyfin_product_name">Название продукта</string>
+    <string name="jellyfin_operating_system">Операционная система</string>
 </resources>

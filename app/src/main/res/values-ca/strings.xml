@@ -31,7 +31,6 @@
     <string name="no_playlists">No hi ha llistes de reproducció</string>
     <string name="no_audios">No hi ha àudios</string>
     <string name="no_results">No hi ha resultats</string>
-    <string name="unknown">Desconegut</string>
     <string name="album_unknown">Àlbum desconegut</string>
     <string name="artist_unknown">Artista desconegut</string>
     <string name="genre_unknown">Gènere desconegut</string>
@@ -58,6 +57,7 @@
     <string name="rename_playlist_positive">Canvia el nom</string>
     <string name="delete_playlist">Suprimeix la llista de reproducció</string>
     <string name="delete_playlist_message">Esteu segur que voleu suprimir aquesta llista de reproducció?</string>
+    <string name="audio_information">Informació d’àudio</string>
     <string name="audio_effects">Efectes d\'àudio</string>
     <string name="playback_speed">Velocitat de reproducció</string>
     <string name="playback_speed_format">%1$s×</string>
@@ -96,7 +96,7 @@
     <string name="provider_argument_password">Contrasenya</string>
     <string name="provider_argument_use_legacy_authentication">Fes servir l\'autenticació heretada</string>
     <string name="provider_argument_validation_error_required">Cal un valor</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Ha de ser un URL HTTP o HTTPS vàlid (p. ex., https://google.com)</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Cal que sigui una URL HTTP o HTTPS vàlida (p. ex., http://192.168.1.100 o https://google.com)</string>
     <string name="no_provider">Sense proveïdors</string>
     <string name="providers">Proveïdors</string>
     <string name="add_provider_action">Afegeix</string>
@@ -121,6 +121,11 @@
     <string name="enable_float_output_summary">Utilitza la sortida de coma flotant PCM de 32 bits quan la qualitat d\'àudio se\'n pugui beneficiar. Els efectes d\'àudio com els controls de velocitat i to deixaran de funcionar en aquest mode. Commutar aquesta opció requereix reiniciar l\'aplicació</string>
     <string name="stop_playback_on_task_removed">Atura la reproducció quan l\'aplicació s\'elimina dels recents</string>
     <string name="stop_playback_on_task_removed_summary">Atura la reproducció quan l\'aplicació s\'esborra dels recents</string>
+    <string name="reset_local_stats">Restableix les estadístiques de reproducció de mitjans locals</string>
+    <string name="reset_local_stats_confirm_title">Restableix les estadístiques locals</string>
+    <string name="reset_local_stats_confirm_message">Esteu segur que voleu restablir totes les estadístiques de reproducció de mitjans locals? Aquesta acció no es pot desfer.</string>
+    <string name="reset_local_stats_confirm_positive">Reestableix</string>
+    <string name="reset_local_stats_success">S\'han restablert les estadístiques de reproducció de mitjans locals</string>
     <string name="split_local_devices">Divideix els dispositius locals</string>
     <string name="split_local_devices_summary">En activar-se, l\'emmagatzematge intern i els dispositius externs (targetes SD, dispositius USB, etc.) apareixeran amb diferents proveïdors.</string>
     <string name="now_playing_widget_description">Reproducció en curs</string>
@@ -149,6 +154,7 @@
     <string name="content_description_play_pause">Reprodueix/Pausa</string>
     <string name="content_description_thumbnail">Vista prèvia</string>
     <string name="play_all">Reprodueix-ho tot</string>
+    <string name="shuffle_play">Reproducció aleatòria</string>
     <string name="library_item_no_permissions">Sense permisos</string>
     <string name="library_item_no_permissions_description">L\'aplicació no té els permisos necessaris</string>
     <string name="library_item_albums">Àlbums</string>
@@ -157,4 +163,19 @@
     <string name="library_item_playlists">Llistes de reproducció</string>
     <string name="library_item_change_provider">Canvia de proveïdor</string>
     <string name="library_item_provider_changed">S\'ha canviat de proveïdor, torneu al menú principal</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="unknown">Desconegut</string>
+    <string name="local_volume_name">Nom del volum</string>
+    <string name="subsonic_version">Versió del Subsonic</string>
+    <string name="subsonic_server_type">Tipus de servidor</string>
+    <string name="subsonic_server_version">Versió del servidor</string>
+    <string name="subsonic_supports_opensubsonic">Compatible amb extensions de l\'OpenSubsonic</string>
+    <string name="subsonic_license">Llicència</string>
+    <string name="subsonic_license_valid">Vàlida</string>
+    <string name="subsonic_license_invalid">No vàlida</string>
+    <string name="jellyfin_server_name">Nom del servidor</string>
+    <string name="jellyfin_version">Versió</string>
+    <string name="jellyfin_product_name">Nom del producte</string>
+    <string name="jellyfin_operating_system">Sistema operatiu</string>
 </resources>

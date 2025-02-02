@@ -73,7 +73,6 @@
     <string name="provider_argument_password">Lykilorð</string>
     <string name="provider_argument_use_legacy_authentication">Nota eldri auðkenningu</string>
     <string name="provider_argument_validation_error_required">Gildi er nauðsynlegt</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Verður að vera gild HTTP eða HTTPS URL-slóð (t.d. https://google.com)</string>
     <string name="providers">Þjónustuveitur</string>
     <string name="add_provider_action">Bæta við</string>
     <string name="add_provider">Bæta við þjónustu</string>

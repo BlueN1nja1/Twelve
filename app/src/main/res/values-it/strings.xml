@@ -31,7 +31,6 @@
     <string name="no_playlists">Nessuna playlist</string>
     <string name="no_audios">Nessun audio</string>
     <string name="no_results">Nessun risultato</string>
-    <string name="unknown">Sconosciuto</string>
     <string name="album_unknown">Album sconosciuto</string>
     <string name="artist_unknown">Artista sconosciuto</string>
     <string name="genre_unknown">Genere sconosciuto</string>
@@ -58,6 +57,7 @@
     <string name="rename_playlist_positive">Rinomina</string>
     <string name="delete_playlist">Elimina playlist</string>
     <string name="delete_playlist_message">Sei sicuro di voler eliminare questa playlist?</string>
+    <string name="audio_information">Informazioni audio</string>
     <string name="audio_effects">Effetti audio</string>
     <string name="playback_speed">Velocità di riproduzione</string>
     <string name="playback_speed_format">%1$s×</string>
@@ -96,7 +96,7 @@
     <string name="provider_argument_password">Password</string>
     <string name="provider_argument_use_legacy_authentication">Usa autenticazione obsoleta</string>
     <string name="provider_argument_validation_error_required">È richiesto un valore</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Deve essere un URL HTTP o HTTPS valido (ad es. https://google.com)</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Deve essere un URL HTTP o HTTPS valido (ad es. http://192.168.1.100 o https://google.com)</string>
     <string name="no_provider">Nessun provider</string>
     <string name="providers">Provider</string>
     <string name="add_provider_action">Aggiungi</string>
@@ -123,6 +123,11 @@
     <string name="stop_playback_on_task_removed_summary">Interrompi la riproduzione quando l\'applicazione viene rimossa dalle app recenti</string>
     <string name="skip_silence">Salta i silenzi</string>
     <string name="skip_silence_summary">Salta i silenzi durante la riproduzione audio</string>
+    <string name="reset_local_stats">Cancella le statistiche della riproduzione multimediale locale</string>
+    <string name="reset_local_stats_confirm_title">Cancella le statistiche locali</string>
+    <string name="reset_local_stats_confirm_message">Sei sicuro di voler cacnellare tutte le statistiche della riproduzione multimediale locale? Questa azione è irreversibile.</string>
+    <string name="reset_local_stats_confirm_positive">Cancella</string>
+    <string name="reset_local_stats_success">Le statistiche della riproduzione multimediale locale sono state cancellate</string>
     <string name="split_local_devices">Dividi dispositivi locali</string>
     <string name="split_local_devices_summary">Se abilitato, la memoria interna e i dispositivi di archiviazione esterni (schede SD, dispositivi USB, ecc.) appariranno sotto diversi provider</string>
     <string name="now_playing_widget_description">In riproduzione</string>
@@ -151,6 +156,7 @@
     <string name="content_description_play_pause">Riproduci/metti in pausa</string>
     <string name="content_description_thumbnail">Miniatura</string>
     <string name="play_all">Riproduci tutto</string>
+    <string name="shuffle_play">Riproduzione casuale</string>
     <string name="library_item_no_permissions">Nessuna autorizzazione</string>
     <string name="library_item_no_permissions_description">L\'app non ha le autorizzazioni necessarie</string>
     <string name="library_item_albums">Album</string>
@@ -159,4 +165,19 @@
     <string name="library_item_playlists">Playlist</string>
     <string name="library_item_change_provider">Cambia provider</string>
     <string name="library_item_provider_changed">Provider modificato, torna al menu principale</string>
+    <string name="yes">Sì</string>
+    <string name="no">No</string>
+    <string name="unknown">Sconosciuto</string>
+    <string name="local_volume_name">Nome del volume</string>
+    <string name="subsonic_version">Versione di Subsonic</string>
+    <string name="subsonic_server_type">Tipo di server</string>
+    <string name="subsonic_server_version">Versione del server</string>
+    <string name="subsonic_supports_opensubsonic">Supporta le estensioni OpenSubsonic</string>
+    <string name="subsonic_license">Licenza</string>
+    <string name="subsonic_license_valid">Valida</string>
+    <string name="subsonic_license_invalid">Non valida</string>
+    <string name="jellyfin_server_name">Nome del server</string>
+    <string name="jellyfin_version">Versione</string>
+    <string name="jellyfin_product_name">Nome del prodotto</string>
+    <string name="jellyfin_operating_system">Sistema operativo</string>
 </resources>

@@ -30,7 +30,6 @@
     <string name="no_playlists">Nuk ka asnjë list</string>
     <string name="no_audios">Nuk ka asnjë audio</string>
     <string name="no_results">Nuk ka resultate.</string>
-    <string name="unknown">I panjohur</string>
     <string name="album_unknown">Album i panjohur</string>
     <string name="artist_unknown">Artist i panjohur</string>
     <string name="genre_unknown">Zhanër i panjohur</string>
@@ -102,4 +101,5 @@
     <string name="content_description_play_pause">Luaj/Pauzo</string>
     <string name="content_description_thumbnail">Miniatura</string>
     <string name="play_all">Luaji të gjitha</string>
+    <string name="unknown">I panjohur</string>
 </resources>

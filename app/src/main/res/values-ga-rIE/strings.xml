@@ -31,7 +31,6 @@
     <string name="no_playlists">Gan seinmliostaí</string>
     <string name="no_audios">Uimh fuaime</string>
     <string name="no_results">Gan torthaí</string>
-    <string name="unknown">Anaithnid</string>
     <string name="album_unknown">Albam anaithnid</string>
     <string name="artist_unknown">Ealaíontóir anaithnid</string>
     <string name="genre_unknown">Seánra anaithnid</string>
@@ -64,6 +63,7 @@
     <string name="rename_playlist_positive">Athainmnigh</string>
     <string name="delete_playlist">Scrios seinmliosta</string>
     <string name="delete_playlist_message">An bhfuil tú cinnte gur mhaith leat an seinmliosta seo a scriosadh?</string>
+    <string name="audio_information">Fuaime faisnéise</string>
     <string name="audio_effects">Éifeachtaí fuaime</string>
     <string name="playback_speed">Luas athsheinm</string>
     <string name="playback_speed_format">%1$s×</string>
@@ -102,7 +102,7 @@
     <string name="provider_argument_password">Pasfhocal</string>
     <string name="provider_argument_use_legacy_authentication">Bain úsáid as fíordheimhniú oidhreachta</string>
     <string name="provider_argument_validation_error_required">Tá luach ag teastáil</string>
-    <string name="provider_argument_validation_error_malformed_http_uri">Ní mór gur URL bailí HTTP nó HTTPS é (m.sh. https://google.com)</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Ní mór gur URL bailí HTTP nó HTTPS é (m.sh. http://192.168.1.100 nó https://google.com)</string>
     <string name="no_provider">Gan soláthraí</string>
     <string name="providers">Soláthraithe</string>
     <string name="add_provider_action">Cuir</string>
@@ -129,6 +129,11 @@
     <string name="stop_playback_on_task_removed_summary">Cuir stop le hathsheinm nuair a bheidh an aip glanta ó na cinn is déanaí</string>
     <string name="skip_silence">Scip an ciúnas</string>
     <string name="skip_silence_summary">Scip an ciúnas agus fuaim á sheinm</string>
+    <string name="reset_local_stats">Athshocraigh staitisticí athsheinm na meán áitiúla</string>
+    <string name="reset_local_stats_confirm_title">Athshocraigh staitisticí áitiúla</string>
+    <string name="reset_local_stats_confirm_message">An bhfuil tú cinnte gur mian leat gach staidreamh athsheinm meán áitiúil a athshocrú? Ní féidir an gníomh seo a chealú.</string>
+    <string name="reset_local_stats_confirm_positive">Athshocraigh</string>
+    <string name="reset_local_stats_success">Athshocraigh staitisticí athsheinm na meán áitiúil</string>
     <string name="split_local_devices">Scoilt gléasanna áitiúla</string>
     <string name="split_local_devices_summary">Má tá sé cumasaithe, beidh stóráil inmheánach agus feistí seachtracha (cártaí SD, feistí USB, etc.) le feiceáil faoi sholáthraithe éagsúla</string>
     <string name="now_playing_widget_description">Anois ag imirt</string>
@@ -157,6 +162,7 @@
     <string name="content_description_play_pause">Amhráin randamach</string>
     <string name="content_description_thumbnail">Mionsamhla</string>
     <string name="play_all">Seinn ar fad</string>
+    <string name="shuffle_play">Suaitheadh Seinn</string>
     <string name="library_item_no_permissions">Gan ceadanna</string>
     <string name="library_item_no_permissions_description">Níl na ceadanna riachtanacha ag an aip</string>
     <string name="library_item_albums">Albaim</string>
@@ -165,4 +171,19 @@
     <string name="library_item_playlists">Seinmliostaí</string>
     <string name="library_item_change_provider">Athraigh soláthraí</string>
     <string name="library_item_provider_changed">Athraíodh an soláthraí, téigh ar ais go dtí an príomh-roghchlár</string>
+    <string name="yes">Tá</string>
+    <string name="no">Níl</string>
+    <string name="unknown">Anaithnid</string>
+    <string name="local_volume_name">Ainm toirte</string>
+    <string name="subsonic_version">Leagan subsonic</string>
+    <string name="subsonic_server_type">Cineál freastalaí</string>
+    <string name="subsonic_server_version">Leagan freastalaí</string>
+    <string name="subsonic_supports_opensubsonic">Tacaíonn síntí OpenSubsonic</string>
+    <string name="subsonic_license">Ceadúnas</string>
+    <string name="subsonic_license_valid">Bailí</string>
+    <string name="subsonic_license_invalid">Neamhbhailí</string>
+    <string name="jellyfin_server_name">Ainm freastalaí</string>
+    <string name="jellyfin_version">Leagan</string>
+    <string name="jellyfin_product_name">Ainm an táirge</string>
+    <string name="jellyfin_operating_system">Córas oibriúcháin</string>
 </resources>

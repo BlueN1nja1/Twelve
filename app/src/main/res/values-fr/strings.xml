@@ -16,7 +16,6 @@
     <string name="no_artists">Aucun artiste</string>
     <string name="no_audios">Aucun audio</string>
     <string name="no_results">Aucun résultat</string>
-    <string name="unknown">Inconnu</string>
     <string name="album_unknown">Album inconnu</string>
     <string name="artist_unknown">Artiste inconnu</string>
     <string name="genre_unknown">Style inconnu</string>
@@ -81,4 +80,5 @@
     <string name="activity_random_artists">Artistes aléatoires</string>
     <string name="play_all">Tout lire</string>
     <string name="library_item_no_permissions_description">L\'application n\'a pas les autorisations nécessaires</string>
+    <string name="unknown">Inconnu</string>
 </resources>
