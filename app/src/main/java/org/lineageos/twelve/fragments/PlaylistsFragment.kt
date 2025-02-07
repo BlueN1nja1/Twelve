@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -30,10 +30,8 @@ import org.lineageos.twelve.ext.setProgressCompat
 import org.lineageos.twelve.models.Playlist
 import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.models.SortingStrategy
-import org.lineageos.twelve.ui.dialogs.EditTextMaterialAlertDialogBuilder
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.recyclerview.UniqueItemDiffCallback
-import org.lineageos.twelve.ui.views.FullscreenLoadingProgressBar
 import org.lineageos.twelve.ui.views.ListItem
 import org.lineageos.twelve.ui.views.SortingChip
 import org.lineageos.twelve.utils.PermissionsChecker
@@ -49,7 +47,6 @@ class PlaylistsFragment : Fragment(R.layout.fragment_playlists) {
 
     // Views
     private val createNewPlaylistButton by getViewProperty<Button>(R.id.createNewPlaylistButton)
-    private val fullscreenLoadingProgressBar by getViewProperty<FullscreenLoadingProgressBar>(R.id.fullscreenLoadingProgressBar)
     private val linearProgressIndicator by getViewProperty<LinearProgressIndicator>(R.id.linearProgressIndicator)
     private val noElementsLinearLayout by getViewProperty<LinearLayout>(R.id.noElementsLinearLayout)
     private val recyclerView by getViewProperty<RecyclerView>(R.id.recyclerView)
@@ -65,7 +62,13 @@ class PlaylistsFragment : Fragment(R.layout.fragment_playlists) {
             view.setOnClickListener {
                 item?.let {
                     when (it === addNewPlaylistItem) {
-                        true -> openCreateNewPlaylistDialog()
+                        true -> findNavController().navigateSafe(
+                            R.id.action_mainFragment_to_fragment_create_playlist_dialog,
+                            CreatePlaylistDialogFragment.createBundle(
+                                providerIdentifier = viewModel.navigationProvider.value
+                            )
+                        )
+
                         false -> findNavController().navigateSafe(
                             R.id.action_mainFragment_to_fragment_playlist,
                             PlaylistFragment.createBundle(it.uri)
@@ -124,7 +127,12 @@ class PlaylistsFragment : Fragment(R.layout.fragment_playlists) {
         recyclerView.adapter = adapter
 
         createNewPlaylistButton.setOnClickListener {
-            openCreateNewPlaylistDialog()
+            findNavController().navigateSafe(
+                R.id.action_mainFragment_to_fragment_create_playlist_dialog,
+                CreatePlaylistDialogFragment.createBundle(
+                    providerIdentifier = viewModel.navigationProvider.value
+                )
+            )
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -192,20 +200,6 @@ class PlaylistsFragment : Fragment(R.layout.fragment_playlists) {
                 }
             }
         }
-    }
-
-    private fun openCreateNewPlaylistDialog() {
-        EditTextMaterialAlertDialogBuilder(requireContext())
-            .setPositiveButton(R.string.create_playlist_confirm) { text ->
-                viewLifecycleOwner.lifecycleScope.launch {
-                    fullscreenLoadingProgressBar.withProgress {
-                        viewModel.createPlaylist(text)
-                    }
-                }
-            }
-            .setTitle(R.string.create_playlist)
-            .setNegativeButton(android.R.string.cancel, null)
-            .show()
     }
 
     companion object {

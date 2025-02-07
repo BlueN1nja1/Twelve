@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.withContext
 import org.lineageos.twelve.ext.PLAYLISTS_SORTING_REVERSE_KEY
 import org.lineageos.twelve.ext.PLAYLISTS_SORTING_STRATEGY_KEY
 import org.lineageos.twelve.ext.playlistsSortingRule
@@ -23,6 +22,8 @@ import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.models.SortingRule
 
 class PlaylistsViewModel(application: Application) : TwelveViewModel(application) {
+    val navigationProvider = mediaRepository.navigationProvider
+
     val sortingRule = sharedPreferences.preferenceFlow(
         PLAYLISTS_SORTING_STRATEGY_KEY,
         PLAYLISTS_SORTING_REVERSE_KEY,
@@ -41,13 +42,5 @@ class PlaylistsViewModel(application: Application) : TwelveViewModel(application
 
     fun setSortingRule(sortingRule: SortingRule) {
         sharedPreferences.playlistsSortingRule = sortingRule
-    }
-
-    suspend fun createPlaylist(name: String) {
-        mediaRepository.navigationProvider.value?.let {
-            withContext(Dispatchers.IO) {
-                mediaRepository.createPlaylist(it, name)
-            }
-        }
     }
 }

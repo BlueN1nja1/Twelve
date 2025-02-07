@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,6 +13,16 @@
         android:id="@+id/addOrRemoveFromPlaylistsFragment"
         android:name="org.lineageos.twelve.fragments.AddOrRemoveFromPlaylistsFragment"
         android:label="@string/audio_add_or_remove_from_playlists"
-        tools:layout="@layout/fragment_add_or_remove_from_playlists" />
+        tools:layout="@layout/fragment_add_or_remove_from_playlists">
+
+        <action
+            android:id="@+id/action_addOrRemoveFromPlaylistsFragment_to_fragment_create_playlist_dialog"
+            app:destination="@+id/fragment_create_playlist_dialog"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+    </fragment>
 
 </navigation>

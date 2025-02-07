@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -31,7 +31,7 @@ enum class ProviderType(
      */
     LOCAL(
         R.string.provider_type_local,
-        R.drawable.ic_shelves,
+        R.drawable.ic_smartphone,
         listOf(),
     ),
 

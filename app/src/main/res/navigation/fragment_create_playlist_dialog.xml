@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_create_playlist_dialog"
+    app:startDestination="@id/createPlaylistDialogFragment">
+
+    <dialog
+        android:id="@+id/createPlaylistDialogFragment"
+        android:name="org.lineageos.twelve.fragments.CreatePlaylistDialogFragment"
+        android:label="@string/create_playlist"
+        tools:layout="@layout/fragment_create_playlist_dialog" />
+
+</navigation>

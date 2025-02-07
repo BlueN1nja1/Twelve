@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -46,6 +46,17 @@ class AddOrRemoveFromPlaylistsViewModel(application: Application) : TwelveViewMo
             viewModelScope,
             SharingStarted.WhileSubscribed(),
             RequestStatus.Loading()
+        )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val providerOfAudio = audioUri
+        .filterNotNull()
+        .flatMapLatest { mediaRepository.providerOfMediaItems(it) }
+        .flowOn(Dispatchers.IO)
+        .stateIn(
+            viewModelScope,
+            SharingStarted.Eagerly,
+            null
         )
 
     fun loadAudio(audioUri: Uri) {

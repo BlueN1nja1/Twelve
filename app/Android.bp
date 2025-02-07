@@ -36,6 +36,7 @@ android_app {
     ],
 
     kotlin_plugins: [
+        "kotlin-parcelize-compiler-plugin",
         "kotlin-serialize-compiler-plugin",
     ],
 
@@ -71,6 +72,7 @@ android_app {
         "Twelve_io.coil-kt.coil3_coil-core-android",
         "Twelve_io.coil-kt.coil3_coil-network-core-android",
         "Twelve_io.coil-kt.coil3_coil-network-okhttp",
+        "kotlin-parcelize-runtime",
         "kotlin-stdlib",
         "kotlinx_coroutines_guava",
         "kotlinx_serialization_json",
