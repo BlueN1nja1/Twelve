@@ -32,10 +32,12 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:padding="8dp"
             android:visibility="gone"
             app:spanCount="2"
             tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/item_album"
+            tools:listitem="@layout/item_media_item_grid"
             tools:visibility="visible" />
 
         <LinearLayout

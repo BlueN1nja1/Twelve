@@ -42,7 +42,9 @@
                     android:id="@+id/appearsInAlbumsRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clipToPadding="false"
                     android:orientation="horizontal"
+                    android:paddingHorizontal="8dp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="1" />
 
@@ -70,7 +72,9 @@
                     android:id="@+id/appearsInPlaylistsRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clipToPadding="false"
                     android:orientation="horizontal"
+                    android:paddingHorizontal="8dp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="1" />
 
@@ -98,7 +102,9 @@
                     android:id="@+id/audiosRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clipToPadding="false"
                     android:orientation="horizontal"
+                    android:paddingHorizontal="8dp"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="1" />
 

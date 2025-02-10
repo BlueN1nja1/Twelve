@@ -31,7 +31,7 @@ import org.lineageos.twelve.models.SortingStrategy
 import org.lineageos.twelve.ui.recyclerview.DisplayAwareGridLayoutManager
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.recyclerview.UniqueItemDiffCallback
-import org.lineageos.twelve.ui.views.AlbumsItem
+import org.lineageos.twelve.ui.views.MediaItemGridItem
 import org.lineageos.twelve.ui.views.SortingChip
 import org.lineageos.twelve.utils.PermissionsChecker
 import org.lineageos.twelve.utils.PermissionsUtils
@@ -52,33 +52,27 @@ class AlbumsFragment : Fragment(R.layout.fragment_albums) {
 
     // Recyclerview
     private val adapter by lazy {
-        object : SimpleListAdapter<Album, AlbumsItem>(
+        object : SimpleListAdapter<Album, MediaItemGridItem>(
             UniqueItemDiffCallback(),
-            ::AlbumsItem,
+            ::MediaItemGridItem,
         ) {
-            override fun ViewHolder.onPrepareView() {
+            override fun ViewHolder.onBindView(item: Album) {
                 view.setOnClickListener {
-                    item?.let {
-                        findNavController().navigateSafe(
-                            R.id.action_mainFragment_to_fragment_album,
-                            AlbumFragment.createBundle(it.uri)
-                        )
-                    }
+                    findNavController().navigateSafe(
+                        R.id.action_mainFragment_to_fragment_album,
+                        AlbumFragment.createBundle(item.uri)
+                    )
                 }
                 view.setOnLongClickListener {
-                    item?.let {
-                        findNavController().navigateSafe(
-                            R.id.action_mainFragment_to_fragment_media_item_bottom_sheet_dialog,
-                            MediaItemBottomSheetDialogFragment.createBundle(
-                                it.uri, it.mediaType,
-                            )
+                    findNavController().navigateSafe(
+                        R.id.action_mainFragment_to_fragment_media_item_bottom_sheet_dialog,
+                        MediaItemBottomSheetDialogFragment.createBundle(
+                            item.uri, item.mediaType,
                         )
-                        true
-                    } ?: false
+                    )
+                    true
                 }
-            }
 
-            override fun ViewHolder.onBindView(item: Album) {
                 view.setItem(item)
             }
         }

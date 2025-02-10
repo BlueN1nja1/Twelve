@@ -45,28 +45,24 @@ class ProviderSelectorDialogFragment : MaterialDialogFragment(
         ::ListItem,
     ) {
         override fun ViewHolder.onPrepareView() {
-            view.setOnClickListener {
-                item?.let {
-                    viewModel.setNavigationProvider(it)
-                    findNavController().navigateUp()
-                }
-            }
-
             view.setTrailingView(R.layout.provider_more_button)
-            view.trailingView?.setOnClickListener {
-                item?.let {
-                    findNavController().navigateSafe(
-                        R.id.action_providerSelectorDialogFragment_to_fragment_provider_information_bottom_sheet_dialog,
-                        ManageProviderFragment.createBundle(it.type, it.typeId),
-                        NavOptions.Builder()
-                            .setPopUpTo(R.id.mainFragment, false)
-                            .build(),
-                    )
-                }
-            }
         }
 
         override fun ViewHolder.onBindView(item: Provider) {
+            view.setOnClickListener {
+                viewModel.setNavigationProvider(item)
+                findNavController().navigateUp()
+            }
+            view.trailingView?.setOnClickListener {
+                findNavController().navigateSafe(
+                    R.id.action_providerSelectorDialogFragment_to_fragment_provider_information_bottom_sheet_dialog,
+                    ManageProviderFragment.createBundle(item.type, item.typeId),
+                    NavOptions.Builder()
+                        .setPopUpTo(R.id.mainFragment, false)
+                        .build(),
+                )
+            }
+
             view.setLeadingIconImage(item.type.iconDrawableResId)
             view.headlineText = item.name
             view.setSupportingText(item.type.nameStringResId)

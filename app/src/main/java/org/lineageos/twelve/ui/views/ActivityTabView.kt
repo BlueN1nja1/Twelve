@@ -29,16 +29,20 @@ class ActivityTabView(context: Context) : FrameLayout(context) {
     private val titleTextView by lazy { findViewById<TextView>(R.id.titleTextView) }
 
     // RecyclerView
-    private val adapter = object : SimpleListAdapter<MediaItem<*>, ActivityTabItem>(
+    private val adapter = object : SimpleListAdapter<MediaItem<*>, HorizontalMediaItemView>(
         mediaItemDiffCallback,
-        ::ActivityTabItem,
+        ::HorizontalMediaItemView,
     ) {
         override fun ViewHolder.onPrepareView() {
             view.setOnClickListener {
-                onItemClickListener(currentList, bindingAdapterPosition)
+                item?.let {
+                    onItemClickListener(it)
+                }
             }
             view.setOnLongClickListener {
-                onItemLongClickListener(currentList, bindingAdapterPosition)
+                item?.let {
+                    onItemLongClickListener(it)
+                } ?: false
             }
         }
 
@@ -48,10 +52,8 @@ class ActivityTabView(context: Context) : FrameLayout(context) {
     }
 
     // Callbacks
-    private var onItemClickListener: (items: List<MediaItem<*>>, position: Int) -> Unit =
-        { _, _ -> }
-    private var onItemLongClickListener: (items: List<MediaItem<*>>, position: Int) -> Boolean =
-        { _, _ -> false }
+    private var onItemClickListener: (item: MediaItem<*>) -> Unit = { _ -> }
+    private var onItemLongClickListener: (item: MediaItem<*>) -> Boolean = { _ -> false }
 
     init {
         inflate(context, R.layout.view_activity_tab, this)
@@ -59,14 +61,14 @@ class ActivityTabView(context: Context) : FrameLayout(context) {
         recyclerView.adapter = adapter
     }
 
-    fun setOnItemClickListener(listener: ((items: List<MediaItem<*>>, position: Int) -> Unit)?) {
-        onItemClickListener = listener ?: { _, _ -> }
+    fun setOnItemClickListener(listener: ((item: MediaItem<*>) -> Unit)?) {
+        onItemClickListener = listener ?: {}
     }
 
     fun setOnItemLongClickListener(
-        listener: ((items: List<MediaItem<*>>, position: Int) -> Boolean)?
+        listener: ((item: MediaItem<*>) -> Boolean)?
     ) {
-        onItemLongClickListener = listener ?: { _, _ -> false }
+        onItemLongClickListener = listener ?: { false }
     }
 
     fun setActivityTab(activityTab: ActivityTab) {

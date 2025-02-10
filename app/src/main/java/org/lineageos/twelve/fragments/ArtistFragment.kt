@@ -42,7 +42,7 @@ import org.lineageos.twelve.models.Playlist
 import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.recyclerview.UniqueItemDiffCallback
-import org.lineageos.twelve.ui.views.HorizontalListItem
+import org.lineageos.twelve.ui.views.HorizontalMediaItemView
 import org.lineageos.twelve.utils.PermissionsChecker
 import org.lineageos.twelve.utils.PermissionsUtils
 import org.lineageos.twelve.viewmodels.ArtistViewModel
@@ -71,76 +71,57 @@ class ArtistFragment : Fragment(R.layout.fragment_artist) {
 
     // Recyclerview
     private val createAlbumAdapter = {
-        object : SimpleListAdapter<Album, HorizontalListItem>(
+        object : SimpleListAdapter<Album, HorizontalMediaItemView>(
             UniqueItemDiffCallback(),
-            ::HorizontalListItem,
+            ::HorizontalMediaItemView,
         ) {
-            override fun ViewHolder.onPrepareView() {
+            override fun ViewHolder.onBindView(item: Album) {
                 view.setOnClickListener {
-                    item?.let {
-                        findNavController().navigateSafe(
-                            R.id.action_artistFragment_to_fragment_album,
-                            AlbumFragment.createBundle(it.uri)
-                        )
-                    }
+                    findNavController().navigateSafe(
+                        R.id.action_artistFragment_to_fragment_album,
+                        AlbumFragment.createBundle(item.uri)
+                    )
                 }
                 view.setOnLongClickListener {
-                    item?.let {
-                        findNavController().navigateSafe(
-                            R.id.action_artistFragment_to_fragment_media_item_bottom_sheet_dialog,
-                            MediaItemBottomSheetDialogFragment.createBundle(
-                                it.uri,
-                                it.mediaType,
-                                fromArtist = true,
-                            )
+                    findNavController().navigateSafe(
+                        R.id.action_artistFragment_to_fragment_media_item_bottom_sheet_dialog,
+                        MediaItemBottomSheetDialogFragment.createBundle(
+                            item.uri,
+                            item.mediaType,
+                            fromArtist = true,
                         )
-                        true
-                    }
-                    false
+                    )
+                    true
                 }
-            }
 
-            override fun ViewHolder.onBindView(item: Album) {
-                view.loadThumbnailImage(item.thumbnail, R.drawable.ic_album)
-
-                item.title?.also {
-                    view.headlineText = it
-                } ?: view.setHeadlineText(R.string.album_unknown)
-                view.headlineMaxLines = 2
-                view.supportingText = item.year?.toString()
+                view.setItem(item)
             }
         }
     }
     private val albumsAdapter by lazy { createAlbumAdapter() }
     private val appearsInAlbumAdapter by lazy { createAlbumAdapter() }
     private val appearsInPlaylistAdapter by lazy {
-        object : SimpleListAdapter<Playlist, HorizontalListItem>(
+        object : SimpleListAdapter<Playlist, HorizontalMediaItemView>(
             UniqueItemDiffCallback(),
-            ::HorizontalListItem,
+            ::HorizontalMediaItemView,
         ) {
-            override fun ViewHolder.onPrepareView() {
-                view.setThumbnailImage(R.drawable.ic_playlist_play)
+            override fun ViewHolder.onBindView(item: Playlist) {
                 view.setOnClickListener {
                     // TODO
                 }
                 view.setOnLongClickListener {
-                    item?.let {
-                        findNavController().navigateSafe(
-                            R.id.action_albumFragment_to_fragment_media_item_bottom_sheet_dialog,
-                            MediaItemBottomSheetDialogFragment.createBundle(
-                                it.uri,
-                                it.mediaType,
-                                fromArtist = true,
-                            )
+                    findNavController().navigateSafe(
+                        R.id.action_albumFragment_to_fragment_media_item_bottom_sheet_dialog,
+                        MediaItemBottomSheetDialogFragment.createBundle(
+                            item.uri,
+                            item.mediaType,
+                            fromArtist = true,
                         )
-                        true
-                    }
-                    false
+                    )
+                    true
                 }
-            }
 
-            override fun ViewHolder.onBindView(item: Playlist) {
-                view.headlineText = item.name
+                view.setItem(item)
             }
         }
     }

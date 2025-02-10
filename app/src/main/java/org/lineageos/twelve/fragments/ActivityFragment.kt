@@ -56,47 +56,42 @@ class ActivityFragment : Fragment(R.layout.fragment_activity) {
             UniqueItemDiffCallback(),
             ::ActivityTabView,
         ) {
-            override fun ViewHolder.onPrepareView() {
-                view.setOnItemClickListener { items, position ->
-                    when (val item = items[position]) {
+            override fun ViewHolder.onBindView(item: ActivityTab) {
+                view.setOnItemClickListener { mediaItem ->
+                    when (mediaItem) {
                         is Album -> findNavController().navigateSafe(
                             R.id.action_mainFragment_to_fragment_album,
-                            AlbumFragment.createBundle(item.uri)
+                            AlbumFragment.createBundle(mediaItem.uri)
                         )
 
                         is Artist -> findNavController().navigateSafe(
                             R.id.action_mainFragment_to_fragment_artist,
-                            ArtistFragment.createBundle(item.uri)
+                            ArtistFragment.createBundle(mediaItem.uri)
                         )
 
-                        is Audio -> viewModel.playAudio(listOf(item), 0)
+                        is Audio -> viewModel.playAudio(listOf(mediaItem), 0)
 
                         is Genre -> findNavController().navigateSafe(
                             R.id.action_mainFragment_to_fragment_genre,
-                            GenreFragment.createBundle(item.uri)
+                            GenreFragment.createBundle(mediaItem.uri)
                         )
 
                         is Playlist -> findNavController().navigateSafe(
                             R.id.action_mainFragment_to_fragment_playlist,
-                            PlaylistFragment.createBundle(item.uri)
+                            PlaylistFragment.createBundle(mediaItem.uri)
                         )
                     }
                 }
-
-                view.setOnItemLongClickListener { items, position ->
-                    items[position].let {
-                        findNavController().navigateSafe(
-                            R.id.action_mainFragment_to_fragment_media_item_bottom_sheet_dialog,
-                            MediaItemBottomSheetDialogFragment.createBundle(
-                                it.uri, it.mediaType
-                            )
+                view.setOnItemLongClickListener { mediaItem ->
+                    findNavController().navigateSafe(
+                        R.id.action_mainFragment_to_fragment_media_item_bottom_sheet_dialog,
+                        MediaItemBottomSheetDialogFragment.createBundle(
+                            mediaItem.uri, mediaItem.mediaType
                         )
-                    }
+                    )
                     true
                 }
-            }
 
-            override fun ViewHolder.onBindView(item: ActivityTab) {
                 view.setActivityTab(item)
             }
         }

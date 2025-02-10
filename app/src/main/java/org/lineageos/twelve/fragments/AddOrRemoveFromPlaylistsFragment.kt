@@ -61,39 +61,35 @@ class AddOrRemoveFromPlaylistsFragment : Fragment(R.layout.fragment_add_or_remov
             diffCallback,
             ::ListItem,
         ) {
-            override fun ViewHolder.onPrepareView() {
-                view.setOnClickListener {
-                    item?.let {
-                        when (it === addNewPlaylistItem) {
-                            true -> findNavController().navigateSafe(
+            override fun ViewHolder.onBindView(item: Pair<Playlist, Boolean>) {
+                when (item === addNewPlaylistItem) {
+                    true -> {
+                        view.setOnClickListener {
+                            findNavController().navigateSafe(
                                 R.id.action_addOrRemoveFromPlaylistsFragment_to_fragment_create_playlist_dialog,
                                 CreatePlaylistDialogFragment.createBundle(
                                     providerIdentifier = viewModel.providerOfAudio.value,
                                 )
                             )
-
-                            false -> viewLifecycleOwner.lifecycleScope.launch {
-                                fullscreenLoadingProgressBar.withProgress {
-                                    when (it.second) {
-                                        true -> viewModel.removeFromPlaylist(it.first.uri)
-                                        false -> viewModel.addToPlaylist(it.first.uri)
-                                    }
-                                }
-                            }
                         }
-                    }
-                }
-            }
 
-            override fun ViewHolder.onBindView(item: Pair<Playlist, Boolean>) {
-                when (item === addNewPlaylistItem) {
-                    true -> {
                         view.setLeadingIconImage(R.drawable.ic_playlist_add)
                         view.setHeadlineText(R.string.create_playlist)
                         view.trailingIconImage = null
                     }
 
                     false -> {
+                        view.setOnClickListener {
+                            viewLifecycleOwner.lifecycleScope.launch {
+                                fullscreenLoadingProgressBar.withProgress {
+                                    when (item.second) {
+                                        true -> viewModel.removeFromPlaylist(item.first.uri)
+                                        false -> viewModel.addToPlaylist(item.first.uri)
+                                    }
+                                }
+                            }
+                        }
+
                         view.setLeadingIconImage(R.drawable.ic_playlist_play)
                         view.headlineText = item.first.name
                         view.setTrailingIconImage(

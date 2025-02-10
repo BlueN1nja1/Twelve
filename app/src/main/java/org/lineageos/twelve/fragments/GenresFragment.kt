@@ -57,28 +57,25 @@ class GenresFragment : Fragment(R.layout.fragment_genres) {
         ) {
             override fun ViewHolder.onPrepareView() {
                 view.setLeadingIconImage(R.drawable.ic_genres)
-                view.setOnClickListener {
-                    item?.let {
-                        findNavController().navigateSafe(
-                            R.id.action_mainFragment_to_fragment_genre,
-                            GenreFragment.createBundle(it.uri)
-                        )
-                    }
-                }
-                view.setOnLongClickListener {
-                    item?.let {
-                        findNavController().navigateSafe(
-                            R.id.action_mainFragment_to_fragment_media_item_bottom_sheet_dialog,
-                            MediaItemBottomSheetDialogFragment.createBundle(
-                                it.uri, it.mediaType,
-                            )
-                        )
-                        true
-                    } ?: false
-                }
             }
 
             override fun ViewHolder.onBindView(item: Genre) {
+                view.setOnClickListener {
+                    findNavController().navigateSafe(
+                        R.id.action_mainFragment_to_fragment_genre,
+                        GenreFragment.createBundle(item.uri)
+                    )
+                }
+                view.setOnLongClickListener {
+                    findNavController().navigateSafe(
+                        R.id.action_mainFragment_to_fragment_media_item_bottom_sheet_dialog,
+                        MediaItemBottomSheetDialogFragment.createBundle(
+                            item.uri, item.mediaType,
+                        )
+                    )
+                    true
+                }
+
                 item.name?.also {
                     view.headlineText = it
                 } ?: view.setHeadlineText(R.string.unknown)

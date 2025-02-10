@@ -39,7 +39,7 @@
             android:paddingHorizontal="12dp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="1"
-            tools:listitem="@layout/item_activity_tab" />
+            tools:listitem="@layout/horizontal_media_item_view" />
 
     </LinearLayout>
 

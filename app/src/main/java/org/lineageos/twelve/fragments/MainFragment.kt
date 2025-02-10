@@ -108,81 +108,80 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             searchDiffCallback,
             ::ListItem
         ) {
-            override fun ViewHolder.onPrepareView() {
-                view.setOnClickListener {
-                    item?.let {
-                        when (it) {
-                            is Album -> findNavController().navigateSafe(
-                                R.id.action_mainFragment_to_fragment_album,
-                                AlbumFragment.createBundle(it.uri)
-                            )
-
-                            is Artist -> findNavController().navigateSafe(
-                                R.id.action_mainFragment_to_fragment_artist,
-                                ArtistFragment.createBundle(it.uri)
-                            )
-
-                            is Audio -> findNavController().navigateSafe(
-                                R.id.action_mainFragment_to_fragment_media_item_bottom_sheet_dialog,
-                                MediaItemBottomSheetDialogFragment.createBundle(
-                                    it.uri, it.mediaType
-                                )
-                            )
-
-                            is Genre -> findNavController().navigateSafe(
-                                R.id.action_mainFragment_to_fragment_genre,
-                                GenreFragment.createBundle(it.uri)
-                            )
-
-                            is Playlist -> findNavController().navigateSafe(
-                                R.id.action_mainFragment_to_fragment_playlist,
-                                PlaylistFragment.createBundle(it.uri)
-                            )
-                        }
-                    }
-                }
-
-                view.setOnLongClickListener {
-                    item?.let {
-                        findNavController().navigateSafe(
-                            R.id.action_mainFragment_to_fragment_media_item_bottom_sheet_dialog,
-                            MediaItemBottomSheetDialogFragment.createBundle(
-                                it.uri, it.mediaType
-                            )
-                        )
-                        true
-                    }
-                    false
-                }
-            }
-
             override fun ViewHolder.onBindView(item: MediaItem<*>) {
+                view.setOnLongClickListener {
+                    findNavController().navigateSafe(
+                        R.id.action_mainFragment_to_fragment_media_item_bottom_sheet_dialog,
+                        MediaItemBottomSheetDialogFragment.createBundle(
+                            item.uri, item.mediaType
+                        )
+                    )
+                    true
+                }
+
                 when (item) {
                     is Album -> {
+                        view.setOnClickListener {
+                            findNavController().navigateSafe(
+                                R.id.action_mainFragment_to_fragment_album,
+                                AlbumFragment.createBundle(item.uri)
+                            )
+                        }
+
                         view.setTrailingIconImage(R.drawable.ic_album)
                         view.headlineText = item.title
                         view.supportingText = item.artistName
                     }
 
                     is Artist -> {
+                        view.setOnClickListener {
+                            findNavController().navigateSafe(
+                                R.id.action_mainFragment_to_fragment_artist,
+                                ArtistFragment.createBundle(item.uri)
+                            )
+                        }
+
                         view.setTrailingIconImage(R.drawable.ic_person)
                         view.headlineText = item.name
                         view.supportingText = null
                     }
 
                     is Audio -> {
+                        view.setOnClickListener {
+                            findNavController().navigateSafe(
+                                R.id.action_mainFragment_to_fragment_media_item_bottom_sheet_dialog,
+                                MediaItemBottomSheetDialogFragment.createBundle(
+                                    item.uri, item.mediaType
+                                )
+                            )
+                        }
+
                         view.setTrailingIconImage(R.drawable.ic_music_note)
                         view.headlineText = item.title
                         view.supportingText = item.artistName
                     }
 
                     is Genre -> {
+                        view.setOnClickListener {
+                            findNavController().navigateSafe(
+                                R.id.action_mainFragment_to_fragment_genre,
+                                GenreFragment.createBundle(item.uri)
+                            )
+                        }
+
                         view.setTrailingIconImage(R.drawable.ic_genres)
                         view.headlineText = item.name
                         view.supportingText = null
                     }
 
                     is Playlist -> {
+                        view.setOnClickListener {
+                            findNavController().navigateSafe(
+                                R.id.action_mainFragment_to_fragment_playlist,
+                                PlaylistFragment.createBundle(item.uri)
+                            )
+                        }
+
                         view.setTrailingIconImage(R.drawable.ic_playlist_play)
                         view.headlineText = item.name
                         view.supportingText = null

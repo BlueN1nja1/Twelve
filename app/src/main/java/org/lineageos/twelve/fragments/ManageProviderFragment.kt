@@ -80,23 +80,16 @@ class ManageProviderFragment : Fragment(R.layout.fragment_manage_provider) {
         private val ViewHolder.stringTextInputLayout
             get() = view.findViewById<TextInputLayout>(R.id.stringTextInputLayout)!!
 
-        override fun ViewHolder.onPrepareView() {
-            booleanCheckBox.setOnCheckedChangeListener { _, isChecked ->
-                item?.let {
-                    providerArguments.putBoolean(it.key, isChecked)
-                }
-            }
-
-            stringTextInputLayout.editText?.doAfterTextChanged { inputText ->
-                item?.let { item ->
-                    inputText.toString().takeIf { text -> text.isNotBlank() }?.also {
-                        providerArguments.putString(item.key, it)
-                    } ?: providerArguments.remove(item.key)
-                }
-            }
-        }
-
         override fun ViewHolder.onBindView(item: ProviderArgument<*>) {
+            booleanCheckBox.setOnCheckedChangeListener { _, isChecked ->
+                providerArguments.putBoolean(item.key, isChecked)
+            }
+            stringTextInputLayout.editText?.doAfterTextChanged { inputText ->
+                inputText.toString().takeIf { it.isNotBlank() }?.also {
+                    providerArguments.putString(item.key, it)
+                } ?: providerArguments.remove(item.key)
+            }
+
             booleanCheckBox.isVisible = false
             stringTextInputLayout.isVisible = false
 

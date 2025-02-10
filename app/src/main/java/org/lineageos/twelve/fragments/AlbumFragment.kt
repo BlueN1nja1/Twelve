@@ -89,39 +89,6 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
 
             override fun ViewHolder.onPrepareView() {
                 view.setLeadingView(R.layout.audio_track_index)
-
-                view.setOnClickListener {
-                    when (val item = item) {
-                        is AlbumViewModel.AlbumContent.AudioItem -> {
-                            viewModel.playAlbum(item.audio)
-
-                            findNavController().navigateSafe(
-                                R.id.action_albumFragment_to_fragment_now_playing
-                            )
-                        }
-
-                        else -> {}
-                    }
-                }
-
-                view.setOnLongClickListener {
-                    when (val item = item) {
-                        is AlbumViewModel.AlbumContent.AudioItem -> {
-                            findNavController().navigateSafe(
-                                R.id.action_albumFragment_to_fragment_media_item_bottom_sheet_dialog,
-                                MediaItemBottomSheetDialogFragment.createBundle(
-                                    item.audio.uri,
-                                    item.audio.mediaType,
-                                    fromAlbum = true,
-                                )
-                            )
-
-                            true
-                        }
-
-                        else -> false
-                    }
-                }
             }
 
             override fun ViewHolder.onBindView(item: AlbumViewModel.AlbumContent) {
@@ -140,6 +107,26 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
                     }
 
                     is AlbumViewModel.AlbumContent.AudioItem -> {
+                        view.setOnClickListener {
+                            viewModel.playAlbum(item.audio)
+
+                            findNavController().navigateSafe(
+                                R.id.action_albumFragment_to_fragment_now_playing
+                            )
+                        }
+                        view.setOnLongClickListener {
+                            findNavController().navigateSafe(
+                                R.id.action_albumFragment_to_fragment_media_item_bottom_sheet_dialog,
+                                MediaItemBottomSheetDialogFragment.createBundle(
+                                    item.audio.uri,
+                                    item.audio.mediaType,
+                                    fromAlbum = true,
+                                )
+                            )
+
+                            true
+                        }
+
                         item.audio.trackNumber?.also {
                             view.leadingIconImage = null
                             trackTextView.text = getString(

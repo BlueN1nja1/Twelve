@@ -15,12 +15,13 @@ import androidx.core.util.Consumer
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.fragments.AlbumFragment
 import org.lineageos.twelve.fragments.ArtistFragment
+import org.lineageos.twelve.fragments.GenreFragment
 import org.lineageos.twelve.fragments.PlaylistFragment
 import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.viewmodels.IntentsViewModel
@@ -60,7 +61,12 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                             }
 
                             IntentsViewModel.ParsedIntent.Action.OPEN_NOW_PLAYING -> {
-                                navController.navigateSafe(R.id.fragment_now_playing)
+                                navController.navigate(
+                                    R.id.fragment_now_playing,
+                                    NavOptions.Builder()
+                                        .setPopUpTo(R.id.fragment_main, false)
+                                        .build(),
+                                )
                             }
 
                             IntentsViewModel.ParsedIntent.Action.VIEW -> {
@@ -78,23 +84,38 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                                 val content = it.contents.first()
 
                                 when (content.type) {
-                                    MediaType.ALBUM -> navController.navigateSafe(
+                                    MediaType.ALBUM -> navController.navigate(
                                         R.id.fragment_album,
-                                        AlbumFragment.createBundle(content.uri)
+                                        AlbumFragment.createBundle(content.uri),
+                                        NavOptions.Builder()
+                                            .setPopUpTo(R.id.fragment_main, false)
+                                            .build(),
                                     )
 
-                                    MediaType.ARTIST -> navController.navigateSafe(
+                                    MediaType.ARTIST -> navController.navigate(
                                         R.id.fragment_artist,
-                                        ArtistFragment.createBundle(content.uri)
+                                        ArtistFragment.createBundle(content.uri),
+                                        NavOptions.Builder()
+                                            .setPopUpTo(R.id.fragment_main, false)
+                                            .build(),
                                     )
 
                                     MediaType.AUDIO -> Log.i(LOG_TAG, "Audio not supported")
 
-                                    MediaType.GENRE -> Log.i(LOG_TAG, "Genre not supported")
+                                    MediaType.GENRE -> navController.navigate(
+                                        R.id.fragment_genre,
+                                        GenreFragment.createBundle(content.uri),
+                                        NavOptions.Builder()
+                                            .setPopUpTo(R.id.fragment_main, false)
+                                            .build(),
+                                    )
 
-                                    MediaType.PLAYLIST -> navController.navigateSafe(
+                                    MediaType.PLAYLIST -> navController.navigate(
                                         R.id.fragment_playlist,
-                                        PlaylistFragment.createBundle(content.uri)
+                                        PlaylistFragment.createBundle(content.uri),
+                                        NavOptions.Builder()
+                                            .setPopUpTo(R.id.fragment_main, false)
+                                            .build(),
                                     )
                                 }
                             }

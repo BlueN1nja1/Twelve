@@ -85,32 +85,28 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
         ) {
             override fun ViewHolder.onPrepareView() {
                 view.setLeadingIconImage(R.drawable.ic_music_note)
-                view.setOnClickListener {
-                    item?.let {
-                        viewModel.playPlaylist(bindingAdapterPosition)
-
-                        findNavController().navigateSafe(
-                            R.id.action_playlistFragment_to_fragment_now_playing
-                        )
-                    }
-                }
-                view.setOnLongClickListener {
-                    item?.let {
-                        findNavController().navigateSafe(
-                            R.id.action_playlistFragment_to_fragment_media_item_bottom_sheet_dialog,
-                            MediaItemBottomSheetDialogFragment.createBundle(
-                                it.uri,
-                                it.mediaType,
-                                playlistUri = playlistUri,
-                            )
-                        )
-                    }
-
-                    true
-                }
             }
 
             override fun ViewHolder.onBindView(item: Audio) {
+                view.setOnClickListener {
+                    viewModel.playPlaylist(bindingAdapterPosition)
+
+                    findNavController().navigateSafe(
+                        R.id.action_playlistFragment_to_fragment_now_playing
+                    )
+                }
+                view.setOnLongClickListener {
+                    findNavController().navigateSafe(
+                        R.id.action_playlistFragment_to_fragment_media_item_bottom_sheet_dialog,
+                        MediaItemBottomSheetDialogFragment.createBundle(
+                            item.uri,
+                            item.mediaType,
+                            playlistUri = playlistUri,
+                        )
+                    )
+                    true
+                }
+
                 view.headlineText = item.title
                 item.artistName?.also {
                     view.supportingText = it

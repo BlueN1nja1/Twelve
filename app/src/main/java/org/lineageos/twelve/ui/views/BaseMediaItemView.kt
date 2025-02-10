@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.AttrRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import coil3.load
@@ -25,11 +26,13 @@ import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.MediaItem
 import org.lineageos.twelve.models.Playlist
 
-class ActivityTabItem @JvmOverloads constructor(
+abstract class BaseMediaItemView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     @AttrRes defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle,
+    @LayoutRes private val layoutResId: Int
 ) : MaterialCardView(context, attrs, defStyleAttr) {
+    // Views
     private val headlineTextView by lazy { findViewById<TextView>(R.id.headlineTextView) }
     private val placeholderImageView by lazy { findViewById<ImageView>(R.id.placeholderImageView) }
     private val subheadTextView by lazy { findViewById<TextView>(R.id.subheadTextView) }
@@ -59,7 +62,11 @@ class ActivityTabItem @JvmOverloads constructor(
         cardElevation = 0f
         strokeWidth = 0
 
-        inflate(context, R.layout.item_activity_tab, this)
+        inflate(context, layoutResId, this)
+    }
+
+    final override fun setCardBackgroundColor(color: Int) {
+        super.setCardBackgroundColor(color)
     }
 
     fun setItem(item: MediaItem<*>) {
