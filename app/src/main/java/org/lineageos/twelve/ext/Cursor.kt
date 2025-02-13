@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023 The LineageOS Project
+ * SPDX-FileCopyrightText: 2023-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -15,7 +15,7 @@ fun <T> Cursor?.mapEachRow(
         return@use emptyList<T>()
     }
 
-    val columnIndexCache = ColumnIndexCache(cursor, cursor.columnNames)
+    val columnIndexCache = ColumnIndexCache(cursor)
 
     val data = mutableListOf<T>()
     do {
