@@ -216,34 +216,26 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
                             }
                         )
 
-                        when (mediaItem) {
-                            is Album -> mediaItem.thumbnail
-                            is Artist -> mediaItem.thumbnail
-                            is Audio -> null
-                            is Genre -> mediaItem.thumbnail
-                            is Playlist -> mediaItem.thumbnail
-                        }.let { thumbnail ->
-                            thumbnail?.also {
-                                thumbnailImageView.load(thumbnail) {
-                                    listener(
-                                        onCancel = {
-                                            placeholderImageView.isVisible = true
-                                            thumbnailImageView.isVisible = false
-                                        },
-                                        onSuccess = { _, _ ->
-                                            placeholderImageView.isVisible = false
-                                            thumbnailImageView.isVisible = true
-                                        },
-                                        onError = { _, _ ->
-                                            placeholderImageView.isVisible = true
-                                            thumbnailImageView.isVisible = false
-                                        }
-                                    )
-                                }
-                            } ?: run {
-                                placeholderImageView.isVisible = true
-                                thumbnailImageView.isVisible = false
+                        mediaItem.thumbnail?.also { thumbnail ->
+                            thumbnailImageView.load(thumbnail) {
+                                listener(
+                                    onCancel = {
+                                        placeholderImageView.isVisible = true
+                                        thumbnailImageView.isVisible = false
+                                    },
+                                    onSuccess = { _, _ ->
+                                        placeholderImageView.isVisible = false
+                                        thumbnailImageView.isVisible = true
+                                    },
+                                    onError = { _, _ ->
+                                        placeholderImageView.isVisible = true
+                                        thumbnailImageView.isVisible = false
+                                    }
+                                )
                             }
+                        } ?: run {
+                            placeholderImageView.isVisible = true
+                            thumbnailImageView.isVisible = false
                         }
                     }
 

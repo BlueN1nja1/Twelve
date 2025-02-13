@@ -11,6 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
@@ -20,27 +21,16 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
 import org.lineageos.twelve.datasources.MediaError
 import org.lineageos.twelve.models.ProviderIdentifier
-import org.lineageos.twelve.models.ProviderType
 import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.models.RequestStatus.Companion.fold
 
 open class ProviderViewModel(application: Application) : TwelveViewModel(application) {
+    private val _providerIdentifier = MutableStateFlow<ProviderIdentifier?>(null)
+
     /**
      * The provider identifiers to manage.
      */
-    private val providerIds = MutableStateFlow<Pair<ProviderType, Long>?>(null)
-
-    @OptIn(ExperimentalCoroutinesApi::class)
-    protected val providerIdentifier = providerIds
-        .mapLatest {
-            it?.let { ProviderIdentifier(it.first, it.second) }
-        }
-        .flowOn(Dispatchers.IO)
-        .stateIn(
-            viewModelScope,
-            started = SharingStarted.Eagerly,
-            initialValue = null
-        )
+    protected val providerIdentifier = _providerIdentifier.asStateFlow()
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val provider = providerIdentifier
@@ -65,7 +55,7 @@ open class ProviderViewModel(application: Application) : TwelveViewModel(applica
         .mapLatest {
             when (it) {
                 is RequestStatus.Loading -> null
-                is RequestStatus.Success -> it.data.type != ProviderType.LOCAL
+                is RequestStatus.Success -> it.data.type.canBeManaged
                 is RequestStatus.Error -> false
             }
         }
@@ -99,8 +89,8 @@ open class ProviderViewModel(application: Application) : TwelveViewModel(applica
             RequestStatus.Loading()
         )
 
-    fun setProviderIds(providerIds: Pair<ProviderType, Long>?) {
-        this.providerIds.value = providerIds
+    fun setProviderIdentifier(providerIdentifier: ProviderIdentifier?) {
+        _providerIdentifier.value = providerIdentifier
     }
 
     /**

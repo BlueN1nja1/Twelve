@@ -132,7 +132,7 @@ class AlbumViewModel(application: Application) : TwelveViewModel(application) {
 
                 is RequestStatus.Success -> {
                     it.data.second
-                        .map { audio -> audio.mimeType }
+                        .mapNotNull { audio -> audio.mimeType }
                         .distinct()
                         .takeIf { mimeTypes -> mimeTypes.size <= 2 }
                         ?.mapNotNull { mimeType -> MimeUtils.mimeTypeToDisplayName(mimeType) }

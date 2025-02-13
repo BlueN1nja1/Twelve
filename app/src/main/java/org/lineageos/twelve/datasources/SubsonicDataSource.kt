@@ -342,7 +342,7 @@ class SubsonicDataSource(
 
         if (exists) {
             RequestStatus.Success<_, MediaError>(
-                Genre(genreUri, genreName) to GenreContent(
+                Genre.Builder(genreUri).setName(genreName).build() to GenreContent(
                     appearsInAlbums.orEmpty(),
                     listOf(),
                     audios.orEmpty(),
@@ -455,6 +455,12 @@ class SubsonicDataSource(
 
     private fun Child.toMediaItem() = Audio(
         uri = getAudioUri(id),
+        thumbnail = albumId?.let {
+            Thumbnail.Builder()
+                .setUri(Uri.parse(subsonicClient.getCoverArt(it)))
+                .setType(Thumbnail.Type.FRONT_COVER)
+                .build()
+        },
         playbackUri = Uri.parse(subsonicClient.stream(id)),
         mimeType = contentType ?: "",
         title = title,
@@ -473,11 +479,13 @@ class SubsonicDataSource(
 
     private fun org.lineageos.twelve.datasources.subsonic.models.Genre.toMediaItem() = Genre(
         uri = getGenreUri(value),
+        thumbnail = null,
         name = value,
     )
 
     private fun org.lineageos.twelve.datasources.subsonic.models.Playlist.toMediaItem() = Playlist(
         uri = getPlaylistUri(id),
+        thumbnail = null,
         name = name,
     )
 

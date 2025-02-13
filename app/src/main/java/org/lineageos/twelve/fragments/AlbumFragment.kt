@@ -143,9 +143,9 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
                         item.audio.artistName?.also {
                             view.supportingText = it
                         } ?: view.setSupportingText(R.string.artist_unknown)
-                        view.trailingSupportingText = TimestampFormatter.formatTimestampMillis(
-                            item.audio.durationMs
-                        )
+                        view.trailingSupportingText = item.audio.durationMs?.let {
+                            TimestampFormatter.formatTimestampMillis(it)
+                        }
                         view.isClickable = true
                         view.isLongClickable = true
                     }
@@ -307,10 +307,12 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
                                 artistNameTextView.text = artistName
                             } ?: artistNameTextView.setText(R.string.artist_unknown)
                             artistNameTextView.setOnClickListener {
-                                findNavController().navigateSafe(
-                                    R.id.action_albumFragment_to_fragment_artist,
-                                    ArtistFragment.createBundle(album.artistUri)
-                                )
+                                album.artistUri?.let { artistUri ->
+                                    findNavController().navigateSafe(
+                                        R.id.action_albumFragment_to_fragment_artist,
+                                        ArtistFragment.createBundle(artistUri)
+                                    )
+                                }
                             }
 
                             album.year?.also { year ->
@@ -321,7 +323,7 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
                             }
 
                             val totalDurationMs = audios.sumOf { audio ->
-                                audio.durationMs
+                                audio.durationMs ?: 0L
                             }
                             val totalDurationMinutes = (totalDurationMs / 1000 / 60).toInt()
 

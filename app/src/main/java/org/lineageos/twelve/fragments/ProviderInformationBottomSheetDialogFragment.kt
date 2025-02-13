@@ -27,11 +27,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.R
-import org.lineageos.twelve.ext.getSerializable
+import org.lineageos.twelve.ext.getParcelable
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.models.DataSourceInformation
-import org.lineageos.twelve.models.ProviderType
+import org.lineageos.twelve.models.ProviderIdentifier
 import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.models.RequestStatus.Companion.fold
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
@@ -74,12 +74,10 @@ class ProviderInformationBottomSheetDialogFragment : BottomSheetDialogFragment(
     }
 
     // Arguments
-    private val providerType: ProviderType
-        get() = requireArguments().getSerializable(ARG_PROVIDER_TYPE, ProviderType::class)!!
-    private val providerTypeId: Long
-        get() = requireArguments().getLong(ARG_PROVIDER_TYPE_ID, -1L).takeIf {
-            it != -1L
-        }!!
+    private val providerIdentifier: ProviderIdentifier
+        get() = requireArguments().getParcelable(
+            ARG_PROVIDER_IDENTIFIER, ProviderIdentifier::class
+        )!!
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -90,7 +88,9 @@ class ProviderInformationBottomSheetDialogFragment : BottomSheetDialogFragment(
                 onSuccess = {
                     findNavController().navigateSafe(
                         R.id.action_providerInformationBottomSheetDialogFragment_to_fragment_manage_provider,
-                        ManageProviderFragment.createBundle(providerType, providerTypeId),
+                        ManageProviderFragment.createBundle(
+                            providerIdentifier = providerIdentifier
+                        ),
                     )
                 },
                 onError = {},
@@ -103,7 +103,7 @@ class ProviderInformationBottomSheetDialogFragment : BottomSheetDialogFragment(
 
         statusRecyclerView.adapter = statusAdapter
 
-        viewModel.setProviderIds(providerType to providerTypeId)
+        viewModel.setProviderIdentifier(providerIdentifier)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -201,20 +201,16 @@ class ProviderInformationBottomSheetDialogFragment : BottomSheetDialogFragment(
     companion object {
         private val LOG_TAG = ProviderInformationBottomSheetDialogFragment::class.simpleName!!
 
-        private const val ARG_PROVIDER_TYPE = "provider_type"
-        private const val ARG_PROVIDER_TYPE_ID = "provider_type_id"
+        private const val ARG_PROVIDER_IDENTIFIER = "provider_identifier"
 
         /**
          * Create a [Bundle] to use as the arguments for this fragment.
-         * @param providerType The [ProviderType] of the provider to manage
-         * @param providerTypeId The type specific ID of the provider to manage
+         * @param providerIdentifier The [ProviderIdentifier] of the provider to manage
          */
         fun createBundle(
-            providerType: ProviderType,
-            providerTypeId: Long,
+            providerIdentifier: ProviderIdentifier,
         ) = bundleOf(
-            ARG_PROVIDER_TYPE to providerType,
-            ARG_PROVIDER_TYPE_ID to providerTypeId,
+            ARG_PROVIDER_IDENTIFIER to providerIdentifier,
         )
     }
 }

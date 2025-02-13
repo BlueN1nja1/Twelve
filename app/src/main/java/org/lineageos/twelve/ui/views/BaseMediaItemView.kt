@@ -24,6 +24,7 @@ import org.lineageos.twelve.models.Artist
 import org.lineageos.twelve.models.Audio
 import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.MediaItem
+import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.Playlist
 
 abstract class BaseMediaItemView @JvmOverloads constructor(
@@ -70,6 +71,17 @@ abstract class BaseMediaItemView @JvmOverloads constructor(
     }
 
     fun setItem(item: MediaItem<*>) {
+        loadThumbnailImage(
+            item.thumbnail,
+            when (item.mediaType) {
+                MediaType.ALBUM -> R.drawable.ic_album
+                MediaType.ARTIST -> R.drawable.ic_person
+                MediaType.AUDIO -> R.drawable.ic_music_note
+                MediaType.GENRE -> R.drawable.ic_genres
+                MediaType.PLAYLIST -> R.drawable.ic_playlist_play
+            }
+        )
+
         when (item) {
             is Album -> {
                 item.title?.let {
@@ -77,8 +89,6 @@ abstract class BaseMediaItemView @JvmOverloads constructor(
                 } ?: setHeadlineText(R.string.album_unknown)
                 subheadText = item.artistName
                 supportingText = item.year?.toString()
-
-                loadThumbnailImage(item.thumbnail, R.drawable.ic_album)
             }
 
             is Artist -> {
@@ -87,16 +97,12 @@ abstract class BaseMediaItemView @JvmOverloads constructor(
                 } ?: setHeadlineText(R.string.artist_unknown)
                 subheadText = null
                 supportingText = null
-
-                loadThumbnailImage(item.thumbnail, R.drawable.ic_person)
             }
 
             is Audio -> {
                 headlineText = item.title
                 subheadText = item.artistName
                 supportingText = item.albumTitle
-
-                setPlaceholderImage(R.drawable.ic_music_note)
             }
 
             is Genre -> {
@@ -105,24 +111,14 @@ abstract class BaseMediaItemView @JvmOverloads constructor(
                 } ?: setHeadlineText(R.string.genre_unknown)
                 subheadText = null
                 supportingText = null
-
-                setPlaceholderImage(R.drawable.ic_genres)
             }
 
             is Playlist -> {
                 headlineText = item.name
                 subheadText = null
                 supportingText = null
-
-                setPlaceholderImage(R.drawable.ic_playlist_play)
             }
         }
-    }
-
-    private fun setPlaceholderImage(@DrawableRes placeholder: Int) {
-        placeholderImageView.setImageResource(placeholder)
-        placeholderImageView.isVisible = true
-        thumbnailImageView.isVisible = false
     }
 
     private fun loadThumbnailImage(

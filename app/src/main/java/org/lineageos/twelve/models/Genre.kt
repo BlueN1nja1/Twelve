@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -14,21 +14,19 @@ import org.lineageos.twelve.ext.toByteArray
  * A music genre.
  * TODO: Maybe make it an enum class and follow https://en.wikipedia.org/wiki/List_of_ID3v1_genres
  *
- * @param uri The URI of the genre
  * @param name The name of the genre. Can be null
  */
 data class Genre(
     override val uri: Uri,
+    override val thumbnail: Thumbnail?,
     val name: String?,
-    val thumbnail: Thumbnail? = null,
 ) : MediaItem<Genre> {
     override val mediaType = MediaType.GENRE
 
     override fun areContentsTheSame(other: Genre) = compareValuesBy(
-        other,
-        this,
-        Genre::name,
+        this, other,
         Genre::thumbnail,
+        Genre::name,
     ) == 0
 
     override fun toMedia3MediaItem() = buildMediaItem(
@@ -42,4 +40,21 @@ data class Genre(
         artworkType = thumbnail?.type?.media3Value,
         artworkUri = thumbnail?.uri,
     )
+
+    class Builder(uri: Uri) : MediaItem.Builder<Builder, Genre>(uri) {
+        private var name: String? = null
+
+        /**
+         * @see Genre.name
+         */
+        fun setName(name: String?) = this.also {
+            this.name = name
+        }
+
+        override fun build() = Genre(
+            uri = uri,
+            thumbnail = thumbnail,
+            name = name,
+        )
+    }
 }

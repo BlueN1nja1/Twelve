@@ -85,14 +85,13 @@ class LocalDataSource(
             .setType(Thumbnail.Type.FRONT_COVER)
             .build()
 
-        Album(
-            uri,
-            album.takeIf { it != MediaStore.UNKNOWN_STRING },
-            artistUri,
-            artist.takeIf { it != MediaStore.UNKNOWN_STRING },
-            lastYear.takeIf { it != 0 },
-            thumbnail,
-        )
+        Album.Builder(uri)
+            .setThumbnail(thumbnail)
+            .setTitle(album.takeIf { it != MediaStore.UNKNOWN_STRING })
+            .setArtistUri(artistUri)
+            .setArtistName(artist.takeIf { it != MediaStore.UNKNOWN_STRING })
+            .setYear(lastYear.takeIf { it != 0 })
+            .build()
     }
 
     private val mapArtist = { columnIndexCache: ColumnIndexCache ->
@@ -106,11 +105,10 @@ class LocalDataSource(
             .setType(Thumbnail.Type.BAND_ARTIST_LOGO)
             .build()
 
-        Artist(
-            uri,
-            artist.takeIf { it != MediaStore.UNKNOWN_STRING },
-            thumbnail,
-        )
+        Artist.Builder(uri)
+            .setThumbnail(thumbnail)
+            .setName(artist.takeIf { it != MediaStore.UNKNOWN_STRING })
+            .build()
     }
 
     private val mapGenre = { columnIndexCache: ColumnIndexCache ->
@@ -119,10 +117,9 @@ class LocalDataSource(
 
         val uri = ContentUris.withAppendedId(genresUri, genreId)
 
-        Genre(
-            uri,
-            name,
-        )
+        Genre.Builder(uri)
+            .setName(name)
+            .build()
     }
 
     private val mapAudio = { columnIndexCache: ColumnIndexCache ->
@@ -168,23 +165,28 @@ class LocalDataSource(
             }
         } ?: (null to null)
 
-        Audio(
-            uri,
-            uri,
-            mimeType,
-            title,
-            audioType,
-            duration,
-            artistUri,
-            artist.takeIf { it != MediaStore.UNKNOWN_STRING },
-            albumUri,
-            album.takeIf { it != MediaStore.UNKNOWN_STRING },
-            discNumber,
-            discTrack,
-            genreUri,
-            genre,
-            year.takeIf { it != 0 },
-        )
+        val thumbnail = Thumbnail.Builder()
+            .setUri(albumUri)
+            .setType(Thumbnail.Type.FRONT_COVER)
+            .build()
+
+        Audio.Builder(uri)
+            .setThumbnail(thumbnail)
+            .setPlaybackUri(uri)
+            .setMimeType(mimeType)
+            .setTitle(title)
+            .setType(audioType)
+            .setDurationMs(duration)
+            .setArtistUri(artistUri)
+            .setArtistName(artist.takeIf { it != MediaStore.UNKNOWN_STRING })
+            .setAlbumUri(albumUri)
+            .setAlbumTitle(album.takeIf { it != MediaStore.UNKNOWN_STRING })
+            .setDiscNumber(discNumber)
+            .setTrackNumber(discTrack)
+            .setGenreUri(genreUri)
+            .setGenreName(genre)
+            .setYear(year.takeIf { it != 0 })
+            .build()
     }
 
     override fun status() = flowOf(
@@ -595,7 +597,7 @@ class LocalDataSource(
             ).mapEachRow(mapAudio)
         ) { genres, appearsInAlbums, audios ->
             val genre = genres.firstOrNull() ?: when (genreId) {
-                0L -> Genre(genreUri, null)
+                0L -> Genre.Builder(genreUri).build()
                 else -> null
             }
 
@@ -797,7 +799,7 @@ class LocalDataSource(
                             MediaStore.Audio.AlbumColumns.ALBUM_ID eq Query.ARG
                         },
                         ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to listOf(
-                            ContentUris.parseId(audio.albumUri).toString()
+                            ContentUris.parseId(audio.albumUri!!).toString()
                         ).toTypedArray(),
                     )
                 ).mapEachRow(mapAlbum).mapLatest { albums ->
@@ -876,9 +878,9 @@ class LocalDataSource(
             .authority(PLAYLISTS_AUTHORITY)
             .build()
 
-        private fun org.lineageos.twelve.database.entities.Playlist.toModel() = Playlist(
-            ContentUris.withAppendedId(playlistsBaseUri, id),
-            name,
-        )
+        private fun org.lineageos.twelve.database.entities.Playlist.toModel() =
+            Playlist.Builder(ContentUris.withAppendedId(playlistsBaseUri, id))
+                .setName(name)
+                .build()
     }
 }

@@ -327,58 +327,61 @@ class JellyfinDataSource(
                 .let { RequestStatus.Success<Unit, MediaError>(Unit) }
         }
 
-    private fun Item.toMediaItemAlbum() = Album(
-        uri = getAlbumUri(id.toString()),
-        title = name,
-        artistUri = getArtistUri(id.toString()),
-        artistName = artists?.firstOrNull(),
-        year = productionYear,
-        thumbnail = Thumbnail.Builder()
-            .setUri(Uri.parse(client.getAlbumThumbnail(id)))
-            .build(),
-    )
+    private fun Item.toMediaItemAlbum() = Album.Builder(getAlbumUri(id.toString()))
+        .setThumbnail(
+            Thumbnail.Builder()
+                .setUri(Uri.parse(client.getAlbumThumbnail(id)))
+                .build()
+        )
+        .setTitle(name)
+        .setArtistUri(getArtistUri(id.toString()))
+        .setArtistName(artists?.firstOrNull())
+        .setYear(productionYear)
+        .build()
 
-    private fun Item.toMediaItemArtist() = Artist(
-        uri = getArtistUri(id.toString()),
-        name = name,
-        thumbnail = Thumbnail.Builder()
-            .setUri(Uri.parse(client.getArtistThumbnail(id)))
-            .build(),
-    )
+    private fun Item.toMediaItemArtist() = Artist.Builder(getArtistUri(id.toString()))
+        .setThumbnail(
+            Thumbnail.Builder()
+                .setUri(Uri.parse(client.getArtistThumbnail(id)))
+                .build()
+        )
+        .setName(name)
+        .build()
 
-    private fun Item.toMediaItemAudio() = Audio(
-        uri = getAudioUri(id.toString()),
-        title = name ?: "",
-        artistUri = getArtistUri(id.toString()),
-        artistName = artists?.firstOrNull(),
-        albumUri = getAlbumUri(id.toString()),
-        playbackUri = Uri.parse(client.getAudioPlaybackUrl(id)),
-        mimeType = container ?: sourceType ?: "",
-        type = Audio.Type.MUSIC,
-        durationMs = runTimeTicks?.let { it / 10000 } ?: 0,
-        albumTitle = album,
-        discNumber = parentIndexNumber,
-        trackNumber = indexNumber,
-        genreUri = getGenreUri(id.toString()),
-        genreName = genres?.firstOrNull(),
-        year = productionYear,
-    )
+    private fun Item.toMediaItemAudio() = Audio.Builder(getAudioUri(id.toString()))
+        .setPlaybackUri(Uri.parse(client.getAudioPlaybackUrl(id)))
+        .setMimeType(container ?: sourceType)
+        .setTitle(name)
+        .setType(Audio.Type.MUSIC)
+        .setDurationMs(runTimeTicks?.let { it / 10000 })
+        .setArtistUri(getArtistUri(id.toString()))
+        .setArtistName(artists?.firstOrNull())
+        .setAlbumUri(getAlbumUri(id.toString()))
+        .setAlbumTitle(album)
+        .setDiscNumber(parentIndexNumber)
+        .setTrackNumber(indexNumber)
+        .setGenreUri(getGenreUri(id.toString()))
+        .setGenreName(genres?.firstOrNull())
+        .setYear(productionYear)
+        .build()
 
-    private fun Item.toMediaItemGenre() = Genre(
-        uri = getGenreUri(id.toString()),
-        name = name,
-        thumbnail = Thumbnail.Builder()
-            .setUri(Uri.parse(client.getGenreThumbnail(id)))
-            .build()
-    )
+    private fun Item.toMediaItemGenre() = Genre.Builder(getGenreUri(id.toString()))
+        .setThumbnail(
+            Thumbnail.Builder()
+                .setUri(Uri.parse(client.getGenreThumbnail(id)))
+                .build()
+        )
+        .setName(name)
+        .build()
 
-    private fun Item.toMediaItemPlaylist() = Playlist(
-        uri = getPlaylistUri(id.toString()),
-        name = name ?: "",
-        thumbnail = Thumbnail.Builder()
-            .setUri(Uri.parse(client.getPlaylistThumbnail(id)))
-            .build(),
-    )
+    private fun Item.toMediaItemPlaylist() = Playlist.Builder(getPlaylistUri(id.toString()))
+        .setThumbnail(
+            Thumbnail.Builder()
+                .setUri(Uri.parse(client.getPlaylistThumbnail(id)))
+                .build()
+        )
+        .setName(name)
+        .build()
 
     private fun getAlbumUri(albumId: String) = albumsUri.buildUpon()
         .appendPath(albumId)
@@ -413,7 +416,7 @@ class JellyfinDataSource(
     private fun lastPlayedItems() = lastPlayedAudio().flatMapLatest { audioRs ->
         audioRs.fold(
             onSuccess = { audio ->
-                val albumId = UUID.fromString(audio.albumUri.lastPathSegment!!)
+                val albumId = UUID.fromString(audio.albumUri!!.lastPathSegment!!)
                 suspend {
                     client.getAlbum(albumId).toRequestStatus { toMediaItemAlbum() }
                 }.asFlow().mapLatest { albumRs ->

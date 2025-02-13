@@ -111,9 +111,9 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
                 item.artistName?.also {
                     view.supportingText = it
                 } ?: view.setSupportingText(R.string.artist_unknown)
-                view.trailingSupportingText = TimestampFormatter.formatTimestampMillis(
-                    item.durationMs
-                )
+                view.trailingSupportingText = item.durationMs?.let {
+                    TimestampFormatter.formatTimestampMillis(it)
+                }
             }
         }
     }
@@ -261,7 +261,7 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
                     )
 
                     val totalDurationMs = audios.sumOf { audio ->
-                        audio.durationMs
+                        audio.durationMs ?: 0L
                     }
                     val totalDurationMinutes = (totalDurationMs / 1000 / 60).toInt()
 

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -13,21 +13,19 @@ import org.lineageos.twelve.ext.toByteArray
 /**
  * An artist.
  *
- * @param uri The URI of the artist
  * @param name The name of the artist
- * @param thumbnail The artist's thumbnail
  */
 data class Artist(
     override val uri: Uri,
+    override val thumbnail: Thumbnail?,
     val name: String?,
-    val thumbnail: Thumbnail?,
 ) : MediaItem<Artist> {
     override val mediaType = MediaType.ARTIST
 
     override fun areContentsTheSame(other: Artist) = compareValuesBy(
         this, other,
-        Artist::name,
         Artist::thumbnail,
+        Artist::name,
     ) == 0
 
     override fun toMedia3MediaItem() = buildMediaItem(
@@ -41,4 +39,21 @@ data class Artist(
         artworkType = thumbnail?.type?.media3Value,
         artworkUri = thumbnail?.uri,
     )
+
+    class Builder(uri: Uri) : MediaItem.Builder<Builder, Artist>(uri) {
+        private var name: String? = null
+
+        /**
+         * @see Artist.name
+         */
+        fun setName(name: String?) = this.also {
+            this.name = name
+        }
+
+        override fun build() = Artist(
+            uri = uri,
+            thumbnail = thumbnail,
+            name = name,
+        )
+    }
 }

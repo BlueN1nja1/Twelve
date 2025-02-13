@@ -25,7 +25,7 @@ import org.lineageos.twelve.models.RequestStatus
 @OptIn(ExperimentalCoroutinesApi::class)
 class ManageProviderViewModel(application: Application) : ProviderViewModel(application) {
     /**
-     * The user defined provider type. The one in [providerIds] will always take
+     * The user defined provider type. The one in [providerIdentifier] will always take
      * precedence over this.
      */
     private val _selectedProviderType = MutableStateFlow<ProviderType?>(null)

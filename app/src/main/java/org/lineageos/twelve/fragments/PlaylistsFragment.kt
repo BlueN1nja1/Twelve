@@ -53,7 +53,7 @@ class PlaylistsFragment : Fragment(R.layout.fragment_playlists) {
     private val sortingChip by getViewProperty<SortingChip>(R.id.sortingChip)
 
     // Recyclerview
-    private val addNewPlaylistItem = Playlist(Uri.EMPTY, "")
+    private val addNewPlaylistItem = Playlist.Builder(Uri.EMPTY).build()
     private val adapter = object : SimpleListAdapter<Playlist, ListItem>(
         UniqueItemDiffCallback(),
         ::ListItem,

@@ -55,7 +55,7 @@ class AddOrRemoveFromPlaylistsFragment : Fragment(R.layout.fragment_add_or_remov
     private val toolbar by getViewProperty<MaterialToolbar>(R.id.toolbar)
 
     // Recyclerview
-    private val addNewPlaylistItem = Pair(Playlist(Uri.EMPTY, ""), false)
+    private val addNewPlaylistItem = Pair(Playlist.Builder(Uri.EMPTY).build(), false)
     private val adapter by lazy {
         object : SimpleListAdapter<Pair<Playlist, Boolean>, ListItem>(
             diffCallback,
