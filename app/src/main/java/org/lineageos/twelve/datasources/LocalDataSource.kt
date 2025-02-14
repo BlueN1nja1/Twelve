@@ -70,6 +70,12 @@ class LocalDataSource(
     private val genresUri = MediaStore.Audio.Genres.getContentUri(volumeName)
     private val audiosUri = MediaStore.Audio.Media.getContentUri(volumeName)
 
+    private val albumsArtUri = MediaStore.AUTHORITY_URI.buildUpon()
+        .appendPath(volumeName)
+        .appendPath("audio")
+        .appendPath(AUDIO_ALBUMART)
+        .build()
+
     private val mapAlbum = { columnIndexCache: ColumnIndexCache ->
         val albumId = columnIndexCache.getLong(MediaStore.Audio.AudioColumns._ID)
         val album = columnIndexCache.getString(MediaStore.Audio.AlbumColumns.ALBUM)
@@ -80,8 +86,10 @@ class LocalDataSource(
         val uri = ContentUris.withAppendedId(albumsUri, albumId)
         val artistUri = ContentUris.withAppendedId(artistsUri, artistId)
 
+        val albumArtUri = ContentUris.withAppendedId(albumsArtUri, albumId)
+
         val thumbnail = Thumbnail.Builder()
-            .setUri(uri)
+            .setUri(albumArtUri)
             .setType(Thumbnail.Type.FRONT_COVER)
             .build()
 
@@ -165,8 +173,12 @@ class LocalDataSource(
             }
         } ?: (null to null)
 
+        val albumArtUri = uri.buildUpon()
+            .appendPath(AUDIO_ALBUMART)
+            .build()
+
         val thumbnail = Thumbnail.Builder()
-            .setUri(albumUri)
+            .setUri(albumArtUri)
             .setType(Thumbnail.Type.FRONT_COVER)
             .build()
 
@@ -193,16 +205,6 @@ class LocalDataSource(
         RequestStatus.Success<_, MediaError>(listOf<DataSourceInformation>())
     )
 
-    override fun isMediaItemCompatible(mediaItemUri: Uri) = listOf(
-        albumsUri,
-        artistsUri,
-        genresUri,
-        audiosUri,
-        playlistsBaseUri,
-    ).any {
-        mediaItemUri.toString().startsWith(it.toString())
-    }
-
     override suspend fun mediaTypeOf(mediaItemUri: Uri) = with(mediaItemUri.toString()) {
         when {
             startsWith(albumsUri.toString()) -> MediaType.ALBUM
@@ -211,9 +213,7 @@ class LocalDataSource(
             startsWith(audiosUri.toString()) -> MediaType.AUDIO
             startsWith(playlistsBaseUri.toString()) -> MediaType.PLAYLIST
             else -> null
-        }?.let {
-            RequestStatus.Success<_, MediaError>(it)
-        } ?: RequestStatus.Error(MediaError.NOT_FOUND)
+        }
     }
 
     override fun activity() = combine(
@@ -814,6 +814,9 @@ class LocalDataSource(
     }
 
     companion object {
+        // packages/providers/MediaProvider/src/com/android/providers/media/LocalUriMatcher.java
+        private const val AUDIO_ALBUMART = "albumart"
+
         private const val LAST_PLAYED_KEY = "local"
 
         private val albumsProjection = arrayOf(

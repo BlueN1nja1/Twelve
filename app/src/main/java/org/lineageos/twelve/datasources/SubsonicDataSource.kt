@@ -144,10 +144,6 @@ class SubsonicDataSource(
         }
     }.asFlow()
 
-    override fun isMediaItemCompatible(mediaItemUri: Uri) = mediaItemUri.toString().startsWith(
-        dataSourceBaseUri.toString()
-    )
-
     override suspend fun mediaTypeOf(mediaItemUri: Uri) = with(mediaItemUri.toString()) {
         when {
             startsWith(albumsUri.toString()) -> MediaType.ALBUM
@@ -156,9 +152,7 @@ class SubsonicDataSource(
             startsWith(genresUri.toString()) -> MediaType.GENRE
             startsWith(playlistsUri.toString()) -> MediaType.PLAYLIST
             else -> null
-        }?.let {
-            RequestStatus.Success<_, MediaError>(it)
-        } ?: RequestStatus.Error(MediaError.NOT_FOUND)
+        }
     }
 
     override fun activity() = suspend {
@@ -432,62 +426,63 @@ class SubsonicDataSource(
     override suspend fun onAudioPlayed(audioUri: Uri) = lastPlayedSetter(lastPlayedKey(), audioUri)
         .let { RequestStatus.Success<Unit, MediaError>(Unit) }
 
-    private fun AlbumID3.toMediaItem() = Album(
-        uri = getAlbumUri(id),
-        title = name,
-        artistUri = artistId?.let { getArtistUri(it) } ?: Uri.EMPTY,
-        artistName = artist,
-        year = year,
-        thumbnail = Thumbnail.Builder()
-            .setUri(Uri.parse(subsonicClient.getCoverArt(id)))
-            .setType(Thumbnail.Type.FRONT_COVER)
-            .build(),
-    )
-
-    private fun ArtistID3.toMediaItem() = Artist(
-        uri = getArtistUri(id),
-        name = name,
-        thumbnail = Thumbnail.Builder()
-            .setUri(Uri.parse(subsonicClient.getCoverArt(id)))
-            .setType(Thumbnail.Type.BAND_ARTIST_LOGO)
-            .build(),
-    )
-
-    private fun Child.toMediaItem() = Audio(
-        uri = getAudioUri(id),
-        thumbnail = albumId?.let {
+    private fun AlbumID3.toMediaItem() = Album.Builder(getAlbumUri(id))
+        .setThumbnail(
             Thumbnail.Builder()
-                .setUri(Uri.parse(subsonicClient.getCoverArt(it)))
+                .setUri(Uri.parse(subsonicClient.getCoverArt(id)))
                 .setType(Thumbnail.Type.FRONT_COVER)
                 .build()
-        },
-        playbackUri = Uri.parse(subsonicClient.stream(id)),
-        mimeType = contentType ?: "",
-        title = title,
-        type = type.toAudioType(),
-        durationMs = (duration?.toLong()?.let { it * 1000 }) ?: 0,
-        artistUri = artistId?.let { getArtistUri(it) } ?: Uri.EMPTY,
-        artistName = artist,
-        albumUri = albumId?.let { getAlbumUri(it) } ?: Uri.EMPTY,
-        albumTitle = album,
-        discNumber = discNumber,
-        trackNumber = track,
-        genreUri = genre?.let { getGenreUri(it) },
-        genreName = genre,
-        year = year,
-    )
+        )
+        .setTitle(name)
+        .setArtistUri(artistId?.let { getArtistUri(it) })
+        .setArtistName(artist)
+        .setYear(year)
+        .build()
 
-    private fun org.lineageos.twelve.datasources.subsonic.models.Genre.toMediaItem() = Genre(
-        uri = getGenreUri(value),
-        thumbnail = null,
-        name = value,
-    )
+    private fun ArtistID3.toMediaItem() = Artist.Builder(getArtistUri(id))
+        .setThumbnail(
+            Thumbnail.Builder()
+                .setUri(Uri.parse(subsonicClient.getCoverArt(id)))
+                .setType(Thumbnail.Type.BAND_ARTIST_LOGO)
+                .build()
+        )
+        .setName(name)
+        .build()
 
-    private fun org.lineageos.twelve.datasources.subsonic.models.Playlist.toMediaItem() = Playlist(
-        uri = getPlaylistUri(id),
-        thumbnail = null,
-        name = name,
-    )
+    private fun Child.toMediaItem() = Audio.Builder(getAudioUri(id))
+        .setThumbnail(
+            albumId?.let {
+                Thumbnail.Builder()
+                    .setUri(Uri.parse(subsonicClient.getCoverArt(it)))
+                    .setType(Thumbnail.Type.FRONT_COVER)
+                    .build()
+            }
+        )
+        .setPlaybackUri(Uri.parse(subsonicClient.stream(id)))
+        .setMimeType(contentType)
+        .setTitle(title)
+        .setType(type.toAudioType())
+        .setDurationMs(duration?.toLong()?.let { it * 1000 })
+        .setArtistUri(artistId?.let { getArtistUri(it) })
+        .setArtistName(artist)
+        .setAlbumUri(albumId?.let { getAlbumUri(it) })
+        .setAlbumTitle(album)
+        .setDiscNumber(discNumber)
+        .setTrackNumber(track)
+        .setGenreUri(genre?.let { getGenreUri(it) })
+        .setGenreName(genre)
+        .setYear(year)
+        .build()
+
+    private fun org.lineageos.twelve.datasources.subsonic.models.Genre.toMediaItem() =
+        Genre.Builder(getGenreUri(value))
+            .setName(value)
+            .build()
+
+    private fun org.lineageos.twelve.datasources.subsonic.models.Playlist.toMediaItem() =
+        Playlist.Builder(getPlaylistUri(id))
+            .setName(name)
+            .build()
 
     private fun org.lineageos.twelve.datasources.subsonic.models.MediaType?.toAudioType() = when (
         this

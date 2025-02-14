@@ -337,6 +337,7 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
         mediaLibrarySession = MediaLibrarySession.Builder(
             this, exoPlayer, mediaLibrarySessionCallback
         )
+            .setBitmapLoader(CoilBitmapLoader(this))
             .setSessionActivity(getSingleTopActivity())
             .build()
 

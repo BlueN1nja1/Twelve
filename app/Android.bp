@@ -65,7 +65,7 @@ android_app {
         "androidx.room_room-runtime",
         "androidx.viewpager2_viewpager2",
         "Twelve_com.github.bogerchan_Nier-Visualizer",
-        "com.google.android.material_material",
+        "Twelve_com.google.android.material_material",
         "Twelve_com.squareup.okhttp3_okhttp",
         "Twelve_io.coil-kt.coil3_coil",
         "Twelve_io.coil-kt.coil3_coil-android",

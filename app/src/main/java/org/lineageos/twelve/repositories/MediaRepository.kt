@@ -320,7 +320,7 @@ class MediaRepository(
      * @param uris The media items' URIs
      * @return The provider that handles these media items' URIs.
      */
-    fun getProviderOfMediaItems(
+    suspend fun getProviderOfMediaItems(
         vararg uris: Uri
     ) = allProvidersToDataSource.value.firstOrNull { (_, dataSource) ->
         uris.all { uri -> dataSource.isMediaItemCompatible(uri) }
@@ -512,8 +512,10 @@ class MediaRepository(
     /**
      * @see MediaDataSource.mediaTypeOf
      */
-    suspend fun mediaTypeOf(mediaItemUri: Uri) = withMediaItemsDataSource(mediaItemUri) {
-        mediaTypeOf(mediaItemUri)
+    suspend fun mediaTypeOf(
+        mediaItemUri: Uri
+    ) = allProvidersToDataSource.value.firstNotNullOfOrNull { (_, dataSource) ->
+        dataSource.mediaTypeOf(mediaItemUri)
     }
 
     /**
@@ -706,6 +708,10 @@ class MediaRepository(
     ) = allProvidersToDataSource.value.firstOrNull { (_, dataSource) ->
         uris.all { uri -> dataSource.isMediaItemCompatible(uri) }
     }?.second?.predicate() ?: RequestStatus.Error(MediaError.NOT_FOUND)
+
+    private suspend fun MediaDataSource.isMediaItemCompatible(
+        mediaItemUri: Uri
+    ) = mediaTypeOf(mediaItemUri) != null
 
     companion object {
         private const val LOCAL_PROVIDER_ID = 0L

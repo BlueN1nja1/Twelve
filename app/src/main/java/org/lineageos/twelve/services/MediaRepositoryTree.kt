@@ -273,13 +273,7 @@ class MediaRepositoryTree(
 
     private suspend fun mediaItemUriToMediaType(
         mediaItemUri: Uri
-    ) = repository.mediaTypeOf(mediaItemUri).let {
-        when (it) {
-            is RequestStatus.Loading -> throw Exception("Cannot get RequestStatus.Loading")
-            is RequestStatus.Success -> it.data
-            is RequestStatus.Error -> null
-        }
-    }
+    ) = repository.mediaTypeOf(mediaItemUri)
 
     /**
      * Given a media ID, get the item from the repository.

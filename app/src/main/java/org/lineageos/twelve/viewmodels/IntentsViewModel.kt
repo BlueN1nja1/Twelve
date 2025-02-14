@@ -27,7 +27,6 @@ import org.lineageos.twelve.ext.applicationContext
 import org.lineageos.twelve.ext.asArray
 import org.lineageos.twelve.ext.executeAsync
 import org.lineageos.twelve.models.MediaType
-import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.utils.MimeUtils
 
 /**
@@ -171,42 +170,36 @@ class IntentsViewModel(application: Application) : AndroidViewModel(application)
      * Run the URI over the available data sources and check if one of them understands it.
      * Get the media type of the URI if found.
      */
-    private suspend fun uriToType(uri: Uri) = when (val it = mediaRepository.mediaTypeOf(uri)) {
-        is RequestStatus.Loading -> throw Exception("Shouldn't return RequestStatus.Loading")
+    private suspend fun uriToType(uri: Uri) = mediaRepository.mediaTypeOf(uri) ?: run {
+        Log.i(
+            LOG_TAG,
+            "Cannot get media type of $uri, trying manual fallback"
+        )
 
-        is RequestStatus.Success -> it.data
-
-        is RequestStatus.Error -> {
-            Log.i(
-                LOG_TAG,
-                "Cannot get media type of $uri, error: ${it.error}, trying manual fallback"
-            )
-
-            when (uri.scheme) {
-                "content", "file" -> applicationContext.contentResolver.getType(uri)?.let { type ->
-                    MimeUtils.mimeTypeToMediaType(type)
-                }
-
-                "http", "https" -> runCatching {
-                    okHttpClient.newCall(
-                        Request.Builder()
-                            .url(uri.toString())
-                            .head()
-                            .build()
-                    ).executeAsync().use { response ->
-                        response.header("Content-Type")?.let { type ->
-                            MimeUtils.mimeTypeToMediaType(type)
-                        }
-                    }
-                }.getOrNull()
-
-                "rtsp" -> MediaType.AUDIO // This is either audio-only or A/V, fine either way
-
-                else -> null
-            } ?: run {
-                Log.e(LOG_TAG, "Cannot get media type of $uri")
-                null
+        when (uri.scheme) {
+            "content", "file" -> applicationContext.contentResolver.getType(uri)?.let { type ->
+                MimeUtils.mimeTypeToMediaType(type)
             }
+
+            "http", "https" -> runCatching {
+                okHttpClient.newCall(
+                    Request.Builder()
+                        .url(uri.toString())
+                        .head()
+                        .build()
+                ).executeAsync().use { response ->
+                    response.header("Content-Type")?.let { type ->
+                        MimeUtils.mimeTypeToMediaType(type)
+                    }
+                }
+            }.getOrNull()
+
+            "rtsp" -> MediaType.AUDIO // This is either audio-only or A/V, fine either way
+
+            else -> null
+        } ?: run {
+            Log.e(LOG_TAG, "Cannot get media type of $uri")
+            null
         }
     }
 

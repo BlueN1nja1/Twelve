@@ -16,7 +16,6 @@ import org.lineageos.twelve.models.DataSourceInformation
 import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.GenreContent
 import org.lineageos.twelve.models.MediaItem
-import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.Playlist
 import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.models.SortingRule
@@ -31,10 +30,7 @@ object DummyDataSource : MediaDataSource {
         RequestStatus.Success<_, MediaError>(listOf<DataSourceInformation>())
     )
 
-    override fun isMediaItemCompatible(mediaItemUri: Uri) = false
-
-    override suspend fun mediaTypeOf(mediaItemUri: Uri) =
-        RequestStatus.Error<MediaType, _>(MediaError.NOT_FOUND)
+    override suspend fun mediaTypeOf(mediaItemUri: Uri) = null
 
     override fun activity() = flowOf(
         RequestStatus.Success<_, MediaError>(listOf<ActivityTab>())

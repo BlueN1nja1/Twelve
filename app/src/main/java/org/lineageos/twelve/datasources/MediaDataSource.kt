@@ -36,20 +36,12 @@ interface MediaDataSource {
     fun status(): Flow<MediaRequestStatus<List<DataSourceInformation>>>
 
     /**
-     * Check whether this data source can handle the given media item.
-     *
-     * @param mediaItemUri The media item to check
-     * @return Whether this data source can handle the given media item
-     */
-    fun isMediaItemCompatible(mediaItemUri: Uri): Boolean
-
-    /**
      * Given a compatible media item URI, get its type.
      *
      * @param mediaItemUri The media item to check
-     * @return [RequestStatus.Success] if success, [RequestStatus.Error] with an error otherwise
+     * @return A [MediaType] if success, null if this media item cannot be handled
      */
-    suspend fun mediaTypeOf(mediaItemUri: Uri): MediaRequestStatus<MediaType>
+    suspend fun mediaTypeOf(mediaItemUri: Uri): MediaType?
 
     /**
      * Home page content.
