@@ -50,7 +50,9 @@
     <!-- Unknown items -->
     <string name="album_unknown">Unknown album</string>
     <string name="artist_unknown">Unknown artist</string>
+    <string name="audio_unknown">Unknown audio</string>
     <string name="genre_unknown">Unknown genre</string>
+    <string name="playlist_unknown">Unknown playlist</string>
 
     <!-- Tracks information -->
     <string name="year_format" translatable="false">%1$d</string>

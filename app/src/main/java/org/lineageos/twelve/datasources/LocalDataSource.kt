@@ -108,13 +108,7 @@ class LocalDataSource(
 
         val uri = ContentUris.withAppendedId(artistsUri, artistId)
 
-        val thumbnail = Thumbnail.Builder()
-            .setUri(uri)
-            .setType(Thumbnail.Type.BAND_ARTIST_LOGO)
-            .build()
-
         Artist.Builder(uri)
-            .setThumbnail(thumbnail)
             .setName(artist.takeIf { it != MediaStore.UNKNOWN_STRING })
             .build()
     }

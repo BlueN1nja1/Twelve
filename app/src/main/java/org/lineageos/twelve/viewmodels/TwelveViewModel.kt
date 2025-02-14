@@ -99,7 +99,7 @@ abstract class TwelveViewModel(application: Application) : AndroidViewModel(appl
             shuffleModeEnabled = sharedPreferences.shuffleModeEnabled
             typedRepeatMode = sharedPreferences.typedRepeatMode
 
-            setMediaItems(audio.map { it.toMedia3MediaItem() }, true)
+            setMediaItems(audio.map { it.toMedia3MediaItem(applicationContext) }, true)
             prepare()
             seekToDefaultPosition(position)
             play()

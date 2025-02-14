@@ -16,7 +16,6 @@ import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.core.view.isVisible
 import coil3.load
-import coil3.request.ImageRequest
 import com.google.android.material.card.MaterialCardView
 import org.lineageos.twelve.R
 import org.lineageos.twelve.models.Album
@@ -26,6 +25,7 @@ import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.MediaItem
 import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.Playlist
+import org.lineageos.twelve.models.Thumbnail
 
 abstract class BaseMediaItemView @JvmOverloads constructor(
     context: Context,
@@ -121,32 +121,29 @@ abstract class BaseMediaItemView @JvmOverloads constructor(
         }
     }
 
-    private fun loadThumbnailImage(
-        data: Any?,
-        @DrawableRes placeholder: Int? = null,
-        builder: ImageRequest.Builder.() -> Unit = {
-            listener(
-                onCancel = {
-                    placeholder?.let {
-                        placeholderImageView.setImageResource(it)
+    private fun loadThumbnailImage(data: Thumbnail?, @DrawableRes placeholder: Int) {
+        placeholderImageView.setImageResource(placeholder)
+
+        thumbnailImageView.load(
+            data,
+            builder = {
+                listener(
+                    onCancel = {
                         placeholderImageView.isVisible = true
-                    }
-                    thumbnailImageView.isVisible = false
-                },
-                onError = { _, _ ->
-                    placeholder?.let {
-                        placeholderImageView.setImageResource(it)
+                        thumbnailImageView.isVisible = false
+                    },
+                    onError = { _, _ ->
                         placeholderImageView.isVisible = true
-                    }
-                    thumbnailImageView.isVisible = false
-                },
-                onSuccess = { _, _ ->
-                    placeholderImageView.isVisible = false
-                    thumbnailImageView.isVisible = true
-                },
-            )
-        }
-    ) = thumbnailImageView.load(data, builder = builder)
+                        thumbnailImageView.isVisible = false
+                    },
+                    onSuccess = { _, _ ->
+                        placeholderImageView.isVisible = false
+                        thumbnailImageView.isVisible = true
+                    },
+                )
+            }
+        )
+    }
 
     private fun setHeadlineText(@StringRes resId: Int) =
         headlineTextView.setTextAndUpdateVisibility(resId)

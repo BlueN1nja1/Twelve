@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
+import org.lineageos.twelve.ext.applicationContext
 import org.lineageos.twelve.models.Album
 import org.lineageos.twelve.models.Audio
 import org.lineageos.twelve.models.MediaType
@@ -154,7 +155,7 @@ class MediaItemViewModel(application: Application) : TwelveViewModel(application
 
     fun addToQueue(vararg audios: Audio) {
         mediaController.value?.apply {
-            addMediaItems(audios.map { it.toMedia3MediaItem() })
+            addMediaItems(audios.map { it.toMedia3MediaItem(applicationContext) })
 
             // If the added items are the only one, play them
             if (mediaItemCount == audios.count()) {
@@ -167,7 +168,7 @@ class MediaItemViewModel(application: Application) : TwelveViewModel(application
         mediaController.value?.apply {
             addMediaItems(
                 currentMediaItemIndex + 1,
-                audios.map { it.toMedia3MediaItem() }
+                audios.map { it.toMedia3MediaItem(applicationContext) }
             )
 
             // If the added items are the only one, play them

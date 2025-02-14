@@ -150,7 +150,7 @@ class MediaRepositoryTree(
             mediaId.startsWith(PROVIDER_MEDIA_ITEM_ID_PREFIX) ->
                 mediaIdToProvider(mediaId)?.toMedia3MediaItem()
 
-            else -> mediaIdToMediaItem(mediaId)?.toMedia3MediaItem()
+            else -> mediaIdToMediaItem(mediaId)?.toMedia3MediaItem(context)
         }
     }
 
@@ -175,19 +175,19 @@ class MediaRepositoryTree(
         NO_PERMISSIONS_DESCRIPTION_MEDIA_ITEM_ID -> listOf()
 
         ALBUMS_MEDIA_ITEM_ID -> repository.albums().toOneShotResult().map {
-            it.toMedia3MediaItem()
+            it.toMedia3MediaItem(context)
         }
 
         ARTISTS_MEDIA_ITEM_ID -> repository.artists().toOneShotResult().map {
-            it.toMedia3MediaItem()
+            it.toMedia3MediaItem(context)
         }
 
         GENRES_MEDIA_ITEM_ID -> repository.genres().toOneShotResult().map {
-            it.toMedia3MediaItem()
+            it.toMedia3MediaItem(context)
         }
 
         PLAYLISTS_MEDIA_ITEM_ID -> repository.playlists().toOneShotResult().map {
-            it.toMedia3MediaItem()
+            it.toMedia3MediaItem(context)
         }
 
         CHANGE_PROVIDER_MEDIA_ITEM_ID -> repository.allVisibleProviders.value.map {
@@ -208,7 +208,7 @@ class MediaRepositoryTree(
                     MediaType.ALBUM -> repository.album(
                         mediaItemUri
                     ).toOneShotResult().second.map { albumAudios ->
-                        albumAudios.toMedia3MediaItem()
+                        albumAudios.toMedia3MediaItem(context)
                     }
 
                     MediaType.ARTIST -> repository.artist(
@@ -218,7 +218,7 @@ class MediaRepositoryTree(
                             artistWorks.albums,
                             artistWorks.appearsInAlbum,
                         ).flatten().map { allRelatedAlbums ->
-                            allRelatedAlbums.toMedia3MediaItem()
+                            allRelatedAlbums.toMedia3MediaItem(context)
                         }
                     }
 
@@ -232,14 +232,14 @@ class MediaRepositoryTree(
                             genreContent.appearsInPlaylists,
                             genreContent.audios,
                         ).flatten().map { allRelatedMediaItems ->
-                            allRelatedMediaItems.toMedia3MediaItem()
+                            allRelatedMediaItems.toMedia3MediaItem(context)
                         }
                     }
 
                     MediaType.PLAYLIST -> repository.playlist(
                         mediaItemUri
                     ).toOneShotResult().second.map { playlistAudio ->
-                        playlistAudio.toMedia3MediaItem()
+                        playlistAudio.toMedia3MediaItem(context)
                     }
 
                     null -> null
@@ -261,7 +261,7 @@ class MediaRepositoryTree(
      * Given a query, search for media items.
      */
     suspend fun search(query: String) = repository.search("%${query}%").toOneShotResult().map {
-        it.toMedia3MediaItem()
+        it.toMedia3MediaItem(context)
     }
 
     /**

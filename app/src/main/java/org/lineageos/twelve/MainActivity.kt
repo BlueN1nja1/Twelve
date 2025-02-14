@@ -19,6 +19,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.fragments.AlbumFragment
 import org.lineageos.twelve.fragments.ArtistFragment
 import org.lineageos.twelve.fragments.GenreFragment
@@ -61,9 +62,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                             }
 
                             IntentsViewModel.ParsedIntent.Action.OPEN_NOW_PLAYING -> {
-                                navController.navigate(
-                                    R.id.fragment_now_playing,
-                                    NavOptions.Builder()
+                                navController.navigateSafe(
+                                    R.id.action_mainFragment_to_fragment_now_playing,
+                                    navOptions = NavOptions.Builder()
                                         .setPopUpTo(R.id.fragment_main, false)
                                         .build(),
                                 )
@@ -84,16 +85,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                                 val content = it.contents.first()
 
                                 when (content.type) {
-                                    MediaType.ALBUM -> navController.navigate(
-                                        R.id.fragment_album,
+                                    MediaType.ALBUM -> navController.navigateSafe(
+                                        R.id.action_mainFragment_to_fragment_album,
                                         AlbumFragment.createBundle(content.uri),
                                         NavOptions.Builder()
                                             .setPopUpTo(R.id.fragment_main, false)
                                             .build(),
                                     )
 
-                                    MediaType.ARTIST -> navController.navigate(
-                                        R.id.fragment_artist,
+                                    MediaType.ARTIST -> navController.navigateSafe(
+                                        R.id.action_mainFragment_to_fragment_artist,
                                         ArtistFragment.createBundle(content.uri),
                                         NavOptions.Builder()
                                             .setPopUpTo(R.id.fragment_main, false)
@@ -102,16 +103,16 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
                                     MediaType.AUDIO -> Log.i(LOG_TAG, "Audio not supported")
 
-                                    MediaType.GENRE -> navController.navigate(
-                                        R.id.fragment_genre,
+                                    MediaType.GENRE -> navController.navigateSafe(
+                                        R.id.action_mainFragment_to_fragment_genre,
                                         GenreFragment.createBundle(content.uri),
                                         NavOptions.Builder()
                                             .setPopUpTo(R.id.fragment_main, false)
                                             .build(),
                                     )
 
-                                    MediaType.PLAYLIST -> navController.navigate(
-                                        R.id.fragment_playlist,
+                                    MediaType.PLAYLIST -> navController.navigateSafe(
+                                        R.id.action_mainFragment_to_fragment_playlist,
                                         PlaylistFragment.createBundle(content.uri),
                                         NavOptions.Builder()
                                             .setPopUpTo(R.id.fragment_main, false)

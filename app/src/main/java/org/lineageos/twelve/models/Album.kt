@@ -5,8 +5,10 @@
 
 package org.lineageos.twelve.models
 
+import android.content.Context
 import android.net.Uri
 import androidx.media3.common.MediaMetadata
+import org.lineageos.twelve.R
 import org.lineageos.twelve.ext.buildMediaItem
 import org.lineageos.twelve.ext.toByteArray
 
@@ -37,8 +39,8 @@ data class Album(
         Album::year,
     ) == 0
 
-    override fun toMedia3MediaItem() = buildMediaItem(
-        title = title,
+    override fun toMedia3MediaItem(context: Context) = buildMediaItem(
+        title = title ?: context.getString(R.string.album_unknown),
         mediaId = uri.toString(),
         isPlayable = false,
         isBrowsable = true,

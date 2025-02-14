@@ -5,6 +5,7 @@
 
 package org.lineageos.twelve.models
 
+import android.content.Context
 import android.net.Uri
 
 /**
@@ -32,8 +33,9 @@ sealed interface MediaItem<T : MediaItem<T>> : UniqueItem<T> {
 
     /**
      * Convert this item to a media item.
+     * @param context The context used to retrieve the fallback resources
      */
-    fun toMedia3MediaItem(): androidx.media3.common.MediaItem
+    fun toMedia3MediaItem(context: Context): androidx.media3.common.MediaItem
 
     /**
      * Builder for a [MediaItem].
