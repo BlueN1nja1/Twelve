@@ -33,7 +33,9 @@
     <string name="no_results">Niciun rezultat</string>
     <string name="album_unknown">Album necunoscut</string>
     <string name="artist_unknown">Artist necunoscut</string>
+    <string name="audio_unknown">Audio necunoscut</string>
     <string name="genre_unknown">Gen necunoscut</string>
+    <string name="playlist_unknown">Playlist necunoscut</string>
     <plurals name="tracks_count">
         <item quantity="one">%d melodie</item>
         <item quantity="few">%d melodii</item>
@@ -182,4 +184,7 @@
     <string name="jellyfin_version">Versiune</string>
     <string name="jellyfin_product_name">Nume produs</string>
     <string name="jellyfin_operating_system">Sistem de operare</string>
+    <string name="playlist_name">Nume</string>
+    <string name="provider">Furnizor</string>
+    <string name="create_playlist_error_empty_name">Nici un nume specificat</string>
 </resources>

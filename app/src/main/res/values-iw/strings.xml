@@ -24,4 +24,7 @@
     <string name="library_item_playlists">רשימות השמעה</string>
     <string name="library_item_change_provider">שינוי ספק</string>
     <string name="library_item_provider_changed">הספק השתנה, חזור לתפריט הראשי</string>
+    <string name="playlist_name">שם</string>
+    <string name="provider">ספק</string>
+    <string name="create_playlist_error_empty_name">לא סופק שם</string>
 </resources>

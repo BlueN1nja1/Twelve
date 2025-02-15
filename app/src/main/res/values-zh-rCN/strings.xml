@@ -178,4 +178,7 @@
     <string name="jellyfin_version">版本</string>
     <string name="jellyfin_product_name">产品名称</string>
     <string name="jellyfin_operating_system">操作系统</string>
+    <string name="playlist_name">名称</string>
+    <string name="provider">提供方</string>
+    <string name="create_playlist_error_empty_name">未指定名称</string>
 </resources>

@@ -96,6 +96,7 @@
     <string name="provider_argument_password">Senha</string>
     <string name="provider_argument_use_legacy_authentication">Usar autenticação legada</string>
     <string name="provider_argument_validation_error_required">É necessário um valor</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Deve ser uma URL HTTP ou HTTPS válida (por exemplo, http://192.168.1.100 ou https://google.com)</string>
     <string name="no_provider">Sem provedores</string>
     <string name="providers">Provedores</string>
     <string name="add_provider_action">Adicionar</string>
@@ -122,6 +123,11 @@
     <string name="stop_playback_on_task_removed_summary">Interromper a reprodução quando o app é removido da lista de recentes</string>
     <string name="skip_silence">Pular silêncio</string>
     <string name="skip_silence_summary">Pular silêncio ao reproduzir áudio</string>
+    <string name="reset_local_stats">Redefinir estatísticas de reprodução de mídia local</string>
+    <string name="reset_local_stats_confirm_title">Redefinir estatísticas locais</string>
+    <string name="reset_local_stats_confirm_message">Você tem certeza que deseja redefinir todas as estatísticas de reprodução de mídia local? Essa ação não pode ser desfeita.</string>
+    <string name="reset_local_stats_confirm_positive">Redefinir</string>
+    <string name="reset_local_stats_success">As estatísticas de reprodução de mídia local foram redefinidas</string>
     <string name="split_local_devices">Dividir dispositivos locais</string>
     <string name="split_local_devices_summary">Se ativado, o armazenamento interno e dispositivos externos (cartões SD, dispositivos USB, etc.) aparecerão sob diferentes provedores</string>
     <string name="now_playing_widget_description">Tocando agora</string>
@@ -174,4 +180,7 @@
     <string name="jellyfin_version">Versão</string>
     <string name="jellyfin_product_name">Nome de produto</string>
     <string name="jellyfin_operating_system">Sistema operacional</string>
+    <string name="playlist_name">Nome</string>
+    <string name="provider">Fornecedor</string>
+    <string name="create_playlist_error_empty_name">Nenhum nome especificado</string>
 </resources>

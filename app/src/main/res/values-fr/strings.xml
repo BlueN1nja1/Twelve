@@ -81,4 +81,7 @@
     <string name="play_all">Tout lire</string>
     <string name="library_item_no_permissions_description">L\'application n\'a pas les autorisations nécessaires</string>
     <string name="unknown">Inconnu</string>
+    <string name="playlist_name">Nom</string>
+    <string name="provider">Fournisseur</string>
+    <string name="create_playlist_error_empty_name">Aucun nom spécifié</string>
 </resources>

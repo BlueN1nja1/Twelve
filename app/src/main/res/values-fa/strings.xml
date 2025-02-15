@@ -5,5 +5,14 @@
 -->
 <resources>
     <string name="audio_information">اطلاعات صدا</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">باید یک نشانی وب معتبر HTTP یا HTTPS باشد (به عنوان مثال http://192.168.1.100 یا https://google.com)</string>
+    <string name="reset_local_stats">بازنشانی آمار پخش رسانه محلی</string>
+    <string name="reset_local_stats_confirm_title">بازنشانی آمار محلی</string>
+    <string name="reset_local_stats_confirm_message">آیا مطمئن هستید که می‌خواهید تمام آمار پخش رسانه محلی را بازنشانی کنید؟ این عمل قابل لغو نیست.</string>
+    <string name="reset_local_stats_confirm_positive">بازنشانی</string>
+    <string name="reset_local_stats_success">آمار پخش رسانه محلی بازنشانی شد</string>
     <string name="shuffle_play">پخش تصادفی</string>
+    <string name="playlist_name">نام</string>
+    <string name="provider">ارائه دهنده</string>
+    <string name="create_playlist_error_empty_name">نام مشخص نشده</string>
 </resources>

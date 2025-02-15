@@ -55,6 +55,7 @@
     <string name="rename_playlist_positive">Đổi tên</string>
     <string name="delete_playlist">Xóa danh sách phát</string>
     <string name="delete_playlist_message">Bạn có chắc chắn muốn xóa danh sách phát này?</string>
+    <string name="audio_information">Thông tin âm thanh</string>
     <string name="audio_effects">Hiệu ứng âm thanh</string>
     <string name="playback_speed">Tốc độ phát lại</string>
     <string name="playback_speed_format">%1$s×</string>
@@ -93,6 +94,7 @@
     <string name="provider_argument_password">Mật khẩu</string>
     <string name="provider_argument_use_legacy_authentication">Sử dụng xác thực truyền thống</string>
     <string name="provider_argument_validation_error_required">Cần phải có một giá trị</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Phải là URL HTTP hoặc HTTPS hợp lệ (ví dụ: http://192.168.1.100 hoặc https://google.com)</string>
     <string name="no_provider">Không có nhà cung cấp</string>
     <string name="providers">Nhà cung cấp</string>
     <string name="add_provider_action">Thêm</string>
@@ -119,6 +121,11 @@
     <string name="stop_playback_on_task_removed_summary">Dừng phát khi ứng dụng được xóa khỏi mục gần đây</string>
     <string name="skip_silence">Bỏ qua khoảng trống</string>
     <string name="skip_silence_summary">Bỏ qua khoảng trống khi phát âm thanh</string>
+    <string name="reset_local_stats">Đặt lại số liệu thống kê phát lại phương tiện cục bộ</string>
+    <string name="reset_local_stats_confirm_title">Đặt lại số liệu thống kê cục bộ</string>
+    <string name="reset_local_stats_confirm_message">Bạn có chắc chắn muốn đặt lại tất cả số liệu thống kê phát lại phương tiện cục bộ không? Hành động này không thể hoàn tác.</string>
+    <string name="reset_local_stats_confirm_positive">Đặt lại</string>
+    <string name="reset_local_stats_success">Thống kê phát lại phương tiện truyền thông cục bộ đã được đặt lại</string>
     <string name="split_local_devices">Chia tách các thiết bị cục bộ</string>
     <string name="split_local_devices_summary">Nếu được bật, bộ nhớ trong và thiết bị ngoài (thẻ SD, thiết bị USB, v.v.) sẽ xuất hiện trong các nhà cung cấp khác nhau</string>
     <string name="now_playing_widget_description">Đang phát</string>
@@ -147,6 +154,7 @@
     <string name="content_description_play_pause">Phát/Tạm dừng</string>
     <string name="content_description_thumbnail">Hình thu nhỏ</string>
     <string name="play_all">Phát tất cả</string>
+    <string name="shuffle_play">Phát ngẫu nhiên</string>
     <string name="library_item_no_permissions">Không được cấp quyền</string>
     <string name="library_item_no_permissions_description">Ứng dụng không được cấp các quyền cần thiết</string>
     <string name="library_item_albums">Album</string>
@@ -155,5 +163,22 @@
     <string name="library_item_playlists">Danh sách phát</string>
     <string name="library_item_change_provider">Thay đổi nhà cung cấp</string>
     <string name="library_item_provider_changed">Nhà cung cấp đã thay đổi, quay lại menu chính</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
     <string name="unknown">Không rõ</string>
+    <string name="local_volume_name">Tên ổ đĩa</string>
+    <string name="subsonic_version">Phiên bản Subsonic</string>
+    <string name="subsonic_server_type">Loại máy chủ</string>
+    <string name="subsonic_server_version">Phiên bản máy chủ</string>
+    <string name="subsonic_supports_opensubsonic">Hỗ trợ tiện ích mở rộng OpenSubsonic</string>
+    <string name="subsonic_license">Giấy phép</string>
+    <string name="subsonic_license_valid">Hợp lệ</string>
+    <string name="subsonic_license_invalid">Không hợp lệ</string>
+    <string name="jellyfin_server_name">Tên máy chủ</string>
+    <string name="jellyfin_version">Phiên bản</string>
+    <string name="jellyfin_product_name">Tên sản phẩm</string>
+    <string name="jellyfin_operating_system">Hệ điều hành</string>
+    <string name="playlist_name">Tên</string>
+    <string name="provider">Nhà cung cấp</string>
+    <string name="create_playlist_error_empty_name">Không có tên nào được chỉ định</string>
 </resources>

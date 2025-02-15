@@ -33,6 +33,7 @@
     <string name="album_unknown">Неизвестный альбом</string>
     <string name="artist_unknown">Неизвестный исполнитель</string>
     <string name="genre_unknown">Неизвестный жанр</string>
+    <string name="playlist_unknown">Неизвестный плейлист</string>
     <plurals name="tracks_count">
         <item quantity="one">%d трек</item>
         <item quantity="few">%d трека</item>

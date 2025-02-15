@@ -150,7 +150,7 @@
     <string name="content_description_play_pause">Пускане/Стоп</string>
     <string name="content_description_thumbnail">Миниатюра</string>
     <string name="play_all">Пускане на всички</string>
-    <string name="shuffle_play">Разбъркване</string>
+    <string name="shuffle_play">Пускане в случаен ред</string>
     <string name="library_item_no_permissions">Няма разрешения</string>
     <string name="library_item_no_permissions_description">Приложението няма съответните разрешения</string>
     <string name="library_item_albums">Албум</string>

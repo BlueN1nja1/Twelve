@@ -180,4 +180,7 @@
     <string name="jellyfin_version">Version</string>
     <string name="jellyfin_product_name">Product name</string>
     <string name="jellyfin_operating_system">Operating system</string>
+    <string name="playlist_name">Name</string>
+    <string name="provider">Provider</string>
+    <string name="create_playlist_error_empty_name">No name specified</string>
 </resources>

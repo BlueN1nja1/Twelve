@@ -184,4 +184,7 @@
     <string name="jellyfin_version">Wersja</string>
     <string name="jellyfin_product_name">Nazwa produktu</string>
     <string name="jellyfin_operating_system">System operacyjny</string>
+    <string name="playlist_name">Nazwa</string>
+    <string name="provider">Dostawca</string>
+    <string name="create_playlist_error_empty_name">Nie określono nazwy</string>
 </resources>

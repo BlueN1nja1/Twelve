@@ -31,4 +31,6 @@
     <string name="activity_random_albums">Álbumes aleatorios</string>
     <string name="activity_random_songs">Canciones aleatories</string>
     <string name="content_description_thumbnail">Miniatura</string>
+    <string name="playlist_name">Nome</string>
+    <string name="provider">Fornidor</string>
 </resources>

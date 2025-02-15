@@ -6,7 +6,7 @@
 <resources>
     <string name="app_name">Música</string>
     <string name="app_permissions_toast">Permisos no concedidos por el usuario.</string>
-    <string name="visualizer_permissions_toast">Se necesita permiso de grabación de audio para el visor.</string>
+    <string name="visualizer_permissions_toast">Se necesita permiso de grabación de audio para el visualizador</string>
     <string name="request_status_error_type_unknown">Desconocido</string>
     <string name="request_status_error_type_not_found">No se ha encontrado</string>
     <string name="request_status_error_type_io">Error de Entrada/Salida</string>
@@ -96,6 +96,7 @@
     <string name="provider_argument_password">Contraseña</string>
     <string name="provider_argument_use_legacy_authentication">Usar la autenticación heredada</string>
     <string name="provider_argument_validation_error_required">Se requiere un valor</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Debe ser una URL HTTP o HTTPS válida (p. ej. http://192.168.1.100 o https://google.com)</string>
     <string name="no_provider">Sin proveedores</string>
     <string name="providers">Proveedores</string>
     <string name="add_provider_action">Añadir</string>
@@ -122,6 +123,11 @@
     <string name="stop_playback_on_task_removed_summary">Detener la reproducción cuando la aplicación se borre de recientes</string>
     <string name="skip_silence">Saltar los silencios</string>
     <string name="skip_silence_summary">Saltar los silencios al reproducir audio</string>
+    <string name="reset_local_stats">Reiniciar las estadísticas de reproducción de medios locales</string>
+    <string name="reset_local_stats_confirm_title">Reiniciar las estadísticas locales</string>
+    <string name="reset_local_stats_confirm_message">¿Seguro que quieres reiniciar todas las estadísticas de reproducción de medios locales? Esta acción no se puede deshacer.</string>
+    <string name="reset_local_stats_confirm_positive">Reiniciar</string>
+    <string name="reset_local_stats_success">Se han reiniciado las estadísticas de reproducción de medios locales</string>
     <string name="split_local_devices">Dividir dispositivos locales</string>
     <string name="split_local_devices_summary">Si está activada, el almacenamiento interno y los dispositivos externos (tarjetas SD, dispositivos USB, etc.) se mostrarán bajo diferentes proveedores.</string>
     <string name="now_playing_widget_description">Reproduciendo ahora</string>
@@ -174,4 +180,7 @@
     <string name="jellyfin_version">Versión</string>
     <string name="jellyfin_product_name">Nombre del producto</string>
     <string name="jellyfin_operating_system">Sistema operativo</string>
+    <string name="playlist_name">Nombre</string>
+    <string name="provider">Proveedor</string>
+    <string name="create_playlist_error_empty_name">Nombre no especificado</string>
 </resources>

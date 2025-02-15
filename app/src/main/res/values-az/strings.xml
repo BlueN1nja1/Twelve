@@ -180,4 +180,7 @@
     <string name="jellyfin_version">Versiya</string>
     <string name="jellyfin_product_name">Məhsul adı</string>
     <string name="jellyfin_operating_system">Əməliyyat sistemi</string>
+    <string name="playlist_name">Ad</string>
+    <string name="provider">Provayder</string>
+    <string name="create_playlist_error_empty_name">Heç bir ad qeyd olunmayıb</string>
 </resources>

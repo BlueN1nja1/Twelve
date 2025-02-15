@@ -33,7 +33,9 @@
     <string name="no_results">No hi ha resultats</string>
     <string name="album_unknown">Àlbum desconegut</string>
     <string name="artist_unknown">Artista desconegut</string>
+    <string name="audio_unknown">Àudio desconegut</string>
     <string name="genre_unknown">Gènere desconegut</string>
+    <string name="playlist_unknown">Llista de reproducció desconeguda</string>
     <plurals name="tracks_count">
         <item quantity="one">%d pista</item>
         <item quantity="other">%d pistes</item>
@@ -121,6 +123,8 @@
     <string name="enable_float_output_summary">Utilitza la sortida de coma flotant PCM de 32 bits quan la qualitat d\'àudio se\'n pugui beneficiar. Els efectes d\'àudio com els controls de velocitat i to deixaran de funcionar en aquest mode. Commutar aquesta opció requereix reiniciar l\'aplicació</string>
     <string name="stop_playback_on_task_removed">Atura la reproducció quan l\'aplicació s\'elimina dels recents</string>
     <string name="stop_playback_on_task_removed_summary">Atura la reproducció quan l\'aplicació s\'esborra dels recents</string>
+    <string name="skip_silence">Salta els silencis</string>
+    <string name="skip_silence_summary">Salta els silencis en reproduir àudio</string>
     <string name="reset_local_stats">Restableix les estadístiques de reproducció de mitjans locals</string>
     <string name="reset_local_stats_confirm_title">Restableix les estadístiques locals</string>
     <string name="reset_local_stats_confirm_message">Esteu segur que voleu restablir totes les estadístiques de reproducció de mitjans locals? Aquesta acció no es pot desfer.</string>
@@ -178,4 +182,7 @@
     <string name="jellyfin_version">Versió</string>
     <string name="jellyfin_product_name">Nom del producte</string>
     <string name="jellyfin_operating_system">Sistema operatiu</string>
+    <string name="playlist_name">Nom</string>
+    <string name="provider">Proveïdor</string>
+    <string name="create_playlist_error_empty_name">No s\'ha especificat cap nom</string>
 </resources>

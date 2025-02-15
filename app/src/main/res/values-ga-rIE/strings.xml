@@ -186,4 +186,7 @@
     <string name="jellyfin_version">Leagan</string>
     <string name="jellyfin_product_name">Ainm an táirge</string>
     <string name="jellyfin_operating_system">Córas oibriúcháin</string>
+    <string name="playlist_name">Ainm</string>
+    <string name="provider">Soláthraí</string>
+    <string name="create_playlist_error_empty_name">Níor sonraíodh aon ainm</string>
 </resources>

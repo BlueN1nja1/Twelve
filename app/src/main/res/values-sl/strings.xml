@@ -184,4 +184,7 @@
     <string name="jellyfin_version">Različica</string>
     <string name="jellyfin_product_name">Ime izdelka</string>
     <string name="jellyfin_operating_system">Operacijski sistem</string>
+    <string name="playlist_name">Ime</string>
+    <string name="provider">Ponudnik</string>
+    <string name="create_playlist_error_empty_name">Ime ni navedeno</string>
 </resources>
