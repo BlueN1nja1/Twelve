@@ -13,23 +13,25 @@ import coil3.imageLoader
 import coil3.request.ImageRequest
 import coil3.request.allowHardware
 import coil3.toBitmap
-import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.guava.future
 
 /**
  * A [BitmapLoader] that uses Coil.
  */
 @OptIn(androidx.media3.common.util.UnstableApi::class)
-class CoilBitmapLoader(private val context: Context) : BitmapLoader {
-    private val mainScope = MainScope()
-
+class CoilBitmapLoader(
+    private val context: Context,
+    private val scope: CoroutineScope,
+) : BitmapLoader {
     override fun supportsMimeType(mimeType: String) = true
 
     override fun decodeBitmap(data: ByteArray) = getImage(data)
 
     override fun loadBitmap(uri: Uri) = getImage(uri)
 
-    private fun getImage(data: Any?) = mainScope.future {
+    private fun getImage(data: Any?) = scope.future(Dispatchers.IO) {
         val imageRequest = ImageRequest.Builder(context)
             .data(data)
             .allowHardware(false)

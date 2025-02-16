@@ -329,6 +329,7 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
                     )
                     .build()
             )
+            .setWakeMode(C.WAKE_MODE_NETWORK)
             .experimentalSetDynamicSchedulingEnabled(true)
             .build()
 
@@ -337,7 +338,7 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
         mediaLibrarySession = MediaLibrarySession.Builder(
             this, exoPlayer, mediaLibrarySessionCallback
         )
-            .setBitmapLoader(CoilBitmapLoader(this))
+            .setBitmapLoader(CoilBitmapLoader(this, lifecycleScope))
             .setSessionActivity(getSingleTopActivity())
             .build()
 
