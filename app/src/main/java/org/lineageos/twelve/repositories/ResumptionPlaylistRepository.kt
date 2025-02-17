@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -27,6 +27,12 @@ class ResumptionPlaylistRepository(val database: TwelveDatabase) {
                 it.resumptionPlaylist.startPositionMs,
             )
         } ?: ResumptionPlaylist(emptyList())
+
+    /**
+     * Clear the resumption playlist.
+     */
+    suspend fun clearResumptionPlaylist() =
+        database.getResumptionPlaylistDao().clearResumptionPlaylist()
 
     /**
      * When the user changes the queue, create a new resumption playlist.

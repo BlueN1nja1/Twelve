@@ -173,10 +173,17 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
                 }
             }.filterNotNull()
 
-            // Shouldn't be needed, but just to be sure
-            startIndex = startIndex.coerceIn(0, mediaItems.size - 1)
+            if (mediaItems.isEmpty()) {
+                // No valid media items found, clear the resumption playlist
+                resumptionPlaylistRepository.clearResumptionPlaylist()
 
-            MediaSession.MediaItemsWithStartPosition(mediaItems, startIndex, startPositionMs)
+                MediaSession.MediaItemsWithStartPosition(emptyList(), 0, 0)
+            } else {
+                // Shouldn't be needed, but just to be sure
+                startIndex = startIndex.coerceIn(mediaItems.indices)
+
+                MediaSession.MediaItemsWithStartPosition(mediaItems, startIndex, startPositionMs)
+            }
         }
 
         override fun onGetLibraryRoot(

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -17,7 +17,7 @@ interface ResumptionPlaylistDao {
      * Clear all resumption playlists.
      */
     @Query("DELETE FROM ResumptionPlaylist")
-    suspend fun _clearResumptionPlaylists()
+    suspend fun clearResumptionPlaylist()
 
     /**
      * Insert a resumption playlist.
@@ -54,7 +54,7 @@ interface ResumptionPlaylistDao {
         startPositionMs: Long,
         mediaItems: List<String>
     ) {
-        _clearResumptionPlaylists()
+        clearResumptionPlaylist()
 
         val id = _createResumptionPlaylist(startIndex, startPositionMs)
 
