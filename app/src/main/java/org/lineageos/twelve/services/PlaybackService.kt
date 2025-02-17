@@ -46,7 +46,6 @@ import org.lineageos.twelve.ext.setOffloadEnabled
 import org.lineageos.twelve.ext.skipSilence
 import org.lineageos.twelve.ext.stopPlaybackOnTaskRemoved
 import org.lineageos.twelve.ui.widgets.NowPlayingAppWidgetProvider
-import kotlin.reflect.cast
 
 @OptIn(UnstableApi::class)
 class PlaybackService : MediaLibraryService(), LifecycleOwner {
@@ -96,9 +95,8 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
     override val lifecycle: Lifecycle
         get() = dispatcher.lifecycle
 
-    private val player: ExoPlayer
-        get() = mediaLibrarySession?.player as ExoPlayer
-    private var mediaLibrarySession: MediaLibrarySession? = null
+    private lateinit var player: ExoPlayer
+    private lateinit var mediaLibrarySession: MediaLibrarySession
 
     private val mediaRepositoryTree by lazy {
         MediaRepositoryTree(
@@ -182,7 +180,11 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
                 // Shouldn't be needed, but just to be sure
                 startIndex = startIndex.coerceIn(mediaItems.indices)
 
-                MediaSession.MediaItemsWithStartPosition(mediaItems, startIndex, startPositionMs)
+                MediaSession.MediaItemsWithStartPosition(
+                    mediaItems,
+                    startIndex,
+                    startPositionMs
+                )
             }
         }
 
@@ -281,7 +283,7 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
             when (CustomCommand.fromCustomAction(customCommand.customAction)) {
                 CustomCommand.TOGGLE_OFFLOAD -> {
                     args.getBoolean(CustomCommand.ARG_VALUE).let {
-                        mediaLibrarySession?.player?.setOffloadEnabled(it)
+                        player.setOffloadEnabled(it)
                     }
 
                     SessionResult(SessionResult.RESULT_SUCCESS)
@@ -289,7 +291,7 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
 
                 CustomCommand.TOGGLE_SKIP_SILENCE -> {
                     args.getBoolean(CustomCommand.ARG_VALUE).let {
-                        ExoPlayer::class.cast(mediaLibrarySession?.player).skipSilenceEnabled = it
+                        player.skipSilenceEnabled = it
                     }
 
                     SessionResult(SessionResult.RESULT_SUCCESS)
@@ -316,7 +318,7 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
             .setUsage(C.USAGE_MEDIA)
             .build()
 
-        val exoPlayer = ExoPlayer.Builder(this)
+        player = ExoPlayer.Builder(this)
             .setAudioAttributes(audioAttributes, true)
             .setHandleAudioBecomingNoisy(true)
             .setRenderersFactory(
@@ -340,10 +342,10 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
             .experimentalSetDynamicSchedulingEnabled(true)
             .build()
 
-        exoPlayer.setOffloadEnabled(sharedPreferences.enableOffload)
+        player.setOffloadEnabled(sharedPreferences.enableOffload)
 
         mediaLibrarySession = MediaLibrarySession.Builder(
-            this, exoPlayer, mediaLibrarySessionCallback
+            this, player, mediaLibrarySessionCallback
         )
             .setBitmapLoader(CoilBitmapLoader(this, lifecycleScope))
             .setSessionActivity(getSingleTopActivity())
@@ -357,11 +359,11 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
                 }
         )
 
-        exoPlayer.audioSessionId = audioSessionId
+        player.audioSessionId = audioSessionId
         openAudioEffectSession()
 
         lifecycleScope.launch {
-            exoPlayer.listen { events ->
+            player.listen { events ->
                 // Update startIndex and startPositionMs in resumption playlist.
                 if (events.containsAny(Player.EVENT_MEDIA_ITEM_TRANSITION)) {
                     lifecycleScope.launch {
@@ -422,9 +424,8 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
 
         closeAudioEffectSession()
 
-        mediaLibrarySession?.player?.release()
-        mediaLibrarySession?.release()
-        mediaLibrarySession = null
+        player.release()
+        mediaLibrarySession.release()
 
         super.onDestroy()
     }
