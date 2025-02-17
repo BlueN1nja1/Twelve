@@ -5,19 +5,19 @@
 
 package org.lineageos.twelve.models
 
-import android.content.Context
+import android.content.res.Resources
 import androidx.annotation.StringRes
 import org.lineageos.twelve.R
 import kotlin.reflect.safeCast
 
 sealed interface LocalizedString {
-    fun getString(context: Context): String
+    fun getString(resources: Resources): String
     fun areContentsTheSame(other: LocalizedString): Boolean
 
     class StringLocalizedString(
         private val value: String,
     ) : LocalizedString {
-        override fun getString(context: Context) = value
+        override fun getString(resources: Resources) = value
 
         override fun areContentsTheSame(other: LocalizedString) = areContentsTheSame(other) {
             this.value == it.value
@@ -28,9 +28,9 @@ sealed interface LocalizedString {
         @StringRes private val stringResId: Int,
         private val stringResIdArgs: List<Any>? = null,
     ) : LocalizedString {
-        override fun getString(context: Context) = stringResIdArgs?.let { stringResIdArgs ->
-            context.getString(stringResId, *stringResIdArgs.toTypedArray())
-        } ?: context.getString(stringResId)
+        override fun getString(resources: Resources) = stringResIdArgs?.let { stringResIdArgs ->
+            resources.getString(stringResId, *stringResIdArgs.toTypedArray())
+        } ?: resources.getString(stringResId)
 
         override fun areContentsTheSame(
             other: LocalizedString

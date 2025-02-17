@@ -72,7 +72,7 @@ class ActivityTabView(context: Context) : FrameLayout(context) {
     }
 
     fun setActivityTab(activityTab: ActivityTab) {
-        titleTextView.text = activityTab.title.getString(context)
+        titleTextView.text = activityTab.title.getString(resources)
 
         adapter.submitList(activityTab.items)
         recyclerView.isVisible = activityTab.items.isNotEmpty()

@@ -22,6 +22,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.guava.await
 import org.lineageos.twelve.TwelveApplication
 import org.lineageos.twelve.ext.applicationContext
+import org.lineageos.twelve.ext.resources
 import org.lineageos.twelve.ext.shuffleModeEnabled
 import org.lineageos.twelve.ext.typedRepeatMode
 import org.lineageos.twelve.models.Audio
@@ -99,7 +100,7 @@ abstract class TwelveViewModel(application: Application) : AndroidViewModel(appl
             shuffleModeEnabled = sharedPreferences.shuffleModeEnabled
             typedRepeatMode = sharedPreferences.typedRepeatMode
 
-            setMediaItems(audio.map { it.toMedia3MediaItem(applicationContext) }, true)
+            setMediaItems(audio.map { it.toMedia3MediaItem(resources) }, true)
             prepare()
             seekToDefaultPosition(position)
             play()

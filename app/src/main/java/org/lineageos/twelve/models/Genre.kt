@@ -5,7 +5,7 @@
 
 package org.lineageos.twelve.models
 
-import android.content.Context
+import android.content.res.Resources
 import android.net.Uri
 import androidx.media3.common.MediaMetadata
 import org.lineageos.twelve.R
@@ -31,8 +31,8 @@ data class Genre(
         Genre::name,
     ) == 0
 
-    override fun toMedia3MediaItem(context: Context) = buildMediaItem(
-        title = name ?: context.getString(R.string.genre_unknown),
+    override fun toMedia3MediaItem(resources: Resources) = buildMediaItem(
+        title = name ?: resources.getString(R.string.genre_unknown),
         mediaId = uri.toString(),
         isPlayable = false,
         isBrowsable = true,

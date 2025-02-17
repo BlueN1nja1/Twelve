@@ -15,7 +15,7 @@
     <string name="main_fragment_section_activity">செயற்பாடு</string>
     <string name="main_fragment_section_search">தேடுக</string>
     <string name="main_fragment_section_library">ஒலியகம்</string>
-    <string name="search_hint">தேடுக...</string>
+    <string name="search_hint">தேடுக…</string>
     <string name="library_fragment_menu_albums">தொகுப்புகள்</string>
     <string name="library_fragment_menu_artists">கலைஞர்கள்</string>
     <string name="library_fragment_menu_genres">பாணிகள்</string>

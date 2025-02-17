@@ -67,8 +67,8 @@ class ProviderInformationBottomSheetDialogFragment : BottomSheetDialogFragment(
             { context -> ListItem(context) }
         ) {
             override fun ViewHolder.onBindView(item: DataSourceInformation) {
-                view.headlineText = item.keyLocalizedString.getString(view.context)
-                view.supportingText = item.value.getString(view.context)
+                view.headlineText = item.keyLocalizedString.getString(view.resources)
+                view.supportingText = item.value.getString(view.resources)
             }
         }
     }

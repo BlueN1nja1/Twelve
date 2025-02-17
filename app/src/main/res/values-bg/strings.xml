@@ -60,7 +60,6 @@
     <string name="audio_information">Аудио информация</string>
     <string name="audio_effects">Аудио ефекти</string>
     <string name="playback_speed">Скорост на възпроизвеждане</string>
-    <string name="playback_speed_format"/>
     <string name="playback_pitch_slider_description">Височина на тона на възпроизвеждане</string>
     <string name="playbacl_pitch_unlock">Отключване промяна на тона</string>
     <string name="playback_warning">Скорост и височина на тона може да не работят правилно, докато е включено разтоварване на възпроизвеждането. Превключете го през настройките на приложението.</string>
