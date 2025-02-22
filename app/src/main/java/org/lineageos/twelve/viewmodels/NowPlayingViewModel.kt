@@ -20,12 +20,12 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
+import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
 import me.bogerchan.niervisualizer.renderer.IRenderer
 import me.bogerchan.niervisualizer.renderer.circle.CircleBarRenderer
@@ -53,6 +53,7 @@ import org.lineageos.twelve.models.PlaybackProgress
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.models.RequestStatus
+import org.lineageos.twelve.models.RequestStatus.Companion.map
 import org.lineageos.twelve.services.PlaybackService
 import org.lineageos.twelve.services.PlaybackService.CustomCommand.Companion.sendCustomCommand
 import org.lineageos.twelve.utils.MimeUtils
@@ -67,6 +68,28 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         LINE({ arrayOf(LineRenderer(true)) }),
         CIRCLE_BAR({ arrayOf(CircleBarRenderer()) }),
         CIRCLE({ arrayOf(CircleRenderer(true)) }),
+    }
+
+    enum class LyricsLineState {
+        /**
+         * Line is still to be reached.
+         */
+        PENDING,
+
+        /**
+         * Line is relevant with current timestamp.
+         */
+        ACTIVE,
+
+        /**
+         * Line is past the current timestamp.
+         */
+        PAST,
+
+        /**
+         * Lyrics' position is unknown.
+         */
+        UNKNOWN,
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -90,13 +113,23 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val audio = mediaItem
-        .filterNotNull()
-        .flatMapLatest {
-            runCatching {
-                Uri.parse(it.mediaId)
-            }.getOrNull()?.let { mediaItemUri ->
-                mediaRepository.audio(mediaItemUri)
+    private val mediaItemUri = mediaItem
+        .mapLatest { mediaItem ->
+            mediaItem?.let {
+                runCatching { Uri.parse(it.mediaId) }.getOrNull()
+            }
+        }
+        .flowOn(Dispatchers.IO)
+        .shareIn(
+            viewModelScope,
+            started = SharingStarted.WhileSubscribed(),
+        )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val audio = mediaItemUri
+        .flatMapLatest { mediaItemUri ->
+            mediaItemUri?.let {
+                mediaRepository.audio(it)
             } ?: flowOf(RequestStatus.Error(MediaError.NOT_FOUND))
         }
         .flowOn(Dispatchers.IO)
@@ -302,6 +335,57 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
             initialValue = false
+        )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private val lyrics = mediaItemUri
+        .flatMapLatest { mediaItemUri ->
+            mediaItemUri?.let {
+                mediaRepository.lyrics(it)
+            } ?: flowOf(RequestStatus.Loading())
+        }
+        .flowOn(Dispatchers.IO)
+        .stateIn(
+            viewModelScope,
+            started = SharingStarted.WhileSubscribed(),
+            initialValue = RequestStatus.Loading()
+        )
+
+    val lyricsLines = combine(
+        lyrics,
+        durationCurrentPositionMs,
+    ) { lyrics, durationCurrentPositionMs ->
+        lyrics.map {
+            var currentIndex: Int? = null
+
+            val linesWithState = it.lines.withIndex().map { (i, line) ->
+                val lyricsLineState = line.durationMs?.let { durationMs ->
+                    durationCurrentPositionMs.second?.let { currentPositionMs ->
+                        when {
+                            currentPositionMs < durationMs.first -> LyricsLineState.PENDING
+                            currentPositionMs in durationMs -> LyricsLineState.ACTIVE
+                            currentPositionMs > durationMs.last -> LyricsLineState.PAST
+                            else -> LyricsLineState.UNKNOWN
+                        }
+                    }
+                } ?: LyricsLineState.UNKNOWN
+
+                if (lyricsLineState == LyricsLineState.ACTIVE
+                    || lyricsLineState == LyricsLineState.PAST) {
+                    currentIndex = i
+                }
+
+                line to lyricsLineState
+            }
+
+            linesWithState to currentIndex
+        }
+    }
+        .flowOn(Dispatchers.IO)
+        .stateIn(
+            viewModelScope,
+            started = SharingStarted.WhileSubscribed(),
+            initialValue = RequestStatus.Loading()
         )
 
     fun togglePlayPause() {

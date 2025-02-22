@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -38,7 +38,7 @@ data class SubsonicResponse(
     val albumList2: AlbumList2? = null,
     val randomSongs: Songs? = null,
     val songsByGenre: Songs? = null,
-    val lyrics: TODO = null,
+    val lyrics: Lyrics? = null,
     val podcasts: TODO = null,
     val newestPodcasts: TODO = null,
     val internetRadioStations: TODO = null,
@@ -63,4 +63,7 @@ data class SubsonicResponse(
     val type: String? = null,
     val serverVersion: String? = null,
     val openSubsonic: Boolean? = null,
+
+    // OpenSubsonic custom responses
+    val lyricsList: LyricsList? = null,
 )

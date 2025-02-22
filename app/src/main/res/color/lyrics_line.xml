@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="?attr/colorControlHighlight" android:state_activated="false" />
+    <item android:color="?attr/colorPrimary" android:state_selected="true" />
+    <item android:color="?attr/colorOnSurface" />
+</selector>

@@ -1217,6 +1217,28 @@ class SubsonicClient(
 
     // TODO
 
+    // OpenSubsonic extensions
+
+    /**
+     * Retrieves all structured lyrics from the server for a given song. The lyrics can come from
+     * embedded tags (SYLT/USLT), LRC file/text file, or any other external source.
+     *
+     * Note: OpenSubsonic only.
+     *
+     * @since OpenSubsonic version 1
+     * @param id The track ID
+     */
+    suspend fun getLyricsBySongId(
+        id: String,
+    ) = ApiRequest.get<ResponseRoot>(
+        listOf("getLyricsBySongId"),
+        queryParameters = listOf(
+            "id" to id,
+        )
+    ).execute(api).mapResponse(SubsonicResponse::lyricsList)
+
+    // TODO
+
     private inline fun <T> MethodResult<ResponseRoot>.mapResponse(
         methodValue: SubsonicResponse.() -> T,
     ) = when (this) {

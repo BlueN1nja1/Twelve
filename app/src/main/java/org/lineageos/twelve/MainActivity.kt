@@ -17,6 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.ext.navigateSafe
@@ -54,75 +55,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
         lifecycleScope.launch {
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                intentsViewModel.parsedIntent.collectLatest { parsedIntent ->
-                    parsedIntent?.handle {
-                        when (it.action) {
-                            IntentsViewModel.ParsedIntent.Action.MAIN -> {
-                                // We don't need to do anything
-                            }
-
-                            IntentsViewModel.ParsedIntent.Action.OPEN_NOW_PLAYING -> {
-                                navController.navigateSafe(
-                                    R.id.action_mainFragment_to_fragment_now_playing,
-                                    navOptions = NavOptions.Builder()
-                                        .setPopUpTo(R.id.fragment_main, false)
-                                        .build(),
-                                )
-                            }
-
-                            IntentsViewModel.ParsedIntent.Action.VIEW -> {
-                                if (it.contents.isEmpty()) {
-                                    Log.i(LOG_TAG, "No content to view")
-                                    return@handle
-                                }
-
-                                val isSingleItem = it.contents.size == 1
-                                if (!isSingleItem) {
-                                    Log.i(LOG_TAG, "Cannot handle multiple items")
-                                    return@handle
-                                }
-
-                                val content = it.contents.first()
-
-                                when (content.type) {
-                                    MediaType.ALBUM -> navController.navigateSafe(
-                                        R.id.action_mainFragment_to_fragment_album,
-                                        AlbumFragment.createBundle(content.uri),
-                                        NavOptions.Builder()
-                                            .setPopUpTo(R.id.fragment_main, false)
-                                            .build(),
-                                    )
-
-                                    MediaType.ARTIST -> navController.navigateSafe(
-                                        R.id.action_mainFragment_to_fragment_artist,
-                                        ArtistFragment.createBundle(content.uri),
-                                        NavOptions.Builder()
-                                            .setPopUpTo(R.id.fragment_main, false)
-                                            .build(),
-                                    )
-
-                                    MediaType.AUDIO -> Log.i(LOG_TAG, "Audio not supported")
-
-                                    MediaType.GENRE -> navController.navigateSafe(
-                                        R.id.action_mainFragment_to_fragment_genre,
-                                        GenreFragment.createBundle(content.uri),
-                                        NavOptions.Builder()
-                                            .setPopUpTo(R.id.fragment_main, false)
-                                            .build(),
-                                    )
-
-                                    MediaType.PLAYLIST -> navController.navigateSafe(
-                                        R.id.action_mainFragment_to_fragment_playlist,
-                                        PlaylistFragment.createBundle(content.uri),
-                                        NavOptions.Builder()
-                                            .setPopUpTo(R.id.fragment_main, false)
-                                            .build(),
-                                    )
-                                }
-                            }
-                        }
-                    }
-                }
+                loadData()
             }
         }
     }
@@ -131,6 +64,80 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         removeOnNewIntentListener(intentListener)
 
         super.onDestroy()
+    }
+
+    private fun CoroutineScope.loadData() {
+        launch {
+            intentsViewModel.parsedIntent.collectLatest { parsedIntent ->
+                parsedIntent?.handle {
+                    when (it.action) {
+                        IntentsViewModel.ParsedIntent.Action.MAIN -> {
+                            // We don't need to do anything
+                        }
+
+                        IntentsViewModel.ParsedIntent.Action.OPEN_NOW_PLAYING -> {
+                            navController.navigateSafe(
+                                R.id.action_mainFragment_to_fragment_now_playing,
+                                navOptions = NavOptions.Builder()
+                                    .setPopUpTo(R.id.fragment_main, false)
+                                    .build(),
+                            )
+                        }
+
+                        IntentsViewModel.ParsedIntent.Action.VIEW -> {
+                            if (it.contents.isEmpty()) {
+                                Log.i(LOG_TAG, "No content to view")
+                                return@handle
+                            }
+
+                            val isSingleItem = it.contents.size == 1
+                            if (!isSingleItem) {
+                                Log.i(LOG_TAG, "Cannot handle multiple items")
+                                return@handle
+                            }
+
+                            val content = it.contents.first()
+
+                            when (content.type) {
+                                MediaType.ALBUM -> navController.navigateSafe(
+                                    R.id.action_mainFragment_to_fragment_album,
+                                    AlbumFragment.createBundle(content.uri),
+                                    NavOptions.Builder()
+                                        .setPopUpTo(R.id.fragment_main, false)
+                                        .build(),
+                                )
+
+                                MediaType.ARTIST -> navController.navigateSafe(
+                                    R.id.action_mainFragment_to_fragment_artist,
+                                    ArtistFragment.createBundle(content.uri),
+                                    NavOptions.Builder()
+                                        .setPopUpTo(R.id.fragment_main, false)
+                                        .build(),
+                                )
+
+                                MediaType.AUDIO -> Log.i(LOG_TAG, "Audio not supported")
+
+                                MediaType.GENRE -> navController.navigateSafe(
+                                    R.id.action_mainFragment_to_fragment_genre,
+                                    GenreFragment.createBundle(content.uri),
+                                    NavOptions.Builder()
+                                        .setPopUpTo(R.id.fragment_main, false)
+                                        .build(),
+                                )
+
+                                MediaType.PLAYLIST -> navController.navigateSafe(
+                                    R.id.action_mainFragment_to_fragment_playlist,
+                                    PlaylistFragment.createBundle(content.uri),
+                                    NavOptions.Builder()
+                                        .setPopUpTo(R.id.fragment_main, false)
+                                        .build(),
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     companion object {

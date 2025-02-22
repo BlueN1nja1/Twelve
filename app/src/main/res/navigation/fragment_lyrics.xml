@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_lyrics"
+    app:startDestination="@id/lyricsFragment">
+
+    <fragment
+        android:id="@+id/lyricsFragment"
+        android:name="org.lineageos.twelve.fragments.LyricsFragment"
+        android:label="@string/lyrics"
+        tools:layout="@layout/fragment_lyrics" />
+
+</navigation>

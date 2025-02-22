@@ -15,6 +15,14 @@
         tools:layout="@layout/fragment_now_playing">
 
         <action
+            android:id="@+id/action_nowPlayingFragment_to_fragment_lyrics"
+            app:destination="@+id/fragment_lyrics"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
+        <action
             android:id="@+id/action_nowPlayingFragment_to_fragment_media_item_bottom_sheet_dialog"
             app:destination="@+id/fragment_media_item_bottom_sheet_dialog"
             app:enterAnim="@anim/nav_default_enter_anim"

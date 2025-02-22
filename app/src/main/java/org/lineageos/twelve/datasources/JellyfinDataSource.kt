@@ -30,6 +30,7 @@ import org.lineageos.twelve.models.DataSourceInformation
 import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.GenreContent
 import org.lineageos.twelve.models.LocalizedString
+import org.lineageos.twelve.models.Lyrics
 import org.lineageos.twelve.models.MediaItem
 import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.Playlist
@@ -269,6 +270,22 @@ class JellyfinDataSource(
             uri?.let(this::audio) ?: flowOf(RequestStatus.Error(MediaError.NOT_FOUND))
         }
 
+    override fun lyrics(audioUri: Uri) = suspend {
+        val id = UUID.fromString(audioUri.lastPathSegment!!)
+        client.getLyrics(id).toRequestStatus {
+            toModel()
+        }.let {
+            when (it) {
+                is RequestStatus.Loading -> RequestStatus.Loading(it.progress)
+                is RequestStatus.Success -> it.data?.let { lyrics ->
+                    RequestStatus.Success<_, MediaError>(lyrics)
+                } ?: RequestStatus.Error(MediaError.NOT_FOUND)
+
+                is RequestStatus.Error -> RequestStatus.Error(it.error, it.throwable)
+            }
+        }
+    }.asFlow()
+
     override suspend fun createPlaylist(name: String) = run {
         client.createPlaylist(name).toRequestStatus {
             onPlaylistsChanged()
@@ -376,6 +393,19 @@ class JellyfinDataSource(
         )
         .setName(name)
         .build()
+
+    private fun org.lineageos.twelve.datasources.jellyfin.models.Lyrics.toModel() = lyrics?.let {
+        Lyrics.Builder()
+            .apply {
+                it.forEach { lyrics ->
+                    addLine(
+                        text = lyrics.text,
+                        startMs = lyrics.start / 10000,
+                    )
+                }
+            }
+            .build()
+    }
 
     private fun getAlbumUri(albumId: String) = albumsUri.buildUpon()
         .appendPath(albumId)

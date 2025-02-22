@@ -601,6 +601,13 @@ class MediaRepository(
     }
 
     /**
+     * @see MediaDataSource.lyrics
+     */
+    fun lyrics(audioUri: Uri) = withMediaItemsDataSourceFlow(audioUri) {
+        lyrics(audioUri)
+    }
+
+    /**
      * @see MediaDataSource.createPlaylist
      */
     suspend fun createPlaylist(

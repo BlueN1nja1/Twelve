@@ -15,6 +15,7 @@ import org.lineageos.twelve.models.Audio
 import org.lineageos.twelve.models.DataSourceInformation
 import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.GenreContent
+import org.lineageos.twelve.models.Lyrics
 import org.lineageos.twelve.models.MediaItem
 import org.lineageos.twelve.models.Playlist
 import org.lineageos.twelve.models.RequestStatus
@@ -82,6 +83,10 @@ object DummyDataSource : MediaDataSource {
 
     override fun lastPlayedAudio() = flowOf(
         RequestStatus.Error<Audio, _>(MediaError.NOT_FOUND)
+    )
+
+    override fun lyrics(audioUri: Uri) = flowOf(
+        RequestStatus.Error<Lyrics, _>(MediaError.NOT_FOUND)
     )
 
     override suspend fun createPlaylist(name: String) =

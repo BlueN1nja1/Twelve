@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient
 import org.lineageos.twelve.datasources.jellyfin.models.CreatePlaylist
 import org.lineageos.twelve.datasources.jellyfin.models.CreatePlaylistResult
 import org.lineageos.twelve.datasources.jellyfin.models.Item
+import org.lineageos.twelve.datasources.jellyfin.models.Lyrics
 import org.lineageos.twelve.datasources.jellyfin.models.PlaylistItems
 import org.lineageos.twelve.datasources.jellyfin.models.QueryResult
 import org.lineageos.twelve.datasources.jellyfin.models.SystemInfo
@@ -174,6 +175,14 @@ class JellyfinClient(
             "static" to true,
         ),
     )
+
+    suspend fun getLyrics(id: UUID) = ApiRequest.get<Lyrics>(
+        listOf(
+            "Audio",
+            id.toString(),
+            "lyrics",
+        ),
+    ).execute(api)
 
     suspend fun createPlaylist(name: String) =
         ApiRequest.post<CreatePlaylist, CreatePlaylistResult>(

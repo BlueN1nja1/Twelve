@@ -15,6 +15,7 @@
     <include app:graph="@navigation/fragment_create_playlist_dialog" />
     <include app:graph="@navigation/fragment_media_item_bottom_sheet_dialog" />
     <include app:graph="@navigation/fragment_genre" />
+    <include app:graph="@navigation/fragment_lyrics" />
     <include app:graph="@navigation/fragment_manage_provider" />
     <include app:graph="@navigation/fragment_now_playing" />
     <include app:graph="@navigation/fragment_now_playing_stats_dialog" />

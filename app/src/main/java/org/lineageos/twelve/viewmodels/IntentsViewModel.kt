@@ -110,7 +110,7 @@ class IntentsViewModel(application: Application) : AndroidViewModel(application)
                 }
             }
 
-            val contents = mutableListOf<ParsedIntent.Content>().apply {
+            val contents = buildList {
                 intent.data?.let { data ->
                     uriToContent(
                         data,

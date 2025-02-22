@@ -421,8 +421,12 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
             .setWakeMode(C.WAKE_MODE_NETWORK)
             .experimentalSetDynamicSchedulingEnabled(true)
             .build()
+            .apply {
+                setOffloadEnabled(sharedPreferences.enableOffload)
+                audioSessionId = this@PlaybackService.audioSessionId
+            }
 
-        player.setOffloadEnabled(sharedPreferences.enableOffload)
+        openAudioEffectSession()
 
         mediaLibrarySession = MediaLibrarySession.Builder(
             this, player, mediaLibrarySessionCallback
@@ -439,9 +443,6 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
                     setSmallIcon(R.drawable.ic_notification_small_icon)
                 }
         )
-
-        player.audioSessionId = audioSessionId
-        openAudioEffectSession()
 
         lifecycleScope.launch {
             player.listen { events ->

@@ -276,4 +276,9 @@
     <string name="repeat_all">Repeat all</string>
     <string name="repeat_one">Repeat one</string>
     <string name="repeat_off">Repeat off</string>
+
+    <!-- Lyrics -->
+    <string name="lyrics">Lyrics</string>
+    <string name="lyrics_not_available">Lyrics not available</string>
+    <string name="follow_current_lyrics_line">Follow current line</string>
 </resources>

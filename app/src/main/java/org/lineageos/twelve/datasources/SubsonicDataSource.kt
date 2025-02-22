@@ -31,6 +31,7 @@ import org.lineageos.twelve.models.DataSourceInformation
 import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.GenreContent
 import org.lineageos.twelve.models.LocalizedString
+import org.lineageos.twelve.models.Lyrics
 import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.Playlist
 import org.lineageos.twelve.models.ProviderArgument
@@ -374,6 +375,23 @@ class SubsonicDataSource(
             uri?.let(this::audio) ?: flowOf(RequestStatus.Error(MediaError.NOT_FOUND))
         }
 
+    override fun lyrics(audioUri: Uri) = suspend {
+        val audioId = audioUri.lastPathSegment!!
+
+        subsonicClient.getLyricsBySongId(audioId).toRequestStatus {
+            toModel()
+        }.let {
+            when (it) {
+                is RequestStatus.Loading -> RequestStatus.Loading(it.progress)
+                is RequestStatus.Success -> it.data?.let { lyrics ->
+                    RequestStatus.Success<_, MediaError>(lyrics)
+                } ?: RequestStatus.Error(MediaError.NOT_FOUND)
+
+                is RequestStatus.Error -> RequestStatus.Error(it.error, it.throwable)
+            }
+        }
+    }.asFlow()
+
     override suspend fun createPlaylist(name: String) = subsonicClient.createPlaylist(
         null, name, listOf()
     ).toRequestStatus {
@@ -496,6 +514,24 @@ class SubsonicDataSource(
 
         else -> Audio.Type.MUSIC
     }
+
+    private fun org.lineageos.twelve.datasources.subsonic.models.LyricsList.toModel() =
+        structuredLyrics.firstOrNull()?.let { structuredLyrics ->
+            val offset = structuredLyrics.offset ?: 0
+
+            Lyrics.Builder()
+                .apply {
+                    structuredLyrics.line.forEach { line ->
+                        val startMs = line.start?.let { start -> start + offset }
+
+                        addLine(
+                            text = line.value,
+                            startMs = startMs
+                        )
+                    }
+                }
+                .build()
+        }
 
     private fun Error.Code.toRequestStatusType() = when (this) {
         Error.Code.GENERIC_ERROR -> MediaError.IO

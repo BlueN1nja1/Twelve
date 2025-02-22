@@ -17,10 +17,11 @@ fun <T> Cursor?.mapEachRow(
 
     val columnIndexCache = ColumnIndexCache(cursor)
 
-    val data = mutableListOf<T>()
-    do {
-        data.add(mapping(columnIndexCache))
-    } while (cursor.moveToNext())
+    val data = buildList {
+        do {
+            add(mapping(columnIndexCache))
+        } while (cursor.moveToNext())
+    }
 
     data.toList()
 } ?: emptyList()

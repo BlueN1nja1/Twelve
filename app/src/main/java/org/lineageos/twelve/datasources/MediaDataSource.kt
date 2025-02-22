@@ -15,6 +15,7 @@ import org.lineageos.twelve.models.Audio
 import org.lineageos.twelve.models.DataSourceInformation
 import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.GenreContent
+import org.lineageos.twelve.models.Lyrics
 import org.lineageos.twelve.models.MediaItem
 import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.Playlist
@@ -110,6 +111,12 @@ interface MediaDataSource {
      * @return [RequestStatus.Success] with the URI if there's one, [RequestStatus.Error] otherwise
      */
     fun lastPlayedAudio(): Flow<MediaRequestStatus<Audio>>
+
+    /**
+     * Get the lyrics of an audio.
+     * @param audioUri The URI of the audio
+     */
+    fun lyrics(audioUri: Uri): Flow<RequestStatus<Lyrics, MediaError>>
 
     /**
      * Create a new playlist. Note that the name shouldn't be considered unique if possible, but

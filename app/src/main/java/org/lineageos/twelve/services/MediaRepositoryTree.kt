@@ -7,6 +7,7 @@ package org.lineageos.twelve.services
 
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import kotlinx.coroutines.flow.Flow
@@ -251,10 +252,18 @@ class MediaRepositoryTree(
     /**
      * Given a list of media items, gets an equivalent list of items that can be passed to the
      * player. This should be used with onAddMediaItems and onSetMediaItems.
-     * TODO: [MediaItem.requestMetadata] support.
      */
-    suspend fun resolveMediaItems(mediaItems: List<MediaItem>) = mediaItems.mapNotNull {
-        it.takeIf { it.localConfiguration?.uri != null } ?: getItem(it.mediaId)
+    suspend fun resolveMediaItems(mediaItems: List<MediaItem>) = buildList {
+        mediaItems.forEach { item ->
+            val searchQuery = item.requestMetadata.searchQuery
+            when {
+                searchQuery != null -> addAll(search(searchQuery))
+                item.localConfiguration?.uri != null -> add(item)
+                else -> getItem(item.mediaId)?.let { mediaItem ->
+                    add(mediaItem)
+                }
+            }
+        }
     }
 
     /**
@@ -313,6 +322,8 @@ class MediaRepositoryTree(
     }
 
     companion object {
+        private val LOG_TAG = MediaRepositoryTree::class.simpleName!!
+
         // Root ID
         private const val ROOT_MEDIA_ITEM_ID = "[root]"
 
@@ -335,22 +346,20 @@ class MediaRepositoryTree(
 
         /**
          * Converts a flow of [RequestStatus] to a one-shot result of [T].
-         * Raises an exception on error.
+         * On loading, returns null.
+         * On success, returns the data.
+         * On error, logs the exception and returns null.
          */
-        private suspend fun <T, E> Flow<RequestStatus<T, E>>.toOneShotResult() = mapNotNull {
-            when (it) {
-                is RequestStatus.Loading -> {
-                    null
+        private suspend fun <T, E> Flow<RequestStatus<T, E>>.toOneShotResult() =
+            mapNotNull { status ->
+                when (status) {
+                    is RequestStatus.Loading -> null
+                    is RequestStatus.Success -> status.data
+                    is RequestStatus.Error -> {
+                        Log.e(LOG_TAG, "Failed to get data", status.throwable)
+                        null
+                    }
                 }
-
-                is RequestStatus.Success -> {
-                    it.data
-                }
-
-                is RequestStatus.Error -> throw Exception(
-                    "Error while loading data, ${it.error}"
-                )
-            }
-        }.first()
+            }.first()
     }
 }

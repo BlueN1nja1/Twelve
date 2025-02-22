@@ -99,7 +99,7 @@ class AlbumViewModel(application: Application) : TwelveViewModel(application) {
                 size == 1 && firstOrNull() == 1
             }
 
-            mutableListOf<AlbumContent>().apply {
+            buildList {
                 discToTracks.keys.sortedBy { disc ->
                     disc ?: 0
                 }.forEach { discNumber ->
