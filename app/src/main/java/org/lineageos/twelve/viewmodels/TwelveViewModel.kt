@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -13,15 +13,18 @@ import androidx.media3.session.MediaController
 import androidx.media3.session.SessionToken
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.channelFlow
+import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.guava.await
 import org.lineageos.twelve.TwelveApplication
 import org.lineageos.twelve.ext.applicationContext
+import org.lineageos.twelve.ext.eventsFlow
 import org.lineageos.twelve.ext.resources
 import org.lineageos.twelve.ext.shuffleModeEnabled
 import org.lineageos.twelve.ext.typedRepeatMode
@@ -74,6 +77,15 @@ abstract class TwelveViewModel(application: Application) : AndroidViewModel(appl
             viewModelScope,
             started = SharingStarted.Eagerly,
             initialValue = null
+        )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    protected val eventsFlow = mediaControllerFlow
+        .flatMapLatest { it.eventsFlow() }
+        .shareIn(
+            viewModelScope,
+            SharingStarted.Eagerly,
+            replay = 1
         )
 
     protected var shuffleModeEnabled: Boolean

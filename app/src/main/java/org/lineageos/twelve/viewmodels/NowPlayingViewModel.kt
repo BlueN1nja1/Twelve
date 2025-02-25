@@ -94,7 +94,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val mediaMetadata = mediaControllerFlow
-        .flatMapLatest { it.mediaMetadataFlow() }
+        .flatMapLatest { it.mediaMetadataFlow(eventsFlow) }
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
@@ -104,7 +104,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val mediaItem = mediaControllerFlow
-        .flatMapLatest { it.mediaItemFlow() }
+        .flatMapLatest { it.mediaItemFlow(eventsFlow) }
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
@@ -141,7 +141,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val playbackState = mediaControllerFlow
-        .flatMapLatest { it.playbackStateFlow() }
+        .flatMapLatest { it.playbackStateFlow(eventsFlow) }
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
@@ -151,7 +151,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val isPlaying = mediaControllerFlow
-        .flatMapLatest { it.isPlayingFlow() }
+        .flatMapLatest { it.isPlayingFlow(eventsFlow) }
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
@@ -161,7 +161,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val shuffleMode = mediaControllerFlow
-        .flatMapLatest { it.shuffleModeFlow() }
+        .flatMapLatest { it.shuffleModeFlow(eventsFlow) }
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
@@ -171,7 +171,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val repeatMode = mediaControllerFlow
-        .flatMapLatest { it.repeatModeFlow() }
+        .flatMapLatest { it.repeatModeFlow(eventsFlow) }
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
@@ -181,7 +181,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val playbackParameters = mediaControllerFlow
-        .flatMapLatest { it.playbackParametersFlow() }
+        .flatMapLatest { it.playbackParametersFlow(eventsFlow) }
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
@@ -208,7 +208,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
     @androidx.annotation.OptIn(UnstableApi::class)
     @OptIn(ExperimentalCoroutinesApi::class)
     val currentTrackFormat = mediaControllerFlow
-        .flatMapLatest { it.tracksFlow() }
+        .flatMapLatest { it.tracksFlow(eventsFlow) }
         .flowOn(Dispatchers.Main)
         .mapLatest { tracks ->
             val groups = tracks.groups.filter { group ->
@@ -262,7 +262,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val availableCommands = mediaControllerFlow
-        .flatMapLatest { it.availableCommandsFlow() }
+        .flatMapLatest { it.availableCommandsFlow(eventsFlow) }
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
@@ -290,7 +290,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val playbackProgress = mediaControllerFlow
-        .flatMapLatest { it.playbackProgressFlow() }
+        .flatMapLatest { it.playbackProgressFlow(eventsFlow) }
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
@@ -371,7 +371,8 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
                 } ?: LyricsLineState.UNKNOWN
 
                 if (lyricsLineState == LyricsLineState.ACTIVE
-                    || lyricsLineState == LyricsLineState.PAST) {
+                    || lyricsLineState == LyricsLineState.PAST
+                ) {
                     currentIndex = i
                 }
 

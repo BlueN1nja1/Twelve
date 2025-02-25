@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -18,7 +18,7 @@ import org.lineageos.twelve.ext.queueFlow
 class QueueViewModel(application: Application) : TwelveViewModel(application) {
     @OptIn(ExperimentalCoroutinesApi::class)
     val queue = mediaControllerFlow
-        .flatMapLatest { it.queueFlow() }
+        .flatMapLatest { it.queueFlow(eventsFlow) }
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,

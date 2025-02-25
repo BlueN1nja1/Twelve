@@ -26,7 +26,7 @@ class PlaybackControlViewModel(application: Application) : TwelveViewModel(appli
 
     @OptIn(ExperimentalCoroutinesApi::class)
     val playbackParameters = mediaControllerFlow
-        .flatMapLatest { it.playbackParametersFlow() }
+        .flatMapLatest { it.playbackParametersFlow(eventsFlow) }
         .flowOn(Dispatchers.Main)
         .stateIn(
             viewModelScope,
