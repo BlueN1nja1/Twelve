@@ -33,7 +33,9 @@
     <string name="no_results">Sem resultados</string>
     <string name="album_unknown">Álbum desconhecido</string>
     <string name="artist_unknown">Artista desconhecido</string>
+    <string name="audio_unknown">Áudio desconhecido</string>
     <string name="genre_unknown">Género desconhecido</string>
+    <string name="playlist_unknown">Lista de reprodução desconhecida</string>
     <plurals name="tracks_count">
         <item quantity="one">%d faixa</item>
         <item quantity="other">%d faixas</item>
@@ -180,4 +182,15 @@
     <string name="jellyfin_version">Versão</string>
     <string name="jellyfin_product_name">Nome do produto</string>
     <string name="jellyfin_operating_system">Sistema operativo</string>
+    <string name="playlist_name">Nome</string>
+    <string name="provider">Fornecedor</string>
+    <string name="create_playlist_error_empty_name">Sem nome especificado</string>
+    <string name="shuffle_on">Aleatório ligado</string>
+    <string name="shuffle_off">Aleatório desligado</string>
+    <string name="repeat_all">Repetir todas</string>
+    <string name="repeat_one">Repetir uma</string>
+    <string name="repeat_off">Não repetir</string>
+    <string name="lyrics">Letra</string>
+    <string name="lyrics_not_available">Letra não disponível.</string>
+    <string name="follow_current_lyrics_line">Seguir a linha atual</string>
 </resources>

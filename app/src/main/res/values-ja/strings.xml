@@ -33,7 +33,9 @@
     <string name="no_results">検索結果なし</string>
     <string name="album_unknown">不明なアルバム</string>
     <string name="artist_unknown">不明なアーティスト</string>
+    <string name="audio_unknown">不明な音声</string>
     <string name="genre_unknown">不明なジャンル</string>
+    <string name="playlist_unknown">不明なプレイリスト</string>
     <plurals name="tracks_count">
         <item quantity="other">%d 曲</item>
     </plurals>
@@ -181,4 +183,12 @@
     <string name="playlist_name">名前</string>
     <string name="provider">プロバイダ</string>
     <string name="create_playlist_error_empty_name">名前が指定されていません</string>
+    <string name="shuffle_on">シャッフル ON</string>
+    <string name="shuffle_off">シャッフル OFF</string>
+    <string name="repeat_all">すべてリピート</string>
+    <string name="repeat_one">1曲リピート</string>
+    <string name="repeat_off">リピート OFF</string>
+    <string name="lyrics">歌詞</string>
+    <string name="lyrics_not_available">歌詞を利用できません</string>
+    <string name="follow_current_lyrics_line">現在の行をたどる</string>
 </resources>

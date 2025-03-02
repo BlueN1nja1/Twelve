@@ -33,7 +33,9 @@
     <string name="no_results">Nəticə yoxdur</string>
     <string name="album_unknown">Bilinməyən albom</string>
     <string name="artist_unknown">Bilinməyən sənətçi</string>
+    <string name="audio_unknown">Bilinməyən səs</string>
     <string name="genre_unknown">Bilinməyən janr</string>
+    <string name="playlist_unknown">Bilinməyən pleylist</string>
     <plurals name="tracks_count">
         <item quantity="one">%d trek</item>
         <item quantity="other">%d trek</item>
@@ -183,4 +185,12 @@
     <string name="playlist_name">Ad</string>
     <string name="provider">Provayder</string>
     <string name="create_playlist_error_empty_name">Heç bir ad qeyd olunmayıb</string>
+    <string name="shuffle_on">Qarışdırma açıqdır</string>
+    <string name="shuffle_off">Qarışdırma bağlıdır</string>
+    <string name="repeat_all">Hamısını təkrarla</string>
+    <string name="repeat_one">Birini təkrarla</string>
+    <string name="repeat_off">Təkrarlamanı söndür</string>
+    <string name="lyrics">Mahnı sözləri</string>
+    <string name="lyrics_not_available">Sözlər mövcud deyil</string>
+    <string name="follow_current_lyrics_line">Hazırkı sətri izlə</string>
 </resources>

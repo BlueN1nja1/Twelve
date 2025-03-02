@@ -33,7 +33,9 @@
     <string name="no_results">No hay resultados</string>
     <string name="album_unknown">Álbum desconocido</string>
     <string name="artist_unknown">Artista desconocido</string>
+    <string name="audio_unknown">Audio desconocido</string>
     <string name="genre_unknown">Género desconocido</string>
+    <string name="playlist_unknown">Lista de reproducción desconocida</string>
     <plurals name="tracks_count">
         <item quantity="one">%d pista</item>
         <item quantity="other">%d pistas</item>
@@ -183,4 +185,12 @@
     <string name="playlist_name">Nombre</string>
     <string name="provider">Proveedor</string>
     <string name="create_playlist_error_empty_name">Nombre no especificado</string>
+    <string name="shuffle_on">Modo aleatorio activado</string>
+    <string name="shuffle_off">Modo aleatorio desactivado</string>
+    <string name="repeat_all">Repetir todo</string>
+    <string name="repeat_one">Repetir una</string>
+    <string name="repeat_off">Modo repetición desactivado</string>
+    <string name="lyrics">Letras</string>
+    <string name="lyrics_not_available">Letras no disponibles</string>
+    <string name="follow_current_lyrics_line">Seguir la línea actual</string>
 </resources>

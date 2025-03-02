@@ -5,7 +5,7 @@
 -->
 <resources>
     <string name="app_name">இசை</string>
-    <string name="app_permissions_toast">பயனரால் அனுமதிகள் அளிக்கப்படவில்லை.</string>
+    <string name="app_permissions_toast">பயனரால் அனுமதிகள் வழங்கப்படவில்லை.</string>
     <string name="visualizer_permissions_toast">அகக்காணிக்கு ஒலி பதிவு செய்வதற்கான அனுமதி தேவை.</string>
     <string name="request_status_error_type_unknown">அறியா</string>
     <string name="request_status_error_type_not_found">காணப்படவில்லை</string>
@@ -33,7 +33,9 @@
     <string name="no_results">முடிவுகள் இல்லை</string>
     <string name="album_unknown">அறியாத் தொகுப்பு</string>
     <string name="artist_unknown">அறியாக் கலைஞர்</string>
+    <string name="audio_unknown">அறியா ஒலி</string>
     <string name="genre_unknown">அறியாப் பகுப்பு</string>
+    <string name="playlist_unknown">அறியாப் பட்டியல்</string>
     <plurals name="tracks_count">
         <item quantity="one">%d தடம்</item>
         <item quantity="other">%d தடம்</item>
@@ -183,4 +185,6 @@
     <string name="playlist_name">பெயர்</string>
     <string name="provider">வழங்குநர்</string>
     <string name="create_playlist_error_empty_name">பெயர் எதுவும் குறிப்பிடவில்லை</string>
+    <string name="lyrics">பாவரிகள்</string>
+    <string name="lyrics_not_available">பாவரிகள் கிடைக்கவில்லை</string>
 </resources>

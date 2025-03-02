@@ -33,7 +33,9 @@
     <string name="no_results">Keine Ergebnisse</string>
     <string name="album_unknown">Unbekanntes Album</string>
     <string name="artist_unknown">Unbekannter Interpret</string>
+    <string name="audio_unknown">Unbekanntes Audio</string>
     <string name="genre_unknown">Unbekanntes Genre</string>
+    <string name="playlist_unknown">Unbekannte Wiedergabeliste</string>
     <plurals name="tracks_count">
         <item quantity="one">%d Titel</item>
         <item quantity="other">%d Titel</item>
@@ -60,7 +62,7 @@
     <string name="audio_information">Audioinformationen</string>
     <string name="audio_effects">Audioeffekte</string>
     <string name="playback_speed">Wiedergabegeschwindigkeit</string>
-    <string name="playback_speed_format">%1$s ×</string>
+    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Tonhöhe</string>
     <string name="playbacl_pitch_unlock">Tonhöhenänderung freischalten</string>
     <string name="playback_warning">Geschwindigkeit und Tonhöhe funktionieren ggf. nicht richtig, wenn die Wiedergabe-Offload-Funktion aktiviert ist. Versuche es in den Einstellungen der App umzustellen.</string>
@@ -96,6 +98,7 @@
     <string name="provider_argument_password">Passwort</string>
     <string name="provider_argument_use_legacy_authentication">Legacy-Authentifizierung verwenden</string>
     <string name="provider_argument_validation_error_required">Wert darf nicht leer sein</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Muss eine gültige HTTP- oder HTTPS-URL sein (z. B. http://192.168.1.100 oder https://google.com)</string>
     <string name="no_provider">Kein Anbieter</string>
     <string name="providers">Anbieter</string>
     <string name="add_provider_action">Hinzufügen</string>
@@ -122,6 +125,11 @@
     <string name="stop_playback_on_task_removed_summary">Wiedergabe stoppen, wenn die App aus dem Anwendungsverlauf gelöscht wird</string>
     <string name="skip_silence">Stille überspringen</string>
     <string name="skip_silence_summary">Stille bei der Audiowiedergabe überspringen</string>
+    <string name="reset_local_stats">Wiedergabestatistiken für lokale Medien zurücksetzen</string>
+    <string name="reset_local_stats_confirm_title">Lokale Statistiken zurücksetzen</string>
+    <string name="reset_local_stats_confirm_message">Möchtest du wirklich sämtliche Wiedergabestatistiken für lokale Medien zurücksetzen? Die Aktion kann nicht rückgängig gemacht werden.</string>
+    <string name="reset_local_stats_confirm_positive">Zurücksetzen</string>
+    <string name="reset_local_stats_success">Wiedergabestatistiken für lokale Medien wurden zurückgesetzt</string>
     <string name="split_local_devices">Lokale Geräte aufteilen</string>
     <string name="split_local_devices_summary">Wenn aktiviert, werden der interne Speicher und externe Geräte (SD-Karten, USB-Geräte usw.) als unterschiedliche Anbieter angezeigt</string>
     <string name="now_playing_widget_description">Aktuelle Wiedergabe</string>
@@ -174,4 +182,15 @@
     <string name="jellyfin_version">Version</string>
     <string name="jellyfin_product_name">Produktname</string>
     <string name="jellyfin_operating_system">Betriebssystem</string>
+    <string name="playlist_name">Name</string>
+    <string name="provider">Anbieter</string>
+    <string name="create_playlist_error_empty_name">Kein Name angegeben</string>
+    <string name="shuffle_on">Zufallswiedergabe ein</string>
+    <string name="shuffle_off">Zufallswiedergabe aus</string>
+    <string name="repeat_all">Alle Titel wiederholen</string>
+    <string name="repeat_one">Aktuellen Titel wiederholen</string>
+    <string name="repeat_off">Wiederholen deaktivieren</string>
+    <string name="lyrics">Liedtext</string>
+    <string name="lyrics_not_available">Liedtext nicht verfügbar</string>
+    <string name="follow_current_lyrics_line">Aktueller Zeile folgen</string>
 </resources>

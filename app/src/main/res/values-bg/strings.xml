@@ -60,6 +60,7 @@
     <string name="audio_information">Аудио информация</string>
     <string name="audio_effects">Аудио ефекти</string>
     <string name="playback_speed">Скорост на възпроизвеждане</string>
+    <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Височина на тона на възпроизвеждане</string>
     <string name="playbacl_pitch_unlock">Отключване промяна на тона</string>
     <string name="playback_warning">Скорост и височина на тона може да не работят правилно, докато е включено разтоварване на възпроизвеждането. Превключете го през настройките на приложението.</string>
@@ -173,4 +174,14 @@
     <string name="jellyfin_version">Версия</string>
     <string name="jellyfin_product_name">Име на продукта</string>
     <string name="jellyfin_operating_system">Операционна система</string>
+    <string name="playlist_name">Име</string>
+    <string name="provider">Доставчик</string>
+    <string name="create_playlist_error_empty_name">Няма дефинирано име</string>
+    <string name="shuffle_on">Разбъркване вкл.</string>
+    <string name="repeat_all">Повтаряй всички</string>
+    <string name="repeat_one">Повтаряй една</string>
+    <string name="repeat_off">Повтарянето изкл.</string>
+    <string name="lyrics">Текст на песен</string>
+    <string name="lyrics_not_available">Текстът на песeнта липсва</string>
+    <string name="follow_current_lyrics_line">Следвай текста на песента</string>
 </resources>

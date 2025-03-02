@@ -33,7 +33,9 @@
     <string name="no_results">Gan torthaí</string>
     <string name="album_unknown">Albam anaithnid</string>
     <string name="artist_unknown">Ealaíontóir anaithnid</string>
+    <string name="audio_unknown">Fuaime anaithnid</string>
     <string name="genre_unknown">Seánra anaithnid</string>
+    <string name="playlist_unknown">Seinmliosta anaithnid</string>
     <plurals name="tracks_count">
         <item quantity="one">%d rian</item>
         <item quantity="two">%d rianta</item>
@@ -189,4 +191,12 @@
     <string name="playlist_name">Ainm</string>
     <string name="provider">Soláthraí</string>
     <string name="create_playlist_error_empty_name">Níor sonraíodh aon ainm</string>
+    <string name="shuffle_on">Measc air</string>
+    <string name="shuffle_off">Meas as</string>
+    <string name="repeat_all">Athdhéan gach rud</string>
+    <string name="repeat_one">Athdhéan ceann amháin</string>
+    <string name="repeat_off">Athdhéan as</string>
+    <string name="lyrics">Liricí</string>
+    <string name="lyrics_not_available">Níl líricí ar fáil</string>
+    <string name="follow_current_lyrics_line">Lean an líne reatha</string>
 </resources>

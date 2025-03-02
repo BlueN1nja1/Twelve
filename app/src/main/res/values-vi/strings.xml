@@ -33,7 +33,9 @@
     <string name="no_results">Không có kết quả</string>
     <string name="album_unknown">Không rõ album</string>
     <string name="artist_unknown">Không rõ nghệ sĩ</string>
+    <string name="audio_unknown">Không rõ audio</string>
     <string name="genre_unknown">Không rõ thể loại</string>
+    <string name="playlist_unknown">Không rõ danh sách phát</string>
     <plurals name="tracks_count">
         <item quantity="other">%d bài</item>
     </plurals>
@@ -181,4 +183,12 @@
     <string name="playlist_name">Tên</string>
     <string name="provider">Nhà cung cấp</string>
     <string name="create_playlist_error_empty_name">Không có tên nào được chỉ định</string>
+    <string name="shuffle_on">Phát ngẫu nhiên</string>
+    <string name="shuffle_off">Tắt phát ngẫu nhiên</string>
+    <string name="repeat_all">Lặp lại tất cả</string>
+    <string name="repeat_one">Lặp lại một lần</string>
+    <string name="repeat_off">Tắt lặp lại</string>
+    <string name="lyrics">Lời bài hát</string>
+    <string name="lyrics_not_available">Hiện chưa có lời bài hát</string>
+    <string name="follow_current_lyrics_line">Theo dõi lời bài hát hiện tại</string>
 </resources>

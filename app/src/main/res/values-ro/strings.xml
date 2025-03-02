@@ -187,4 +187,12 @@
     <string name="playlist_name">Nume</string>
     <string name="provider">Furnizor</string>
     <string name="create_playlist_error_empty_name">Nici un nume specificat</string>
+    <string name="shuffle_on">Amestecare pornită</string>
+    <string name="shuffle_off">Amestecare oprită</string>
+    <string name="repeat_all">Repetă toate</string>
+    <string name="repeat_one">Repetă una</string>
+    <string name="repeat_off">Oprește repetare</string>
+    <string name="lyrics">Versuri</string>
+    <string name="lyrics_not_available">Versurile nu sunt disponibile</string>
+    <string name="follow_current_lyrics_line">Urmărește linia curentă</string>
 </resources>

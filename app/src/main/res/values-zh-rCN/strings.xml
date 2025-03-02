@@ -33,7 +33,9 @@
     <string name="no_results">无结果</string>
     <string name="album_unknown">未知专辑</string>
     <string name="artist_unknown">未知艺术家</string>
+    <string name="audio_unknown">未知音频</string>
     <string name="genre_unknown">未知流派</string>
+    <string name="playlist_unknown">未知播放列表</string>
     <plurals name="tracks_count">
         <item quantity="other">%d 音轨</item>
     </plurals>
@@ -181,4 +183,12 @@
     <string name="playlist_name">名称</string>
     <string name="provider">提供方</string>
     <string name="create_playlist_error_empty_name">未指定名称</string>
+    <string name="shuffle_on">开启随机播放</string>
+    <string name="shuffle_off">关闭随机播放</string>
+    <string name="repeat_all">全部循环</string>
+    <string name="repeat_one">单曲循环</string>
+    <string name="repeat_off">关闭循环播放</string>
+    <string name="lyrics">歌词</string>
+    <string name="lyrics_not_available">暂无可用歌词</string>
+    <string name="follow_current_lyrics_line">跟随当前行</string>
 </resources>

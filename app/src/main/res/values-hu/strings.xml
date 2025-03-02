@@ -33,7 +33,9 @@
     <string name="no_results">Nincsenek találatok</string>
     <string name="album_unknown">Ismeretlen lemez</string>
     <string name="artist_unknown">Ismeretlen előadó</string>
+    <string name="audio_unknown">Ismeretlen audió</string>
     <string name="genre_unknown">Ismeretlen műfaj</string>
+    <string name="playlist_unknown">Ismeretlen lejátszólista</string>
     <plurals name="tracks_count">
         <item quantity="one">%d zeneszám</item>
         <item quantity="other">%d zeneszám</item>
@@ -183,4 +185,12 @@
     <string name="playlist_name">Név</string>
     <string name="provider">Szolgáltató</string>
     <string name="create_playlist_error_empty_name">Nem lett név megadva</string>
+    <string name="shuffle_on">Véletlenszerű be</string>
+    <string name="shuffle_off">Véletlenszerű ki</string>
+    <string name="repeat_all">Az összes dal ismétlése</string>
+    <string name="repeat_one">Egy dal ismétlése</string>
+    <string name="repeat_off">Ismétlés ki</string>
+    <string name="lyrics">Dalszöveg</string>
+    <string name="lyrics_not_available">Nem található dalszöveg</string>
+    <string name="follow_current_lyrics_line">Az aktuális sor követése</string>
 </resources>

@@ -185,4 +185,12 @@
     <string name="playlist_name">Nom</string>
     <string name="provider">Proveïdor</string>
     <string name="create_playlist_error_empty_name">No s\'ha especificat cap nom</string>
+    <string name="shuffle_on">Aleatori activat</string>
+    <string name="shuffle_off">Aleatori apagat</string>
+    <string name="repeat_all">Repeteix tot</string>
+    <string name="repeat_one">Repeteix un cop</string>
+    <string name="repeat_off">Repeteix apagat</string>
+    <string name="lyrics">Lletra</string>
+    <string name="lyrics_not_available">Lletra no disponible</string>
+    <string name="follow_current_lyrics_line">Segueix la línia actual</string>
 </resources>

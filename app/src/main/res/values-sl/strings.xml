@@ -33,7 +33,9 @@
     <string name="no_results">Ni rezultatov</string>
     <string name="album_unknown">Neznan album</string>
     <string name="artist_unknown">Neznan izvajalec</string>
+    <string name="audio_unknown">Neznan zvok</string>
     <string name="genre_unknown">Neznana zvrst</string>
+    <string name="playlist_unknown">Neznan seznam predvajanja</string>
     <plurals name="tracks_count">
         <item quantity="one">%d skladba</item>
         <item quantity="two">%d skladbi</item>
@@ -187,4 +189,12 @@
     <string name="playlist_name">Ime</string>
     <string name="provider">Ponudnik</string>
     <string name="create_playlist_error_empty_name">Ime ni navedeno</string>
+    <string name="shuffle_on">Premešaj vklopljen</string>
+    <string name="shuffle_off">Premešaj izklopljen</string>
+    <string name="repeat_all">Ponovi vse</string>
+    <string name="repeat_one">Ponovi eno</string>
+    <string name="repeat_off">Ponavljanje izklopljeno</string>
+    <string name="lyrics">Besedilo</string>
+    <string name="lyrics_not_available">Besedilo ni na voljo</string>
+    <string name="follow_current_lyrics_line">Sledi trenutni vrstici</string>
 </resources>
