@@ -13,9 +13,13 @@ import org.lineageos.twelve.datasources.subsonic.models.ResponseRoot
 import org.lineageos.twelve.datasources.subsonic.models.ResponseStatus
 import org.lineageos.twelve.datasources.subsonic.models.SubsonicResponse
 import org.lineageos.twelve.datasources.subsonic.models.Version
+import org.lineageos.twelve.models.Error
+import org.lineageos.twelve.models.Result
 import org.lineageos.twelve.utils.Api
+import org.lineageos.twelve.utils.ApiError
 import org.lineageos.twelve.utils.ApiRequest
-import org.lineageos.twelve.utils.MethodResult
+import org.lineageos.twelve.utils.toError
+import org.lineageos.twelve.datasources.subsonic.models.Error as SubsonicError
 
 /**
  * Subsonic client. Compliant with version [SUBSONIC_API_VERSION].
@@ -717,7 +721,7 @@ class SubsonicClient(
      * @param id ID of the playlist to delete, as obtained by [getPlaylists].
      */
     suspend fun deletePlaylist(
-        id: Int,
+        id: String,
     ) = ApiRequest.get<ResponseRoot>(
         listOf("deletePlaylist"),
         queryParameters = listOf(
@@ -1239,27 +1243,40 @@ class SubsonicClient(
 
     // TODO
 
-    private inline fun <T> MethodResult<ResponseRoot>.mapResponse(
-        methodValue: SubsonicResponse.() -> T,
-    ) = when (this) {
-        is MethodResult.Success -> {
-            when (result.subsonicResponse.status) {
+    private fun SubsonicError.Code.toError() = when (this) {
+        SubsonicError.Code.GENERIC_ERROR -> Error.IO
+        SubsonicError.Code.REQUIRED_PARAMETER_MISSING -> Error.IO
+        SubsonicError.Code.OUTDATED_CLIENT -> Error.IO
+        SubsonicError.Code.OUTDATED_SERVER -> Error.IO
+        SubsonicError.Code.WRONG_CREDENTIALS -> Error.INVALID_CREDENTIALS
+        SubsonicError.Code.TOKEN_AUTHENTICATION_NOT_SUPPORTED -> Error.INVALID_CREDENTIALS
+        SubsonicError.Code.AUTHENTICATION_MECHANISM_NOT_SUPPORTED -> Error.INVALID_CREDENTIALS
+        SubsonicError.Code.MULTIPLE_CONFLICTING_AUTHENTICATION_MECHANISMS -> Error.INVALID_CREDENTIALS
+        SubsonicError.Code.INVALID_API_KEY -> Error.INVALID_CREDENTIALS
+        SubsonicError.Code.USER_NOT_AUTHORIZED -> Error.INVALID_CREDENTIALS
+        SubsonicError.Code.SUBSONIC_PREMIUM_TRIAL_ENDED -> Error.INVALID_CREDENTIALS
+        SubsonicError.Code.NOT_FOUND -> Error.NOT_FOUND
+    }
+
+    private inline fun <T : Any> Result<ResponseRoot, ApiError>.mapResponse(
+        methodValue: SubsonicResponse.() -> T?,
+    ): Result<T, Error> = when (this) {
+        is Result.Success -> {
+            when (data.subsonicResponse.status) {
                 ResponseStatus.OK -> runCatching {
-                    result.subsonicResponse.methodValue()!!
+                    data.subsonicResponse.methodValue()!!
                 }.fold(
-                    onSuccess = { MethodResult.Success(it) },
-                    onFailure = { MethodResult.InvalidResponse(it) }
+                    onSuccess = { Result.Success<T, Error>(it) },
+                    onFailure = { Result.Error(Error.INVALID_RESPONSE) }
                 )
 
-                ResponseStatus.FAILED -> MethodResult.InvalidResponse()
+                ResponseStatus.FAILED -> Result.Error(
+                    data.subsonicResponse.error?.code?.toError() ?: Error.INVALID_RESPONSE
+                )
             }
         }
 
-        is MethodResult.HttpError -> MethodResult.HttpError(code, error)
-        is MethodResult.GenericError -> MethodResult.GenericError(error)
-        is MethodResult.DeserializationError -> MethodResult.DeserializationError(error)
-        is MethodResult.CancellationError -> MethodResult.CancellationError(error)
-        is MethodResult.InvalidResponse -> MethodResult.InvalidResponse(error)
+        is Result.Error -> Result.Error(error.toError(), throwable)
     }
 
     companion object {

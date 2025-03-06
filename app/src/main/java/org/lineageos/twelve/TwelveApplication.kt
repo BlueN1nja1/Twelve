@@ -19,7 +19,7 @@ import org.lineageos.twelve.ui.coil.ThumbnailMapper
 
 @androidx.annotation.OptIn(UnstableApi::class)
 class TwelveApplication : Application(), SingletonImageLoader.Factory {
-    private val database by lazy { TwelveDatabase.getInstance(applicationContext) }
+    private val database by lazy { TwelveDatabase.get(applicationContext) }
     val mediaRepository by lazy { MediaRepository(applicationContext, MainScope(), database) }
     val resumptionPlaylistRepository by lazy { ResumptionPlaylistRepository(database) }
 

@@ -30,7 +30,6 @@ import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.R
-import org.lineageos.twelve.datasources.MediaError
 import org.lineageos.twelve.ext.getParcelable
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.loadThumbnail
@@ -38,8 +37,9 @@ import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.ext.setProgressCompat
 import org.lineageos.twelve.ext.updatePadding
 import org.lineageos.twelve.models.Album
+import org.lineageos.twelve.models.Error
+import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.Playlist
-import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.recyclerview.UniqueItemDiffCallback
 import org.lineageos.twelve.ui.views.HorizontalMediaItemView
@@ -87,7 +87,6 @@ class ArtistFragment : Fragment(R.layout.fragment_artist) {
                         R.id.action_artistFragment_to_fragment_media_item_bottom_sheet_dialog,
                         MediaItemBottomSheetDialogFragment.createBundle(
                             item.uri,
-                            item.mediaType,
                             fromArtist = true,
                         )
                     )
@@ -114,7 +113,6 @@ class ArtistFragment : Fragment(R.layout.fragment_artist) {
                         R.id.action_albumFragment_to_fragment_media_item_bottom_sheet_dialog,
                         MediaItemBottomSheetDialogFragment.createBundle(
                             item.uri,
-                            item.mediaType,
                             fromArtist = true,
                         )
                     )
@@ -213,14 +211,14 @@ class ArtistFragment : Fragment(R.layout.fragment_artist) {
 
     private suspend fun loadData() {
         viewModel.artist.collectLatest {
-            linearProgressIndicator.setProgressCompat(it, true)
+            linearProgressIndicator.setProgressCompat(it)
 
             when (it) {
-                is RequestStatus.Loading -> {
+                is FlowResult.Loading -> {
                     // Do nothing
                 }
 
-                is RequestStatus.Success -> {
+                is FlowResult.Success -> {
                     val (artist, artistWorks) = it.data
 
                     artist.name?.also { artistName ->
@@ -258,7 +256,7 @@ class ArtistFragment : Fragment(R.layout.fragment_artist) {
                     noElementsNestedScrollView.isVisible = isEmpty
                 }
 
-                is RequestStatus.Error -> {
+                is FlowResult.Error -> {
                     Log.e(LOG_TAG, "Error loading artist, error: ${it.error}")
 
                     toolbar.title = ""
@@ -270,7 +268,7 @@ class ArtistFragment : Fragment(R.layout.fragment_artist) {
                     nestedScrollView.isVisible = false
                     noElementsNestedScrollView.isVisible = true
 
-                    if (it.error == MediaError.NOT_FOUND) {
+                    if (it.error == Error.NOT_FOUND) {
                         // Get out of here
                         findNavController().navigateUp()
                     }

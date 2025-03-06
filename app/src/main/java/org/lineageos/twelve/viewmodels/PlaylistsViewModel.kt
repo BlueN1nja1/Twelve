@@ -18,7 +18,8 @@ import org.lineageos.twelve.ext.PLAYLISTS_SORTING_REVERSE_KEY
 import org.lineageos.twelve.ext.PLAYLISTS_SORTING_STRATEGY_KEY
 import org.lineageos.twelve.ext.playlistsSortingRule
 import org.lineageos.twelve.ext.preferenceFlow
-import org.lineageos.twelve.models.RequestStatus
+import org.lineageos.twelve.models.FlowResult
+import org.lineageos.twelve.models.FlowResult.Companion.asFlowResult
 import org.lineageos.twelve.models.SortingRule
 
 class PlaylistsViewModel(application: Application) : TwelveViewModel(application) {
@@ -33,11 +34,12 @@ class PlaylistsViewModel(application: Application) : TwelveViewModel(application
     @OptIn(ExperimentalCoroutinesApi::class)
     val playlists = sortingRule
         .flatMapLatest { mediaRepository.playlists(it) }
+        .asFlowResult()
         .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(),
-            RequestStatus.Loading()
+            FlowResult.Loading()
         )
 
     fun setSortingRule(sortingRule: SortingRule) {

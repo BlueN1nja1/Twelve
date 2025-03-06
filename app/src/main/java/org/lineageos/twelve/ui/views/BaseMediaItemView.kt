@@ -23,7 +23,6 @@ import org.lineageos.twelve.models.Artist
 import org.lineageos.twelve.models.Audio
 import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.MediaItem
-import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.Playlist
 import org.lineageos.twelve.models.Thumbnail
 
@@ -73,12 +72,15 @@ abstract class BaseMediaItemView @JvmOverloads constructor(
     fun setItem(item: MediaItem<*>) {
         loadThumbnailImage(
             item.thumbnail,
-            when (item.mediaType) {
-                MediaType.ALBUM -> R.drawable.ic_album
-                MediaType.ARTIST -> R.drawable.ic_person
-                MediaType.AUDIO -> R.drawable.ic_music_note
-                MediaType.GENRE -> R.drawable.ic_genres
-                MediaType.PLAYLIST -> R.drawable.ic_playlist_play
+            when (item) {
+                is Album -> R.drawable.ic_album
+                is Artist -> R.drawable.ic_person
+                is Audio -> R.drawable.ic_music_note
+                is Genre -> R.drawable.ic_genres
+                is Playlist -> when (item.type) {
+                    Playlist.Type.PLAYLIST -> R.drawable.ic_playlist_play
+                    Playlist.Type.FAVORITES -> R.drawable.ic_favorite
+                }
             }
         )
 
@@ -114,7 +116,12 @@ abstract class BaseMediaItemView @JvmOverloads constructor(
             }
 
             is Playlist -> {
-                headlineText = item.name
+                headlineText = item.name ?: resources.getString(
+                    when (item.type) {
+                        Playlist.Type.PLAYLIST -> R.string.playlist_unknown
+                        Playlist.Type.FAVORITES -> R.string.favorites_playlist
+                    }
+                )
                 subheadText = null
                 supportingText = null
             }

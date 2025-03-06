@@ -36,7 +36,6 @@ import org.lineageos.twelve.datasources.DummyDataSource
 import org.lineageos.twelve.datasources.JellyfinDataSource
 import org.lineageos.twelve.datasources.LocalDataSource
 import org.lineageos.twelve.datasources.MediaDataSource
-import org.lineageos.twelve.datasources.MediaError
 import org.lineageos.twelve.datasources.SubsonicDataSource
 import org.lineageos.twelve.ext.DEFAULT_PROVIDER_KEY
 import org.lineageos.twelve.ext.SPLIT_LOCAL_DEVICES_KEY
@@ -44,11 +43,12 @@ import org.lineageos.twelve.ext.defaultProvider
 import org.lineageos.twelve.ext.preferenceFlow
 import org.lineageos.twelve.ext.splitLocalDevices
 import org.lineageos.twelve.ext.storageVolumesFlow
+import org.lineageos.twelve.models.Error
 import org.lineageos.twelve.models.Provider
 import org.lineageos.twelve.models.ProviderArgument.Companion.requireArgument
 import org.lineageos.twelve.models.ProviderIdentifier
 import org.lineageos.twelve.models.ProviderType
-import org.lineageos.twelve.models.RequestStatus
+import org.lineageos.twelve.models.Result
 import org.lineageos.twelve.models.SortingRule
 import org.lineageos.twelve.models.SortingStrategy
 
@@ -614,8 +614,8 @@ class MediaRepository(
         providerIdentifier: ProviderIdentifier, name: String
     ) = getDataSource(providerIdentifier)?.createPlaylist(
         name
-    ) ?: RequestStatus.Error(
-        MediaError.NOT_FOUND
+    ) ?: Result.Error(
+        Error.NOT_FOUND
     )
 
     /**
@@ -658,6 +658,14 @@ class MediaRepository(
         }
 
     /**
+     * @see MediaDataSource.setFavorite
+     */
+    suspend fun setFavorite(audioUri: Uri, favorite: Boolean) =
+        withMediaItemsDataSource(audioUri) {
+            setFavorite(audioUri, favorite)
+        }
+
+    /**
      * Get the [MediaDataSource] associated with the given [Provider].
      *
      * @param providerIdentifier The [ProviderIdentifier]
@@ -679,11 +687,11 @@ class MediaRepository(
      */
     private fun <T> withProviderDataSource(
         providerIdentifier: ProviderIdentifier,
-        predicate: MediaDataSource.() -> Flow<RequestStatus<T, MediaError>>
+        predicate: MediaDataSource.() -> Flow<Result<T, Error>>
     ) = allProvidersToDataSource.flatMapLatest {
         it.firstOrNull { (provider, _) ->
             providerIdentifier.type == provider.type && providerIdentifier.typeId == provider.typeId
-        }?.second?.predicate() ?: flowOf(RequestStatus.Error(MediaError.NOT_FOUND))
+        }?.second?.predicate() ?: flowOf(Result.Error(Error.NOT_FOUND))
     }
 
     /**
@@ -695,11 +703,11 @@ class MediaRepository(
      *   no [MediaDataSource] can handle the given URIs
      */
     private fun <T> withMediaItemsDataSourceFlow(
-        vararg uris: Uri, predicate: MediaDataSource.() -> Flow<RequestStatus<T, MediaError>>
+        vararg uris: Uri, predicate: MediaDataSource.() -> Flow<Result<T, Error>>
     ) = allProvidersToDataSource.flatMapLatest {
         it.firstOrNull { (_, dataSource) ->
             uris.all { uri -> dataSource.isMediaItemCompatible(uri) }
-        }?.second?.predicate() ?: flowOf(RequestStatus.Error(MediaError.NOT_FOUND))
+        }?.second?.predicate() ?: flowOf(Result.Error(Error.NOT_FOUND))
     }
 
     /**
@@ -707,14 +715,14 @@ class MediaRepository(
      *
      * @param uris The URIs to check
      * @param predicate The predicate to call on the [MediaDataSource]
-     * @return A [RequestStatus] containing the result of the predicate. It will return a not found
+     * @return A [Result] containing the result of the predicate. It will return a not found
      *   error if no [MediaDataSource] can handle the given URIs
      */
     private suspend fun <T> withMediaItemsDataSource(
-        vararg uris: Uri, predicate: suspend MediaDataSource.() -> RequestStatus<T, MediaError>
+        vararg uris: Uri, predicate: suspend MediaDataSource.() -> Result<T, Error>
     ) = allProvidersToDataSource.value.firstOrNull { (_, dataSource) ->
         uris.all { uri -> dataSource.isMediaItemCompatible(uri) }
-    }?.second?.predicate() ?: RequestStatus.Error(MediaError.NOT_FOUND)
+    }?.second?.predicate() ?: Result.Error(Error.NOT_FOUND)
 
     private suspend fun MediaDataSource.isMediaItemCompatible(
         mediaItemUri: Uri

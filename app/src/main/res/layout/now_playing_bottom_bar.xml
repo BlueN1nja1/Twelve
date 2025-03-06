@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -45,6 +45,13 @@
             style="@style/Theme.Twelve.NowPlayingFragment.BottomBarButton"
             android:tooltipText="@string/queue"
             app:icon="@drawable/ic_queue_play_next" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/isFavoriteMaterialButton"
+            style="@style/Theme.Twelve.NowPlayingFragment.BottomBarButton"
+            android:tooltipText="@string/add_to_favorites"
+            android:visibility="gone"
+            app:icon="@drawable/ic_heart_unfilled" />
 
     </LinearLayout>
 

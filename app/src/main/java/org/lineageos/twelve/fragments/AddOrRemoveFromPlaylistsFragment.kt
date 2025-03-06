@@ -30,8 +30,8 @@ import org.lineageos.twelve.ext.getParcelable
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.ext.setProgressCompat
+import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.Playlist
-import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.views.FullscreenLoadingProgressBar
 import org.lineageos.twelve.ui.views.ListItem
@@ -90,8 +90,18 @@ class AddOrRemoveFromPlaylistsFragment : Fragment(R.layout.fragment_add_or_remov
                             }
                         }
 
-                        view.setLeadingIconImage(R.drawable.ic_playlist_play)
-                        view.headlineText = item.first.name
+                        view.setLeadingIconImage(
+                            when (item.first.type) {
+                                Playlist.Type.PLAYLIST -> R.drawable.ic_playlist_play
+                                Playlist.Type.FAVORITES -> R.drawable.ic_favorite
+                            }
+                        )
+                        view.headlineText = item.first.name ?: getString(
+                            when (item.first.type) {
+                                Playlist.Type.PLAYLIST -> R.string.playlist_unknown
+                                Playlist.Type.FAVORITES -> R.string.favorites_playlist
+                            }
+                        )
                         view.setTrailingIconImage(
                             when (item.second) {
                                 true -> R.drawable.ic_check_circle
@@ -149,14 +159,14 @@ class AddOrRemoveFromPlaylistsFragment : Fragment(R.layout.fragment_add_or_remov
 
     private suspend fun loadData() {
         viewModel.playlistToHasAudio.collect {
-            linearProgressIndicator.setProgressCompat(it, true)
+            linearProgressIndicator.setProgressCompat(it)
 
             when (it) {
-                is RequestStatus.Loading -> {
+                is FlowResult.Loading -> {
                     // Do nothing
                 }
 
-                is RequestStatus.Success -> {
+                is FlowResult.Success -> {
                     val isEmpty = it.data.isEmpty()
 
                     adapter.submitList(
@@ -173,7 +183,7 @@ class AddOrRemoveFromPlaylistsFragment : Fragment(R.layout.fragment_add_or_remov
                     noElementsLinearLayout.isVisible = isEmpty
                 }
 
-                is RequestStatus.Error -> {
+                is FlowResult.Error -> {
                     Log.e(LOG_TAG, "Failed to load data, error: ${it.error}", it.throwable)
 
                     adapter.submitList(emptyList())

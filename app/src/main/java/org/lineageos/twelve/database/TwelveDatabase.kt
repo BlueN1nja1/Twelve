@@ -11,7 +11,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import org.lineageos.twelve.database.converters.InstantConverter
 import org.lineageos.twelve.database.converters.UriConverter
+import org.lineageos.twelve.database.dao.FavoriteDao
 import org.lineageos.twelve.database.dao.ItemDao
 import org.lineageos.twelve.database.dao.JellyfinProviderDao
 import org.lineageos.twelve.database.dao.LastPlayedDao
@@ -21,6 +23,7 @@ import org.lineageos.twelve.database.dao.PlaylistItemCrossRefDao
 import org.lineageos.twelve.database.dao.PlaylistWithItemsDao
 import org.lineageos.twelve.database.dao.ResumptionPlaylistDao
 import org.lineageos.twelve.database.dao.SubsonicProviderDao
+import org.lineageos.twelve.database.entities.Favorite
 import org.lineageos.twelve.database.entities.Item
 import org.lineageos.twelve.database.entities.JellyfinProvider
 import org.lineageos.twelve.database.entities.LastPlayed
@@ -33,6 +36,9 @@ import org.lineageos.twelve.database.entities.SubsonicProvider
 
 @Database(
     entities = [
+        /* Favorites */
+        Favorite::class,
+
         /* Playlist */
         Playlist::class,
         Item::class,
@@ -52,16 +58,21 @@ import org.lineageos.twelve.database.entities.SubsonicProvider
         /* Local Media Stats */
         LocalMediaStats::class,
     ],
-    version = 5,
+    version = 6,
     autoMigrations = [
         AutoMigration(from = 1, to = 2),
         AutoMigration(from = 2, to = 3),
         AutoMigration(from = 3, to = 4),
         AutoMigration(from = 4, to = 5),
+        AutoMigration(from = 5, to = 6),
     ],
 )
-@TypeConverters(UriConverter::class)
+@TypeConverters(
+    InstantConverter::class,
+    UriConverter::class,
+)
 abstract class TwelveDatabase : RoomDatabase() {
+    abstract fun getFavoriteDao(): FavoriteDao
     abstract fun getItemDao(): ItemDao
     abstract fun getJellyfinProviderDao(): JellyfinProviderDao
     abstract fun getLastPlayedDao(): LastPlayedDao
@@ -73,20 +84,10 @@ abstract class TwelveDatabase : RoomDatabase() {
     abstract fun getSubsonicProviderDao(): SubsonicProviderDao
 
     companion object {
-        @Volatile
-        private var INSTANCE: TwelveDatabase? = null
-
-        // Singleton to get the instance of the database
-        fun getInstance(context: Context): TwelveDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    TwelveDatabase::class.java,
-                    "twelve_database",
-                ).build()
-                INSTANCE = instance
-                instance
-            }
-        }
+        fun get(context: Context) = Room.databaseBuilder(
+            context.applicationContext,
+            TwelveDatabase::class.java,
+            "twelve_database",
+        ).build()
     }
 }

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -28,4 +28,5 @@ data class Item(
     @SerialName("IndexNumber") val indexNumber: Int? = null,
     @SerialName("Genres") val genres: List<String>? = null,
     @SerialName("Type") val type: ItemType? = null,
+    @SerialName("IsFavorite") val isFavorite: Boolean? = null,
 )

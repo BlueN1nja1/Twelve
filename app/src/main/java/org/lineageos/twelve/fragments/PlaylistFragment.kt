@@ -29,10 +29,10 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.progressindicator.LinearProgressIndicator
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.R
-import org.lineageos.twelve.datasources.MediaError
 import org.lineageos.twelve.ext.getParcelable
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.loadThumbnail
@@ -41,7 +41,9 @@ import org.lineageos.twelve.ext.setProgressCompat
 import org.lineageos.twelve.ext.updateMargin
 import org.lineageos.twelve.ext.updatePadding
 import org.lineageos.twelve.models.Audio
-import org.lineageos.twelve.models.RequestStatus
+import org.lineageos.twelve.models.Error
+import org.lineageos.twelve.models.FlowResult
+import org.lineageos.twelve.models.Playlist
 import org.lineageos.twelve.ui.dialogs.EditTextMaterialAlertDialogBuilder
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.recyclerview.UniqueItemDiffCallback
@@ -77,6 +79,10 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
     private val toolbar by getViewProperty<MaterialToolbar>(R.id.toolbar)
     private val tracksInfoTextView by getViewProperty<TextView>(R.id.tracksInfoTextView)
 
+    // Menu items
+    private val deletePlaylistMenuItem get() = toolbar.menu.findItem(R.id.deletePlaylist)
+    private val renamePlaylistMenuItem get() = toolbar.menu.findItem(R.id.renamePlaylist)
+
     // Recyclerview
     private val adapter by lazy {
         object : SimpleListAdapter<Audio, ListItem>(
@@ -100,7 +106,6 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
                         R.id.action_playlistFragment_to_fragment_media_item_bottom_sheet_dialog,
                         MediaItemBottomSheetDialogFragment.createBundle(
                             item.uri,
-                            item.mediaType,
                             playlistUri = playlistUri,
                         )
                     )
@@ -240,81 +245,99 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
         super.onDestroyView()
     }
 
-    private suspend fun loadData() {
-        viewModel.playlist.collectLatest {
-            linearProgressIndicator.setProgressCompat(it, true)
+    private fun CoroutineScope.loadData() {
+        launch {
+            viewModel.playlist.collectLatest {
+                linearProgressIndicator.setProgressCompat(it)
 
-            when (it) {
-                is RequestStatus.Loading -> {
-                    // Do nothing
-                }
-
-                is RequestStatus.Success -> {
-                    val (playlist, audios) = it.data
-
-                    toolbar.title = playlist.name
-                    playlistNameTextView.text = playlist.name
-
-                    thumbnailImageView.loadThumbnail(
-                        playlist.thumbnail,
-                        placeholder = R.drawable.ic_playlist_play
-                    )
-
-                    val totalDurationMs = audios.sumOf { audio ->
-                        audio.durationMs ?: 0L
+                when (it) {
+                    is FlowResult.Loading -> {
+                        // Do nothing
                     }
-                    val totalDurationMinutes = (totalDurationMs / 1000 / 60).toInt()
 
-                    val tracksCount = resources.getQuantityString(
-                        R.plurals.tracks_count,
-                        audios.size,
-                        audios.size
-                    )
-                    val tracksDuration = resources.getQuantityString(
-                        R.plurals.tracks_duration,
-                        totalDurationMinutes,
-                        totalDurationMinutes
-                    )
-                    tracksInfoTextView.text = getString(
-                        R.string.tracks_info,
-                        tracksCount, tracksDuration
-                    )
+                    is FlowResult.Success -> {
+                        val (playlist, audios) = it.data
 
-                    adapter.submitList(audios)
+                        val playlistName = playlist.name ?: getString(
+                            when (playlist.type) {
+                                Playlist.Type.PLAYLIST -> R.string.playlist_unknown
+                                Playlist.Type.FAVORITES -> R.string.favorites_playlist
+                            }
+                        )
+                        toolbar.title = playlistName
+                        playlistNameTextView.text = playlistName
 
-                    val isEmpty = audios.isEmpty()
-                    recyclerView.isVisible = !isEmpty
-                    noElementsNestedScrollView.isVisible = isEmpty
-                    when (isEmpty) {
-                        true -> {
-                            playAllExtendedFloatingActionButton.hide()
-                            shufflePlayExtendedFloatingActionButton.hide()
+                        thumbnailImageView.loadThumbnail(
+                            playlist.thumbnail,
+                            placeholder = when (playlist.type) {
+                                Playlist.Type.PLAYLIST -> R.drawable.ic_playlist_play
+                                Playlist.Type.FAVORITES -> R.drawable.ic_favorite
+                            }
+                        )
+
+                        val totalDurationMs = audios.sumOf { audio ->
+                            audio.durationMs ?: 0L
                         }
+                        val totalDurationMinutes = (totalDurationMs / 1000 / 60).toInt()
 
-                        false -> {
-                            playAllExtendedFloatingActionButton.show()
-                            shufflePlayExtendedFloatingActionButton.show()
+                        val tracksCount = resources.getQuantityString(
+                            R.plurals.tracks_count,
+                            audios.size,
+                            audios.size
+                        )
+                        val tracksDuration = resources.getQuantityString(
+                            R.plurals.tracks_duration,
+                            totalDurationMinutes,
+                            totalDurationMinutes
+                        )
+                        tracksInfoTextView.text = getString(
+                            R.string.tracks_info,
+                            tracksCount, tracksDuration
+                        )
+
+                        adapter.submitList(audios)
+
+                        val isEmpty = audios.isEmpty()
+                        recyclerView.isVisible = !isEmpty
+                        noElementsNestedScrollView.isVisible = isEmpty
+                        when (isEmpty) {
+                            true -> {
+                                playAllExtendedFloatingActionButton.hide()
+                                shufflePlayExtendedFloatingActionButton.hide()
+                            }
+
+                            false -> {
+                                playAllExtendedFloatingActionButton.show()
+                                shufflePlayExtendedFloatingActionButton.show()
+                            }
+                        }
+                    }
+
+                    is FlowResult.Error -> {
+                        Log.e(LOG_TAG, "Error loading playlist, error: ${it.error}")
+
+                        toolbar.title = ""
+                        playlistNameTextView.text = ""
+
+                        adapter.submitList(listOf())
+
+                        recyclerView.isVisible = false
+                        noElementsNestedScrollView.isVisible = true
+                        playAllExtendedFloatingActionButton.isVisible = false
+
+                        if (it.error == Error.NOT_FOUND) {
+                            // Get out of here
+                            findNavController().navigateUp()
                         }
                     }
                 }
+            }
+        }
 
-                is RequestStatus.Error -> {
-                    Log.e(LOG_TAG, "Error loading playlist, error: ${it.error}")
-
-                    toolbar.title = ""
-                    playlistNameTextView.text = ""
-
-                    adapter.submitList(listOf())
-
-                    recyclerView.isVisible = false
-                    noElementsNestedScrollView.isVisible = true
-                    playAllExtendedFloatingActionButton.isVisible = false
-
-                    if (it.error == MediaError.NOT_FOUND) {
-                        // Get out of here
-                        findNavController().navigateUp()
-                    }
-                }
+        launch {
+            viewModel.playlistMetadataCanBeEdited.collectLatest { playlistMetadataCanBeEdited ->
+                renamePlaylistMenuItem.isVisible = playlistMetadataCanBeEdited
+                deletePlaylistMenuItem.isVisible = playlistMetadataCanBeEdited
             }
         }
     }

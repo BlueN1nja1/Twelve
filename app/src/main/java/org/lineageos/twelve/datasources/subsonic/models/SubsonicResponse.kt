@@ -46,7 +46,7 @@ data class SubsonicResponse(
     val playQueue: TODO = null,
     val shares: TODO = null,
     val starred: TODO = null,
-    val starred2: TODO = null,
+    val starred2: Starred2? = null,
     val albumInfo: TODO = null,
     val artistInfo: TODO = null,
     val artistInfo2: TODO = null,

@@ -113,6 +113,13 @@
             app:leadingIconImage="@drawable/ic_queue_play_next" />
 
         <org.lineageos.twelve.ui.views.ListItem
+            android:id="@+id/addOrRemoveFromFavoritesListItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:headlineText="@string/add_to_favorites"
+            app:leadingIconImage="@drawable/ic_favorite" />
+
+        <org.lineageos.twelve.ui.views.ListItem
             android:id="@+id/removeFromPlaylistListItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

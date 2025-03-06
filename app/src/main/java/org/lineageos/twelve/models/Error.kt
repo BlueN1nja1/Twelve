@@ -3,12 +3,12 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package org.lineageos.twelve.datasources
+package org.lineageos.twelve.models
 
 /**
- * [MediaDataSource] errors.
+ * Generic errors definitions for operations result.
  */
-enum class MediaError {
+enum class Error {
     /**
      * This feature isn't implemented.
      */

@@ -27,6 +27,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.withContext
 import me.bogerchan.niervisualizer.renderer.IRenderer
 import me.bogerchan.niervisualizer.renderer.circle.CircleBarRenderer
 import me.bogerchan.niervisualizer.renderer.circle.CircleRenderer
@@ -35,7 +36,6 @@ import me.bogerchan.niervisualizer.renderer.columnar.ColumnarType2Renderer
 import me.bogerchan.niervisualizer.renderer.columnar.ColumnarType3Renderer
 import me.bogerchan.niervisualizer.renderer.columnar.ColumnarType4Renderer
 import me.bogerchan.niervisualizer.renderer.line.LineRenderer
-import org.lineageos.twelve.datasources.MediaError
 import org.lineageos.twelve.ext.applicationContext
 import org.lineageos.twelve.ext.availableCommandsFlow
 import org.lineageos.twelve.ext.isPlayingFlow
@@ -49,11 +49,14 @@ import org.lineageos.twelve.ext.repeatModeFlow
 import org.lineageos.twelve.ext.shuffleModeFlow
 import org.lineageos.twelve.ext.toThumbnail
 import org.lineageos.twelve.ext.tracksFlow
+import org.lineageos.twelve.models.Error
+import org.lineageos.twelve.models.FlowResult
+import org.lineageos.twelve.models.FlowResult.Companion.asFlowResult
+import org.lineageos.twelve.models.FlowResult.Companion.flatMapLatestData
 import org.lineageos.twelve.models.PlaybackProgress
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
-import org.lineageos.twelve.models.RequestStatus
-import org.lineageos.twelve.models.RequestStatus.Companion.map
+import org.lineageos.twelve.models.Result
 import org.lineageos.twelve.services.PlaybackService
 import org.lineageos.twelve.services.PlaybackService.CustomCommand.Companion.sendCustomCommand
 import org.lineageos.twelve.utils.MimeUtils
@@ -130,13 +133,14 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         .flatMapLatest { mediaItemUri ->
             mediaItemUri?.let {
                 mediaRepository.audio(it)
-            } ?: flowOf(RequestStatus.Error(MediaError.NOT_FOUND))
+            } ?: flowOf(Result.Error(Error.NOT_FOUND))
         }
+        .asFlowResult()
         .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = RequestStatus.Loading()
+            initialValue = FlowResult.Loading()
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -194,15 +198,17 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         playbackState,
     ) { mediaMetadata, playbackState ->
         when (playbackState) {
-            PlaybackState.BUFFERING -> RequestStatus.Loading()
-            else -> RequestStatus.Success<_, Nothing>(mediaMetadata.toThumbnail(applicationContext))
+            PlaybackState.BUFFERING -> null
+            else -> mediaMetadata.toThumbnail(applicationContext)?.let {
+                Result.Success(it)
+            } ?: Result.Error(Error.NOT_FOUND)
         }
     }
         .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = RequestStatus.Loading()
+            initialValue = null
         )
 
     @androidx.annotation.OptIn(UnstableApi::class)
@@ -342,51 +348,51 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         .flatMapLatest { mediaItemUri ->
             mediaItemUri?.let {
                 mediaRepository.lyrics(it)
-            } ?: flowOf(RequestStatus.Loading())
+            } ?: flowOf(Result.Error(Error.NOT_FOUND))
         }
+        .asFlowResult()
         .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = RequestStatus.Loading()
+            initialValue = FlowResult.Loading()
         )
 
-    val lyricsLines = combine(
-        lyrics,
-        durationCurrentPositionMs,
-    ) { lyrics, durationCurrentPositionMs ->
-        lyrics.map {
-            var currentIndex: Int? = null
+    @OptIn(ExperimentalCoroutinesApi::class)
+    val lyricsLines = lyrics
+        .flatMapLatestData { lyrics ->
+            durationCurrentPositionMs.mapLatest { durationCurrentPositionMs ->
+                var currentIndex: Int? = null
 
-            val linesWithState = it.lines.withIndex().map { (i, line) ->
-                val lyricsLineState = line.durationMs?.let { durationMs ->
-                    durationCurrentPositionMs.second?.let { currentPositionMs ->
-                        when {
-                            currentPositionMs < durationMs.first -> LyricsLineState.PENDING
-                            currentPositionMs in durationMs -> LyricsLineState.ACTIVE
-                            currentPositionMs > durationMs.last -> LyricsLineState.PAST
-                            else -> LyricsLineState.UNKNOWN
+                val linesWithState = lyrics.lines.withIndex().map { (i, line) ->
+                    val lyricsLineState = line.durationMs?.let { durationMs ->
+                        durationCurrentPositionMs.second?.let { currentPositionMs ->
+                            when {
+                                currentPositionMs < durationMs.first -> LyricsLineState.PENDING
+                                currentPositionMs in durationMs -> LyricsLineState.ACTIVE
+                                currentPositionMs > durationMs.last -> LyricsLineState.PAST
+                                else -> LyricsLineState.UNKNOWN
+                            }
                         }
-                    }
-                } ?: LyricsLineState.UNKNOWN
+                    } ?: LyricsLineState.UNKNOWN
 
-                if (lyricsLineState == LyricsLineState.ACTIVE
-                    || lyricsLineState == LyricsLineState.PAST
-                ) {
-                    currentIndex = i
+                    if (lyricsLineState == LyricsLineState.ACTIVE
+                        || lyricsLineState == LyricsLineState.PAST
+                    ) {
+                        currentIndex = i
+                    }
+
+                    line to lyricsLineState
                 }
 
-                line to lyricsLineState
+                FlowResult.Success(linesWithState to currentIndex)
             }
-
-            linesWithState to currentIndex
         }
-    }
         .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = RequestStatus.Loading()
+            initialValue = FlowResult.Loading()
         )
 
     fun togglePlayPause() {
@@ -430,5 +436,13 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
 
     fun nextVisualizerType() {
         _currentVisualizerType.value = _currentVisualizerType.value.next()
+    }
+
+    suspend fun toggleFavorites() {
+        audio.value.getOrNull()?.let {
+            withContext(Dispatchers.IO) {
+                mediaRepository.setFavorite(it.uri, !it.isFavorite)
+            }
+        }
     }
 }

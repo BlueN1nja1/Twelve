@@ -33,7 +33,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.R
-import org.lineageos.twelve.datasources.MediaError
 import org.lineageos.twelve.ext.getParcelable
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.loadThumbnail
@@ -41,7 +40,8 @@ import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.ext.setProgressCompat
 import org.lineageos.twelve.ext.updateMargin
 import org.lineageos.twelve.ext.updatePadding
-import org.lineageos.twelve.models.RequestStatus
+import org.lineageos.twelve.models.Error
+import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.recyclerview.UniqueItemDiffCallback
 import org.lineageos.twelve.ui.views.ListItem
@@ -119,7 +119,6 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
                                 R.id.action_albumFragment_to_fragment_media_item_bottom_sheet_dialog,
                                 MediaItemBottomSheetDialogFragment.createBundle(
                                     item.audio.uri,
-                                    item.audio.mediaType,
                                     fromAlbum = true,
                                 )
                             )
@@ -280,14 +279,14 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
         coroutineScope {
             launch {
                 viewModel.album.collectLatest {
-                    linearProgressIndicator.setProgressCompat(it, true)
+                    linearProgressIndicator.setProgressCompat(it)
 
                     when (it) {
-                        is RequestStatus.Loading -> {
+                        is FlowResult.Loading -> {
                             // Do nothing
                         }
 
-                        is RequestStatus.Success -> {
+                        is FlowResult.Success -> {
                             val (album, audios) = it.data
 
                             album.title?.also { albumTitle ->
@@ -343,13 +342,13 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
                             )
                         }
 
-                        is RequestStatus.Error -> {
+                        is FlowResult.Error -> {
                             Log.e(LOG_TAG, "Error loading album, error: ${it.error}")
 
                             toolbar.title = ""
                             albumTitleTextView.text = ""
 
-                            if (it.error == MediaError.NOT_FOUND) {
+                            if (it.error == Error.NOT_FOUND) {
                                 // Get out of here
                                 findNavController().navigateUp()
                             }

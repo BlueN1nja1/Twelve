@@ -20,7 +20,7 @@ import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.Provider
 import org.lineageos.twelve.models.ProviderIdentifier
 import org.lineageos.twelve.models.ProviderType
-import org.lineageos.twelve.models.RequestStatus
+import org.lineageos.twelve.models.Result
 import org.lineageos.twelve.repositories.MediaRepository
 import org.lineageos.twelve.utils.PermissionsUtils
 
@@ -345,17 +345,15 @@ class MediaRepositoryTree(
         private const val PROVIDER_CHANGED_MEDIA_ITEM_ID = "[provider_changed]"
 
         /**
-         * Converts a flow of [RequestStatus] to a one-shot result of [T].
-         * On loading, returns null.
+         * Converts a flow of [Result] to a one-shot result of [T].
          * On success, returns the data.
          * On error, logs the exception and returns null.
          */
-        private suspend fun <T, E> Flow<RequestStatus<T, E>>.toOneShotResult() =
+        private suspend fun <T, E> Flow<Result<T, E>>.toOneShotResult() =
             mapNotNull { status ->
                 when (status) {
-                    is RequestStatus.Loading -> null
-                    is RequestStatus.Success -> status.data
-                    is RequestStatus.Error -> {
+                    is Result.Success -> status.data
+                    is Result.Error -> {
                         Log.e(LOG_TAG, "Failed to get data", status.throwable)
                         null
                     }

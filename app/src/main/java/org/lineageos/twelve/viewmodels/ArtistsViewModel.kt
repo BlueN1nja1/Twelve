@@ -18,7 +18,8 @@ import org.lineageos.twelve.ext.ARTISTS_SORTING_REVERSE_KEY
 import org.lineageos.twelve.ext.ARTISTS_SORTING_STRATEGY_KEY
 import org.lineageos.twelve.ext.artistsSortingRule
 import org.lineageos.twelve.ext.preferenceFlow
-import org.lineageos.twelve.models.RequestStatus
+import org.lineageos.twelve.models.FlowResult
+import org.lineageos.twelve.models.FlowResult.Companion.asFlowResult
 import org.lineageos.twelve.models.SortingRule
 
 class ArtistsViewModel(application: Application) : TwelveViewModel(application) {
@@ -31,11 +32,12 @@ class ArtistsViewModel(application: Application) : TwelveViewModel(application) 
     @OptIn(ExperimentalCoroutinesApi::class)
     val artists = sortingRule
         .flatMapLatest { mediaRepository.artists(it) }
+        .asFlowResult()
         .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(),
-            RequestStatus.Loading()
+            FlowResult.Loading()
         )
 
     fun setSortingRule(sortingRule: SortingRule) {

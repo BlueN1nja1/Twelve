@@ -39,7 +39,7 @@ data class Lyrics(
          *
          * @param line The [Line]
          */
-        fun addLine(line: Line) {
+        fun addLine(line: Line) = apply {
             lines.add(
                 TempLine(
                     text = line.text,
@@ -60,7 +60,7 @@ data class Lyrics(
             text: String,
             startMs: Long? = null,
             endMs: Long? = null,
-        ) {
+        ) = apply {
             lines.add(
                 TempLine(
                     text = text,

@@ -31,9 +31,8 @@ import org.lineageos.twelve.ext.getParcelable
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.models.DataSourceInformation
+import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.ProviderIdentifier
-import org.lineageos.twelve.models.RequestStatus
-import org.lineageos.twelve.models.RequestStatus.Companion.fold
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.recyclerview.UniqueItemDiffCallback
 import org.lineageos.twelve.ui.views.FullscreenLoadingProgressBar
@@ -83,18 +82,14 @@ class ProviderInformationBottomSheetDialogFragment : BottomSheetDialogFragment(
         super.onViewCreated(view, savedInstanceState)
 
         manageProviderMaterialButton.setOnClickListener {
-            viewModel.provider.value.fold(
-                onLoading = {},
-                onSuccess = {
-                    findNavController().navigateSafe(
-                        R.id.action_providerInformationBottomSheetDialogFragment_to_fragment_manage_provider,
-                        ManageProviderFragment.createBundle(
-                            providerIdentifier = providerIdentifier
-                        ),
-                    )
-                },
-                onError = {},
-            )
+            viewModel.provider.value.getOrNull()?.let {
+                findNavController().navigateSafe(
+                    R.id.action_providerInformationBottomSheetDialogFragment_to_fragment_manage_provider,
+                    ManageProviderFragment.createBundle(
+                        providerIdentifier = providerIdentifier
+                    ),
+                )
+            }
         }
 
         deleteProviderMaterialButton.setOnClickListener {
@@ -122,11 +117,11 @@ class ProviderInformationBottomSheetDialogFragment : BottomSheetDialogFragment(
         launch {
             viewModel.provider.collectLatest {
                 when (it) {
-                    is RequestStatus.Loading -> {
+                    is FlowResult.Loading -> {
                         // Do nothing
                     }
 
-                    is RequestStatus.Success -> {
+                    is FlowResult.Success -> {
                         val provider = it.data
 
                         titleTextView.text = provider.name
@@ -134,7 +129,7 @@ class ProviderInformationBottomSheetDialogFragment : BottomSheetDialogFragment(
                         providerIconImageView.setImageResource(provider.type.iconDrawableResId)
                     }
 
-                    is RequestStatus.Error -> {
+                    is FlowResult.Error -> {
                         Log.e(LOG_TAG, "Failed to load data, error: ${it.error}", it.throwable)
 
                         titleTextView.text = ""
@@ -154,11 +149,11 @@ class ProviderInformationBottomSheetDialogFragment : BottomSheetDialogFragment(
         launch {
             viewModel.status.collectLatest {
                 when (it) {
-                    is RequestStatus.Loading -> {
+                    is FlowResult.Loading -> {
                         // Do nothing
                     }
 
-                    is RequestStatus.Success -> {
+                    is FlowResult.Success -> {
                         val data = it.data
 
                         statusAdapter.submitList(data)
@@ -169,7 +164,7 @@ class ProviderInformationBottomSheetDialogFragment : BottomSheetDialogFragment(
                         statusMaterialDivider.isVisible = !isEmpty
                     }
 
-                    is RequestStatus.Error -> {
+                    is FlowResult.Error -> {
                         Log.e(LOG_TAG, "Failed to load data, error: ${it.error}", it.throwable)
 
                         statusAdapter.submitList(emptyList())

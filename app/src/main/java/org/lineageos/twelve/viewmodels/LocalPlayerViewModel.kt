@@ -37,10 +37,12 @@ import org.lineageos.twelve.ext.shuffleModeEnabled
 import org.lineageos.twelve.ext.shuffleModeFlow
 import org.lineageos.twelve.ext.toThumbnail
 import org.lineageos.twelve.ext.typedRepeatMode
+import org.lineageos.twelve.models.Error
+import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.PlaybackProgress
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
-import org.lineageos.twelve.models.RequestStatus
+import org.lineageos.twelve.models.Thumbnail
 
 /**
  * A view model useful to playback stuff locally (not in the playback service).
@@ -123,15 +125,17 @@ class LocalPlayerViewModel(application: Application) : AndroidViewModel(applicat
         playbackState,
     ) { mediaMetadata, playbackState ->
         when (playbackState) {
-            PlaybackState.BUFFERING -> RequestStatus.Loading()
-            else -> RequestStatus.Success<_, Nothing>(mediaMetadata.toThumbnail(applicationContext))
+            PlaybackState.BUFFERING -> FlowResult.Loading()
+            else -> mediaMetadata.toThumbnail(applicationContext)?.let {
+                FlowResult.Success<Thumbnail, Error>(it)
+            } ?: FlowResult.Error(Error.NOT_FOUND)
         }
     }
         .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = RequestStatus.Loading()
+            initialValue = FlowResult.Loading()
         )
 
     val playbackProgress = exoPlayer.playbackProgressFlow(eventsFlow)

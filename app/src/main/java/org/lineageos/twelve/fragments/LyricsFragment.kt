@@ -31,8 +31,8 @@ import org.lineageos.twelve.R
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.updateMargin
 import org.lineageos.twelve.ext.updatePadding
+import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.Lyrics
-import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.ui.recyclerview.CenterSmoothScroller
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.viewmodels.LyricsViewModel
@@ -165,11 +165,11 @@ class LyricsFragment : Fragment(R.layout.fragment_lyrics) {
         launch {
             viewModel.lyricsLines.collectLatest {
                 when (it) {
-                    is RequestStatus.Loading -> {
+                    is FlowResult.Loading -> {
                         // Do nothing
                     }
 
-                    is RequestStatus.Success -> {
+                    is FlowResult.Success -> {
                         val (lyricsWithState, currentIndex) = it.data
 
                         adapter.submitList(lyricsWithState)
@@ -187,7 +187,7 @@ class LyricsFragment : Fragment(R.layout.fragment_lyrics) {
                         noElementsNestedScrollView.isVisible = isEmpty
                     }
 
-                    is RequestStatus.Error -> {
+                    is FlowResult.Error -> {
                         Log.e(
                             LOG_TAG,
                             "Error while loading lyrics, error: ${it.error}",

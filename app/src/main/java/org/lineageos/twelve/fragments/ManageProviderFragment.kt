@@ -29,16 +29,16 @@ import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.R
-import org.lineageos.twelve.datasources.MediaError
 import org.lineageos.twelve.ext.getParcelable
 import org.lineageos.twelve.ext.getSerializable
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.selectItem
+import org.lineageos.twelve.models.Error
+import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.ProviderArgument
 import org.lineageos.twelve.models.ProviderArgument.Companion.validateArgument
 import org.lineageos.twelve.models.ProviderIdentifier
 import org.lineageos.twelve.models.ProviderType
-import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.views.FullscreenLoadingProgressBar
 import org.lineageos.twelve.viewmodels.ManageProviderViewModel
@@ -225,20 +225,20 @@ class ManageProviderFragment : Fragment(R.layout.fragment_manage_provider) {
                 launch {
                     viewModel.provider.collectLatest {
                         when (it) {
-                            is RequestStatus.Loading -> {
+                            is FlowResult.Loading -> {
                                 // Do nothing
                             }
 
-                            is RequestStatus.Success -> {
+                            is FlowResult.Success -> {
                                 val provider = it.data
 
                                 providerNameTextInputLayout.editText?.setText(provider.name)
                             }
 
-                            is RequestStatus.Error -> {
+                            is FlowResult.Error -> {
                                 Log.e(LOG_TAG, "Failed to load provider")
 
-                                if (it.error == MediaError.NOT_FOUND) {
+                                if (it.error == Error.NOT_FOUND) {
                                     // Get out of here
                                     findNavController().navigateUp()
                                 }

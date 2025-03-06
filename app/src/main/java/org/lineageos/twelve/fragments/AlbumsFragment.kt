@@ -26,7 +26,7 @@ import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.ext.setProgressCompat
 import org.lineageos.twelve.models.Album
-import org.lineageos.twelve.models.RequestStatus
+import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.SortingStrategy
 import org.lineageos.twelve.ui.recyclerview.DisplayAwareGridLayoutManager
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
@@ -66,9 +66,7 @@ class AlbumsFragment : Fragment(R.layout.fragment_albums) {
                 view.setOnLongClickListener {
                     findNavController().navigateSafe(
                         R.id.action_mainFragment_to_fragment_media_item_bottom_sheet_dialog,
-                        MediaItemBottomSheetDialogFragment.createBundle(
-                            item.uri, item.mediaType,
-                        )
+                        MediaItemBottomSheetDialogFragment.createBundle(item.uri)
                     )
                     true
                 }
@@ -121,14 +119,14 @@ class AlbumsFragment : Fragment(R.layout.fragment_albums) {
         coroutineScope {
             launch {
                 viewModel.albums.collectLatest {
-                    linearProgressIndicator.setProgressCompat(it, true)
+                    linearProgressIndicator.setProgressCompat(it)
 
                     when (it) {
-                        is RequestStatus.Loading -> {
+                        is FlowResult.Loading -> {
                             // Do nothing
                         }
 
-                        is RequestStatus.Success -> {
+                        is FlowResult.Success -> {
                             adapter.submitList(it.data)
 
                             val isEmpty = it.data.isEmpty()
@@ -136,7 +134,7 @@ class AlbumsFragment : Fragment(R.layout.fragment_albums) {
                             noElementsLinearLayout.isVisible = isEmpty
                         }
 
-                        is RequestStatus.Error -> {
+                        is FlowResult.Error -> {
                             Log.e(
                                 LOG_TAG,
                                 "Failed to load albums, error: ${it.error}",

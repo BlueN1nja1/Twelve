@@ -20,6 +20,7 @@ import androidx.media3.exoplayer.mediacodec.MediaCodecSelector
 import androidx.media3.exoplayer.metadata.MetadataOutput
 import androidx.media3.exoplayer.metadata.MetadataRenderer
 import androidx.media3.exoplayer.text.TextOutput
+import androidx.media3.exoplayer.text.TextRenderer
 import androidx.media3.exoplayer.video.VideoRendererEventListener
 
 @OptIn(UnstableApi::class)
@@ -51,5 +52,6 @@ class TwelveRenderersFactory(
 
         ),
         MetadataRenderer(metadataRendererOutput, eventHandler.looper),
+        TextRenderer(textRendererOutput, eventHandler.looper),
     )
 }

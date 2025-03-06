@@ -27,8 +27,8 @@ import org.lineageos.twelve.R
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.ext.setProgressCompat
+import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.Playlist
-import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.models.SortingStrategy
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.recyclerview.UniqueItemDiffCallback
@@ -85,15 +85,23 @@ class PlaylistsFragment : Fragment(R.layout.fragment_playlists) {
                     view.setOnLongClickListener {
                         findNavController().navigateSafe(
                             R.id.action_mainFragment_to_fragment_media_item_bottom_sheet_dialog,
-                            MediaItemBottomSheetDialogFragment.createBundle(
-                                item.uri, item.mediaType,
-                            )
+                            MediaItemBottomSheetDialogFragment.createBundle(item.uri)
                         )
                         true
                     }
 
-                    view.setLeadingIconImage(R.drawable.ic_playlist_play)
-                    view.headlineText = item.name
+                    view.setLeadingIconImage(
+                        when (item.type) {
+                            Playlist.Type.PLAYLIST -> R.drawable.ic_playlist_play
+                            Playlist.Type.FAVORITES -> R.drawable.ic_favorite
+                        }
+                    )
+                    view.headlineText = item.name ?: getString(
+                        when (item.type) {
+                            Playlist.Type.PLAYLIST -> R.string.playlist_unknown
+                            Playlist.Type.FAVORITES -> R.string.favorites_playlist
+                        }
+                    )
                 }
             }
         }
@@ -149,14 +157,14 @@ class PlaylistsFragment : Fragment(R.layout.fragment_playlists) {
         coroutineScope {
             launch {
                 viewModel.playlists.collectLatest {
-                    linearProgressIndicator.setProgressCompat(it, true)
+                    linearProgressIndicator.setProgressCompat(it)
 
                     when (it) {
-                        is RequestStatus.Loading -> {
+                        is FlowResult.Loading -> {
                             // Do nothing
                         }
 
-                        is RequestStatus.Success -> {
+                        is FlowResult.Success -> {
                             val isEmpty = it.data.isEmpty()
 
                             adapter.submitList(
@@ -173,7 +181,7 @@ class PlaylistsFragment : Fragment(R.layout.fragment_playlists) {
                             noElementsLinearLayout.isVisible = isEmpty
                         }
 
-                        is RequestStatus.Error -> {
+                        is FlowResult.Error -> {
                             Log.e(
                                 LOG_TAG,
                                 "Failed to load playlists, error: ${it.error}",

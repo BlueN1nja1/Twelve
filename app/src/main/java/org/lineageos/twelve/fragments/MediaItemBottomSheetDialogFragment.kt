@@ -24,18 +24,16 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.R
-import org.lineageos.twelve.datasources.MediaError
 import org.lineageos.twelve.ext.getParcelable
-import org.lineageos.twelve.ext.getSerializable
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.models.Album
 import org.lineageos.twelve.models.Artist
 import org.lineageos.twelve.models.Audio
+import org.lineageos.twelve.models.Error
+import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.Genre
-import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.Playlist
-import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.ui.views.FullscreenLoadingProgressBar
 import org.lineageos.twelve.ui.views.ListItem
 import org.lineageos.twelve.utils.PermissionsChecker
@@ -52,6 +50,7 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
     private val viewModel by viewModels<MediaItemViewModel>()
 
     // Views
+    private val addOrRemoveFromFavoritesListItem by getViewProperty<ListItem>(R.id.addOrRemoveFromFavoritesListItem)
     private val addOrRemoveFromPlaylistsListItem by getViewProperty<ListItem>(R.id.addOrRemoveFromPlaylistsListItem)
     private val addToQueueListItem by getViewProperty<ListItem>(R.id.addToQueueListItem)
     private val artistNameTextView by getViewProperty<TextView>(R.id.artistNameTextView)
@@ -70,8 +69,6 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
     // Arguments
     private val uri: Uri
         get() = requireArguments().getParcelable(ARG_URI, Uri::class)!!
-    private val mediaType: MediaType
-        get() = requireArguments().getSerializable(ARG_MEDIA_TYPE, MediaType::class)!!
     private val fromAlbum: Boolean
         get() = requireArguments().getBoolean(ARG_FROM_ALBUM)
     private val fromArtist: Boolean
@@ -88,52 +85,63 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
         this, PermissionsUtils.mainPermissions
     )
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        viewModel.setUri(uri)
+        viewModel.setFromAlbum(fromAlbum)
+        viewModel.setFromArtist(fromArtist)
+        viewModel.setFromGenre(fromGenre)
+        viewModel.setFromNowPlaying(fromNowPlaying)
+        viewModel.setPlaylistUri(playlistUri)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         playNowListItem.setOnClickListener {
-            viewModel.tracks.value.takeIf { it.isNotEmpty() }?.let { tracks ->
-                viewModel.playAudio(tracks.toList(), 0)
-            }
+            viewModel.playNow()
 
             findNavController().navigateUp()
         }
 
         addToQueueListItem.setOnClickListener {
-            viewModel.tracks.value.takeIf { it.isNotEmpty() }?.let { tracks ->
-                viewModel.addToQueue(*tracks.toTypedArray())
+            viewModel.addToQueue()
 
-                findNavController().navigateUp()
-            }
+            findNavController().navigateUp()
         }
 
         playNextListItem.setOnClickListener {
-            viewModel.tracks.value.takeIf { it.isNotEmpty() }?.let { tracks ->
-                viewModel.playNext(*tracks.toTypedArray())
+            viewModel.playNext()
 
-                findNavController().navigateUp()
-            }
+            findNavController().navigateUp()
         }
 
-        removeFromPlaylistListItem.isVisible = mediaType == MediaType.AUDIO && playlistUri != null
-        removeFromPlaylistListItem.setOnClickListener {
+        addOrRemoveFromFavoritesListItem.setOnClickListener {
             viewLifecycleOwner.lifecycleScope.launch {
                 fullscreenLoadingProgressBar.withProgress {
-                    playlistUri?.let {
-                        viewModel.removeAudioFromPlaylist(it)
-
-                        findNavController().navigateUp()
-                    }
+                    viewModel.toggleFavorites()
                 }
             }
         }
 
-        addOrRemoveFromPlaylistsListItem.isVisible = mediaType == MediaType.AUDIO
+        removeFromPlaylistListItem.setOnClickListener {
+            viewLifecycleOwner.lifecycleScope.launch {
+                fullscreenLoadingProgressBar.withProgress {
+                    viewModel.removeAudioFromPlaylist()
+
+                    findNavController().navigateUp()
+                }
+            }
+        }
+
         addOrRemoveFromPlaylistsListItem.setOnClickListener {
-            findNavController().navigateSafe(
-                R.id.action_mediaItemBottomSheetDialogFragment_to_fragment_add_or_remove_from_playlists,
-                AddOrRemoveFromPlaylistsFragment.createBundle(uri)
-            )
+            viewModel.uri.value?.let {
+                findNavController().navigateSafe(
+                    R.id.action_mediaItemBottomSheetDialogFragment_to_fragment_add_or_remove_from_playlists,
+                    AddOrRemoveFromPlaylistsFragment.createBundle(it)
+                )
+            }
         }
 
         openAlbumListItem.setOnClickListener {
@@ -163,8 +171,6 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
             }
         }
 
-        viewModel.loadMediaItem(uri, mediaType)
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 permissionsChecker.withPermissionsGranted {
@@ -178,11 +184,11 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
         launch {
             viewModel.mediaItem.collectLatest {
                 when (it) {
-                    is RequestStatus.Loading -> {
+                    is FlowResult.Loading -> {
                         // Do nothing
                     }
 
-                    is RequestStatus.Success -> {
+                    is FlowResult.Success -> {
                         val mediaItem = it.data
 
                         titleTextView.text = when (mediaItem) {
@@ -190,7 +196,12 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
                             is Artist -> mediaItem.name ?: getString(R.string.artist_unknown)
                             is Audio -> mediaItem.title
                             is Genre -> mediaItem.name ?: getString(R.string.genre_unknown)
-                            is Playlist -> mediaItem.name
+                            is Playlist -> mediaItem.name ?: getString(
+                                when (mediaItem.type) {
+                                    Playlist.Type.PLAYLIST -> R.string.playlist_unknown
+                                    Playlist.Type.FAVORITES -> R.string.favorites_playlist
+                                }
+                            )
                         }
                         artistNameTextView.text = when (mediaItem) {
                             is Album -> mediaItem.artistName
@@ -212,7 +223,10 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
                                 is Artist -> R.drawable.ic_person
                                 is Audio -> R.drawable.ic_music_note
                                 is Genre -> R.drawable.ic_genres
-                                is Playlist -> R.drawable.ic_playlist_play
+                                is Playlist -> when (mediaItem.type) {
+                                    Playlist.Type.PLAYLIST -> R.drawable.ic_playlist_play
+                                    Playlist.Type.FAVORITES -> R.drawable.ic_favorite
+                                }
                             }
                         )
 
@@ -237,16 +251,35 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
                             placeholderImageView.isVisible = true
                             thumbnailImageView.isVisible = false
                         }
+
+                        when (mediaItem) {
+                            is Audio -> {
+                                addOrRemoveFromFavoritesListItem.setHeadlineText(
+                                    when (mediaItem.isFavorite) {
+                                        true -> R.string.remove_from_favorites
+                                        false -> R.string.add_to_favorites
+                                    }
+                                )
+                                addOrRemoveFromFavoritesListItem.setLeadingIconImage(
+                                    when (mediaItem.isFavorite) {
+                                        true -> R.drawable.ic_heart_filled
+                                        false -> R.drawable.ic_heart_unfilled
+                                    }
+                                )
+                            }
+
+                            else -> {}
+                        }
                     }
 
-                    is RequestStatus.Error -> {
+                    is FlowResult.Error -> {
                         Log.e(
                             LOG_TAG,
                             "Failed to load media item, error: ${it.error}",
                             it.throwable
                         )
 
-                        if (it.error == MediaError.NOT_FOUND) {
+                        if (it.error == Error.NOT_FOUND) {
                             // Get out of here
                             findNavController().navigateUp()
                         }
@@ -256,30 +289,46 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
         }
 
         launch {
-            viewModel.tracks.collectLatest { tracks ->
-                val isNotEmpty = tracks.isNotEmpty()
+            viewModel.showQueueButtons.collectLatest { showQueueButtons ->
+                playNowListItem.isVisible = showQueueButtons
+                addToQueueListItem.isVisible = showQueueButtons
+                playNextListItem.isVisible = showQueueButtons
+            }
+        }
 
-                playNowListItem.isVisible = isNotEmpty && !fromNowPlaying
-                addToQueueListItem.isVisible = isNotEmpty && !fromNowPlaying
-                playNextListItem.isVisible = isNotEmpty && !fromNowPlaying
+        launch {
+            viewModel.canToggleFavorite.collectLatest { canToggleFavorite ->
+                addOrRemoveFromFavoritesListItem.isVisible = canToggleFavorite
+            }
+        }
+
+        launch {
+            viewModel.canAddOrRemoveFromPlaylists.collectLatest { canAddOrRemoveFromPlaylists ->
+                addOrRemoveFromPlaylistsListItem.isVisible = canAddOrRemoveFromPlaylists
+            }
+        }
+
+        launch {
+            viewModel.canRemoveFromPlaylist.collectLatest { canRemoveFromPlaylist ->
+                removeFromPlaylistListItem.isVisible = canRemoveFromPlaylist
             }
         }
 
         launch {
             viewModel.albumUri.collectLatest { albumUri ->
-                openAlbumListItem.isVisible = !fromAlbum && albumUri != null
+                openAlbumListItem.isVisible = albumUri != null
             }
         }
 
         launch {
             viewModel.artistUri.collectLatest { artistUri ->
-                openArtistListItem.isVisible = !fromArtist && artistUri != null
+                openArtistListItem.isVisible = artistUri != null
             }
         }
 
         launch {
             viewModel.genreUri.collectLatest { genreUri ->
-                openGenreListItem.isVisible = !fromGenre && genreUri != null
+                openGenreListItem.isVisible = genreUri != null
             }
         }
     }
@@ -288,7 +337,6 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
         private val LOG_TAG = MediaItemBottomSheetDialogFragment::class.simpleName!!
 
         private const val ARG_URI = "uri"
-        private const val ARG_MEDIA_TYPE = "media_type"
         private const val ARG_FROM_ALBUM = "from_album"
         private const val ARG_FROM_ARTIST = "from_artist"
         private const val ARG_FROM_GENRE = "from_genre"
@@ -298,7 +346,6 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
         /**
          * Create a [Bundle] to use as the arguments for this fragment.
          * @param uri The URI of the media item to display
-         * @param mediaType The [MediaType] of the media item to display
          * @param fromAlbum Whether this fragment was opened from an album
          * @param fromArtist Whether this fragment was opened from an artist
          * @param fromGenre Whether this fragment was opened from a genre
@@ -307,7 +354,6 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
          */
         fun createBundle(
             uri: Uri,
-            mediaType: MediaType,
             fromAlbum: Boolean = false,
             fromArtist: Boolean = false,
             fromGenre: Boolean = false,
@@ -315,7 +361,6 @@ class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
             playlistUri: Uri? = null,
         ) = bundleOf(
             ARG_URI to uri,
-            ARG_MEDIA_TYPE to mediaType,
             ARG_FROM_ALBUM to fromAlbum,
             ARG_FROM_ARTIST to fromArtist,
             ARG_FROM_GENRE to fromGenre,

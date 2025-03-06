@@ -28,9 +28,9 @@ import org.lineageos.twelve.models.ActivityTab
 import org.lineageos.twelve.models.Album
 import org.lineageos.twelve.models.Artist
 import org.lineageos.twelve.models.Audio
+import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.Playlist
-import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.recyclerview.UniqueItemDiffCallback
 import org.lineageos.twelve.ui.views.ActivityTabView
@@ -85,9 +85,7 @@ class ActivityFragment : Fragment(R.layout.fragment_activity) {
                 view.setOnItemLongClickListener { mediaItem ->
                     findNavController().navigateSafe(
                         R.id.action_mainFragment_to_fragment_media_item_bottom_sheet_dialog,
-                        MediaItemBottomSheetDialogFragment.createBundle(
-                            mediaItem.uri, mediaItem.mediaType
-                        )
+                        MediaItemBottomSheetDialogFragment.createBundle(mediaItem.uri)
                     )
                     true
                 }
@@ -124,14 +122,14 @@ class ActivityFragment : Fragment(R.layout.fragment_activity) {
 
     private suspend fun loadData() {
         viewModel.activity.collectLatest {
-            linearProgressIndicator.setProgressCompat(it, true)
+            linearProgressIndicator.setProgressCompat(it)
 
             when (it) {
-                is RequestStatus.Loading -> {
+                is FlowResult.Loading -> {
                     // Do nothing
                 }
 
-                is RequestStatus.Success -> {
+                is FlowResult.Success -> {
                     val data = it.data
 
                     adapter.submitList(data)
@@ -141,7 +139,7 @@ class ActivityFragment : Fragment(R.layout.fragment_activity) {
                     noElementsLinearLayout.isVisible = isEmpty
                 }
 
-                is RequestStatus.Error -> {
+                is FlowResult.Error -> {
                     Log.e(LOG_TAG, "Failed to load activity, error: ${it.error}", it.throwable)
 
                     recyclerView.isVisible = false

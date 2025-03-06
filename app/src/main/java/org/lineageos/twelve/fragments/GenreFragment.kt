@@ -30,7 +30,6 @@ import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.R
-import org.lineageos.twelve.datasources.MediaError
 import org.lineageos.twelve.ext.getParcelable
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.loadThumbnail
@@ -39,8 +38,9 @@ import org.lineageos.twelve.ext.setProgressCompat
 import org.lineageos.twelve.ext.updatePadding
 import org.lineageos.twelve.models.Album
 import org.lineageos.twelve.models.Audio
+import org.lineageos.twelve.models.Error
+import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.Playlist
-import org.lineageos.twelve.models.RequestStatus
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.recyclerview.UniqueItemDiffCallback
 import org.lineageos.twelve.ui.views.HorizontalMediaItemView
@@ -86,9 +86,7 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
                 view.setOnLongClickListener {
                     findNavController().navigateSafe(
                         R.id.action_genreFragment_to_fragment_media_item_bottom_sheet_dialog,
-                        MediaItemBottomSheetDialogFragment.createBundle(
-                            item.uri, item.mediaType,
-                        )
+                        MediaItemBottomSheetDialogFragment.createBundle(item.uri)
                     )
                     true
                 }
@@ -112,9 +110,7 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
                 view.setOnLongClickListener {
                     findNavController().navigateSafe(
                         R.id.action_genreFragment_to_fragment_media_item_bottom_sheet_dialog,
-                        MediaItemBottomSheetDialogFragment.createBundle(
-                            item.uri, item.mediaType,
-                        )
+                        MediaItemBottomSheetDialogFragment.createBundle(item.uri)
                     )
                     true
                 }
@@ -139,7 +135,7 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
                     findNavController().navigateSafe(
                         R.id.action_genreFragment_to_fragment_media_item_bottom_sheet_dialog,
                         MediaItemBottomSheetDialogFragment.createBundle(
-                            item.uri, item.mediaType,
+                            item.uri,
                             fromGenre = true,
                         )
                     )
@@ -238,14 +234,14 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
 
     private suspend fun loadData() {
         viewModel.genre.collectLatest {
-            linearProgressIndicator.setProgressCompat(it, true)
+            linearProgressIndicator.setProgressCompat(it)
 
             when (it) {
-                is RequestStatus.Loading -> {
+                is FlowResult.Loading -> {
                     // Do nothing
                 }
 
-                is RequestStatus.Success -> {
+                is FlowResult.Success -> {
                     val (genre, genreContent) = it.data
 
                     genre.name?.also { genreName ->
@@ -283,7 +279,7 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
                     noElementsNestedScrollView.isVisible = isEmpty
                 }
 
-                is RequestStatus.Error -> {
+                is FlowResult.Error -> {
                     Log.e(LOG_TAG, "Error loading genre, error: ${it.error}")
 
                     toolbar.title = ""
@@ -296,7 +292,7 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
                     nestedScrollView.isVisible = false
                     noElementsNestedScrollView.isVisible = true
 
-                    if (it.error == MediaError.NOT_FOUND) {
+                    if (it.error == Error.NOT_FOUND) {
                         // Get out of here
                         findNavController().navigateUp()
                     }

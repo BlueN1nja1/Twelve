@@ -7,6 +7,7 @@ package org.lineageos.twelve.ext
 
 import android.content.Context
 import android.net.Uri
+import androidx.media3.common.HeartRating
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.util.UnstableApi
@@ -30,6 +31,7 @@ fun buildMediaItem(
     trackNumber: Int? = null,
     durationMs: Long? = null,
     subtitle: String? = null,
+    isFavorite: Boolean? = null,
 ): MediaItem {
     val metadata =
         MediaMetadata.Builder()
@@ -46,6 +48,9 @@ fun buildMediaItem(
             .setDiscNumber(discNumber)
             .setTrackNumber(trackNumber)
             .setDurationMs(durationMs)
+            .setUserRating(
+                isFavorite?.let { HeartRating(it) }
+            )
             .build()
 
     return MediaItem.Builder()

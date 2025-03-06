@@ -14,10 +14,10 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
-import org.lineageos.twelve.datasources.MediaError
+import org.lineageos.twelve.models.Error
 import org.lineageos.twelve.models.Provider
 import org.lineageos.twelve.models.ProviderIdentifier
-import org.lineageos.twelve.models.RequestStatus
+import org.lineageos.twelve.models.Result
 
 class CreatePlaylistViewModel(application: Application) : TwelveViewModel(application) {
     private val providerIdentifier = MutableStateFlow<ProviderIdentifier?>(null)
@@ -61,5 +61,5 @@ class CreatePlaylistViewModel(application: Application) : TwelveViewModel(applic
         withContext(Dispatchers.IO) {
             mediaRepository.createPlaylist(it, playlistName.value)
         }
-    } ?: RequestStatus.Error(MediaError.IO)
+    } ?: Result.Error(Error.IO)
 }

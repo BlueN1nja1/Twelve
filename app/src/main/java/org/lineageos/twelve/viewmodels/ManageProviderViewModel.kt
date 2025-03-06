@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
 import org.lineageos.twelve.models.ProviderType
-import org.lineageos.twelve.models.RequestStatus
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ManageProviderViewModel(application: Application) : ProviderViewModel(application) {
@@ -64,13 +63,7 @@ class ManageProviderViewModel(application: Application) : ProviderViewModel(appl
         _selectedProviderType,
         provider,
     ) { selectedProviderType, provider ->
-        when (provider) {
-            is RequestStatus.Success -> {
-                provider.data.type
-            }
-
-            else -> null
-        } ?: selectedProviderType
+        provider.getOrNull()?.type ?: selectedProviderType
     }
         .flowOn(Dispatchers.IO)
         .stateIn(
