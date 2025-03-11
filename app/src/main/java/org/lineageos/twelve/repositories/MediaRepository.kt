@@ -165,11 +165,6 @@ class MediaRepository(
                     true,
                 ) to SubsonicDataSource(
                     arguments,
-                    { datasource ->
-                        database.getLastPlayedDao().get(datasource)
-                    }, { datasource, uri ->
-                        database.getLastPlayedDao().set(datasource, uri)
-                    },
                     cache
                 )
             }
@@ -194,10 +189,6 @@ class MediaRepository(
                         database.getJellyfinProviderDao().getToken(it.id)
                     }, { token ->
                         database.getJellyfinProviderDao().updateToken(it.id, token)
-                    }, { datasource ->
-                        database.getLastPlayedDao().get(datasource)
-                    }, { datasource, uri ->
-                        database.getLastPlayedDao().set(datasource, uri)
                     },
                     cache
                 )
@@ -766,8 +757,8 @@ class MediaRepository(
 
         val removedMedia = buildList {
             allStats.forEach {
-                if (inSource.none { audio -> audio.playbackUri == it.mediaUri }) {
-                    add(it.mediaUri)
+                if (inSource.none { audio -> audio.playbackUri == it.audioUri }) {
+                    add(it.audioUri)
                 }
             }
         }

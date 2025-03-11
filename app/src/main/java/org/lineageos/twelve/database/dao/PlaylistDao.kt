@@ -5,6 +5,7 @@
 
 package org.lineageos.twelve.database.dao
 
+import android.net.Uri
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
@@ -19,8 +20,8 @@ interface PlaylistDao {
     /**
      * Create a new playlist.
      */
-    @Query("INSERT INTO Playlist (name, last_modified) VALUES (:name, :lastModified)")
-    suspend fun create(name: String, lastModified: Long = System.currentTimeMillis()): Long
+    @Query("INSERT INTO Playlist (name, created_at) VALUES (:name, :createdAt)")
+    suspend fun create(name: String, createdAt: Long = System.currentTimeMillis()): Long
 
     /**
      * Rename a playlist.
@@ -56,33 +57,12 @@ interface PlaylistDao {
     @Query(
         """
             SELECT Playlist.*,
-                   (CASE WHEN PlaylistItemCrossRef.item_id IS NOT NULL THEN 1 ELSE 0 END) AS value
+                   (CASE WHEN PlaylistItemCrossRef.audio_uri IS NOT NULL THEN 1 ELSE 0 END) AS value
             FROM Playlist
             LEFT JOIN PlaylistItemCrossRef ON
                     Playlist.playlist_id = PlaylistItemCrossRef.playlist_id
-                    AND PlaylistItemCrossRef.item_id = :itemId
+                    AND PlaylistItemCrossRef.audio_uri = :audioUri
         """
     )
-    fun _getPlaylistsWithItemStatus(itemId: Long?): Flow<List<PlaylistWithBoolean>>
-
-    /**
-     * Update the last modified timestamp of a playlist.
-     */
-    @Query("UPDATE Playlist SET last_modified = :lastModified WHERE playlist_id = :playlistId")
-    suspend fun _updateLastModified(
-        playlistId: Long,
-        lastModified: Long = System.currentTimeMillis(),
-    )
-
-    /**
-     * Increase the track count of a playlist.
-     */
-    @Query("UPDATE Playlist SET track_count = track_count + 1 WHERE playlist_id = :playlistId")
-    suspend fun _increaseTrackCount(playlistId: Long)
-
-    /**
-     * Decrease the track count of a playlist.
-     */
-    @Query("UPDATE Playlist SET track_count = track_count - 1 WHERE playlist_id = :playlistId")
-    suspend fun _decreaseTrackCount(playlistId: Long)
+    fun _getPlaylistsWithItemStatus(audioUri: Uri): Flow<List<PlaylistWithBoolean>>
 }

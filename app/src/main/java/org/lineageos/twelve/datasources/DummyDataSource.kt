@@ -82,10 +82,6 @@ object DummyDataSource : MediaDataSource {
         Result.Error<List<Pair<Playlist, Boolean>>, _>(Error.NOT_FOUND)
     )
 
-    override fun lastPlayedAudio() = flowOf(
-        Result.Error<Audio, _>(Error.NOT_FOUND)
-    )
-
     override fun lyrics(audioUri: Uri) = flowOf(
         Result.Error<Lyrics, _>(Error.NOT_FOUND)
     )

@@ -9,11 +9,9 @@ import android.content.Context
 import android.net.Uri
 import android.os.Bundle
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.mapLatest
 import okhttp3.Cache
@@ -33,13 +31,11 @@ import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.GenreContent
 import org.lineageos.twelve.models.LocalizedString
 import org.lineageos.twelve.models.Lyrics
-import org.lineageos.twelve.models.MediaItem
 import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.Playlist
 import org.lineageos.twelve.models.ProviderArgument
 import org.lineageos.twelve.models.ProviderArgument.Companion.requireArgument
 import org.lineageos.twelve.models.Result
-import org.lineageos.twelve.models.Result.Companion.fold
 import org.lineageos.twelve.models.Result.Companion.getOrNull
 import org.lineageos.twelve.models.Result.Companion.map
 import org.lineageos.twelve.models.SortingRule
@@ -57,8 +53,6 @@ class JellyfinDataSource(
     deviceIdentifier: String,
     tokenGetter: () -> String?,
     tokenSetter: (String) -> Unit,
-    private val lastPlayedGetter: (String) -> Flow<Uri?>,
-    private val lastPlayedSetter: suspend (String, Uri) -> Long,
     cache: Cache? = null,
 ) : MediaDataSource {
     private val server = arguments.requireArgument(ARG_SERVER)
@@ -154,17 +148,7 @@ class JellyfinDataSource(
         }
     }
 
-    override fun activity() = lastPlayedItems().mapLatest { lastPlayedRs ->
-        lastPlayedRs.map { lastPlayed ->
-            listOf(
-                ActivityTab(
-                    "last_played",
-                    LocalizedString.StringResIdLocalizedString(R.string.activity_last_played),
-                    lastPlayed
-                ),
-            ).filter { it.items.isNotEmpty() }
-        }
-    }
+    override fun activity() = flowOf(Result.Success<_, Error>(listOf<ActivityTab>()))
 
     override fun albums(sortingRule: SortingRule) = suspend {
         client.getAlbums(sortingRule).map { queryResult ->
@@ -308,11 +292,6 @@ class JellyfinDataSource(
         }
     }
 
-    override fun lastPlayedAudio() = lastPlayedGetter(lastPlayedKey())
-        .flatMapLatest { uri ->
-            uri?.let(this::audio) ?: flowOf(Result.Error(Error.NOT_FOUND))
-        }
-
     override fun lyrics(audioUri: Uri) = suspend {
         val id = UUID.fromString(audioUri.lastPathSegment!!)
         client.getLyrics(id).map { lyrics ->
@@ -372,19 +351,7 @@ class JellyfinDataSource(
         }
     }
 
-    override suspend fun onAudioPlayed(audioUri: Uri) =
-        if (audioUri.lastPathSegment == "stream") {
-            // When playing "stream?static=true" gets added to the audio URI.
-            // We don't want to store that.
-            Uri.parse(
-                audioUri.toString().removeSuffix("stream?static=true")
-            )
-        } else {
-            audioUri
-        }.let {
-            lastPlayedSetter(lastPlayedKey(), it)
-                .let { Result.Success<Unit, Error>(Unit) }
-        }
+    override suspend fun onAudioPlayed(audioUri: Uri) = Result.Success<Unit, Error>(Unit)
 
     override suspend fun setFavorite(
         audioUri: Uri,
@@ -486,32 +453,6 @@ class JellyfinDataSource(
 
     private fun onPlaylistsChanged() {
         _playlistsChanged.value = Any()
-    }
-
-    private fun lastPlayedKey() = "jellyfin:$username@$server"
-
-    /**
-     * Get the latest played items (Audio and associated Album, if any).
-     * @see lastPlayedAudio
-     */
-    private fun lastPlayedItems() = lastPlayedAudio().flatMapLatest { audioRs ->
-        audioRs.fold(
-            onSuccess = { audio ->
-                val albumId = UUID.fromString(audio.albumUri!!.lastPathSegment!!)
-                suspend {
-                    client.getAlbum(albumId).map { it.toMediaItemAlbum() }
-                }.asFlow().mapLatest { albumRs ->
-                    val audioAsMediaItemList = listOf(audio as MediaItem<*>)
-                    Result.Success<List<MediaItem<*>>, Error>(
-                        albumRs.fold(
-                            onSuccess = { album -> audioAsMediaItemList + album },
-                            onError = { audioAsMediaItemList },
-                        )
-                    )
-                }
-            },
-            onError = { flowOf(Result.Error(Error.NOT_FOUND)) },
-        )
     }
 
     companion object {

@@ -108,12 +108,6 @@ interface MediaDataSource {
     fun audioPlaylistsStatus(audioUri: Uri): Flow<MediaRequestStatus<List<Pair<Playlist, Boolean>>>>
 
     /**
-     * Get the URI of the last played audio, if any.
-     * @return [Result.Success] with the URI if there's one, [Result.Error] otherwise
-     */
-    fun lastPlayedAudio(): Flow<MediaRequestStatus<Audio>>
-
-    /**
      * Get the lyrics of an audio.
      * @param audioUri The URI of the audio
      */

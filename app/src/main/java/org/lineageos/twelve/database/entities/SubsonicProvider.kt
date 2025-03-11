@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -11,6 +11,13 @@ import androidx.room.PrimaryKey
 
 /**
  * Subsonic provider entity.
+ *
+ * @param id The unique ID of this instance
+ * @param name The name of this provider
+ * @param url The URL of this provider
+ * @param username The username of this provider
+ * @param password The password of this provider
+ * @param useLegacyAuthentication Whether to use legacy authentication
  */
 @Entity
 data class SubsonicProvider(

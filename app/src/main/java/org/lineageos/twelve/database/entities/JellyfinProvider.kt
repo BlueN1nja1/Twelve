@@ -11,6 +11,14 @@ import androidx.room.PrimaryKey
 
 /**
  * Jellyfin provider entity.
+ *
+ * @param id The unique ID of this instance
+ * @param name The name of the provider
+ * @param url The URL of the provider
+ * @param username The username to use for authentication
+ * @param password The password to use for authentication
+ * @param deviceIdentifier The device identifier to use for authentication
+ * @param token The token to use for authentication
  */
 @Entity
 data class JellyfinProvider(

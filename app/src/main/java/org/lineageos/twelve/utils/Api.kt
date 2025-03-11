@@ -120,7 +120,7 @@ class Api(
     ) = withContext(dispatcher) {
         withRetry(maxAttempts = 3) {
             runCatching {
-                okHttpClient.newCall(request).executeAsync().let { response ->
+                okHttpClient.newCall(request).executeAsync().use { response ->
                     if (response.isSuccessful) {
                         response.body?.use { body ->
                             val string = body.string()

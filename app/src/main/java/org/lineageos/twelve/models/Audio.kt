@@ -17,7 +17,8 @@ import org.lineageos.twelve.ext.toByteArray
  * An audio.
  *
  * @param playbackUri A URI that is understood by Media3 to play the audio. If required, this can be
- *   equal to [uri] and a proper [MediaSource.Factory] can be implemented
+ *   equal to [uri] and a proper [MediaSource.Factory] can be implemented. If this field is null,
+ *   it means that currently this audio cannot be played
  * @param mimeType The MIME type of the audio
  * @param title The title of the audio
  * @param type The type of the audio
@@ -36,7 +37,7 @@ import org.lineageos.twelve.ext.toByteArray
 data class Audio(
     override val uri: Uri,
     override val thumbnail: Thumbnail?,
-    val playbackUri: Uri,
+    val playbackUri: Uri?,
     val mimeType: String?,
     val title: String?,
     val type: Type,
@@ -101,7 +102,7 @@ data class Audio(
     override fun toMedia3MediaItem(resources: Resources) = buildMediaItem(
         title = title ?: resources.getString(R.string.audio_unknown),
         mediaId = uri.toString(),
-        isPlayable = true,
+        isPlayable = playbackUri != null,
         isBrowsable = false,
         mediaType = type.media3MediaType,
         album = albumTitle,
@@ -243,7 +244,7 @@ data class Audio(
         override fun build() = Audio(
             uri = uri,
             thumbnail = thumbnail,
-            playbackUri = playbackUri ?: uri,
+            playbackUri = playbackUri,
             mimeType = mimeType,
             title = title,
             type = type,

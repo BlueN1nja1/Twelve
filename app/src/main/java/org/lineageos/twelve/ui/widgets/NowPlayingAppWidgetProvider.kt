@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -19,7 +19,6 @@ import org.lineageos.twelve.R
 import org.lineageos.twelve.ext.typedPlaybackState
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.services.PlaybackService
-import org.lineageos.twelve.services.PlaybackServiceActionsReceiver
 
 class NowPlayingAppWidgetProvider : BaseAppWidgetProvider<NowPlayingAppWidgetProvider>(Companion) {
     companion object : AppWidgetUpdater<NowPlayingAppWidgetProvider>(
@@ -46,11 +45,11 @@ class NowPlayingAppWidgetProvider : BaseAppWidgetProvider<NowPlayingAppWidgetPro
 
                 setOnClickPendingIntent(
                     R.id.playPauseImageButton,
-                    PendingIntent.getBroadcast(
+                    PendingIntent.getForegroundService(
                         context,
                         0,
-                        Intent(context, PlaybackServiceActionsReceiver::class.java).apply {
-                            action = PlaybackServiceActionsReceiver.ACTION_TOGGLE_PLAY_PAUSE
+                        Intent(context, PlaybackService::class.java).apply {
+                            action = PlaybackService.ACTION_TOGGLE_PLAY_PAUSE
                         }, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                     )
                 )

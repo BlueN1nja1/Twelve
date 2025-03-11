@@ -5,28 +5,25 @@
 
 package org.lineageos.twelve.database.entities
 
+import android.net.Uri
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.ForeignKey
 import androidx.room.Index
 import androidx.room.PrimaryKey
 import java.time.Instant
 
+/**
+ * A table representing the favorite user items.
+ *
+ * @param audioUri The [Uri] of the audio
+ * @param addedAt The date and time of when this item was added to the favorites
+ */
 @Entity(
     indices = [
-        Index(value = ["item_id"], unique = true),
+        Index(value = ["audio_uri"], unique = true),
     ],
-    foreignKeys = [
-        ForeignKey(
-            entity = Item::class,
-            parentColumns = ["item_id"],
-            childColumns = ["item_id"],
-            onDelete = ForeignKey.CASCADE,
-            onUpdate = ForeignKey.CASCADE,
-        ),
-    ]
 )
 data class Favorite(
-    @PrimaryKey @ColumnInfo(name = "item_id") val itemId: Long,
+    @PrimaryKey @ColumnInfo(name = "audio_uri", defaultValue = "") val audioUri: Uri,
     @ColumnInfo(name = "added_at") val addedAt: Instant,
 )

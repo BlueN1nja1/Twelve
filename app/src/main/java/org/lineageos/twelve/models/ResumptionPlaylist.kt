@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -18,6 +18,8 @@ data class ResumptionPlaylist(
     val startPositionMs: Long = 0L,
 ) {
     init {
-        require(startIndex in mediaItemIds.indices) { "Invalid start index" }
+        require(mediaItemIds.isEmpty() || startIndex in mediaItemIds.indices) {
+            "Invalid start index"
+        }
     }
 }
