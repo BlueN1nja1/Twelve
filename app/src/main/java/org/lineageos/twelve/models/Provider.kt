@@ -5,6 +5,7 @@
 
 package org.lineageos.twelve.models
 
+import kotlinx.parcelize.Parcelize
 import org.lineageos.twelve.datasources.MediaDataSource
 
 /**
@@ -17,9 +18,10 @@ import org.lineageos.twelve.datasources.MediaDataSource
  * @param name The name of the provider given by the user
  * @param visible Whether the user should be aware of it
  */
+@Parcelize
 class Provider(
-    type: ProviderType,
-    typeId: Long,
+    override val type: ProviderType,
+    override val typeId: Long,
     val name: String,
     val visible: Boolean,
 ) : ProviderIdentifier(type, typeId), UniqueItem<Provider> {

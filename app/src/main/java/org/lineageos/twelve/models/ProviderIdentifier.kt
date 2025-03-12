@@ -19,8 +19,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Suppress("PROVIDED_RUNTIME_TOO_LOW")
 open class ProviderIdentifier(
-    val type: ProviderType,
-    val typeId: Long,
+    open val type: ProviderType,
+    open val typeId: Long,
 ) : Comparable<ProviderIdentifier>, Parcelable {
     override fun compareTo(other: ProviderIdentifier) = compareValuesBy(
         this, other,
