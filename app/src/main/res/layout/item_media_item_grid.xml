@@ -39,6 +39,7 @@
                 android:padding="8dp"
                 android:src="@drawable/ic_album"
                 android:visibility="gone"
+                android:scaleType="centerCrop"
                 app:tint="?attr/colorOnPrimary"
                 tools:visibility="visible" />
 
@@ -47,6 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
                 android:background="?attr/colorSecondaryContainer"
                 android:contentDescription="@string/content_description_thumbnail"
                 tools:visibility="gone" />

@@ -25,6 +25,7 @@
         android:background="@drawable/bg_app_widget_round_view"
         android:backgroundTint="?attr/colorSecondaryContainer"
         android:clipToOutline="true"
+        android:scaleType="centerCrop"
         android:contentDescription="@string/content_description_thumbnail"
         android:src="@drawable/ic_music_note"
         tools:targetApi="s" />
