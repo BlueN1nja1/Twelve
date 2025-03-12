@@ -32,6 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/content_description_thumbnail"
+                    android:scaleType="centerCrop"
                     android:padding="8dp"
                     app:tint="?attr/colorOnSurface" />
 
