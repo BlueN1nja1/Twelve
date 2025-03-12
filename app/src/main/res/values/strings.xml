@@ -215,6 +215,7 @@
     <string name="sort_by_unknown">Unknown</string>
 
     <!-- Activities -->
+    <string name="activity_last_played">Recently Played albums</string>
     <string name="activity_most_played_albums">Most played albums</string>
     <string name="activity_random_albums">Random albums</string>
     <string name="activity_random_artists">Random artists</string>
