@@ -22,6 +22,8 @@ Planned Features:
 
 -Add the ability to delete songs from within the app
 
+-Refine / Improve Search
+
 More to come...
 
 Screeenshots:
