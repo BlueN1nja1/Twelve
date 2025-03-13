@@ -8,7 +8,7 @@ Planned Features:
 
 -Add a Random Songs list to the Activity menu
 
--Add the ability to remove the providers menu
+-Add the ability to disable the music providers menu
 
 -Add an animation to the play button when a song is playing
 
