@@ -1,6 +1,17 @@
 Twelve
 ---------------------------------------------------------------------------
-Description coming soon!
+Description is being worked on...
+
+Planned Features:
+---------------------------------------------------------------------------------------------------------------------
+-Add a song list to the library
+-Add a Random Songs list to the Activity menu
+-Add the ability to remove the providers menu
+-Add an animation to the play button when a song is playing
+-Add an option to use themes that are independent of Monet
+-Add support for Android 9 Pie through Android 11
+-Add Scrollbars
+More to come...
 
 NOTE: Development will be slower due to college.
 
