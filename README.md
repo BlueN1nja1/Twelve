@@ -20,6 +20,8 @@ Planned Features:
 
 -Add Scrollbars
 
+-Add the ability to delete songs from within the app
+
 More to come...
 
 Screeenshots:
