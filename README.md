@@ -13,6 +13,7 @@ Planned Features:
 -Add an animation to the play button when a song is playing
 
 -Add an option to use themes that are independent of Monet
+
 -Add support for Android 9 Pie through Android 11
 
 -Add Scrollbars
