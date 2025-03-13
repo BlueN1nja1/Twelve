@@ -17,6 +17,9 @@ Screeenshots:
 ---------------------------------------------------------------------------------------------------------------------
 Soon...
 
+Special Versions:
+---------------------------------------------------------------------------------------------------------------------
+LineageOS Devices: A magisk module will be provided newer releases at some point.
 
 NOTE: Development will be slower due to college.
 
