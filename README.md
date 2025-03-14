@@ -1,6 +1,6 @@
-Twelve
+Improved Twelve
 ---------------------------------------------------------------------------
-Description is being worked on...
+An Improved Version of LineageOS's Music Player
 
 [![Github All Releases](https://img.shields.io/github/downloads/BlueN1nja1/Twelve/total.svg)](https://github.com/BlueN1nja1/Twelve/releases/latest)
 
