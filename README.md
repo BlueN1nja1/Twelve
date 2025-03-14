@@ -1,7 +1,7 @@
 Twelve
 ---------------------------------------------------------------------------
 Description is being worked on...
-
+[![Github All Releases](https://img.shields.io/github/downloads/BlueN1nja1/Twelve/total.svg)](https://github.com/BlueN1nja1/Twelve/releases/latest)
 NOTE: Development will be slower due to college.
 
 Planned Features:
@@ -33,6 +33,3 @@ Soon...
 Special Versions:
 ---------------------------------------------------------------------------------------------------------------------
 LineageOS Devices: A magisk module will be provided with newer releases at some point. As for those who don't use root, there will be a secondary version available for download that you can install alongside the original Twelve app.
-
-
-[![Github All Releases](https://img.shields.io/github/downloads/BlueN1nja1/Twelve/total.svg)](https://github.com/BlueN1nja1/Twelve/releases/latest)
