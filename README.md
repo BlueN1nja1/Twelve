@@ -34,5 +34,5 @@ Soon...
 
 Special Versions:
 ---------------------------------------------------------------------------------------------------------------------
-LineageOS Devices: A magisk module will be provided with newer releases at some point. As for those who don't use root, a secondary version is available for download that you can install alongside the original Twelve app.
+LineageOS Devices: A magisk module will be provided with newer releases at some point. As for those who don't use root (or don't want to flash a module), a secondary version is available for download that you can install alongside the original Twelve app.
 Check releases for more information.
