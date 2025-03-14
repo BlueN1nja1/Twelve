@@ -11,7 +11,7 @@
 
     <dialog
         android:id="@+id/providerSelectorDialogFragment"
-        android:name="org.lineageos.twelve.fragments.ProviderSelectorDialogFragment"
+        android:name="com.bluen1nja1.twelve.fragments.ProviderSelectorDialogFragment"
         android:label="@string/providers"
         tools:layout="@layout/fragment_provider_selector_dialog">
 

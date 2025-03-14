@@ -11,7 +11,7 @@
 
     <dialog
         android:id="@+id/providerInformationBottomSheetDialogFragment"
-        android:name="org.lineageos.twelve.fragments.ProviderInformationBottomSheetDialogFragment"
+        android:name="com.bluen1nja1.twelve.fragments.ProviderInformationBottomSheetDialogFragment"
         tools:layout="@layout/fragment_provider_information_bottom_sheet_dialog">
 
         <action

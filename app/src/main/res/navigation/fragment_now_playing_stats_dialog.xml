@@ -11,7 +11,7 @@
 
     <dialog
         android:id="@+id/nowPlayingStatsDialogFragment"
-        android:name="org.lineageos.twelve.fragments.NowPlayingStatsDialogFragment"
+        android:name="com.bluen1nja1.twelve.fragments.NowPlayingStatsDialogFragment"
         tools:layout="@layout/fragment_now_playing_stats_dialog" />
 
 </navigation>

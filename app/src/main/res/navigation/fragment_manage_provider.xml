@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/manageProviderFragment"
-        android:name="org.lineageos.twelve.fragments.ManageProviderFragment"
+        android:name="com.bluen1nja1.twelve.fragments.ManageProviderFragment"
         tools:layout="@layout/fragment_manage_provider" />
 
 </navigation>

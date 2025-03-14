@@ -5,7 +5,7 @@
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="org.lineageos.twelve">
+    package="com.bluen1nja1.twelve">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
@@ -111,7 +111,7 @@
                 <action android:name="androidx.media3.session.MediaLibraryService" />
                 <action android:name="android.media.browse.MediaBrowserService" />
                 <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH" />
-                <action android:name="org.lineageos.twelve.ACTION_TOGGLE_PLAY_PAUSE" />
+                <action android:name="com.bluen1nja1.twelve.ACTION_TOGGLE_PLAY_PAUSE" />
             </intent-filter>
 
         </service>

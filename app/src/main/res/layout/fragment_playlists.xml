@@ -16,7 +16,7 @@
         android:paddingHorizontal="16dp"
         android:paddingVertical="8dp">
 
-        <org.lineageos.twelve.ui.views.SortingChip
+        <com.bluen1nja1.twelve.ui.views.SortingChip
             android:id="@+id/sortingChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

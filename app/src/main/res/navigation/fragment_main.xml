@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="org.lineageos.twelve.fragments.MainFragment"
+        android:name="com.bluen1nja1.twelve.fragments.MainFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_main">
 

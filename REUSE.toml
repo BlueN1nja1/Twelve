@@ -7,7 +7,7 @@ SPDX-PackageSupplier = "The LineageOS Project"
 SPDX-PackageDownloadLocation = "https://github.com/LineageOS/android_packages_apps_Twelve"
 
 [[annotations]]
-path = [".github/workflows/**", ".gitignore", "app/.gitignore", "app/schemas/org.lineageos.twelve.database.TwelveDatabase/*.json"]
+path = [".github/workflows/**", ".gitignore", "app/.gitignore", "app/schemas/com.bluen1nja1.twelve.database.TwelveDatabase/*.json"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2024 The LineageOS Project"
 SPDX-License-Identifier = "Apache-2.0"

@@ -96,7 +96,7 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <org.lineageos.twelve.ui.views.FullscreenLoadingProgressBar
+    <com.bluen1nja1.twelve.ui.views.FullscreenLoadingProgressBar
         android:id="@+id/fullscreenLoadingProgressBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

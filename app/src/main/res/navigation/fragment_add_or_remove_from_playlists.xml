@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/addOrRemoveFromPlaylistsFragment"
-        android:name="org.lineageos.twelve.fragments.AddOrRemoveFromPlaylistsFragment"
+        android:name="com.bluen1nja1.twelve.fragments.AddOrRemoveFromPlaylistsFragment"
         android:label="@string/audio_add_or_remove_from_playlists"
         tools:layout="@layout/fragment_add_or_remove_from_playlists">
 

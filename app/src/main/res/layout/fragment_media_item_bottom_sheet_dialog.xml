@@ -91,35 +91,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-        <org.lineageos.twelve.ui.views.ListItem
+        <com.bluen1nja1.twelve.ui.views.ListItem
             android:id="@+id/playNowListItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:headlineText="@string/action_play"
             app:leadingIconImage="@drawable/ic_play_arrow" />
 
-        <org.lineageos.twelve.ui.views.ListItem
+        <com.bluen1nja1.twelve.ui.views.ListItem
             android:id="@+id/addToQueueListItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:headlineText="@string/audio_add_to_queue"
             app:leadingIconImage="@drawable/ic_add_to_queue" />
 
-        <org.lineageos.twelve.ui.views.ListItem
+        <com.bluen1nja1.twelve.ui.views.ListItem
             android:id="@+id/playNextListItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:headlineText="@string/audio_play_next"
             app:leadingIconImage="@drawable/ic_queue_play_next" />
 
-        <org.lineageos.twelve.ui.views.ListItem
+        <com.bluen1nja1.twelve.ui.views.ListItem
             android:id="@+id/addOrRemoveFromFavoritesListItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:headlineText="@string/add_to_favorites"
             app:leadingIconImage="@drawable/ic_favorite" />
 
-        <org.lineageos.twelve.ui.views.ListItem
+        <com.bluen1nja1.twelve.ui.views.ListItem
             android:id="@+id/removeFromPlaylistListItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -127,28 +127,28 @@
             app:headlineText="@string/audio_remove_from_playlist"
             app:leadingIconImage="@drawable/ic_playlist_remove" />
 
-        <org.lineageos.twelve.ui.views.ListItem
+        <com.bluen1nja1.twelve.ui.views.ListItem
             android:id="@+id/addOrRemoveFromPlaylistsListItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:headlineText="@string/audio_add_or_remove_from_playlists"
             app:leadingIconImage="@drawable/ic_playlist_add" />
 
-        <org.lineageos.twelve.ui.views.ListItem
+        <com.bluen1nja1.twelve.ui.views.ListItem
             android:id="@+id/openAlbumListItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:headlineText="@string/open_album"
             app:leadingIconImage="@drawable/ic_album" />
 
-        <org.lineageos.twelve.ui.views.ListItem
+        <com.bluen1nja1.twelve.ui.views.ListItem
             android:id="@+id/openArtistListItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:headlineText="@string/open_artist"
             app:leadingIconImage="@drawable/ic_person" />
 
-        <org.lineageos.twelve.ui.views.ListItem
+        <com.bluen1nja1.twelve.ui.views.ListItem
             android:id="@+id/openGenreListItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -157,7 +157,7 @@
 
     </LinearLayout>
 
-    <org.lineageos.twelve.ui.views.FullscreenLoadingProgressBar
+    <com.bluen1nja1.twelve.ui.views.FullscreenLoadingProgressBar
         android:id="@+id/fullscreenLoadingProgressBar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

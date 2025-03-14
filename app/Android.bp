@@ -24,8 +24,8 @@ android_app {
     ],
 
     required: [
-        "initial-package-stopped-states-org.lineageos.twelve",
-        "preinstalled-packages-org.lineageos.twelve",
+        "initial-package-stopped-states-com.bluen1nja1.twelve",
+        "preinstalled-packages-com.bluen1nja1.twelve",
     ],
 
     plugins: [
@@ -86,17 +86,17 @@ android_app {
 }
 
 prebuilt_etc {
-    name: "initial-package-stopped-states-org.lineageos.twelve",
+    name: "initial-package-stopped-states-com.bluen1nja1.twelve",
     product_specific: true,
     sub_dir: "sysconfig",
-    src: "initial-package-stopped-states-org.lineageos.twelve.xml",
+    src: "initial-package-stopped-states-com.bluen1nja1.twelve.xml",
     filename_from_src: true,
 }
 
 prebuilt_etc {
-    name: "preinstalled-packages-org.lineageos.twelve",
+    name: "preinstalled-packages-com.bluen1nja1.twelve",
     product_specific: true,
     sub_dir: "sysconfig",
-    src: "preinstalled-packages-org.lineageos.twelve.xml",
+    src: "preinstalled-packages-com.bluen1nja1.twelve.xml",
     filename_from_src: true,
 }

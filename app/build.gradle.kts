@@ -16,11 +16,11 @@ plugins {
 }
 
 android {
-    namespace = "org.lineageos.twelve"
+    namespace = "com.bluen1nja1.twelve"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "org.lineageos.twelve"
+        applicationId = "com.bluen1nja1.twelve"
         minSdk = 31
         targetSdk = 35
         versionCode = 100

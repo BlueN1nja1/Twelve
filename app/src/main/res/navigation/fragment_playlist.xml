@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/playlistFragment"
-        android:name="org.lineageos.twelve.fragments.PlaylistFragment"
+        android:name="com.bluen1nja1.twelve.fragments.PlaylistFragment"
         tools:layout="@layout/fragment_playlist">
 
         <action

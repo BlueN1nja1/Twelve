@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/genreFragment"
-        android:name="org.lineageos.twelve.fragments.GenreFragment"
+        android:name="com.bluen1nja1.twelve.fragments.GenreFragment"
         tools:layout="@layout/fragment_genre">
 
         <action

@@ -11,7 +11,7 @@
 
     <dialog
         android:id="@+id/mediaItemBottomSheetDialogFragment"
-        android:name="org.lineageos.twelve.fragments.MediaItemBottomSheetDialogFragment"
+        android:name="com.bluen1nja1.twelve.fragments.MediaItemBottomSheetDialogFragment"
         tools:layout="@layout/fragment_media_item_bottom_sheet_dialog">
 
         <action

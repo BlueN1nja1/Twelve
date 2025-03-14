@@ -11,7 +11,7 @@
 
     <fragment
         android:id="@+id/albumFragment"
-        android:name="org.lineageos.twelve.fragments.AlbumFragment"
+        android:name="com.bluen1nja1.twelve.fragments.AlbumFragment"
         tools:layout="@layout/fragment_album">
 
         <action

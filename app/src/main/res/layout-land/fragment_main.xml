@@ -57,7 +57,7 @@
         app:layout_constraintStart_toEndOf="@+id/navigationBarView"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
-    <org.lineageos.twelve.ui.views.NowPlayingBar
+    <com.bluen1nja1.twelve.ui.views.NowPlayingBar
         android:id="@+id/nowPlayingBar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
