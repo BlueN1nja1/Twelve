@@ -1,5 +1,7 @@
 Improved Twelve
 ---------------------------------------------------------------------------
+![](https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/icon.png)
+
 An Improved Version of LineageOS's Twelve Music Player
 
 [![Github All Releases](https://img.shields.io/github/downloads/BlueN1nja1/Twelve/total.svg)](https://github.com/BlueN1nja1/Twelve/releases/latest)
