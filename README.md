@@ -60,7 +60,7 @@ Planned Features:
 
 -Refine / Improve Search
 
--Implement Song Lyrics Support
+-Finish Implementing Song Lyrics Support
 
 More to come...
 
