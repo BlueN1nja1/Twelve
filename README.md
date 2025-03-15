@@ -28,9 +28,9 @@ Downloads:
 ---------------------------------------------------------------------------------------------------------------------
 Improved Twelve has 2 variants, the standard Twelve.apk and the alternative Twelve-alt.apk.
 
-Use Twelve.apk if Twelve **isn't included with your phone.**
+Use Twelve.apk if Twelve **isn't included with your device.**
 
-Use Twelve-alt.apk if Twelve is already included with your phone.
+Use Twelve-alt.apk if Twelve is already included with your device.
 
 The Following Files will be present for each release starting with v1.0.0.3:
 - [Twelve.apk](https://github.com/BlueN1nja1/Twelve/releases/latest/download/Twelve.apk)
