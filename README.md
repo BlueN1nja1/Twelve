@@ -60,6 +60,8 @@ Planned Features:
 
 -Refine / Improve Search
 
+-Implement Song Lyrics Support
+
 More to come...
 
 Screeenshots:
