@@ -47,6 +47,7 @@ import org.lineageos.twelve.ext.loadThumbnail
 import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.ext.updatePadding
 import org.lineageos.twelve.models.FlowResult
+import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.models.Result

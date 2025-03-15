@@ -53,6 +53,7 @@ import org.lineageos.twelve.models.Error
 import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.FlowResult.Companion.asFlowResult
 import org.lineageos.twelve.models.FlowResult.Companion.flatMapLatestData
+import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
 import org.lineageos.twelve.models.PlaybackProgress
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode

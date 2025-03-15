@@ -257,7 +257,7 @@ class ArtistFragment : Fragment(R.layout.fragment_artist) {
                 }
 
                 is FlowResult.Error -> {
-                    Log.e(LOG_TAG, "Error loading artist, error: ${it.error}")
+                    Log.e(LOG_TAG, "Error loading artist, error: ${it.error}", it.throwable)
 
                     toolbar.title = ""
 

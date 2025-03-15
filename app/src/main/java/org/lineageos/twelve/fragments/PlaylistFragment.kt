@@ -314,7 +314,11 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
                     }
 
                     is FlowResult.Error -> {
-                        Log.e(LOG_TAG, "Error loading playlist, error: ${it.error}")
+                        Log.e(
+                            LOG_TAG,
+                            "Error loading playlist, error: ${it.error}",
+                            it.throwable
+                        )
 
                         toolbar.title = ""
                         playlistNameTextView.text = ""

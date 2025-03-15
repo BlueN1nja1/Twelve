@@ -20,6 +20,7 @@ import kotlinx.coroutines.withContext
 import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.FlowResult.Companion.asFlowResult
 import org.lineageos.twelve.models.FlowResult.Companion.foldLatest
+import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
 import org.lineageos.twelve.models.Playlist
 
 class PlaylistViewModel(application: Application) : TwelveViewModel(application) {

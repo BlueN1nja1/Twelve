@@ -28,6 +28,7 @@ import org.lineageos.twelve.models.Error
 import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.FlowResult.Companion.asFlowResult
 import org.lineageos.twelve.models.FlowResult.Companion.foldLatest
+import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
 import org.lineageos.twelve.models.FlowResult.Companion.mapLatestData
 import org.lineageos.twelve.models.FlowResult.Companion.mapLatestDataOrNull
 import org.lineageos.twelve.models.MediaType
