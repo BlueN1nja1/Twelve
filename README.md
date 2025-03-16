@@ -1,6 +1,6 @@
 Improved Twelve
 ---------------------------------------------------------------------------
-![](https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/icon.png)
+![](https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/icon.png)
 
 An Improved Version of LineageOS's Twelve Music Player
 
@@ -24,6 +24,8 @@ Current Features:
 
 -Auto Playback Resumption support
 
+-Loop and Shuffle Controls in the notification
+
 Downloads:
 ---------------------------------------------------------------------------------------------------------------------
 Improved Twelve has 2 variants, the standard Twelve.apk and the alternative Twelve-alt.apk.
@@ -40,6 +42,10 @@ Changelog?:
 ---------------------------------------------------------------------------------------------------------------------
 You can always view the changelog for the current release here: https://github.com/BlueN1nja1/Twelve/releases/latest
 
+System Requirements:
+---------------------------------------------------------------------------------------------------------------------
+At least Android 11 (SDK 30) or newer.
+
 Planned Features:
 ---------------------------------------------------------------------------------------------------------------------
 -Add a song list to the library
@@ -52,7 +58,7 @@ Planned Features:
 
 -Add an option to use themes that are independent of Monet
 
--Add support for Android 9 Pie through Android 11
+-Add support for Android 9 Pie and Android 10
 
 -Add Scrollbars
 
@@ -66,7 +72,30 @@ More to come...
 
 Screeenshots:
 ---------------------------------------------------------------------------------------------------------------------
-Soon...
+Light Theme:
+<p float="left">
+  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S01Light.jpg" width="200" />
+  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S02Light.jpg" width="200" />
+  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S03Light.jpg" width="200" />
+</p>
+<p float="left">
+  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S04Light.jpg" width="200" />
+  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S05Light.jpg" width="200" />
+</p>
+Dark Theme (From Twelve-alt on Android 11):
+<p float="left">
+  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S01Dark.png" width="200" />
+  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S02Dark.png" width="200" />
+  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S03Dark.png" width="200" />
+</p>
+<p float="left">
+  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S04Dark.png" width="200" />
+  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S05Dark.png" width="200" />
+</p>
+Notification:
+<p float="left">
+  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/SNotification.png" width="200" />
+</p>
 
 Special Versions:
 ---------------------------------------------------------------------------------------------------------------------
