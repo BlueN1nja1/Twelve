@@ -9,6 +9,10 @@
         <item name="android:enforceNavigationBarContrast">true</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="enableEdgeToEdge">true</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorPrimary">@color/accent</item>
+        <item name="colorPrimaryContainer">@color/accentinverse</item>
+        <item name="colorSecondaryContainer">@color/accentinverse</item>
     </style>
 
     <style name="Theme.Twelve.Dialog" parent="Theme.Material3.DayNight.Dialog.Alert">
@@ -97,7 +101,7 @@
         <item name="android:layout_gravity">bottom|center_horizontal</item>
         <item name="android:src">@drawable/now_playing_marker</item>
         <item name="android:visibility">gone</item>
-        <item name="tint">?attr/colorPrimary</item>
+        <item name="tint">@color/accent</item>
     </style>
 
     <style name="Theme.Twelve.NowPlayingFragment.BottomBarButton" parent="Widget.Material3.Button.IconButton">
@@ -105,10 +109,10 @@
         <item name="android:layout_height">48dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:padding">0dp</item>
-        <item name="android:textColor">?attr/colorOnSecondaryContainer</item>
+        <item name="android:textColor">@color/text</item>
         <item name="iconGravity">textStart</item>
         <item name="iconSize">24dp</item>
-        <item name="iconTint">?attr/colorOnSecondaryContainer</item>
+        <item name="iconTint">@color/text</item>
     </style>
 
     <!-- App widget -->
