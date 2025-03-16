@@ -2,7 +2,7 @@ Improved Twelve
 ---------------------------------------------------------------------------
 ![](https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/icon.png)
 
-An Improved Version of LineageOS's Twelve Music Player
+LineageOS's Twelve Music Player with some improvements
 
 [![Github All Releases](https://img.shields.io/github/downloads/BlueN1nja1/Twelve/total.svg)](https://github.com/BlueN1nja1/Improved-Twelve/releases/latest)
 
