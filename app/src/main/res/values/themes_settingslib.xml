@@ -11,6 +11,8 @@
         <item name="alertDialogTheme">@style/Theme.SettingsLib.AlertDialog</item>
         <item name="materialAlertDialogTheme">@style/Theme.SettingsLib.AlertDialog</item>
         <item name="preferenceTheme">@style/Theme.SettingsLib.PreferenceTheme</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorPrimary">@color/accent</item>
     </style>
 
     <!-- Settings alert dialog theme. -->
@@ -25,7 +27,7 @@
         <item name="android:dividerHeight">0dp</item>
         <item name="android:listPreferredItemPaddingLeft">32dp</item>
         <item name="android:listPreferredItemPaddingStart">32dp</item>
-        <item name="android:tint">?attr/colorOnSurface</item>
+        <item name="android:tint">@color/accent</item>
         <item name="switchPreferenceCompatStyle">@style/Theme.SettingsLib.SwitchPreferenceCompat</item>
         <item name="switchPreferenceStyle">@style/Theme.SettingsLib.SwitchPreference</item>
     </style>

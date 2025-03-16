@@ -4,7 +4,7 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
-    <color name="accent">#1a73e8</color>
-    <color name="accentinverse">#A9E0FF</color>
+    <color name="accent">#9DE0FF</color>
+    <color name="accentinverse">#376C97</color>
     <color name="text">#000000</color>
 </resources>

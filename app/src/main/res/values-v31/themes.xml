@@ -4,6 +4,113 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
+    <!-- Application theme -->
+    <style name="Theme.Twelve" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:enforceNavigationBarContrast">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="enableEdgeToEdge">true</item>
+    </style>
+
+    <style name="Theme.Twelve.Dialog" parent="Theme.Material3.DayNight.Dialog.Alert">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- No elements styles -->
+    <style name="Theme.Twelve.NoElements" />
+
+    <style name="Theme.Twelve.NoElements.LinearLayout">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="Theme.Twelve.NoElements.ImageView">
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="tint">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Theme.Twelve.NoElements.Space">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">8dp</item>
+    </style>
+
+    <style name="Theme.Twelve.NoElements.TextView" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/TextAppearance.Material3.BodyLarge</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <!-- Now playing bar -->
+    <style name="Theme.Twelve.NowPlayingBar.CardView" parent="@style/Widget.Material3.CardView.Filled">
+        <item name="shapeAppearanceOverlay">
+            @style/Theme.Twelve.NowPlayingBar.CardView.ShapeAppearanceOverlay
+        </item>
+    </style>
+
+    <style name="Theme.Twelve.NowPlayingBar.CardView.ShapeAppearanceOverlay" parent="@style/ShapeAppearanceOverlay.Material3.Corner.Top">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">12dp</item>
+        <item name="cornerSizeTopRight">12dp</item>
+    </style>
+
+    <!-- Now playing fragment -->
+    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Primary" parent="Widget.Material3.Button.IconButton.Filled">
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconSize">36dp</item>
+    </style>
+
+    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Secondary" parent="Widget.Material3.Button.IconButton">
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconSize">36dp</item>
+    </style>
+
+    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Tertiary" parent="Widget.Material3.Button.IconButton">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">0dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconSize">24dp</item>
+    </style>
+
+    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Tertiary.Container" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">56dp</item>
+    </style>
+
+    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Tertiary.Marker" parent="">
+        <item name="android:layout_width">8dp</item>
+        <item name="android:layout_height">8dp</item>
+        <item name="android:layout_gravity">bottom|center_horizontal</item>
+        <item name="android:src">@drawable/now_playing_marker</item>
+        <item name="android:visibility">gone</item>
+        <item name="tint">?attr/colorPrimary</item>
+    </style>
+
+    <style name="Theme.Twelve.NowPlayingFragment.BottomBarButton" parent="Widget.Material3.Button.IconButton">
+        <item name="android:layout_width">48dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:textColor">?attr/colorOnSecondaryContainer</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconSize">24dp</item>
+        <item name="iconTint">?attr/colorOnSecondaryContainer</item>
+    </style>
+
     <!-- App widget -->
     <style name="Theme.Twelve.AppWidgetContainer" parent="Theme.Material3.DynamicColors.DayNight">
         <item name="appWidgetRadius">@android:dimen/system_app_widget_background_radius</item>
