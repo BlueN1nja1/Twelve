@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package com.bluen1nja1.twelve.fragments
+package org.lineageos.twelve.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -26,18 +26,19 @@ import com.google.android.material.divider.MaterialDivider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import com.bluen1nja1.twelve.R
-import com.bluen1nja1.twelve.ext.getParcelable
-import com.bluen1nja1.twelve.ext.getViewProperty
-import com.bluen1nja1.twelve.ext.navigateSafe
-import com.bluen1nja1.twelve.models.DataSourceInformation
-import com.bluen1nja1.twelve.models.FlowResult
-import com.bluen1nja1.twelve.models.ProviderIdentifier
-import com.bluen1nja1.twelve.ui.recyclerview.SimpleListAdapter
-import com.bluen1nja1.twelve.ui.recyclerview.UniqueItemDiffCallback
-import com.bluen1nja1.twelve.ui.views.FullscreenLoadingProgressBar
-import com.bluen1nja1.twelve.ui.views.ListItem
-import com.bluen1nja1.twelve.viewmodels.ProviderViewModel
+import org.lineageos.twelve.R
+import org.lineageos.twelve.ext.getParcelable
+import org.lineageos.twelve.ext.getViewProperty
+import org.lineageos.twelve.ext.navigateSafe
+import org.lineageos.twelve.models.DataSourceInformation
+import org.lineageos.twelve.models.FlowResult
+import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
+import org.lineageos.twelve.models.ProviderIdentifier
+import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
+import org.lineageos.twelve.ui.recyclerview.UniqueItemDiffCallback
+import org.lineageos.twelve.ui.views.FullscreenLoadingProgressBar
+import org.lineageos.twelve.ui.views.ListItem
+import org.lineageos.twelve.viewmodels.ProviderViewModel
 
 /**
  * Fragment used to show useful information regarding a provider.

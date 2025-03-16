@@ -280,7 +280,11 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
                 }
 
                 is FlowResult.Error -> {
-                    Log.e(LOG_TAG, "Error loading genre, error: ${it.error}")
+                    Log.e(
+                        LOG_TAG,
+                        "Error loading genre, error: ${it.error}",
+                        it.throwable
+                    )
 
                     toolbar.title = ""
                     genreNameTextView.text = ""

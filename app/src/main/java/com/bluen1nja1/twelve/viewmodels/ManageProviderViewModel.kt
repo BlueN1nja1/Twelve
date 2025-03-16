@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package com.bluen1nja1.twelve.viewmodels
+package org.lineageos.twelve.viewmodels
 
 import android.app.Application
 import android.os.Bundle
@@ -19,7 +19,8 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
-import com.bluen1nja1.twelve.models.ProviderType
+import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
+import org.lineageos.twelve.models.ProviderType
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class ManageProviderViewModel(application: Application) : ProviderViewModel(application) {

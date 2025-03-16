@@ -343,7 +343,11 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
                         }
 
                         is FlowResult.Error -> {
-                            Log.e(LOG_TAG, "Error loading album, error: ${it.error}")
+                            Log.e(
+                                LOG_TAG,
+                                "Error loading album, error: ${it.error}",
+                                it.throwable
+                            )
 
                             toolbar.title = ""
                             albumTitleTextView.text = ""

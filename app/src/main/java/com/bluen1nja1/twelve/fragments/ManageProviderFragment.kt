@@ -236,7 +236,11 @@ class ManageProviderFragment : Fragment(R.layout.fragment_manage_provider) {
                             }
 
                             is FlowResult.Error -> {
-                                Log.e(LOG_TAG, "Failed to load provider")
+                                Log.e(
+                                    LOG_TAG,
+                                    "Failed to load provider, error: ${it.error}",
+                                    it.throwable
+                                )
 
                                 if (it.error == Error.NOT_FOUND) {
                                     // Get out of here

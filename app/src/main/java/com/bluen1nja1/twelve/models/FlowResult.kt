@@ -22,16 +22,16 @@ sealed interface FlowResult<T, E> {
     class Success<T, E>(val data: T) : FlowResult<T, E>
     class Error<T, E>(val error: E, val throwable: Throwable? = null) : FlowResult<T, E>
 
-    /**
-     * Get the data or null.
-     */
-    fun getOrNull() = when (this) {
-        is Loading -> null
-        is Success -> data
-        is Error -> null
-    }
-
     companion object {
+        /**
+         * Get the data if the result is [Success], null otherwise.
+         */
+        fun <T, E> FlowResult<T, E>.getOrNull() = when (this) {
+            is Loading -> null
+            is Success -> data
+            is Error -> null
+        }
+
         /**
          * Convert a flow of [Result] to a flow of [FlowResult].
          */

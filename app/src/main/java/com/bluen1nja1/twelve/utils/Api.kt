@@ -29,20 +29,39 @@ import kotlin.reflect.typeOf
 
 typealias MethodResult<T> = Result<T, ApiError>
 
-// Base interface for all API requests
+/**
+ * Base interface for all API requests.
+ *
+ * @param T The return type
+ */
 interface ApiRequestInterface<T> {
+    /**
+     * The [KType] of [T], used for serialization.
+     */
     val type: KType
+
+    /**
+     * Execute the request.
+     *
+     * @param api The [Api] to use for building and executing this request
+     */
     suspend fun execute(api: Api): MethodResult<T>
 }
 
-// Base class for common request functionality
+/**
+ * Base class for common request functionality.
+ */
 abstract class BaseRequest {
     protected fun encodeRequestBody(api: Api, data: Any?) = data?.let {
         api.json.encodeToString(it)
     }?.toRequestBody("application/json".toMediaType()) ?: "".toRequestBody()
 }
 
-// GET request implementation
+/**
+ * GET request implementation.
+ *
+ * @param T The return type
+ */
 class GetRequestInterface<T>(
     private val path: List<String>,
     override val type: KType,
@@ -58,15 +77,20 @@ class GetRequestInterface<T>(
     }
 }
 
-// POST request implementation
-class PostRequestInterface<T, E>(
+/**
+ * POST request implementation.
+ *
+ * @param D The data type
+ * @param T The return type
+ */
+class PostRequestInterface<D, T>(
     private val path: List<String>,
     override val type: KType,
-    private val data: T?,
+    private val data: D?,
     private val queryParameters: List<Pair<String, Any?>> = emptyList(),
-    private val emptyResponse: () -> E
-) : BaseRequest(), ApiRequestInterface<E> {
-    override suspend fun execute(api: Api): MethodResult<E> {
+    private val emptyResponse: () -> T
+) : BaseRequest(), ApiRequestInterface<T> {
+    override suspend fun execute(api: Api): MethodResult<T> {
         val url = api.buildUrl(path, queryParameters)
         val body = encodeRequestBody(api, data)
         val request = Request.Builder()
@@ -77,7 +101,11 @@ class PostRequestInterface<T, E>(
     }
 }
 
-// DELETE request implementation
+/**
+ * DELETE request implementation.
+ *
+ * @param T The return type
+ */
 class DeleteRequestInterface<T>(
     private val path: List<String>,
     override val type: KType,
@@ -189,12 +217,12 @@ object ApiRequest {
         queryParameters: List<Pair<String, Any?>> = emptyList()
     ) = GetRequestInterface<T>(path, typeOf<T>(), queryParameters)
 
-    inline fun <reified T, reified E> post(
+    inline fun <reified D, reified T> post(
         path: List<String>,
-        data: T? = null,
+        data: D? = null,
         queryParameters: List<Pair<String, Any?>> = emptyList(),
-        noinline emptyResponse: () -> E = { Unit as E }
-    ) = PostRequestInterface(path, typeOf<E>(), data, queryParameters, emptyResponse)
+        noinline emptyResponse: () -> T = { Unit as T }
+    ) = PostRequestInterface(path, typeOf<T>(), data, queryParameters, emptyResponse)
 
     inline fun <reified T> delete(
         path: List<String>,
@@ -227,11 +255,4 @@ fun ApiError.toError() = when (this) {
 fun <T> MethodResult<T>.mapToError() = when (this) {
     is Result.Success -> Result.Success<T, Error>(data)
     is Result.Error -> Result.Error(error.toError(), throwable)
-}
-
-suspend fun <T, O> MethodResult<T>.toResult(
-    resultGetter: suspend T.() -> O
-) = when (this) {
-    is Result.Success -> data.resultGetter()
-    else -> null
 }
