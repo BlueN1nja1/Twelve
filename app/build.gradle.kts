@@ -21,10 +21,10 @@ android {
 
     defaultConfig {
         applicationId = "org.lineageos.twelve"
-        minSdk = 31
+        minSdk = 30
         targetSdk = 35
         versionCode = 100
-        versionName = "1.0.0.3"
+        versionName = "1.0.0.4"
 
         kapt {
             arguments {
