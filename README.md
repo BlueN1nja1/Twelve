@@ -4,6 +4,8 @@ Improved Twelve
 
 LineageOS's Twelve Music Player with some improvements
 
+Original Repo can be found here: https://github.com/LineageOS/android_packages_apps_Twelve
+
 [![Github All Releases](https://img.shields.io/github/downloads/BlueN1nja1/Twelve/total.svg)](https://github.com/BlueN1nja1/Improved-Twelve/releases/latest)
 
 Current Features:
