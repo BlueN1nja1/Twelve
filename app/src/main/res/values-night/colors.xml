@@ -6,5 +6,5 @@
 <resources>
     <color name="accent">#9DE0FF</color>
     <color name="accentinverse">#376C97</color>
-    <color name="text">#000000</color>
+    <color name="text">#ffffff</color>
 </resources>
