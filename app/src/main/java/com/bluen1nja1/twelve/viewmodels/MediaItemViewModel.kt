@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package org.lineageos.twelve.viewmodels
+package com.bluen1nja1.twelve.viewmodels
 
 import android.app.Application
 import android.net.Uri
@@ -21,20 +21,20 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
-import org.lineageos.twelve.ext.resources
-import org.lineageos.twelve.models.Album
-import org.lineageos.twelve.models.Audio
-import org.lineageos.twelve.models.Error
-import org.lineageos.twelve.models.FlowResult
-import org.lineageos.twelve.models.FlowResult.Companion.asFlowResult
-import org.lineageos.twelve.models.FlowResult.Companion.foldLatest
-import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
-import org.lineageos.twelve.models.FlowResult.Companion.mapLatestData
-import org.lineageos.twelve.models.FlowResult.Companion.mapLatestDataOrNull
-import org.lineageos.twelve.models.MediaType
-import org.lineageos.twelve.models.Playlist
-import org.lineageos.twelve.models.Result
-import org.lineageos.twelve.models.Result.Companion.map
+import com.bluen1nja1.twelve.ext.resources
+import com.bluen1nja1.twelve.models.Album
+import com.bluen1nja1.twelve.models.Audio
+import com.bluen1nja1.twelve.models.Error
+import com.bluen1nja1.twelve.models.FlowResult
+import com.bluen1nja1.twelve.models.FlowResult.Companion.asFlowResult
+import com.bluen1nja1.twelve.models.FlowResult.Companion.foldLatest
+import com.bluen1nja1.twelve.models.FlowResult.Companion.getOrNull
+import com.bluen1nja1.twelve.models.FlowResult.Companion.mapLatestData
+import com.bluen1nja1.twelve.models.FlowResult.Companion.mapLatestDataOrNull
+import com.bluen1nja1.twelve.models.MediaType
+import com.bluen1nja1.twelve.models.Playlist
+import com.bluen1nja1.twelve.models.Result
+import com.bluen1nja1.twelve.models.Result.Companion.map
 
 class MediaItemViewModel(application: Application) : TwelveViewModel(application) {
     private val _uri = MutableStateFlow<Uri?>(null)

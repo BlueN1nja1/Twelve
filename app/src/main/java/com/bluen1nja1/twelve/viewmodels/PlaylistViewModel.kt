@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package org.lineageos.twelve.viewmodels
+package com.bluen1nja1.twelve.viewmodels
 
 import android.app.Application
 import android.net.Uri
@@ -17,11 +17,11 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
-import org.lineageos.twelve.models.FlowResult
-import org.lineageos.twelve.models.FlowResult.Companion.asFlowResult
-import org.lineageos.twelve.models.FlowResult.Companion.foldLatest
-import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
-import org.lineageos.twelve.models.Playlist
+import com.bluen1nja1.twelve.models.FlowResult
+import com.bluen1nja1.twelve.models.FlowResult.Companion.asFlowResult
+import com.bluen1nja1.twelve.models.FlowResult.Companion.foldLatest
+import com.bluen1nja1.twelve.models.FlowResult.Companion.getOrNull
+import com.bluen1nja1.twelve.models.Playlist
 
 class PlaylistViewModel(application: Application) : TwelveViewModel(application) {
     private val playlistUri = MutableStateFlow<Uri?>(null)

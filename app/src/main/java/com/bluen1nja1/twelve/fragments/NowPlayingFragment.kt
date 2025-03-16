@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package org.lineageos.twelve.fragments
+package com.bluen1nja1.twelve.fragments
 
 import android.animation.ValueAnimator
 import android.content.Intent
@@ -41,21 +41,21 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import me.bogerchan.niervisualizer.NierVisualizerManager
-import org.lineageos.twelve.R
-import org.lineageos.twelve.ext.getViewProperty
-import org.lineageos.twelve.ext.loadThumbnail
-import org.lineageos.twelve.ext.navigateSafe
-import org.lineageos.twelve.ext.updatePadding
-import org.lineageos.twelve.models.FlowResult
-import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
-import org.lineageos.twelve.models.PlaybackState
-import org.lineageos.twelve.models.RepeatMode
-import org.lineageos.twelve.models.Result
-import org.lineageos.twelve.ui.visualizer.VisualizerNVDataSource
-import org.lineageos.twelve.utils.PermissionsChecker
-import org.lineageos.twelve.utils.PermissionsUtils
-import org.lineageos.twelve.utils.TimestampFormatter
-import org.lineageos.twelve.viewmodels.NowPlayingViewModel
+import com.bluen1nja1.twelve.R
+import com.bluen1nja1.twelve.ext.getViewProperty
+import com.bluen1nja1.twelve.ext.loadThumbnail
+import com.bluen1nja1.twelve.ext.navigateSafe
+import com.bluen1nja1.twelve.ext.updatePadding
+import com.bluen1nja1.twelve.models.FlowResult
+import com.bluen1nja1.twelve.models.FlowResult.Companion.getOrNull
+import com.bluen1nja1.twelve.models.PlaybackState
+import com.bluen1nja1.twelve.models.RepeatMode
+import com.bluen1nja1.twelve.models.Result
+import com.bluen1nja1.twelve.ui.visualizer.VisualizerNVDataSource
+import com.bluen1nja1.twelve.utils.PermissionsChecker
+import com.bluen1nja1.twelve.utils.PermissionsUtils
+import com.bluen1nja1.twelve.utils.TimestampFormatter
+import com.bluen1nja1.twelve.viewmodels.NowPlayingViewModel
 import java.util.Locale
 import kotlin.math.roundToLong
 import kotlin.reflect.safeCast

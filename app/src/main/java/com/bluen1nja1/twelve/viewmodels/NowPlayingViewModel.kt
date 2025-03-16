@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package org.lineageos.twelve.viewmodels
+package com.bluen1nja1.twelve.viewmodels
 
 import android.app.Application
 import android.net.Uri
@@ -36,31 +36,31 @@ import me.bogerchan.niervisualizer.renderer.columnar.ColumnarType2Renderer
 import me.bogerchan.niervisualizer.renderer.columnar.ColumnarType3Renderer
 import me.bogerchan.niervisualizer.renderer.columnar.ColumnarType4Renderer
 import me.bogerchan.niervisualizer.renderer.line.LineRenderer
-import org.lineageos.twelve.ext.applicationContext
-import org.lineageos.twelve.ext.availableCommandsFlow
-import org.lineageos.twelve.ext.isPlayingFlow
-import org.lineageos.twelve.ext.mediaItemFlow
-import org.lineageos.twelve.ext.mediaMetadataFlow
-import org.lineageos.twelve.ext.next
-import org.lineageos.twelve.ext.playbackParametersFlow
-import org.lineageos.twelve.ext.playbackProgressFlow
-import org.lineageos.twelve.ext.playbackStateFlow
-import org.lineageos.twelve.ext.repeatModeFlow
-import org.lineageos.twelve.ext.shuffleModeFlow
-import org.lineageos.twelve.ext.toThumbnail
-import org.lineageos.twelve.ext.tracksFlow
-import org.lineageos.twelve.models.Error
-import org.lineageos.twelve.models.FlowResult
-import org.lineageos.twelve.models.FlowResult.Companion.asFlowResult
-import org.lineageos.twelve.models.FlowResult.Companion.flatMapLatestData
-import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
-import org.lineageos.twelve.models.PlaybackProgress
-import org.lineageos.twelve.models.PlaybackState
-import org.lineageos.twelve.models.RepeatMode
-import org.lineageos.twelve.models.Result
-import org.lineageos.twelve.services.PlaybackService
-import org.lineageos.twelve.services.PlaybackService.CustomCommand.Companion.sendCustomCommand
-import org.lineageos.twelve.utils.MimeUtils
+import com.bluen1nja1.twelve.ext.applicationContext
+import com.bluen1nja1.twelve.ext.availableCommandsFlow
+import com.bluen1nja1.twelve.ext.isPlayingFlow
+import com.bluen1nja1.twelve.ext.mediaItemFlow
+import com.bluen1nja1.twelve.ext.mediaMetadataFlow
+import com.bluen1nja1.twelve.ext.next
+import com.bluen1nja1.twelve.ext.playbackParametersFlow
+import com.bluen1nja1.twelve.ext.playbackProgressFlow
+import com.bluen1nja1.twelve.ext.playbackStateFlow
+import com.bluen1nja1.twelve.ext.repeatModeFlow
+import com.bluen1nja1.twelve.ext.shuffleModeFlow
+import com.bluen1nja1.twelve.ext.toThumbnail
+import com.bluen1nja1.twelve.ext.tracksFlow
+import com.bluen1nja1.twelve.models.Error
+import com.bluen1nja1.twelve.models.FlowResult
+import com.bluen1nja1.twelve.models.FlowResult.Companion.asFlowResult
+import com.bluen1nja1.twelve.models.FlowResult.Companion.flatMapLatestData
+import com.bluen1nja1.twelve.models.FlowResult.Companion.getOrNull
+import com.bluen1nja1.twelve.models.PlaybackProgress
+import com.bluen1nja1.twelve.models.PlaybackState
+import com.bluen1nja1.twelve.models.RepeatMode
+import com.bluen1nja1.twelve.models.Result
+import com.bluen1nja1.twelve.services.PlaybackService
+import com.bluen1nja1.twelve.services.PlaybackService.CustomCommand.Companion.sendCustomCommand
+import com.bluen1nja1.twelve.utils.MimeUtils
 
 open class NowPlayingViewModel(application: Application) : TwelveViewModel(application) {
     enum class VisualizerType(val factory: () -> Array<IRenderer>?) {
