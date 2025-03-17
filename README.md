@@ -101,7 +101,7 @@ Notification:
 
 Feature Requests and Bugs?:
 ---------------------------------------------------------------------------------------------------------------------
-For feature requests, please submit them in the "Issues" tab with a [Feature Request] tag in your issue title. For any bugs, please submit them in the "Issues" tab with a [Bug Report] tag in your issue title along with a logcat so I can fix it quicker.
+For feature requests, please submit them in the "Issues" tab with a [Feature Request] tag in your issue title. For any bugs, please submit them in the "Issues" tab with a [Bug] tag in your issue title along with a logcat so I can fix it quicker.
 
 Special Versions:
 ---------------------------------------------------------------------------------------------------------------------
