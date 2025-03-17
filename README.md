@@ -99,6 +99,10 @@ Notification:
   <img src="https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/screenshots/SNotification.png" width="200" />
 </p>
 
+Feature Requests and Bugs?:
+---------------------------------------------------------------------------------------------------------------------
+For feature requests, please submit them in the "Issues" tab. For any bugs, please submit them in the "Issues" tab along with a logcat so I can fix it quicker.
+
 Special Versions:
 ---------------------------------------------------------------------------------------------------------------------
 LineageOS Devices: A magisk module will be provided with newer releases at some point. As for those who don't use root (or don't want to flash a module), a secondary version is available for download that you can install alongside the original Twelve app.
