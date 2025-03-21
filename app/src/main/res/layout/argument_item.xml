@@ -6,6 +6,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="16dp">
 
     <com.google.android.material.checkbox.MaterialCheckBox
@@ -19,6 +20,10 @@
         style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:boxCornerRadiusBottomEnd="32dp"
+        app:boxCornerRadiusTopEnd="32dp"
+        app:boxCornerRadiusBottomStart="32dp"
+        app:boxCornerRadiusTopStart="32dp"
         android:visibility="gone">
 
         <com.google.android.material.textfield.TextInputEditText

@@ -39,6 +39,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            app:boxCornerRadiusBottomEnd="32dp"
+            app:boxCornerRadiusTopEnd="32dp"
+            app:boxCornerRadiusBottomStart="32dp"
+            app:boxCornerRadiusTopStart="32dp"
             android:hint="@string/provider">
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -55,6 +59,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            app:boxCornerRadiusBottomEnd="32dp"
+            app:boxCornerRadiusTopEnd="32dp"
+            app:boxCornerRadiusBottomStart="32dp"
+            app:boxCornerRadiusTopStart="32dp"
             android:hint="@string/playlist_name">
 
             <com.google.android.material.textfield.TextInputEditText
