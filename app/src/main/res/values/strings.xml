@@ -39,13 +39,14 @@
     <string name="create_playlist_confirm">Create</string>
 
     <!-- No elements -->
-    <string name="no_activity">No activity</string>
-    <string name="no_albums">No albums</string>
-    <string name="no_artists">No artists</string>
-    <string name="no_genres">No genres</string>
-    <string name="no_playlists">No playlists</string>
-    <string name="no_audios">No audios</string>
-    <string name="no_results">No results</string>
+    <string name="no_activity">No activity recorded</string>
+    <string name="no_albums">No albums found</string>
+    <string name="no_artists">No artists found</string>
+    <string name="no_genres">No genres found</string>
+    <string name="no_playlists">No playlists found</string>
+    <string name="no_songs">No songs found</string>
+    <string name="no_audios">No audio found</string>
+    <string name="no_results">No results found</string>
     <string name="shrug" translatable="false">¯\\_(ツ)_/¯</string>
 
     <!-- Unknown items -->
