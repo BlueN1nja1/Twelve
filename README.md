@@ -2,6 +2,8 @@ Improved Twelve
 ---------------------------------------------------------------------------
 ![](https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/icon.png)
 
+NOTICE: YOU ARE ON THE LABTEST BRANCH! ALL CODE IN THIS BRANCH IS EXTREMELY EXPERIMENTAL AND IS BEING CONSTANTLY WORKED ON! Thus, any bug reports related to 2.0.0 Beta #X will be turned down, rejected, and of course, burned. Most changes from this branch will eventually make it over to the main branch, so please be patient.
+
 LineageOS's Twelve Music Player with some improvements
 
 Original Repo can be found here: https://github.com/LineageOS/android_packages_apps_Twelve
