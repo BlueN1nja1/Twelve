@@ -29,6 +29,7 @@
     <string name="library_fragment_menu_albums">Albums</string>
     <string name="library_fragment_menu_artists">Artists</string>
     <string name="library_fragment_menu_genres">Genres</string>
+    <string name="library_fragment_menu_songs">Songs</string>
     <string name="library_fragment_menu_playlists">Playlists</string>
 
     <!-- Playlists fragment -->
