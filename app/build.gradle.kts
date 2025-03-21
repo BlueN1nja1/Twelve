@@ -23,8 +23,8 @@ android {
         applicationId = "org.lineageos.twelve"
         minSdk = 30
         targetSdk = 35
-        versionCode = 100
-        versionName = "1.0.0.4"
+        versionCode = 199
+        versionName = "2.0.0 Beta 1"
 
         kapt {
             arguments {
