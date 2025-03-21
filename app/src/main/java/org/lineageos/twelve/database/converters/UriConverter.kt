@@ -6,11 +6,12 @@
 package org.lineageos.twelve.database.converters
 
 import android.net.Uri
+import androidx.core.net.toUri
 import androidx.room.TypeConverter
 
 class UriConverter {
     @TypeConverter
-    fun fromString(value: String?) = value?.let { Uri.parse(it) }
+    fun fromString(value: String?) = value?.toUri()
 
     @TypeConverter
     fun toString(uri: Uri?) = uri?.toString()

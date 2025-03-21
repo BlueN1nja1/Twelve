@@ -5,7 +5,7 @@
 
 package org.lineageos.twelve.datasources.subsonic
 
-import android.net.Uri
+import androidx.core.net.toUri
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import org.lineageos.twelve.datasources.subsonic.SubsonicClient.Companion.SUBSONIC_API_VERSION
@@ -52,7 +52,7 @@ class SubsonicClient(
         .addInterceptor(interceptor)
         .build()
 
-    private val serverUri = Uri.parse(server).buildUpon().apply {
+    private val serverUri = server.toUri().buildUpon().apply {
         appendPath("rest")
     }.build()
 

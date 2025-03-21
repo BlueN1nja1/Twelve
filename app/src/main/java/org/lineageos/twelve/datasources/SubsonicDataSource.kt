@@ -7,6 +7,7 @@ package org.lineageos.twelve.datasources
 
 import android.net.Uri
 import android.os.Bundle
+import androidx.core.net.toUri
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asFlow
@@ -58,7 +59,7 @@ class SubsonicDataSource(
         server, username, password, "Twelve", useLegacyAuthentication, cache
     )
 
-    private val dataSourceBaseUri = Uri.parse(server)
+    private val dataSourceBaseUri = server.toUri()
 
     private val albumsUri = dataSourceBaseUri.buildUpon()
         .appendPath(ALBUMS_PATH)
@@ -499,7 +500,7 @@ class SubsonicDataSource(
     private fun AlbumID3.toMediaItem() = Album.Builder(getAlbumUri(id))
         .setThumbnail(
             Thumbnail.Builder()
-                .setUri(Uri.parse(subsonicClient.getCoverArt(id)))
+                .setUri(subsonicClient.getCoverArt(id).toUri())
                 .setType(Thumbnail.Type.FRONT_COVER)
                 .build()
         )
@@ -512,7 +513,7 @@ class SubsonicDataSource(
     private fun ArtistID3.toMediaItem() = Artist.Builder(getArtistUri(id))
         .setThumbnail(
             Thumbnail.Builder()
-                .setUri(Uri.parse(subsonicClient.getCoverArt(id)))
+                .setUri(subsonicClient.getCoverArt(id).toUri())
                 .setType(Thumbnail.Type.BAND_ARTIST_LOGO)
                 .build()
         )
@@ -523,12 +524,12 @@ class SubsonicDataSource(
         .setThumbnail(
             albumId?.let {
                 Thumbnail.Builder()
-                    .setUri(Uri.parse(subsonicClient.getCoverArt(it)))
+                    .setUri(subsonicClient.getCoverArt(it).toUri())
                     .setType(Thumbnail.Type.FRONT_COVER)
                     .build()
             }
         )
-        .setPlaybackUri(Uri.parse(subsonicClient.stream(id)))
+        .setPlaybackUri(subsonicClient.stream(id).toUri())
         .setMimeType(contentType)
         .setTitle(title)
         .setType(type.toAudioType())
