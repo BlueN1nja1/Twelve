@@ -168,8 +168,10 @@
     <string name="experimental_header">Experimental</string>
 
     <!-- General preferences -->
+    <string name="disable_cloud_providers">Disable Cloud Providers</string>
+    <string name="disable_cloud_providers_summary">Removes the cloud providers button from the main page</string>
     <string name="enable_offload">Enable offload</string>
-    <string name="enable_offload_summary">Use the offload audio path for audio playback. Disabling this may increase power usage but can be useful if you experience issues with audio playback or post processing</string>
+    <string name="enable_offload_summary">Use the offload audio path for audio playback. Disabling this may increase power usage but can be useful if you experience issues with audio playback or post processing. Enabling this WILL BREAK speed and pitch settings</string>
     <string name="enable_float_output">Enable 32-bit floating point output</string>
     <string name="enable_float_output_summary">Use 32-bit PCM floating point output when the audio quality can benefit from it. Audio effects like speed and pitch controls will stop working in this mode. Toggling this option requires an app restart</string>
     <string name="stop_playback_on_task_removed">Stop playback on app\'s removal from recents</string>

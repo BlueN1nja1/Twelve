@@ -55,6 +55,13 @@
             app:summary="@string/split_local_devices_summary"
             app:title="@string/split_local_devices" />
 
+        <SwitchPreference
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="disable_cloud_providers"
+            app:summary="@string/disable_cloud_providers_summary"
+            app:title="@string/disable_cloud_providers" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>
