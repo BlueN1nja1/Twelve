@@ -20,8 +20,10 @@ import androidx.lifecycle.ServiceLifecycleDispatcher
 import androidx.lifecycle.lifecycleScope
 import androidx.media3.common.AudioAttributes
 import androidx.media3.common.C
+import androidx.media3.common.HeartRating
 import androidx.media3.common.MediaItem
 import androidx.media3.common.Player
+import androidx.media3.common.Rating
 import androidx.media3.common.listen
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.common.util.Util
@@ -37,6 +39,7 @@ import androidx.media3.session.SessionCommand
 import androidx.media3.session.SessionError
 import androidx.media3.session.SessionResult
 import androidx.preference.PreferenceManager
+import com.google.common.util.concurrent.Futures
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.guava.await
 import kotlinx.coroutines.guava.future
@@ -48,6 +51,7 @@ import org.lineageos.twelve.TwelveApplication
 import org.lineageos.twelve.ext.enableFloatOutput
 import org.lineageos.twelve.ext.enableOffload
 import org.lineageos.twelve.ext.mapAsync
+import org.lineageos.twelve.ext.mediaItems
 import org.lineageos.twelve.ext.next
 import org.lineageos.twelve.ext.setOffloadEnabled
 import org.lineageos.twelve.ext.skipSilence
@@ -207,6 +211,51 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
                 .setAvailableSessionCommands(sessionCommands)
                 .build()
         }
+
+        override fun onSetRating(
+            session: MediaSession,
+            controller: MediaSession.ControllerInfo,
+            mediaId: String,
+            rating: Rating
+        ) = lifecycleScope.future {
+            val heartRating = rating as? HeartRating ?: return@future SessionResult(
+                SessionError.ERROR_NOT_SUPPORTED
+            )
+
+            SessionResult(
+                when (mediaRepositoryTree.setFavorite(mediaId, heartRating.isHeart)) {
+                    true -> {
+                        // Horrible.
+                        player.mediaItems.forEachIndexed { index, mediaItem ->
+                            if (mediaItem.mediaId == mediaId) {
+                                player.replaceMediaItem(
+                                    index,
+                                    mediaItem.buildUpon()
+                                        .setMediaMetadata(
+                                            mediaItem.mediaMetadata.buildUpon()
+                                                .setUserRating(heartRating)
+                                                .build()
+                                        )
+                                        .build(),
+                                )
+                            }
+                        }
+
+                        SessionResult.RESULT_SUCCESS
+                    }
+
+                    false -> SessionError.ERROR_UNKNOWN
+                }
+            )
+        }
+
+        override fun onSetRating(
+            session: MediaSession,
+            controller: MediaSession.ControllerInfo,
+            rating: Rating
+        ) = player.currentMediaItem?.let {
+            onSetRating(session, controller, it.mediaId, rating)
+        } ?: Futures.immediateFuture(SessionResult(SessionError.ERROR_INVALID_STATE))
 
         override fun onPlaybackResumption(
             mediaSession: MediaSession,

@@ -8,6 +8,7 @@ package org.lineageos.twelve.services
 import android.content.Context
 import android.net.Uri
 import android.util.Log
+import androidx.core.net.toUri
 import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import kotlinx.coroutines.flow.Flow
@@ -21,6 +22,7 @@ import org.lineageos.twelve.models.Provider
 import org.lineageos.twelve.models.ProviderIdentifier
 import org.lineageos.twelve.models.ProviderType
 import org.lineageos.twelve.models.Result
+import org.lineageos.twelve.models.Result.Companion.getOrNull
 import org.lineageos.twelve.repositories.MediaRepository
 import org.lineageos.twelve.utils.PermissionsUtils
 
@@ -274,10 +276,27 @@ class MediaRepositoryTree(
     }
 
     /**
+     * Set the favorite status of a media item. Note that it will only work for audio items.
+     *
+     * @param mediaId The media ID of the item
+     * @param isFavorite The new favorite status
+     * @return Whether the operation was successful
+     */
+    suspend fun setFavorite(
+        mediaId: String,
+        isFavorite: Boolean,
+    ) = mediaIdToMediaItemUri(mediaId)?.let {
+        when (mediaItemUriToMediaType(it)) {
+            MediaType.AUDIO -> repository.setFavorite(it, isFavorite).getOrNull()
+            else -> null
+        }
+    }?.let { true } ?: false
+
+    /**
      * Convert this media ID to a [Uri] if valid.
      */
     private fun mediaIdToMediaItemUri(mediaId: String) = runCatching {
-        Uri.parse(mediaId)
+        mediaId.toUri()
     }.getOrNull()
 
     private suspend fun mediaItemUriToMediaType(
