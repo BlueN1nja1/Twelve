@@ -15,6 +15,17 @@
         <item name="colorPrimary">@color/accent</item>
     </style>
 
+    <!-- Collapsing toolbar style -->
+    <style name="Theme.SettingsLib.ToolbarCollapsed" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Theme.SettingsLib.ToolbarExpanded" parent="Theme.SettingsLib.ToolbarCollapsed">
+        <item name="android:textSize">36sp</item>
+        <item name="android:drawablePadding">10dp</item>
+    </style>
+
     <!-- Settings alert dialog theme. -->
     <style name="Theme.SettingsLib.AlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="android:colorBackground">?attr/colorSurface</item>

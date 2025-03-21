@@ -24,7 +24,9 @@
             android:layout_height="179dp"
             app:expandedTitleMarginBottom="31dp"
             app:expandedTitleMarginStart="24dp"
-            app:expandedTitleTextAppearance="?attr/textAppearanceDisplaySmall"
+            app:expandedTitleTextAppearance="@style/Theme.SettingsLib.ToolbarExpanded"
+            app:collapsedTitleTextAppearance="@style/Theme.SettingsLib.ToolbarCollapsed"
+            app:expandedTitleGravity="center|bottom"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
             app:titleCollapseMode="scale"
             app:toolbarId="@id/toolbar">
