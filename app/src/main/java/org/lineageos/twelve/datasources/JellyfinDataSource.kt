@@ -8,6 +8,7 @@ package org.lineageos.twelve.datasources
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import androidx.core.net.toUri
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asFlow
@@ -65,7 +66,7 @@ class JellyfinDataSource(
         server, username, password, deviceIdentifier, packageName, tokenGetter, tokenSetter, cache
     )
 
-    private val dataSourceBaseUri = Uri.parse(server)
+    private val dataSourceBaseUri = server.toUri()
 
     private val albumsUri = dataSourceBaseUri.buildUpon()
         .appendPath(ALBUMS_PATH)
@@ -364,7 +365,7 @@ class JellyfinDataSource(
     private fun Item.toMediaItemAlbum() = Album.Builder(getAlbumUri(id.toString()))
         .setThumbnail(
             Thumbnail.Builder()
-                .setUri(Uri.parse(client.getAlbumThumbnail(id)))
+                .setUri(client.getAlbumThumbnail(id).toUri())
                 .build()
         )
         .setTitle(name)
@@ -376,14 +377,14 @@ class JellyfinDataSource(
     private fun Item.toMediaItemArtist() = Artist.Builder(getArtistUri(id.toString()))
         .setThumbnail(
             Thumbnail.Builder()
-                .setUri(Uri.parse(client.getArtistThumbnail(id)))
+                .setUri(client.getArtistThumbnail(id).toUri())
                 .build()
         )
         .setName(name)
         .build()
 
     private fun Item.toMediaItemAudio() = Audio.Builder(getAudioUri(id.toString()))
-        .setPlaybackUri(Uri.parse(client.getAudioPlaybackUrl(id)))
+        .setPlaybackUri(client.getAudioPlaybackUrl(id).toUri())
         .setMimeType(container ?: sourceType)
         .setTitle(name)
         .setType(Audio.Type.MUSIC)
@@ -403,7 +404,7 @@ class JellyfinDataSource(
     private fun Item.toMediaItemGenre() = Genre.Builder(getGenreUri(id.toString()))
         .setThumbnail(
             Thumbnail.Builder()
-                .setUri(Uri.parse(client.getGenreThumbnail(id)))
+                .setUri(client.getGenreThumbnail(id).toUri())
                 .build()
         )
         .setName(name)
@@ -412,7 +413,7 @@ class JellyfinDataSource(
     private fun Item.toMediaItemPlaylist() = Playlist.Builder(getPlaylistUri(id.toString()))
         .setThumbnail(
             Thumbnail.Builder()
-                .setUri(Uri.parse(client.getPlaylistThumbnail(id)))
+                .setUri(client.getPlaylistThumbnail(id).toUri())
                 .build()
         )
         .setName(name)

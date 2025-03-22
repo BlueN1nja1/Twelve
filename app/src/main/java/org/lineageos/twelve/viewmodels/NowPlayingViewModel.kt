@@ -6,8 +6,8 @@
 package org.lineageos.twelve.viewmodels
 
 import android.app.Application
-import android.net.Uri
 import android.os.Bundle
+import androidx.core.net.toUri
 import androidx.lifecycle.viewModelScope
 import androidx.media3.common.C
 import androidx.media3.common.MediaMetadata
@@ -120,7 +120,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
     private val mediaItemUri = mediaItem
         .mapLatest { mediaItem ->
             mediaItem?.let {
-                runCatching { Uri.parse(it.mediaId) }.getOrNull()
+                runCatching { it.mediaId.toUri() }.getOrNull()
             }
         }
         .flowOn(Dispatchers.IO)
