@@ -85,6 +85,11 @@ private const val SPLIT_LOCAL_DEVICES_DEFAULT = false
 val SharedPreferences.splitLocalDevices: Boolean
     get() = getBoolean(SPLIT_LOCAL_DEVICES_KEY, SPLIT_LOCAL_DEVICES_DEFAULT)
 
+const val DISABLE_CLOUD_PROVIDERS_KEY = "disable_cloud_providers"
+private const val DISABLE_CLOUD_PROVIDERS_DEFAULT = false
+val SharedPreferences.disableCloudProviders: Boolean
+    get() = getBoolean(DISABLE_CLOUD_PROVIDERS_KEY, DISABLE_CLOUD_PROVIDERS_DEFAULT)
+
 // Playback prefs
 private const val TYPED_REPEAT_MODE_KEY = "typed_repeat_mode"
 private val TYPED_REPEAT_MODE_DEFAULT = RepeatMode.NONE.ordinal
