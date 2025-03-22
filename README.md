@@ -56,7 +56,7 @@ Planned Features:
 
 -Add a Random Songs list to the Activity menu
 
--Add the ability to disable the music providers menu
+-Add the ability to disable the music providers menu (COMING IN THE 2.0.0 UPDATE!)
 
 -Add an animation to the play button when a song is playing
 
