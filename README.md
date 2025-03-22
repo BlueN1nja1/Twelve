@@ -1,10 +1,12 @@
 Improved Twelve
 ---------------------------------------------------------------------------
-![](https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/icon.png)
+![](https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/icon.png)
 
-An Improved Version of LineageOS's Twelve Music Player
+LineageOS's Twelve Music Player with new and improved features
 
-[![Github All Releases](https://img.shields.io/github/downloads/BlueN1nja1/Twelve/total.svg)](https://github.com/BlueN1nja1/Twelve/releases/latest)
+Original Repo can be found here: https://github.com/LineageOS/android_packages_apps_Twelve
+
+[![Github All Releases](https://img.shields.io/github/downloads/BlueN1nja1/Improved-Twelve/total.svg)](https://github.com/BlueN1nja1/Improved-Twelve/releases/latest)
 
 Current Features:
 ---------------------------------------------------------------------------------------------------------------------
@@ -35,12 +37,12 @@ Use Twelve.apk if Twelve **isn't included with your device.**
 Use Twelve-alt.apk if Twelve is already included with your device.
 
 The Following Files will be present for each release starting with v1.0.0.3:
-- [Twelve.apk](https://github.com/BlueN1nja1/Twelve/releases/latest/download/Twelve.apk)
-- [Twelve-alt.apk](https://github.com/BlueN1nja1/Twelve/releases/latest/download/Twelve-alt.apk)
+- [Twelve.apk](https://github.com/BlueN1nja1/Improved-Twelve/releases/latest/download/Twelve.apk)
+- [Twelve-alt.apk](https://github.com/BlueN1nja1/Improved-Twelve/releases/latest/download/Twelve-alt.apk)
 
 Changelog?:
 ---------------------------------------------------------------------------------------------------------------------
-You can always view the changelog for the current release here: https://github.com/BlueN1nja1/Twelve/releases/latest
+You can always view the changelog for the current release here: https://github.com/BlueN1nja1/Improved-Twelve/releases/latest
 
 System Requirements:
 ---------------------------------------------------------------------------------------------------------------------
@@ -74,28 +76,32 @@ Screeenshots:
 ---------------------------------------------------------------------------------------------------------------------
 Light Theme:
 <p float="left">
-  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S01Light.jpg" width="200" />
-  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S02Light.jpg" width="200" />
-  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S03Light.jpg" width="200" />
+  <img src="https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/screenshots/S01Light.jpg" width="200" />
+  <img src="https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/screenshots/S02Light.jpg" width="200" />
+  <img src="https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/screenshots/S03Light.jpg" width="200" />
 </p>
 <p float="left">
-  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S04Light.jpg" width="200" />
-  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S05Light.jpg" width="200" />
+  <img src="https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/screenshots/S04Light.jpg" width="200" />
+  <img src="https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/screenshots/S05Light.jpg" width="200" />
 </p>
 Dark Theme (From Twelve-alt on Android 11):
 <p float="left">
-  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S01Dark.png" width="200" />
-  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S02Dark.png" width="200" />
-  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S03Dark.png" width="200" />
+  <img src="https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/screenshots/S01Dark.png" width="200" />
+  <img src="https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/screenshots/S02Dark.png" width="200" />
+  <img src="https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/screenshots/S03Dark.png" width="200" />
 </p>
 <p float="left">
-  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S04Dark.png" width="200" />
-  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/S05Dark.png" width="200" />
+  <img src="https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/screenshots/S04Dark.png" width="200" />
+  <img src="https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/screenshots/S05Dark.png" width="200" />
 </p>
 Notification:
 <p float="left">
-  <img src="https://github.com/BlueN1nja1/Twelve/blob/lineage-22.2/resources/screenshots/SNotification.png" width="200" />
+  <img src="https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/screenshots/SNotification.png" width="200" />
 </p>
+
+Feature Requests and Bugs?:
+---------------------------------------------------------------------------------------------------------------------
+For feature requests, please submit them in the "Issues" tab with a [Feature Request] tag in your issue title. For any bugs, please submit them in the "Issues" tab with a [Bug] tag in your issue title along with a logcat so I can fix it quicker.
 
 Special Versions:
 ---------------------------------------------------------------------------------------------------------------------
