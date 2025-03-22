@@ -8,7 +8,7 @@ Original Repo can be found here: https://github.com/LineageOS/android_packages_a
 
 [![Github All Releases](https://img.shields.io/github/downloads/BlueN1nja1/Improved-Twelve/total.svg)](https://github.com/BlueN1nja1/Improved-Twelve/releases/latest)
 
-NOTICE: The 2.0.0 update is currently in development...
+NOTICE: The 2.0.0 update is currently in development... Stay tuned for more info.
 
 Current Features:
 ---------------------------------------------------------------------------------------------------------------------
