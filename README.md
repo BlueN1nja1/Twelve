@@ -4,7 +4,7 @@ Improved Twelve
 
 NOTICE: YOU ARE ON THE LABTEST BRANCH! ALL CODE IN THIS BRANCH IS EXTREMELY EXPERIMENTAL AND IS BEING CONSTANTLY WORKED ON! Thus, any bug reports related to 2.0.0 Beta #X will be turned down, rejected, burned, and finally shot into the sun. All jokes aside, most changes from this branch will eventually make it over to the main branch, and the same can eventually be said for the main repo, so please be patient. Once beta testing starts, bug reports related to the 2.0.0 Beta will then be accepted.
 
-To differentiate between stable / production builds, all beta / labtest builds will have a green icon instead of the usual pink. Stable builds are unaffected by this.
+To differentiate between stable / production builds, all beta / labtest builds will have a green icon instead of the usual pink. Stable builds are unaffected by this. (The icon shown above will be updated to reflect this)
 
 LineageOS's Twelve Music Player with new and improved features
 
