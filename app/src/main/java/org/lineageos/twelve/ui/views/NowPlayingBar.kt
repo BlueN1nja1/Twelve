@@ -111,6 +111,7 @@ class NowPlayingBar @JvmOverloads constructor(
         if (titleTextView.text != audioTitle) {
             titleTextView.text = audioTitle
         }
+        titleTextView.isSelected = true
 
         val artistName = mediaMetadata.artist
             ?: context.getString(R.string.artist_unknown)
@@ -118,11 +119,14 @@ class NowPlayingBar @JvmOverloads constructor(
             artistNameTextView.text = artistName
         }
 
+        artistNameTextView.isSelected = true
+
         val albumTitle = mediaMetadata.albumTitle
             ?: context.getString(R.string.album_unknown)
         if (albumTitleTextView.text != albumTitle) {
             albumTitleTextView.text = albumTitle
         }
+        albumTitleTextView.isSelected = true
     }
 
     fun updateMediaArtwork(artwork: Thumbnail?) {
