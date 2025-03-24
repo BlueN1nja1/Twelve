@@ -32,6 +32,8 @@ Current Features:
 
 -Loop and Shuffle Controls in the notification
 
+-Cloud Providers are now optional!
+
 Downloads:
 ---------------------------------------------------------------------------------------------------------------------
 Improved Twelve has 2 variants, the standard Twelve.apk and the alternative Twelve-alt.apk.
@@ -57,8 +59,6 @@ Planned Features:
 -Add a song list to the library
 
 -Add a Random Songs list to the Activity menu
-
--Add the ability to disable the music providers menu
 
 -Add an animation to the play button when a song is playing
 
