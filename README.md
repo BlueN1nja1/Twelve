@@ -32,7 +32,7 @@ Current Features:
 
 -Loop and Shuffle Controls in the notification
 
--Cloud Providers are now optional!
+-Cloud Providers are now optional! (Labtest builds only until 2.0.0 is stable...)
 
 Downloads:
 ---------------------------------------------------------------------------------------------------------------------
