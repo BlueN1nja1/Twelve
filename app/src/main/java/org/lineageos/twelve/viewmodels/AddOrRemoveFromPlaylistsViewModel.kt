@@ -19,6 +19,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.withContext
 import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.FlowResult.Companion.asFlowResult
+import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
 
 class AddOrRemoveFromPlaylistsViewModel(application: Application) : TwelveViewModel(application) {
     private val audioUri = MutableStateFlow<Uri?>(null)
@@ -54,12 +55,13 @@ class AddOrRemoveFromPlaylistsViewModel(application: Application) : TwelveViewMo
     @OptIn(ExperimentalCoroutinesApi::class)
     val providerOfAudio = audioUri
         .filterNotNull()
-        .flatMapLatest { mediaRepository.providerOfMediaItems(it) }
+        .flatMapLatest { mediaRepository.providerOf(it) }
+        .asFlowResult()
         .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,
             SharingStarted.Eagerly,
-            null
+            FlowResult.Loading()
         )
 
     fun loadAudio(audioUri: Uri) {
@@ -88,7 +90,7 @@ class AddOrRemoveFromPlaylistsViewModel(application: Application) : TwelveViewMo
     suspend fun createPlaylist(name: String) {
         withContext(Dispatchers.IO) {
             audioUri.value?.let {
-                mediaRepository.getProviderOfMediaItems(it)?.let { provider ->
+                providerOfAudio.value.getOrNull()?.let { provider ->
                     mediaRepository.createPlaylist(provider, name)
                 }
             }

@@ -31,6 +31,7 @@ import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.ext.setProgressCompat
 import org.lineageos.twelve.models.FlowResult
+import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
 import org.lineageos.twelve.models.Playlist
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.views.FullscreenLoadingProgressBar
@@ -65,10 +66,11 @@ class AddOrRemoveFromPlaylistsFragment : Fragment(R.layout.fragment_add_or_remov
                 when (item === addNewPlaylistItem) {
                     true -> {
                         view.setOnClickListener {
+                            val providerIdentifier = viewModel.providerOfAudio.value.getOrNull()
                             findNavController().navigateSafe(
                                 R.id.action_addOrRemoveFromPlaylistsFragment_to_fragment_create_playlist_dialog,
                                 CreatePlaylistDialogFragment.createBundle(
-                                    providerIdentifier = viewModel.providerOfAudio.value,
+                                    providerIdentifier = providerIdentifier,
                                 )
                             )
                         }
@@ -135,7 +137,7 @@ class AddOrRemoveFromPlaylistsFragment : Fragment(R.layout.fragment_add_or_remov
             findNavController().navigateSafe(
                 R.id.action_addOrRemoveFromPlaylistsFragment_to_fragment_create_playlist_dialog,
                 CreatePlaylistDialogFragment.createBundle(
-                    providerIdentifier = viewModel.providerOfAudio.value,
+                    providerIdentifier = viewModel.providerOfAudio.value.getOrNull(),
                 )
             )
         }

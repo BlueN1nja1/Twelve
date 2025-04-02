@@ -5,7 +5,7 @@
 
 package org.lineageos.twelve.datasources.jellyfin
 
-import android.net.Uri
+import androidx.core.net.toUri
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import org.lineageos.twelve.datasources.jellyfin.models.CreatePlaylist
@@ -45,7 +45,7 @@ class JellyfinClient(
     tokenSetter: (String) -> Unit,
     cache: Cache? = null,
 ) {
-    private val serverUri = Uri.parse(server)
+    private val serverUri = server.toUri()
 
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(JellyfinAuthInterceptor(tokenGetter))

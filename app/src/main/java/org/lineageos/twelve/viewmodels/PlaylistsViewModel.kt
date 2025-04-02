@@ -24,6 +24,11 @@ import org.lineageos.twelve.models.SortingRule
 
 class PlaylistsViewModel(application: Application) : TwelveViewModel(application) {
     val navigationProvider = mediaRepository.navigationProvider
+        .stateIn(
+            viewModelScope,
+            SharingStarted.Eagerly,
+            null,
+        )
 
     val sortingRule = sharedPreferences.preferenceFlow(
         PLAYLISTS_SORTING_STRATEGY_KEY,

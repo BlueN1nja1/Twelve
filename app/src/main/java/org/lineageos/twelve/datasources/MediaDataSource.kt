@@ -20,6 +20,7 @@ import org.lineageos.twelve.models.Lyrics
 import org.lineageos.twelve.models.MediaItem
 import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.models.Playlist
+import org.lineageos.twelve.models.ProviderIdentifier
 import org.lineageos.twelve.models.Result
 import org.lineageos.twelve.models.SortingRule
 
@@ -30,12 +31,15 @@ typealias MediaRequestStatus<T> = Result<T, Error>
  */
 interface MediaDataSource {
     /**
-     * Get the current status of the data source.
+     * Get the current status of the provider.
      *
+     * @param providerIdentifier The [ProviderIdentifier] of the provider
      * @return [Result.Success] with a list of [DataSourceInformation] if everything is fine,
      *   else [Result.Error]
      */
-    fun status(): Flow<MediaRequestStatus<List<DataSourceInformation>>>
+    fun status(
+        providerIdentifier: ProviderIdentifier,
+    ): Flow<MediaRequestStatus<List<DataSourceInformation>>>
 
     /**
      * Given a compatible media item URI, get its type.
@@ -46,35 +50,80 @@ interface MediaDataSource {
     suspend fun mediaTypeOf(mediaItemUri: Uri): MediaType?
 
     /**
-     * Home page content.
+     * Given a compatible media item URI, get the [ProviderIdentifier] of the provider that
+     * handles this media item.
+     *
+     * @param mediaItemUri The media item to check
+     * @return A [ProviderIdentifier] if success, null if this media item isn't handled by a
+     *   specific provider. Note that it can still be supported by this data source if [mediaTypeOf]
+     *   returns a [MediaType]
      */
-    fun activity(): Flow<MediaRequestStatus<List<ActivityTab>>>
+    fun providerOf(mediaItemUri: Uri): Flow<MediaRequestStatus<ProviderIdentifier>>
+
+    /**
+     * Home page content.
+     *
+     * @param providerIdentifier The [ProviderIdentifier] of the provider
+     */
+    fun activity(
+        providerIdentifier: ProviderIdentifier,
+    ): Flow<MediaRequestStatus<List<ActivityTab>>>
 
     /**
      * Get all the albums. All albums must have at least one audio associated with them.
+     *
+     * @param providerIdentifier The [ProviderIdentifier] of the provider
+     * @param sortingRule The [SortingRule] to use
      */
-    fun albums(sortingRule: SortingRule): Flow<MediaRequestStatus<List<Album>>>
+    fun albums(
+        providerIdentifier: ProviderIdentifier,
+        sortingRule: SortingRule,
+    ): Flow<MediaRequestStatus<List<Album>>>
 
     /**
      * Get all the artists. All artists must have at least one audio associated with them.
+     *
+     * @param providerIdentifier The [ProviderIdentifier] of the provider
+     * @param sortingRule The [SortingRule] to use
      */
-    fun artists(sortingRule: SortingRule): Flow<MediaRequestStatus<List<Artist>>>
+    fun artists(
+        providerIdentifier: ProviderIdentifier,
+        sortingRule: SortingRule,
+    ): Flow<MediaRequestStatus<List<Artist>>>
 
     /**
      * Get all the genres. All genres must have at least one audio associated with them.
+     *
+     * @param providerIdentifier The [ProviderIdentifier] of the provider
+     * @param sortingRule The [SortingRule] to use
      */
-    fun genres(sortingRule: SortingRule): Flow<MediaRequestStatus<List<Genre>>>
+    fun genres(
+        providerIdentifier: ProviderIdentifier,
+        sortingRule: SortingRule,
+    ): Flow<MediaRequestStatus<List<Genre>>>
 
     /**
      * Get all the playlists. A playlist can be empty.
+     *
+     * @param providerIdentifier The [ProviderIdentifier] of the provider
+     * @param sortingRule The [SortingRule] to use
      */
-    fun playlists(sortingRule: SortingRule): Flow<MediaRequestStatus<List<Playlist>>>
+    fun playlists(
+        providerIdentifier: ProviderIdentifier,
+        sortingRule: SortingRule,
+    ): Flow<MediaRequestStatus<List<Playlist>>>
 
     /**
      * Start a search for the given query.
      * Only the following items can be returned: [Album], [Artist], [Audio], [Genre], [Playlist].
+     *
+     * @param providerIdentifier The [ProviderIdentifier] of the provider
+     * @param query The query to search
      */
-    fun search(query: String): Flow<MediaRequestStatus<List<MediaItem<*>>>>
+    fun search(
+        providerIdentifier: ProviderIdentifier,
+        query: String,
+    ): Flow<MediaRequestStatus<List<MediaItem<*>>>>
 
     /**
      * Get the audio information of the given audio.
@@ -116,10 +165,14 @@ interface MediaDataSource {
     /**
      * Create a new playlist. Note that the name shouldn't be considered unique if possible, but
      * this may vary per data source.
+     * @param providerIdentifier The [ProviderIdentifier] of the provider
      * @param name The name of the playlist
      * @return A [Result] with the [Uri] of the new playlist if succeeded, an error otherwise
      */
-    suspend fun createPlaylist(name: String): MediaRequestStatus<Uri>
+    suspend fun createPlaylist(
+        providerIdentifier: ProviderIdentifier,
+        name: String,
+    ): MediaRequestStatus<Uri>
 
     /**
      * Rename a playlist.

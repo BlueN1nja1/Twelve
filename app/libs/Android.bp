@@ -235,37 +235,6 @@ android_library_import {
     ],
 }
 
-android_library_import {
-    name: "Twelve_com.google.android.material_material",
-    aars: ["com/google/android/material/material/1.12.0/material-1.12.0.aar"],
-    sdk_version: "35",
-    min_sdk_version: "30",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    static_libs: [
-        "androidx-constraintlayout_constraintlayout",
-        "androidx.activity_activity",
-        "androidx.annotation_annotation",
-        "androidx.annotation_annotation-experimental",
-        "androidx.appcompat_appcompat",
-        "androidx.cardview_cardview",
-        "androidx.coordinatorlayout_coordinatorlayout",
-        "androidx.core_core",
-        "androidx.drawerlayout_drawerlayout",
-        "androidx.dynamicanimation_dynamicanimation",
-        "androidx.fragment_fragment",
-        "androidx.lifecycle_lifecycle-runtime",
-        "androidx.recyclerview_recyclerview",
-        "androidx.resourceinspection_resourceinspection-annotation",
-        "androidx.transition_transition",
-        "androidx.vectordrawable_vectordrawable",
-        "androidx.viewpager2_viewpager2",
-        "error_prone_annotations",
-    ],
-}
-
 java_import {
     name: "Twelve_com.squareup.okhttp3_okhttp",
     jars: ["com/squareup/okhttp3/okhttp/4.12.0/okhttp-4.12.0.jar"],
@@ -428,5 +397,18 @@ java_import {
         "Twelve_io.coil-kt.coil3_coil-core",
         "Twelve_io.coil-kt.coil3_coil-network-core",
         "kotlin-stdlib",
+    ],
+}
+
+java_import {
+    name: "Twelve_org.jspecify_jspecify",
+    jars: ["org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar"],
+    sdk_version: "35",
+    min_sdk_version: "30",
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    static_libs: [
     ],
 }

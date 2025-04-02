@@ -111,6 +111,7 @@ configure<GenerateBpPluginExtension> {
                 !module.group.startsWith("androidx.media3")
             }
             module.group.startsWith("org.jetbrains") -> true
+            module.group == "com.google.android.material" -> true
             module.group == "com.google.auto.value" -> true
             module.group == "com.google.code.findbugs" -> true
             module.group == "com.google.errorprone" -> true

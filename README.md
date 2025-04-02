@@ -2,11 +2,13 @@ Improved Twelve
 ---------------------------------------------------------------------------
 ![](https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2/resources/icon.png)
 
-LineageOS's Twelve Music Player with some improvements
+LineageOS's Twelve Music Player with new and improved features
 
 Original Repo can be found here: https://github.com/LineageOS/android_packages_apps_Twelve
 
 [![Github All Releases](https://img.shields.io/github/downloads/BlueN1nja1/Improved-Twelve/total.svg)](https://github.com/BlueN1nja1/Improved-Twelve/releases/latest)
+
+NOTICE: The 2.0.0 update is currently in development... Stay tuned for more info.
 
 Current Features:
 ---------------------------------------------------------------------------------------------------------------------
@@ -54,7 +56,7 @@ Planned Features:
 
 -Add a Random Songs list to the Activity menu
 
--Add the ability to disable the music providers menu
+-Add the ability to disable the music providers menu (COMING IN THE 2.0.0 UPDATE!)
 
 -Add an animation to the play button when a song is playing
 

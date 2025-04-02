@@ -21,6 +21,7 @@ import androidx.annotation.AttrRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
+import androidx.core.view.isNotEmpty
 import androidx.core.view.isVisible
 import com.google.android.material.card.MaterialCardView
 import org.lineageos.twelve.R
@@ -180,7 +181,7 @@ class ListItem @JvmOverloads constructor(
     // FrameLayout utils
 
     private fun FrameLayout.updateVisibility(isVisible: Boolean) {
-        this.isVisible = isVisible && childCount > 0
+        this.isVisible = isVisible && isNotEmpty()
     }
 
     private fun FrameLayout.setChildAndUpdateVisibility(child: View?) {

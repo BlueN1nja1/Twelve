@@ -15,6 +15,7 @@ import androidx.activity.BackEventCompat
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -98,7 +99,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                     offset += 1
                 }
 
-                navigationBarView.menu.getItem(position + offset).isChecked = true
+                navigationBarView.menu[position + offset].isChecked = true
             }
         }
     }
