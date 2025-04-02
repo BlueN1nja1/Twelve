@@ -24,11 +24,13 @@ import org.lineageos.twelve.models.ProviderType
 import org.lineageos.twelve.models.Result
 import org.lineageos.twelve.models.Result.Companion.getOrNull
 import org.lineageos.twelve.repositories.MediaRepository
+import org.lineageos.twelve.repositories.ProvidersRepository
 import org.lineageos.twelve.utils.PermissionsUtils
 
 class MediaRepositoryTree(
     private val context: Context,
     private val repository: MediaRepository,
+    private val providersRepository: ProvidersRepository,
 ) {
     /**
      * No permissions media item.
@@ -193,7 +195,7 @@ class MediaRepositoryTree(
             it.toMedia3MediaItem(context.resources)
         }
 
-        CHANGE_PROVIDER_MEDIA_ITEM_ID -> repository.allVisibleProviders.value.map {
+        CHANGE_PROVIDER_MEDIA_ITEM_ID -> providersRepository.allProviders.first().map {
             it.toMedia3MediaItem()
         }
 
@@ -337,7 +339,9 @@ class MediaRepositoryTree(
         val providerType = ProviderType.valueOf(type)
         val providerTypeId = typeId.toLong()
 
-        return repository.provider(ProviderIdentifier(providerType, providerTypeId)).first()
+        return providersRepository.provider(
+            ProviderIdentifier(providerType, providerTypeId)
+        ).first()
     }
 
     companion object {

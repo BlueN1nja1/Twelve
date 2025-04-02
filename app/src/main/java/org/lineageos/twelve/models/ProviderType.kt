@@ -29,9 +29,9 @@ enum class ProviderType(
     val canBeManaged: Boolean,
 ) {
     /**
-     * Local provider.
+     * MediaStore provider.
      */
-    LOCAL(
+    MEDIASTORE(
         R.string.provider_type_local,
         R.drawable.ic_smartphone,
         listOf(),

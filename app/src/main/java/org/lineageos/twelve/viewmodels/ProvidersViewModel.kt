@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.stateIn
 import org.lineageos.twelve.models.Provider
 
 open class ProvidersViewModel(application: Application) : TwelveViewModel(application) {
-    val providers = mediaRepository.allVisibleProviders
+    val providers = providersRepository.allProviders
 
     val navigationProvider = mediaRepository.navigationProvider
         .stateIn(

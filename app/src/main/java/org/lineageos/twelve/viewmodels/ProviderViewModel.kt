@@ -37,7 +37,7 @@ open class ProviderViewModel(application: Application) : TwelveViewModel(applica
     val provider = providerIdentifier
         .flatMapLatest {
             it?.let { providerIdentifier ->
-                mediaRepository.provider(providerIdentifier).mapLatest { maybeProvider ->
+                providersRepository.provider(providerIdentifier).mapLatest { maybeProvider ->
                     maybeProvider?.let { provider ->
                         FlowResult.Success<_, Error>(provider)
                     } ?: FlowResult.Error(Error.NOT_FOUND)
@@ -89,7 +89,7 @@ open class ProviderViewModel(application: Application) : TwelveViewModel(applica
         val providerIdentifier = providerIdentifier.value ?: return
 
         withContext(Dispatchers.IO) {
-            mediaRepository.deleteProvider(providerIdentifier)
+            providersRepository.deleteProvider(providerIdentifier)
         }
     }
 }

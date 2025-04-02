@@ -146,6 +146,7 @@ class SettingsActivity : AppCompatActivity(R.layout.activity_settings) {
     class RootSettingsFragment : SettingsFragment(R.xml.root_preferences) {
         // Preferences
         private val enableOffload by lazy { findPreference<SwitchPreference>(ENABLE_OFFLOAD_KEY)!! }
+        private val rescanMediaStore by lazy { findPreference<Preference>("rescan_media_store")!! }
         private val resetLocalStats by lazy { findPreference<Preference>("reset_local_stats")!! }
         private val skipSilence by lazy { findPreference<SwitchPreference>(SKIP_SILENCE_KEY)!! }
 
@@ -170,6 +171,11 @@ class SettingsActivity : AppCompatActivity(R.layout.activity_settings) {
                 showResetLocalStatsDialog()
                 true
             }
+
+            rescanMediaStore.setOnPreferenceClickListener {
+                showRescanMediaStoreDialog()
+                true
+            }
         }
 
         private fun showResetLocalStatsDialog() {
@@ -187,6 +193,24 @@ class SettingsActivity : AppCompatActivity(R.layout.activity_settings) {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
+                }
+                .setNegativeButton(android.R.string.cancel) { _, _ -> /* Do nothing */ }
+                .show()
+        }
+
+        private fun showRescanMediaStoreDialog() {
+            val context = requireActivity()
+            MaterialAlertDialogBuilder(context)
+                .setTitle(R.string.rescan_media_store_confirm_title)
+                .setMessage(R.string.rescan_media_store_confirm_message)
+                .setPositiveButton(R.string.rescan_media_store_confirm_positive) { _, _ ->
+                    viewModel.rescanMediaStore()
+
+                    Toast.makeText(
+                        context,
+                        R.string.rescan_media_store_started,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
                 .setNegativeButton(android.R.string.cancel) { _, _ -> /* Do nothing */ }
                 .show()

@@ -48,7 +48,7 @@ class ManageProviderViewModel(application: Application) : ProviderViewModel(appl
     private val providerArguments = providerIdentifier
         .filterNotNull()
         .flatMapLatest {
-            mediaRepository.providerArguments(it)
+            providersRepository.providerArguments(it)
         }
         .flowOn(Dispatchers.IO)
         .stateIn(
@@ -100,7 +100,7 @@ class ManageProviderViewModel(application: Application) : ProviderViewModel(appl
         providerType: ProviderType, name: String, arguments: Bundle
     ) {
         withContext(Dispatchers.IO) {
-            mediaRepository.addProvider(providerType, name, arguments)
+            providersRepository.addProvider(providerType, name, arguments)
         }
     }
 
@@ -111,7 +111,7 @@ class ManageProviderViewModel(application: Application) : ProviderViewModel(appl
         val providerIdentifier = providerIdentifier.value ?: return
 
         withContext(Dispatchers.IO) {
-            mediaRepository.updateProvider(providerIdentifier, name, arguments)
+            providersRepository.updateProvider(providerIdentifier, name, arguments)
         }
     }
 }
