@@ -42,6 +42,11 @@
             app:key="reset_local_stats"
             app:title="@string/reset_local_stats" />
 
+        <Preference
+            app:iconSpaceReserved="false"
+            app:key="rescan_media_store"
+            app:title="@string/rescan_media_store" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

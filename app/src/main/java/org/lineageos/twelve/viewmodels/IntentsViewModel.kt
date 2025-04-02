@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -19,13 +19,9 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import org.lineageos.twelve.MainActivity
 import org.lineageos.twelve.TwelveApplication
-import org.lineageos.twelve.ext.applicationContext
 import org.lineageos.twelve.ext.asArray
-import org.lineageos.twelve.ext.executeAsync
 import org.lineageos.twelve.models.MediaType
 import org.lineageos.twelve.utils.MimeUtils
 
@@ -77,9 +73,6 @@ class IntentsViewModel(application: Application) : AndroidViewModel(application)
     }
 
     private val mediaRepository = getApplication<TwelveApplication>().mediaRepository
-
-    private val okHttpClient = OkHttpClient.Builder()
-        .build()
 
     private val currentIntent = MutableStateFlow<Intent?>(null)
 
@@ -171,36 +164,8 @@ class IntentsViewModel(application: Application) : AndroidViewModel(application)
      * Get the media type of the URI if found.
      */
     private suspend fun uriToType(uri: Uri) = mediaRepository.mediaTypeOf(uri) ?: run {
-        Log.i(
-            LOG_TAG,
-            "Cannot get media type of $uri, trying manual fallback"
-        )
-
-        when (uri.scheme) {
-            "content", "file" -> applicationContext.contentResolver.getType(uri)?.let { type ->
-                MimeUtils.mimeTypeToMediaType(type)
-            }
-
-            "http", "https" -> runCatching {
-                okHttpClient.newCall(
-                    Request.Builder()
-                        .url(uri.toString())
-                        .head()
-                        .build()
-                ).executeAsync().use { response ->
-                    response.header("Content-Type")?.let { type ->
-                        MimeUtils.mimeTypeToMediaType(type)
-                    }
-                }
-            }.getOrNull()
-
-            "rtsp" -> MediaType.AUDIO // This is either audio-only or A/V, fine either way
-
-            else -> null
-        } ?: run {
-            Log.e(LOG_TAG, "Cannot get media type of $uri")
-            null
-        }
+        Log.e(LOG_TAG, "Cannot get media type of $uri")
+        null
     }
 
     companion object {

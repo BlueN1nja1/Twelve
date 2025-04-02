@@ -14,13 +14,20 @@ import com.google.android.material.color.DynamicColors
 import kotlinx.coroutines.MainScope
 import org.lineageos.twelve.database.TwelveDatabase
 import org.lineageos.twelve.repositories.MediaRepository
+import org.lineageos.twelve.repositories.ProvidersRepository
 import org.lineageos.twelve.repositories.ResumptionPlaylistRepository
 import org.lineageos.twelve.ui.coil.ThumbnailMapper
 
 @androidx.annotation.OptIn(UnstableApi::class)
 class TwelveApplication : Application(), SingletonImageLoader.Factory {
+    private val coroutineScope = MainScope()
     private val database by lazy { TwelveDatabase.get(applicationContext) }
-    val mediaRepository by lazy { MediaRepository(applicationContext, MainScope(), database) }
+    val providersRepository by lazy {
+        ProvidersRepository(applicationContext, coroutineScope, database)
+    }
+    val mediaRepository by lazy {
+        MediaRepository(applicationContext, coroutineScope, providersRepository, database)
+    }
     val resumptionPlaylistRepository by lazy { ResumptionPlaylistRepository(database) }
 
     override fun onCreate() {

@@ -73,7 +73,9 @@ val SharedPreferences.skipSilence: Boolean
 const val DEFAULT_PROVIDER_KEY = "default_provider"
 var SharedPreferences.defaultProvider: ProviderIdentifier?
     get() = getString(DEFAULT_PROVIDER_KEY, null)?.let {
-        Json.decodeFromString(it)
+        runCatching {
+            Json.decodeFromString<ProviderIdentifier>(it)
+        }.getOrNull()
     }
     set(value) = edit {
         putString(DEFAULT_PROVIDER_KEY, Json.encodeToString(value))

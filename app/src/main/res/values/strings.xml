@@ -134,6 +134,7 @@
     <string name="provider_argument_username">Username</string>
     <string name="provider_argument_password">Password</string>
     <string name="provider_argument_use_legacy_authentication">Use legacy authentication</string>
+    <string name="provider_argument_volume_name">Volume name</string>
 
     <!-- Provider arguments validation errors -->
     <string name="provider_argument_validation_error_required">A value is required</string>
@@ -181,6 +182,13 @@
     <string name="reset_local_stats_confirm_message">Are you sure you want to reset all local media playback statistics? This action cannot be undone.</string>
     <string name="reset_local_stats_confirm_positive">Reset</string>
     <string name="reset_local_stats_success">Local media playback statistics have been reset</string>
+
+    <!-- Rescan MediaStore -->
+    <string name="rescan_media_store">Trigger a MediaStore database rescan</string>
+    <string name="rescan_media_store_confirm_title">Rescan MediaStore database</string>
+    <string name="rescan_media_store_confirm_message">Would you like to trigger a MediaStore database rescan? This might fix missing local media items</string>
+    <string name="rescan_media_store_confirm_positive">Rescan</string>
+    <string name="rescan_media_store_started">MediaStore rescan started</string>
 
     <!-- Experimental preferences -->
     <string name="split_local_devices">Split local devices</string>
