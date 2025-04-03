@@ -1,4 +1,4 @@
-Improved Twelve
+Improved Twelve (LABTEST)
 ---------------------------------------------------------------------------
 ![](https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2_labtest-2.0.0_beta/resources/icon.png)
 
