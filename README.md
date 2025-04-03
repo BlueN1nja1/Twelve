@@ -2,7 +2,7 @@ Improved Twelve
 ---------------------------------------------------------------------------
 ![](https://github.com/BlueN1nja1/Improved-Twelve/blob/lineage-22.2_labtest-2.0.0_beta/resources/icon.png)
 
-**NOTICE: YOU ARE ON THE LABTEST BRANCH! ALL CODE IN THIS BRANCH IS EXTREMELY EXPERIMENTAL AND IS BEING CONSTANTLY WORKED ON! Thus, any bug reports related to 2.0.0 Beta #X will be turned down, rejected, burned, and finally shot into the sun. All jokes aside, most changes from this branch will eventually make it over to the main branch, and the same can eventually be said for the main repo, so please be patient. Once beta testing starts, bug reports related to the 2.0.0 Beta will then be accepted.**
+**NOTICE: YOU ARE ON THE LABTEST BRANCH! ALL CODE IN THIS BRANCH IS EXTREMELY EXPERIMENTAL AND IS BEING CONSTANTLY WORKED ON! Thus, any bug reports related to 2.0.0 Beta #X will be turned down, crumpled, burned, freeze-dried, and finally shot into the sun. All jokes aside, most changes from this branch will eventually make it over to the main branch, and the same can eventually be said for the main repo, so please be patient. Once beta testing starts, bug reports related to the 2.0.0 Beta will then be accepted.**
 
 To differentiate between stable / production builds, **all beta / labtest builds** will have a **green icon** instead of the usual pink. The app will also be renamed to **Labtest Music.** **Stable builds are unaffected by this.**
 
