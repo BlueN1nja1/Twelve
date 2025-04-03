@@ -48,7 +48,7 @@
     <string name="artist_appears_in_album_header">Aparece no álbum</string>
     <string name="artist_appears_in_playlist_header">Aparece na playlist</string>
     <string name="action_play">Reproduzir</string>
-    <string name="audio_play_next">Tocar em seguida</string>
+    <string name="audio_play_next">Reproduzir em seguida</string>
     <string name="audio_add_to_queue">Adicionar à fila</string>
     <string name="audio_remove_from_playlist">Remover da playlist</string>
     <string name="audio_add_or_remove_from_playlists">Adicionar ou remover das playlists</string>
@@ -149,15 +149,14 @@
     <string name="sort_by_release_date">Data de lançamento</string>
     <string name="sort_by_title">Título</string>
     <string name="sort_by_unknown">Desconhecido</string>
-    <string name="activity_last_played">Última reprodução</string>
     <string name="activity_most_played_albums">Álbuns mais tocados</string>
     <string name="activity_random_albums">Álbuns aleatórios</string>
     <string name="activity_random_artists">Artistas aleatórios</string>
     <string name="activity_random_genres">Gêneros aleatórios</string>
     <string name="activity_random_songs">Músicas aleatórias</string>
-    <string name="content_description_play_pause">Tocar/pausar</string>
+    <string name="content_description_play_pause">Reproduzir/pausar</string>
     <string name="content_description_thumbnail">Miniatura</string>
-    <string name="play_all">Tocar tudo</string>
+    <string name="play_all">Reproduzir tudo</string>
     <string name="shuffle_play">Reprodução aleatória</string>
     <string name="library_item_no_permissions">Sem permissões</string>
     <string name="library_item_no_permissions_description">O app não tem as permissões necessárias</string>
@@ -183,11 +182,17 @@
     <string name="jellyfin_product_name">Nome de produto</string>
     <string name="jellyfin_operating_system">Sistema operacional</string>
     <string name="playlist_name">Nome</string>
-    <string name="provider">Fornecedor</string>
+    <string name="provider">Provedor</string>
     <string name="create_playlist_error_empty_name">Nenhum nome especificado</string>
     <string name="shuffle_on">Aleatório ativado</string>
     <string name="shuffle_off">Aleatório desativado</string>
     <string name="repeat_all">Repetir tudo</string>
     <string name="repeat_one">Repetir uma</string>
     <string name="repeat_off">Repetição desativada</string>
+    <string name="lyrics">Letras</string>
+    <string name="lyrics_not_available">Letras indisponíveis</string>
+    <string name="follow_current_lyrics_line">Seguir linha atual</string>
+    <string name="favorites_playlist">Favoritos</string>
+    <string name="add_to_favorites">Adicionar aos favoritos</string>
+    <string name="remove_from_favorites">Remover dos favoritos</string>
 </resources>

@@ -149,7 +149,6 @@
     <string name="sort_by_release_date">Data de publicació</string>
     <string name="sort_by_title">Títol</string>
     <string name="sort_by_unknown">Desconegut</string>
-    <string name="activity_last_played">Última reproducció</string>
     <string name="activity_most_played_albums">Àlbums més reproduïts</string>
     <string name="activity_random_albums">Àlbums aleatoris</string>
     <string name="activity_random_artists">Artistes aleatoris</string>
@@ -193,4 +192,7 @@
     <string name="lyrics">Lletra</string>
     <string name="lyrics_not_available">Lletra no disponible</string>
     <string name="follow_current_lyrics_line">Segueix la línia actual</string>
+    <string name="favorites_playlist">Preferits</string>
+    <string name="add_to_favorites">Afegeix als preferits</string>
+    <string name="remove_from_favorites">Elimina dels preferits</string>
 </resources>

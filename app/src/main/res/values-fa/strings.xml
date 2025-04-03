@@ -149,7 +149,6 @@
     <string name="sort_by_release_date">تاریخ انتشار</string>
     <string name="sort_by_title">عنوان</string>
     <string name="sort_by_unknown">ناشناخته</string>
-    <string name="activity_last_played">آخرین پخش</string>
     <string name="activity_most_played_albums">بیشترین آلبوم های پخش شده</string>
     <string name="activity_random_albums">آلبوم های تصادفی</string>
     <string name="activity_random_artists">هنرمندان تصادفی</string>
@@ -193,4 +192,7 @@
     <string name="lyrics">متن ترانه</string>
     <string name="lyrics_not_available">متن ترانه در دسترس نیست</string>
     <string name="follow_current_lyrics_line">دنبال کردن خط فعلی</string>
+    <string name="favorites_playlist">علاقه‌مندی‌ها</string>
+    <string name="add_to_favorites">افزودن به علاقه‌مندی‌ها</string>
+    <string name="remove_from_favorites">حذف از علاقه مندی‌ها</string>
 </resources>

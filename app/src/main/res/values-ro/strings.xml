@@ -151,7 +151,6 @@
     <string name="sort_by_release_date">Data lansării</string>
     <string name="sort_by_title">Titlu</string>
     <string name="sort_by_unknown">Necunoscut</string>
-    <string name="activity_last_played">Redat ultima oară</string>
     <string name="activity_most_played_albums">Cele mai redate albume</string>
     <string name="activity_random_albums">Albume aleatoare</string>
     <string name="activity_random_artists">Artişti aleatorii</string>
@@ -195,4 +194,7 @@
     <string name="lyrics">Versuri</string>
     <string name="lyrics_not_available">Versurile nu sunt disponibile</string>
     <string name="follow_current_lyrics_line">Urmărește linia curentă</string>
+    <string name="favorites_playlist">Favorite</string>
+    <string name="add_to_favorites">Adăugați la favorite</string>
+    <string name="remove_from_favorites">Eliminați din favorite</string>
 </resources>

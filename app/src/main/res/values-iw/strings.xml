@@ -27,4 +27,7 @@
     <string name="playlist_name">שם</string>
     <string name="provider">ספק</string>
     <string name="create_playlist_error_empty_name">לא סופק שם</string>
+    <string name="favorites_playlist">מועדפים</string>
+    <string name="add_to_favorites">הוספה למועדפים</string>
+    <string name="remove_from_favorites">הסרה מהמועדפים</string>
 </resources>

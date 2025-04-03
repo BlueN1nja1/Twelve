@@ -147,7 +147,6 @@
     <string name="sort_by_release_date">Ngày phát hành</string>
     <string name="sort_by_title">Tiêu đề</string>
     <string name="sort_by_unknown">Không rõ</string>
-    <string name="activity_last_played">Đã phát lần cuối</string>
     <string name="activity_most_played_albums">Album được phát nhiều nhất</string>
     <string name="activity_random_albums">Album ngẫu nhiên</string>
     <string name="activity_random_artists">Nghệ sĩ ngẫu nhiên</string>
@@ -191,4 +190,7 @@
     <string name="lyrics">Lời bài hát</string>
     <string name="lyrics_not_available">Hiện chưa có lời bài hát</string>
     <string name="follow_current_lyrics_line">Theo dõi lời bài hát hiện tại</string>
+    <string name="favorites_playlist">Yêu thích</string>
+    <string name="add_to_favorites">Thêm vào mục yêu thích</string>
+    <string name="remove_from_favorites">Xóa khỏi mục yêu thích</string>
 </resources>

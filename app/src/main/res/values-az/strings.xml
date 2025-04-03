@@ -149,7 +149,6 @@
     <string name="sort_by_release_date">Buraxılış tarixi</string>
     <string name="sort_by_title">Başlıq</string>
     <string name="sort_by_unknown">Bilinmir</string>
-    <string name="activity_last_played">Son oxudulan</string>
     <string name="activity_most_played_albums">Ən çox oxudulan albomlar</string>
     <string name="activity_random_albums">Təsadüfi albomlar</string>
     <string name="activity_random_artists">Təsadüfi sənətçi</string>
@@ -193,4 +192,7 @@
     <string name="lyrics">Mahnı sözləri</string>
     <string name="lyrics_not_available">Sözlər mövcud deyil</string>
     <string name="follow_current_lyrics_line">Hazırkı sətri izlə</string>
+    <string name="favorites_playlist">Sevimlilər</string>
+    <string name="add_to_favorites">Sevimlilərə əlavə et</string>
+    <string name="remove_from_favorites">Sevimlilərdən sil</string>
 </resources>

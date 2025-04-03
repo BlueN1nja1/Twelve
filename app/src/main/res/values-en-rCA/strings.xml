@@ -149,7 +149,6 @@
     <string name="sort_by_release_date">Release date</string>
     <string name="sort_by_title">Title</string>
     <string name="sort_by_unknown">Unknown</string>
-    <string name="activity_last_played">Last played</string>
     <string name="activity_most_played_albums">Most played albums</string>
     <string name="activity_random_albums">Random albums</string>
     <string name="activity_random_artists">Random artists</string>
@@ -193,4 +192,7 @@
     <string name="lyrics">Lyrics</string>
     <string name="lyrics_not_available">Lyrics not available</string>
     <string name="follow_current_lyrics_line">Follow current line</string>
+    <string name="favorites_playlist">Favourites</string>
+    <string name="add_to_favorites">Add to favourites</string>
+    <string name="remove_from_favorites">Remove from Favourites</string>
 </resources>

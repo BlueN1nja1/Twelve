@@ -155,7 +155,6 @@
     <string name="sort_by_release_date">Dáta scaoilte</string>
     <string name="sort_by_title">Teideal</string>
     <string name="sort_by_unknown">Anaithnid</string>
-    <string name="activity_last_played">Seinnte seo caite</string>
     <string name="activity_most_played_albums">Albam is mó seinnte</string>
     <string name="activity_random_albums">Albam randamach</string>
     <string name="activity_random_artists">Ealaíontóirí randamacha</string>
@@ -199,4 +198,7 @@
     <string name="lyrics">Liricí</string>
     <string name="lyrics_not_available">Níl líricí ar fáil</string>
     <string name="follow_current_lyrics_line">Lean an líne reatha</string>
+    <string name="favorites_playlist">Ceanáin</string>
+    <string name="add_to_favorites">Cuir le ceanáin</string>
+    <string name="remove_from_favorites">Bain ó cheanáin</string>
 </resources>

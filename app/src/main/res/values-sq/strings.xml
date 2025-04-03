@@ -147,7 +147,6 @@
     <string name="sort_by_release_date">Data e lëshimit</string>
     <string name="sort_by_title">Titulli</string>
     <string name="sort_by_unknown">E panjohur</string>
-    <string name="activity_last_played">Luajtur herën fundit</string>
     <string name="activity_most_played_albums">Albumet më të luajtura</string>
     <string name="activity_random_albums">Albume të rastësishme</string>
     <string name="activity_random_artists">Artistë të rastësishëm</string>

@@ -147,7 +147,6 @@
     <string name="sort_by_release_date">Datum van verschijnen</string>
     <string name="sort_by_title">Titel</string>
     <string name="sort_by_unknown">Onbekend</string>
-    <string name="activity_last_played">Laatst afgespeeld</string>
     <string name="activity_most_played_albums">Meest afgespeelde albums</string>
     <string name="activity_random_albums">Willekeurige albums</string>
     <string name="activity_random_artists">Willekeurige artiesten</string>

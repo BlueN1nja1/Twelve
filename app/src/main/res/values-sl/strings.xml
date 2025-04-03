@@ -153,7 +153,6 @@
     <string name="sort_by_release_date">Datum izdaje</string>
     <string name="sort_by_title">Naslov</string>
     <string name="sort_by_unknown">Neznano</string>
-    <string name="activity_last_played">Zadnje predvajano</string>
     <string name="activity_most_played_albums">Največkrat predvajani albumi</string>
     <string name="activity_random_albums">Naključni albumi</string>
     <string name="activity_random_artists">Naključni izvajalci</string>
@@ -197,4 +196,7 @@
     <string name="lyrics">Besedilo</string>
     <string name="lyrics_not_available">Besedilo ni na voljo</string>
     <string name="follow_current_lyrics_line">Sledi trenutni vrstici</string>
+    <string name="favorites_playlist">Priljubljene</string>
+    <string name="add_to_favorites">Dodaj k priljubljenim</string>
+    <string name="remove_from_favorites">Odstrani iz priljubljenih</string>
 </resources>

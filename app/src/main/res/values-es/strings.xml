@@ -149,7 +149,6 @@
     <string name="sort_by_release_date">Fecha de lanzamiento</string>
     <string name="sort_by_title">Título</string>
     <string name="sort_by_unknown">Desconocido</string>
-    <string name="activity_last_played">Última reproducción</string>
     <string name="activity_most_played_albums">Álbumes más reproducidos</string>
     <string name="activity_random_albums">Álbumes aleatorios</string>
     <string name="activity_random_artists">Artistas aleatorios</string>
@@ -193,4 +192,7 @@
     <string name="lyrics">Letras</string>
     <string name="lyrics_not_available">Letras no disponibles</string>
     <string name="follow_current_lyrics_line">Seguir la línea actual</string>
+    <string name="favorites_playlist">Favoritos</string>
+    <string name="add_to_favorites">Añadir a favoritos</string>
+    <string name="remove_from_favorites">Quitar de favoritos</string>
 </resources>
