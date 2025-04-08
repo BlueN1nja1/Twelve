@@ -149,7 +149,6 @@
     <string name="sort_by_release_date">Kiadási dátum</string>
     <string name="sort_by_title">Cím</string>
     <string name="sort_by_unknown">Ismeretlen</string>
-    <string name="activity_last_played">Utoljára lejátszott</string>
     <string name="activity_most_played_albums">A legtöbbet játszott lemezek</string>
     <string name="activity_random_albums">Véletlenszerűen választott lemezek</string>
     <string name="activity_random_artists">Véletlenszerűen választott előadó</string>
@@ -193,4 +192,7 @@
     <string name="lyrics">Dalszöveg</string>
     <string name="lyrics_not_available">Nem található dalszöveg</string>
     <string name="follow_current_lyrics_line">Az aktuális sor követése</string>
+    <string name="favorites_playlist">Kedvencek</string>
+    <string name="add_to_favorites">Hozzáadás a Kedvencekhez</string>
+    <string name="remove_from_favorites">Eltávolítás a Kedvencekből</string>
 </resources>

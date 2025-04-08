@@ -8,6 +8,22 @@
     <string name="app_permissions_toast">Izin tidak diberikan oleh pengguna</string>
     <string name="request_status_error_type_not_found">Tidak ditemukan</string>
     <string name="main_fragment_section_activity">Aktivitas</string>
+    <string name="main_fragment_section_library">Pustaka</string>
+    <string name="library_fragment_menu_albums">Album</string>
+    <string name="library_fragment_menu_artists">Artis</string>
+    <string name="create_playlist_confirm">Buat</string>
+    <string name="no_activity">Tidak ada aktivitas</string>
+    <string name="no_albums">Tidakk ada album</string>
+    <string name="no_artists">Tidak ada artis</string>
+    <string name="no_audios">Tidak ada audio</string>
+    <string name="no_results">TIdak ada hasil</string>
+    <string name="album_unknown">Album tidak dikenal</string>
+    <string name="artist_unknown">Artis tidak dikenal</string>
+    <string name="audio_unknown">Audio tidak dikenal</string>
+    <plurals name="tracks_duration">
+        <item quantity="other">%d menit</item>
+    </plurals>
+    <string name="artist_albums_header">Album</string>
     <string name="save_provider_action">Simpan</string>
     <string name="delete_provider_action">Hapus</string>
     <string name="provider_name">Nama</string>

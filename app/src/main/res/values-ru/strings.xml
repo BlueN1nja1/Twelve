@@ -6,6 +6,7 @@
 <resources>
     <string name="app_name">Музыка</string>
     <string name="app_permissions_toast">Разрешения не предоставлены пользователем.</string>
+    <string name="visualizer_permissions_toast">Для визуализации требуется разрешение на запись звука.</string>
     <string name="request_status_error_type_unknown">Неизвестно</string>
     <string name="request_status_error_type_not_found">Не найдено</string>
     <string name="request_status_error_type_io">Ошибка ввода-вывода</string>
@@ -32,6 +33,7 @@
     <string name="no_results">Результатов нет</string>
     <string name="album_unknown">Неизвестный альбом</string>
     <string name="artist_unknown">Неизвестный исполнитель</string>
+    <string name="audio_unknown">Неизвестное аудио</string>
     <string name="genre_unknown">Неизвестный жанр</string>
     <string name="playlist_unknown">Неизвестный плейлист</string>
     <plurals name="tracks_count">
@@ -61,9 +63,13 @@
     <string name="rename_playlist_positive">Переименовать</string>
     <string name="delete_playlist">Удалить плейлист</string>
     <string name="delete_playlist_message">Вы уверены, что хотите удалить этот плейлист?</string>
+    <string name="audio_information">Информация об аудио</string>
     <string name="audio_effects">Аудиоэффекты</string>
     <string name="playback_speed">Скорость воспроизведения</string>
     <string name="playback_speed_format">%1$s×</string>
+    <string name="playback_pitch_slider_description">Тон воспроизведения</string>
+    <string name="playbacl_pitch_unlock">Разблокировать изменение тона</string>
+    <string name="playback_warning">Скорость и тон могут работать некорректно, если включена функция разгрузки воспроизведения. Попробуйте переключить ее в настройках приложения.</string>
     <string name="visualizer">Визуализатор</string>
     <string name="audio_source">Источник</string>
     <string name="audio_transcoding">Перекодирование</string>
@@ -96,6 +102,8 @@
     <string name="provider_argument_password">Пароль</string>
     <string name="provider_argument_use_legacy_authentication">Использовать устаревшую аутентификацию</string>
     <string name="provider_argument_validation_error_required">Требуется значение</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Должен быть действительный HTTP или HTTPS URL (например, http://192.168.1.100 или https://google.com).</string>
+    <string name="no_provider">Нет поставщика</string>
     <string name="providers">Поставщики</string>
     <string name="add_provider_action">Добавить</string>
     <string name="add_provider">Добавить провайдера</string>
@@ -112,12 +120,22 @@
     <string name="argument_validation_error_item">%1$s: %2$s</string>
     <string name="title_activity_settings">Настройки</string>
     <string name="general_header">Общие</string>
+    <string name="experimental_header">Экспериментальная функция</string>
     <string name="enable_offload">Включить разгрузку</string>
     <string name="enable_offload_summary">Для воспроизведения звука используйте разгрузку аудио. Отключение этого параметра может привести к увеличению энергопотребления, но может оказаться полезным, если у вас возникнут проблемы с воспроизведением звука или последующей обработкой</string>
+    <string name="enable_float_output">Включить 32-битный вывод с плавающей точкой</string>
+    <string name="enable_float_output_summary">Используйте 32-битный PCM-выход с плавающей точкой, если качество звука может от этого выиграть. В этом режиме перестанут работать такие аудиоэффекты, как регуляторы скорости и высоты тона. Переключение этой опции требует перезапуска приложения</string>
     <string name="stop_playback_on_task_removed">Остановить воспроизведение при удалении недавних приложений</string>
     <string name="stop_playback_on_task_removed_summary">Остановить воспроизведение при удалении приложения из недавних</string>
     <string name="skip_silence">Пропуск тишины</string>
     <string name="skip_silence_summary">Пропускать тишину при воспроизведении аудио</string>
+    <string name="reset_local_stats">Сброс статистики воспроизведения локальных медиафайлов</string>
+    <string name="reset_local_stats_confirm_title">Сброс локальной статистики</string>
+    <string name="reset_local_stats_confirm_message">Вы уверены, что хотите сбросить всю статистику воспроизведения локальных медиафайлов? Это действие нельзя отменить.</string>
+    <string name="reset_local_stats_confirm_positive">Сбросить</string>
+    <string name="reset_local_stats_success">Статистика воспроизведения локальных медиафайлов была сброшена</string>
+    <string name="split_local_devices">Разделить локальные устройства</string>
+    <string name="split_local_devices_summary">Если эта функция включена, внутреннее хранилище и внешние устройства (SD-карты, USB-устройства и т.д.) будут отображаться под разными поставщиками.</string>
     <string name="now_playing_widget_description">Сейчас играет</string>
     <string name="now_playing_widget_dummy_title">Название</string>
     <string name="now_playing_widget_dummy_artist">Исполнитель</string>
@@ -135,7 +153,6 @@
     <string name="sort_by_release_date">Дата релиза</string>
     <string name="sort_by_title">Заголовок</string>
     <string name="sort_by_unknown">Неизвестно</string>
-    <string name="activity_last_played">Последнее воспроизведенное</string>
     <string name="activity_most_played_albums">Самые популярные альбомы</string>
     <string name="activity_random_albums">Случайные альбомы</string>
     <string name="activity_random_artists">Случайные исполнители</string>
@@ -151,13 +168,16 @@
     <string name="library_item_artists">Исполнители</string>
     <string name="library_item_genres">Жанры</string>
     <string name="library_item_playlists">Плейлисты</string>
+    <string name="library_item_change_provider">Сменить поставщика</string>
     <string name="library_item_provider_changed">Поставщик изменен, вернуться в главное меню</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="unknown">Неизвестно</string>
     <string name="local_volume_name">Название тома</string>
+    <string name="subsonic_version">Версия Subsonic</string>
     <string name="subsonic_server_type">Тип сервера</string>
     <string name="subsonic_server_version">Версия сервера</string>
+    <string name="subsonic_supports_opensubsonic">Поддерживает расширения OpenSubsonic</string>
     <string name="subsonic_license">Лицензия</string>
     <string name="subsonic_license_valid">Действительна</string>
     <string name="subsonic_license_invalid">Недействительна</string>
@@ -165,4 +185,18 @@
     <string name="jellyfin_version">Версия</string>
     <string name="jellyfin_product_name">Название продукта</string>
     <string name="jellyfin_operating_system">Операционная система</string>
+    <string name="playlist_name">Название</string>
+    <string name="provider">Поставщик</string>
+    <string name="create_playlist_error_empty_name">Название не указано</string>
+    <string name="shuffle_on">Включить перемешивание</string>
+    <string name="shuffle_off">Отключить перемешивание</string>
+    <string name="repeat_all">Повтор всех</string>
+    <string name="repeat_one">Повтор трека</string>
+    <string name="repeat_off">Повтор выключен</string>
+    <string name="lyrics">Текст песни</string>
+    <string name="lyrics_not_available">Текст песни недоступен</string>
+    <string name="follow_current_lyrics_line">Следить за текущей строкой</string>
+    <string name="favorites_playlist">Избранное</string>
+    <string name="add_to_favorites">Добавить в избранное</string>
+    <string name="remove_from_favorites">Удалить из избранного</string>
 </resources>

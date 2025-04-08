@@ -149,7 +149,6 @@
     <string name="sort_by_release_date">Ημερομηνία κυκλοφορίας</string>
     <string name="sort_by_title">Τίτλος</string>
     <string name="sort_by_unknown">Άγνωστο</string>
-    <string name="activity_last_played">Τελευταία αναπαραγωγή</string>
     <string name="activity_most_played_albums">Τα περισσότερο παιγμένα άλμπουμ</string>
     <string name="activity_random_albums">Τυχαία άλμπουμ</string>
     <string name="activity_random_artists">Τυχαίοι καλλιτέχνες</string>

@@ -147,7 +147,6 @@
     <string name="sort_by_release_date">リリース年</string>
     <string name="sort_by_title">タイトル</string>
     <string name="sort_by_unknown">不明</string>
-    <string name="activity_last_played">前回の再生</string>
     <string name="activity_most_played_albums">最も再生されたアルバム</string>
     <string name="activity_random_albums">ランダム アルバム</string>
     <string name="activity_random_artists">ランダム アーティスト</string>
@@ -191,4 +190,7 @@
     <string name="lyrics">歌詞</string>
     <string name="lyrics_not_available">歌詞を利用できません</string>
     <string name="follow_current_lyrics_line">現在の行をたどる</string>
+    <string name="favorites_playlist">お気に入り</string>
+    <string name="add_to_favorites">お気に入りに追加</string>
+    <string name="remove_from_favorites">お気に入りから削除</string>
 </resources>

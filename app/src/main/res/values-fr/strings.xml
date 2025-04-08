@@ -84,4 +84,7 @@
     <string name="playlist_name">Nom</string>
     <string name="provider">Fournisseur</string>
     <string name="create_playlist_error_empty_name">Aucun nom spécifié</string>
+    <string name="favorites_playlist">Favoris</string>
+    <string name="add_to_favorites">Ajouter aux favoris</string>
+    <string name="remove_from_favorites">Supprimer des favoris</string>
 </resources>

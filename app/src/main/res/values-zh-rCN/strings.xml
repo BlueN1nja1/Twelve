@@ -147,7 +147,6 @@
     <string name="sort_by_release_date">发布日期</string>
     <string name="sort_by_title">标题</string>
     <string name="sort_by_unknown">未知</string>
-    <string name="activity_last_played">最后播放</string>
     <string name="activity_most_played_albums">最常播放的专辑</string>
     <string name="activity_random_albums">随机专辑</string>
     <string name="activity_random_artists">随机艺术家</string>
@@ -191,4 +190,7 @@
     <string name="lyrics">歌词</string>
     <string name="lyrics_not_available">暂无可用歌词</string>
     <string name="follow_current_lyrics_line">跟随当前行</string>
+    <string name="favorites_playlist">收藏夹</string>
+    <string name="add_to_favorites">添加到收藏夹</string>
+    <string name="remove_from_favorites">从收藏夹中删除</string>
 </resources>

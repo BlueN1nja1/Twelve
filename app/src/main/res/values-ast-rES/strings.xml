@@ -13,6 +13,8 @@
     <string name="library_fragment_menu_albums">Álbumes</string>
     <string name="library_fragment_menu_artists">Artistes</string>
     <string name="library_fragment_menu_genres">Xéneros</string>
+    <string name="library_fragment_menu_playlists">Llistes</string>
+    <string name="no_activity">Nun hai actividá</string>
     <string name="audio_effects">Efeutos d\'audiu</string>
     <string name="playback_speed">Velocidá de reproducción</string>
     <string name="visualizer">Visualizador</string>
@@ -21,8 +23,11 @@
     <string name="provider_argument_server">Sirvidor</string>
     <string name="provider_argument_password">Contraseña</string>
     <string name="providers">Fornidores</string>
+    <string name="provider_name">Nome</string>
     <string name="argument_validation_error_title">Error</string>
     <string name="title_activity_settings">Configuración</string>
+    <string name="general_header">Xeneral</string>
+    <string name="experimental_header">Esperimental</string>
     <string name="now_playing_widget_description">En reproducción</string>
     <string name="now_playing_widget_dummy_title">Títulu</string>
     <string name="now_playing_widget_dummy_artist">Artista</string>
@@ -31,6 +36,11 @@
     <string name="activity_random_albums">Álbumes aleatorios</string>
     <string name="activity_random_songs">Canciones aleatories</string>
     <string name="content_description_thumbnail">Miniatura</string>
+    <string name="yes">Sí</string>
+    <string name="no">Non</string>
     <string name="playlist_name">Nome</string>
     <string name="provider">Fornidor</string>
+    <string name="favorites_playlist">Favoritos</string>
+    <string name="add_to_favorites">Amestar a Favoritos</string>
+    <string name="remove_from_favorites">Quitar de Favoritos</string>
 </resources>

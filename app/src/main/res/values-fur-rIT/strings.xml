@@ -149,7 +149,6 @@
     <string name="sort_by_release_date">Date di publicazion</string>
     <string name="sort_by_title">Titul</string>
     <string name="sort_by_unknown">No cognossût</string>
-    <string name="activity_last_played">Ultime riproduzion</string>
     <string name="activity_most_played_albums">Albums plui scoltâs</string>
     <string name="activity_random_albums">Albums casuâi</string>
     <string name="activity_random_artists">Artiscj casuâi</string>
@@ -190,4 +189,10 @@
     <string name="repeat_all">Ripet dut</string>
     <string name="repeat_one">Ripet un</string>
     <string name="repeat_off">Ripetizion disativade</string>
+    <string name="lyrics">Peraulis</string>
+    <string name="lyrics_not_available">Peraulis no disponibilis</string>
+    <string name="follow_current_lyrics_line">Va daûr dal rie corinte</string>
+    <string name="favorites_playlist">Preferîts</string>
+    <string name="add_to_favorites">Zonte tai preferîts</string>
+    <string name="remove_from_favorites">Gjave dai preferîts</string>
 </resources>

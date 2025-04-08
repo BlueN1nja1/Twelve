@@ -141,7 +141,6 @@
     <string name="sort_by_release_date">Дата на издаване</string>
     <string name="sort_by_title">Заглавие</string>
     <string name="sort_by_unknown">Неизвестно</string>
-    <string name="activity_last_played">Последно слушани</string>
     <string name="activity_most_played_albums">Най-слушани албуми</string>
     <string name="activity_random_albums">Случайни албуми</string>
     <string name="activity_random_artists">Случайни изпълнители</string>
@@ -184,4 +183,7 @@
     <string name="lyrics">Текст на песен</string>
     <string name="lyrics_not_available">Текстът на песeнта липсва</string>
     <string name="follow_current_lyrics_line">Следвай текста на песента</string>
+    <string name="favorites_playlist">Любими</string>
+    <string name="add_to_favorites">Добави към Любими</string>
+    <string name="remove_from_favorites">Премахни от Любими</string>
 </resources>

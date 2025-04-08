@@ -149,7 +149,6 @@
     <string name="sort_by_release_date">Veröffentlichungsdatum</string>
     <string name="sort_by_title">Titel</string>
     <string name="sort_by_unknown">Unbekannt</string>
-    <string name="activity_last_played">Zuletzt gespielt</string>
     <string name="activity_most_played_albums">Meistgespielte Alben</string>
     <string name="activity_random_albums">Zufällige Alben</string>
     <string name="activity_random_artists">Zufällige Interpreten</string>
