@@ -95,6 +95,7 @@
     <string name="provider_argument_username">Tên người dùng</string>
     <string name="provider_argument_password">Mật khẩu</string>
     <string name="provider_argument_use_legacy_authentication">Sử dụng xác thực truyền thống</string>
+    <string name="provider_argument_volume_name">Tên ổ đĩa</string>
     <string name="provider_argument_validation_error_required">Cần phải có một giá trị</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Phải là URL HTTP hoặc HTTPS hợp lệ (ví dụ: http://192.168.1.100 hoặc https://google.com)</string>
     <string name="no_provider">Không có nhà cung cấp</string>
@@ -128,6 +129,11 @@
     <string name="reset_local_stats_confirm_message">Bạn có chắc chắn muốn đặt lại tất cả số liệu thống kê phát lại phương tiện cục bộ không? Hành động này không thể hoàn tác.</string>
     <string name="reset_local_stats_confirm_positive">Đặt lại</string>
     <string name="reset_local_stats_success">Thống kê phát lại phương tiện truyền thông cục bộ đã được đặt lại</string>
+    <string name="rescan_media_store">Kích hoạt quét lại cơ sở dữ liệu MediaStore</string>
+    <string name="rescan_media_store_confirm_title">Quét lại cơ sở dữ liệu MediaStore</string>
+    <string name="rescan_media_store_confirm_message">Bạn có muốn kích hoạt quét lại cơ sở dữ liệu MediaStore không? Điều này có thể sửa các mục phương tiện cục bộ bị thiếu</string>
+    <string name="rescan_media_store_confirm_positive">Quét lại</string>
+    <string name="rescan_media_store_started">Bắt đầu quét lại MediaStore</string>
     <string name="split_local_devices">Chia tách các thiết bị cục bộ</string>
     <string name="split_local_devices_summary">Nếu được bật, bộ nhớ trong và thiết bị ngoài (thẻ SD, thiết bị USB, v.v.) sẽ xuất hiện trong các nhà cung cấp khác nhau</string>
     <string name="now_playing_widget_description">Đang phát</string>

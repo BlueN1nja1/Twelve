@@ -99,6 +99,7 @@
     <string name="provider_argument_username">Nume de utilizator</string>
     <string name="provider_argument_password">Parolă</string>
     <string name="provider_argument_use_legacy_authentication">Folosește autentificarea legacy</string>
+    <string name="provider_argument_volume_name">Denumire volum</string>
     <string name="provider_argument_validation_error_required">Este necesară o valoare</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Trebuie să fie un URL valid HTTP sau HTTPS (de ex. http://192.168.1.100 sau https://google.com)</string>
     <string name="no_provider">Niciun furnizor</string>
@@ -132,6 +133,11 @@
     <string name="reset_local_stats_confirm_message">Sunteți sigur(ă) că vreți să resetați toate statisticile redării media locale? Această acțiune nu poate fi anulată.</string>
     <string name="reset_local_stats_confirm_positive">Resetare</string>
     <string name="reset_local_stats_success">Statisticile locale ale redării media au fost resetate</string>
+    <string name="rescan_media_store">Declanșează o rescanare a bazei de date MediaStore</string>
+    <string name="rescan_media_store_confirm_title">Rescanare bază de date MediaStore</string>
+    <string name="rescan_media_store_confirm_message">Doriţi să declanşaţi o rescanare a bazei de date MediaStore? Aceasta ar putea rezolva elementele media locale lipsă</string>
+    <string name="rescan_media_store_confirm_positive">Rescanare</string>
+    <string name="rescan_media_store_started">Rescanarea MediaStore a început</string>
     <string name="split_local_devices">Împarte dispozitivele locale</string>
     <string name="split_local_devices_summary">Dacă este activat, stocarea internă și dispozitivele externe (cardurile SD, dispozitivele USB etc.) vor apărea la diferiți furnizori</string>
     <string name="now_playing_widget_description">Se redă acum</string>

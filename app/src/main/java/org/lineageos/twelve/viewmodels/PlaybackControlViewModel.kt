@@ -18,7 +18,6 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 import org.lineageos.twelve.ext.playbackParametersFlow
-import org.lineageos.twelve.ext.withPitch
 
 class PlaybackControlViewModel(application: Application) : TwelveViewModel(application) {
     private val _pitchSliderVisible = MutableStateFlow(false)

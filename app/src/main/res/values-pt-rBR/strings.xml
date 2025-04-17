@@ -97,6 +97,7 @@
     <string name="provider_argument_username">Nome de usuário</string>
     <string name="provider_argument_password">Senha</string>
     <string name="provider_argument_use_legacy_authentication">Usar autenticação legada</string>
+    <string name="provider_argument_volume_name">Nome do volume</string>
     <string name="provider_argument_validation_error_required">É necessário um valor</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Deve ser uma URL HTTP ou HTTPS válida (por exemplo, http://192.168.1.100 ou https://google.com)</string>
     <string name="no_provider">Sem provedores</string>

@@ -103,6 +103,7 @@
     <string name="provider_argument_username">Ainm úsáideora</string>
     <string name="provider_argument_password">Pasfhocal</string>
     <string name="provider_argument_use_legacy_authentication">Bain úsáid as fíordheimhniú oidhreachta</string>
+    <string name="provider_argument_volume_name">Ainm toirte</string>
     <string name="provider_argument_validation_error_required">Tá luach ag teastáil</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Ní mór gur URL bailí HTTP nó HTTPS é (m.sh. http://192.168.1.100 nó https://google.com)</string>
     <string name="no_provider">Gan soláthraí</string>
@@ -136,6 +137,11 @@
     <string name="reset_local_stats_confirm_message">An bhfuil tú cinnte gur mian leat gach staidreamh athsheinm meán áitiúil a athshocrú? Ní féidir an gníomh seo a chealú.</string>
     <string name="reset_local_stats_confirm_positive">Athshocraigh</string>
     <string name="reset_local_stats_success">Athshocraigh staitisticí athsheinm na meán áitiúil</string>
+    <string name="rescan_media_store">Truicear athscagadh bunachar sonraí MediaStore</string>
+    <string name="rescan_media_store_confirm_title">Athscan bunachar sonraí MediaStore</string>
+    <string name="rescan_media_store_confirm_message">Ar mhaith leat athscagadh bunachar sonraí MediaStore a spreagadh? Seans go réiteodh sé seo míreanna meán áitiúla atá in easnamh</string>
+    <string name="rescan_media_store_confirm_positive">Athscanadh</string>
+    <string name="rescan_media_store_started">Cuireadh tús le hathscanadh MediaStore</string>
     <string name="split_local_devices">Scoilt gléasanna áitiúla</string>
     <string name="split_local_devices_summary">Má tá sé cumasaithe, beidh stóráil inmheánach agus feistí seachtracha (cártaí SD, feistí USB, etc.) le feiceáil faoi sholáthraithe éagsúla</string>
     <string name="now_playing_widget_description">Anois ag imirt</string>

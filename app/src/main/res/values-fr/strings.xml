@@ -11,6 +11,8 @@
     <string name="main_fragment_section_library">Bibliothèque</string>
     <string name="library_fragment_menu_albums">Albums</string>
     <string name="library_fragment_menu_artists">Artistes</string>
+    <string name="library_fragment_menu_playlists">Listes de lecture</string>
+    <string name="create_playlist">Créer une nouvelle liste de lecture</string>
     <string name="create_playlist_confirm">Créer</string>
     <string name="no_albums">Aucun album</string>
     <string name="no_artists">Aucun artiste</string>
@@ -28,6 +30,7 @@
         <item quantity="other">%d minutes</item>
     </plurals>
     <string name="artist_albums_header">Albums</string>
+    <string name="action_play">Jouer</string>
     <string name="audio_play_next">Lire le suivant</string>
     <string name="audio_add_to_queue">Ajouter à la file d\'attente</string>
     <string name="audio_remove_from_playlist">Supprimer de la liste de lecture</string>
@@ -38,6 +41,7 @@
     <string name="delete_playlist">Supprimer la liste de lecture</string>
     <string name="delete_playlist_message">Voulez-vous vraiment supprimer cette liste de lecture ?</string>
     <string name="playback_speed_format">%1$s×</string>
+    <string name="visualizer">Visualiseur</string>
     <string name="audio_source">Source</string>
     <string name="audio_output">Sortie</string>
     <string name="audio_file_type">Type de fichier</string>
@@ -73,17 +77,28 @@
     <string name="now_playing_widget_dummy_title">Titre</string>
     <string name="now_playing_widget_dummy_artist">Artiste</string>
     <string name="album_disc_header">Disque %1$d</string>
+    <string name="queue">File d\'attente</string>
     <string name="sort_by_artist_name">Nom de l\'artiste</string>
+    <string name="sort_by_name">Nom</string>
     <string name="sort_by_title">Titre</string>
     <string name="sort_by_unknown">Inconnu</string>
     <string name="activity_random_albums">Albums aléatoires</string>
     <string name="activity_random_artists">Artistes aléatoires</string>
     <string name="play_all">Tout lire</string>
     <string name="library_item_no_permissions_description">L\'application n\'a pas les autorisations nécessaires</string>
+    <string name="library_item_albums">Albums</string>
+    <string name="library_item_artists">Artistes</string>
+    <string name="library_item_playlists">Listes de lecture</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
     <string name="unknown">Inconnu</string>
+    <string name="jellyfin_server_name">Nom du serveur</string>
+    <string name="jellyfin_version">Version</string>
     <string name="playlist_name">Nom</string>
     <string name="provider">Fournisseur</string>
     <string name="create_playlist_error_empty_name">Aucun nom spécifié</string>
+    <string name="shuffle_on">Lecture aléatoire activée</string>
+    <string name="shuffle_off">Lecture aléatoire désactivée</string>
     <string name="favorites_playlist">Favoris</string>
     <string name="add_to_favorites">Ajouter aux favoris</string>
     <string name="remove_from_favorites">Supprimer des favoris</string>

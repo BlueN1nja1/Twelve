@@ -101,6 +101,7 @@
     <string name="provider_argument_username">Имя пользователя</string>
     <string name="provider_argument_password">Пароль</string>
     <string name="provider_argument_use_legacy_authentication">Использовать устаревшую аутентификацию</string>
+    <string name="provider_argument_volume_name">Название тома</string>
     <string name="provider_argument_validation_error_required">Требуется значение</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Должен быть действительный HTTP или HTTPS URL (например, http://192.168.1.100 или https://google.com).</string>
     <string name="no_provider">Нет поставщика</string>
@@ -134,6 +135,11 @@
     <string name="reset_local_stats_confirm_message">Вы уверены, что хотите сбросить всю статистику воспроизведения локальных медиафайлов? Это действие нельзя отменить.</string>
     <string name="reset_local_stats_confirm_positive">Сбросить</string>
     <string name="reset_local_stats_success">Статистика воспроизведения локальных медиафайлов была сброшена</string>
+    <string name="rescan_media_store">Триггер повторного сканирования базы данных MediaStore</string>
+    <string name="rescan_media_store_confirm_title">Пересканировать базу данных MediaStore</string>
+    <string name="rescan_media_store_confirm_message">Хотите пересканировать базу данных MediaStore? Это может исправить отсутствующие элементы локальных медиафайлов</string>
+    <string name="rescan_media_store_confirm_positive">Пересканировать</string>
+    <string name="rescan_media_store_started">Начато повторное сканирование MediaStore</string>
     <string name="split_local_devices">Разделить локальные устройства</string>
     <string name="split_local_devices_summary">Если эта функция включена, внутреннее хранилище и внешние устройства (SD-карты, USB-устройства и т.д.) будут отображаться под разными поставщиками.</string>
     <string name="now_playing_widget_description">Сейчас играет</string>

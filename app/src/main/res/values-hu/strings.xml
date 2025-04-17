@@ -97,6 +97,7 @@
     <string name="provider_argument_username">Felhasználónév</string>
     <string name="provider_argument_password">Jelszó</string>
     <string name="provider_argument_use_legacy_authentication">Örökölt hitelesítő használata</string>
+    <string name="provider_argument_volume_name">Kötetnév</string>
     <string name="provider_argument_validation_error_required">Érték megadása kötelező</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Érvényes HTTP vagy HTTPS URL-nek kell lennie (pl. http://197.109.28.100 vagy https://google.com)</string>
     <string name="no_provider">Nincs szolgáltató</string>
@@ -130,6 +131,11 @@
     <string name="reset_local_stats_confirm_message">Biztosan visszaállítja az összes helyi médialejátszási statisztikát?  Ez a művelet nem vonható vissza.</string>
     <string name="reset_local_stats_confirm_positive">Visszaállitás</string>
     <string name="reset_local_stats_success">A helyi médialejátszási statisztikák visszaállításra kerültek</string>
+    <string name="rescan_media_store">Elindítja a Médiatár-adatbázis újraellenőrzését</string>
+    <string name="rescan_media_store_confirm_title">Médiatár-adatbázis újraellenőrzés</string>
+    <string name="rescan_media_store_confirm_message">Szeretné elindítani a Médiatár-adatbázis újraellenőrzését?  Ez megoldhatja a helyi médiaelemek hiányát</string>
+    <string name="rescan_media_store_confirm_positive">Újraellenőrzés</string>
+    <string name="rescan_media_store_started">A Médiatár újraellenőrzése elindult</string>
     <string name="split_local_devices">Helyi eszközök szétosztása</string>
     <string name="split_local_devices_summary">Ha engedélyezett, a belső tárhely és a külső eszközök (SD-kártyák, USB-eszközök stb.) különböző szolgáltatók alatt jelennek meg</string>
     <string name="now_playing_widget_description">Most hallható</string>
