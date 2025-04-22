@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.os.Environment
 import android.os.storage.StorageManager
 import android.provider.MediaStore
+import android.provider.Settings
 import androidx.core.os.bundleOf
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.CoroutineScope
@@ -84,7 +85,10 @@ class ProvidersRepository(
                     Provider(
                         ProviderType.MEDIASTORE,
                         0L,
-                        Build.MODEL,
+                        Settings.Global.getString(
+                            context.contentResolver,
+                            Settings.Global.DEVICE_NAME
+                        ) ?: Build.MODEL,
                     ) to bundleOf(
                         MediaStoreDataSource.ARG_VOLUME_NAME.key to MediaStore.VOLUME_EXTERNAL,
                     )
