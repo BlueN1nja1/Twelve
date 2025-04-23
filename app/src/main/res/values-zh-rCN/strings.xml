@@ -95,6 +95,7 @@
     <string name="provider_argument_username">用户名</string>
     <string name="provider_argument_password">密码</string>
     <string name="provider_argument_use_legacy_authentication">使用旧认证</string>
+    <string name="provider_argument_volume_name">卷名称</string>
     <string name="provider_argument_validation_error_required">需要一个值</string>
     <string name="provider_argument_validation_error_malformed_http_uri">必须是有效的 HTTP 或 HTTPS 地址（如 http://192.168.1.100 或 https://google.com）</string>
     <string name="no_provider">无服务商</string>
@@ -128,6 +129,11 @@
     <string name="reset_local_stats_confirm_message">您确定要重置所有本地媒体播放统计？此操作无法撤消。</string>
     <string name="reset_local_stats_confirm_positive">重置</string>
     <string name="reset_local_stats_success">本地媒体播放统计已被重置</string>
+    <string name="rescan_media_store">触发MediaStore数据库重新扫描</string>
+    <string name="rescan_media_store_confirm_title">重新扫描MediaStore数据库</string>
+    <string name="rescan_media_store_confirm_message">您是否要触发MediaStore数据库重新扫描？这可能会修复丢失的本地媒体文件</string>
+    <string name="rescan_media_store_confirm_positive">重新扫描</string>
+    <string name="rescan_media_store_started">已开始MediaStore重新扫描</string>
     <string name="split_local_devices">拆分本地设备</string>
     <string name="split_local_devices_summary">如果启用此功能，内部存储和外部存储（例如SD卡、USB设备等）将会出现在不同的服务商下</string>
     <string name="now_playing_widget_description">正在播放</string>

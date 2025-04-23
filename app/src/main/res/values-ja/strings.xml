@@ -95,6 +95,7 @@
     <string name="provider_argument_username">ユーザー名</string>
     <string name="provider_argument_password">パスワード</string>
     <string name="provider_argument_use_legacy_authentication">レガシー認証を使用する</string>
+    <string name="provider_argument_volume_name">ボリューム名</string>
     <string name="provider_argument_validation_error_required">この項目は必須です</string>
     <string name="provider_argument_validation_error_malformed_http_uri">有効な HTTP または HTTPS URL (例： http://192.168.1.100 や https://google.com) である必要があります</string>
     <string name="no_provider">プロバイダがありません</string>
@@ -128,6 +129,11 @@
     <string name="reset_local_stats_confirm_message">すべてのローカルメディア再生統計をリセットしてもよろしいですか？この操作は元に戻せません。</string>
     <string name="reset_local_stats_confirm_positive">リセット</string>
     <string name="reset_local_stats_success">ローカルメディアの再生統計をリセットしました</string>
+    <string name="rescan_media_store">MediaStore データベースの再スキャンを実行する</string>
+    <string name="rescan_media_store_confirm_title">MediaStore データベースを再スキャン</string>
+    <string name="rescan_media_store_confirm_message">MediaStore データベースの再スキャンを実行しますか? 不足しているローカルメディアアイテムを修正できる可能性があります</string>
+    <string name="rescan_media_store_confirm_positive">再スキャン</string>
+    <string name="rescan_media_store_started">MediaStore 再スキャンを開始しました</string>
     <string name="split_local_devices">ローカルデバイスを分割</string>
     <string name="split_local_devices_summary">有効にすると、内部ストレージと外部デバイス (SD カード、USB デバイスなど) が異なるプロバイダの下に表示されます</string>
     <string name="now_playing_widget_description">再生中の楽曲</string>

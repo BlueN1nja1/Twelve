@@ -101,6 +101,7 @@
     <string name="provider_argument_username">Nazwa użytkownika</string>
     <string name="provider_argument_password">Hasło</string>
     <string name="provider_argument_use_legacy_authentication">Uwierzytelnianie starszego typu</string>
+    <string name="provider_argument_volume_name">Nazwa wolumenu</string>
     <string name="provider_argument_validation_error_required">Wymagana jest wartość</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Musi być prawidłowym adresem HTTP lub HTTPS (np. http://192.168.1.100 lub https://google.com)</string>
     <string name="no_provider">Brak dostawcy</string>
@@ -134,6 +135,11 @@
     <string name="reset_local_stats_confirm_message">Czy na pewno chcesz zresetować wszystkie lokalne statystyki odtwarzania? Tego działania nie można cofnąć.</string>
     <string name="reset_local_stats_confirm_positive">Zresetuj</string>
     <string name="reset_local_stats_success">Statystyki odtwarzania lokalnych multimediów zostały zresetowane</string>
+    <string name="rescan_media_store">Uruchom ponowne skanowanie bazy danych MediaStore</string>
+    <string name="rescan_media_store_confirm_title">Przeskanuj ponownie bazę danych MediaStore</string>
+    <string name="rescan_media_store_confirm_message">Czy chcesz ponownie uruchomić skanowanie bazy danych MediaStore? Może to naprawić brakujące elementy mediów lokalnych</string>
+    <string name="rescan_media_store_confirm_positive">Przeskanuj ponownie</string>
+    <string name="rescan_media_store_started">Rozpoczęto ponowne skanowanie MediaStore</string>
     <string name="split_local_devices">Rozdziel lokalne urządzenia</string>
     <string name="split_local_devices_summary">Jeśli ta opcja jest włączona, pamięć wewnętrzna i urządzenia zewnętrzne (karty SD, urządzenia USB itp.) będą wyświetlane pod różnymi dostawcami</string>
     <string name="now_playing_widget_description">Teraz odtwarzane</string>

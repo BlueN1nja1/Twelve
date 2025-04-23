@@ -101,6 +101,7 @@
     <string name="provider_argument_username">Uporabniško ime</string>
     <string name="provider_argument_password">Geslo</string>
     <string name="provider_argument_use_legacy_authentication">Uporabi stari sistem preverjena pristnosti</string>
+    <string name="provider_argument_volume_name">Ime glasnosti</string>
     <string name="provider_argument_validation_error_required">Vrednost je zahtevana</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Mora biti veljaven HTTP ali HTTPS URL (npr. http://192.168.1.100 ali https://google.com)</string>
     <string name="no_provider">Ni ponudnika</string>
@@ -134,6 +135,11 @@
     <string name="reset_local_stats_confirm_message">Ali ste prepričani, da želite ponastaviti predvajalne statistike lokalnih predstavnosti? Tega dejanja ni mogoče razveljaviti.</string>
     <string name="reset_local_stats_confirm_positive">Ponastavi</string>
     <string name="reset_local_stats_success">Predvajalne statistike lokalnih predstavnosti so bile ponastavljene</string>
+    <string name="rescan_media_store">Sproži ponovno preiskovanje MediaStore podatkovne zbirke</string>
+    <string name="rescan_media_store_confirm_title">Ponovno preišči MediaStore podatkovno zbirko</string>
+    <string name="rescan_media_store_confirm_message">Želite sprožiti ponovno preiskovanje MediaStore podatkovne zbirke? To bo morda popravilo manjkajoče lokalne predstavnostne predmete</string>
+    <string name="rescan_media_store_confirm_positive">Ponovno preišči</string>
+    <string name="rescan_media_store_started">Ponovno preiskovanje MediaStore začeto</string>
     <string name="split_local_devices">Razdeli lokalne naprave</string>
     <string name="split_local_devices_summary">Če je omogočeno, se bodo notranji pomnilnik in zunanje naprave (kartica SD, naprave USB, itd.) prikazali pod različnimi ponudniki.</string>
     <string name="now_playing_widget_description">Predvaja se</string>

@@ -97,6 +97,7 @@
     <string name="provider_argument_username">İstifadəçi adı</string>
     <string name="provider_argument_password">Parol</string>
     <string name="provider_argument_use_legacy_authentication">Köhnə kimlik doğrulamanı istifadə et</string>
+    <string name="provider_argument_volume_name">Həcm adı</string>
     <string name="provider_argument_validation_error_required">Bir dəyər tələb olunur</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Yararlı bir HTTP və ya HTTPS URL olmalıdır (məsələn, http://192.168.1.100 və ya https://google.com)</string>
     <string name="no_provider">Provayder yoxdur</string>
@@ -130,6 +131,11 @@
     <string name="reset_local_stats_confirm_message">Bütün lokal media oxutma statistikalarını sıfırlamaq istədiyinizə əminsiniz? Bu əməliyyatın geri dönüşü yoxdur.</string>
     <string name="reset_local_stats_confirm_positive">Sıfırla</string>
     <string name="reset_local_stats_success">Lokal media oxutma statistikaları sıfırlandı</string>
+    <string name="rescan_media_store">MediaStore databaza təkrar skanını tətiklə</string>
+    <string name="rescan_media_store_confirm_title">MediaStore databazasını təkrar skan et</string>
+    <string name="rescan_media_store_confirm_message">MediaStore databazasının təkrar skanını tətikləmək istəyirsiniz? Bu, əskik daxili media elementlərini düzəldə bilər</string>
+    <string name="rescan_media_store_confirm_positive">Təkrar skan et</string>
+    <string name="rescan_media_store_started">MediaStore təkrar skanı başladıldı</string>
     <string name="split_local_devices">Daxili cihazları ayır</string>
     <string name="split_local_devices_summary">Fəal olduqda, daxili anbar və xarici cihazlar (SD kart, USB cihazları və s.) fərqli provayderlər altında görünəcək</string>
     <string name="now_playing_widget_description">İndi oxudulur</string>

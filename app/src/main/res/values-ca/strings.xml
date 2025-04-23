@@ -97,6 +97,7 @@
     <string name="provider_argument_username">Nom d\'usuari</string>
     <string name="provider_argument_password">Contrasenya</string>
     <string name="provider_argument_use_legacy_authentication">Fes servir l\'autenticació heretada</string>
+    <string name="provider_argument_volume_name">Nom del volum</string>
     <string name="provider_argument_validation_error_required">Cal un valor</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Cal que sigui una URL HTTP o HTTPS vàlida (p. ex., http://192.168.1.100 o https://google.com)</string>
     <string name="no_provider">Sense proveïdors</string>
@@ -130,6 +131,11 @@
     <string name="reset_local_stats_confirm_message">Esteu segur que voleu restablir totes les estadístiques de reproducció de mitjans locals? Aquesta acció no es pot desfer.</string>
     <string name="reset_local_stats_confirm_positive">Reestableix</string>
     <string name="reset_local_stats_success">S\'han restablert les estadístiques de reproducció de mitjans locals</string>
+    <string name="rescan_media_store">Activa un nou escaneig de la base de dades del MediaStore</string>
+    <string name="rescan_media_store_confirm_title">Torna a escanejar la base de dades del MediaStore</string>
+    <string name="rescan_media_store_confirm_message">Voleu activar un nou escaneig de la base de dades del MediaStore? Això podria solucionar els elements multimèdia locals que falten</string>
+    <string name="rescan_media_store_confirm_positive">Torna a escanejar</string>
+    <string name="rescan_media_store_started">S\'ha iniciat un nou escaneig del MediaStore</string>
     <string name="split_local_devices">Divideix els dispositius locals</string>
     <string name="split_local_devices_summary">En activar-se, l\'emmagatzematge intern i els dispositius externs (targetes SD, dispositius USB, etc.) apareixeran amb diferents proveïdors.</string>
     <string name="now_playing_widget_description">Reproducció en curs</string>

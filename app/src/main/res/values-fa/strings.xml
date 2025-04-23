@@ -97,6 +97,7 @@
     <string name="provider_argument_username">نام‌کاربری</string>
     <string name="provider_argument_password">گذرواژه</string>
     <string name="provider_argument_use_legacy_authentication">استفاده از احراز هویت قدیمی</string>
+    <string name="provider_argument_volume_name">اسم صدا</string>
     <string name="provider_argument_validation_error_required">یک مقدار مورد نیاز است</string>
     <string name="provider_argument_validation_error_malformed_http_uri">باید یک نشانی وب معتبر HTTP یا HTTPS باشد (به عنوان مثال http://192.168.1.100 یا https://google.com)</string>
     <string name="no_provider">بدون ارائه دهنده</string>
@@ -130,6 +131,11 @@
     <string name="reset_local_stats_confirm_message">آیا مطمئن هستید که می‌خواهید تمام آمار پخش رسانه محلی را بازنشانی کنید؟ این عمل قابل لغو نیست.</string>
     <string name="reset_local_stats_confirm_positive">بازنشانی</string>
     <string name="reset_local_stats_success">آمار پخش رسانه محلی بازنشانی شد</string>
+    <string name="rescan_media_store">راه‌اندازی مجدد اسکن پایگاه‌داده ذخیره‌رسانه</string>
+    <string name="rescan_media_store_confirm_title">اسکن مجدد پایگاه‌داده ذخیره‌رسانه</string>
+    <string name="rescan_media_store_confirm_message">آیا مایلید یک اسکن مجدد پایگاه داده ذخیره‌رسانه را اجرا کنید؟ ممکن است موارد رسانه‌ای محلی از دست‌رفته را اصلاح کند.</string>
+    <string name="rescan_media_store_confirm_positive">اسکن دوباره</string>
+    <string name="rescan_media_store_started">اسکن مجدد ذخیره‌رسانه شروع شد</string>
     <string name="split_local_devices">تقسیم دستگاه های محلی</string>
     <string name="split_local_devices_summary">در صورت فعال بودن، حافظه داخلی و دستگاه های خارجی (کارت های SD، دستگاه های USB و غیره) در ارائه دهندگان مختلف ظاهر می شوند</string>
     <string name="now_playing_widget_description">درحال پخش</string>

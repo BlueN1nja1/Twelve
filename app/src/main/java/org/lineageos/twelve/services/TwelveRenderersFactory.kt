@@ -52,6 +52,7 @@ class TwelveRenderersFactory(
 
         ),
         MetadataRenderer(metadataRendererOutput, eventHandler.looper),
+        MetadataRenderer(metadataRendererOutput, eventHandler.looper),
         TextRenderer(textRendererOutput, eventHandler.looper),
     )
 }

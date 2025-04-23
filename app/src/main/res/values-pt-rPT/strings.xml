@@ -97,6 +97,7 @@
     <string name="provider_argument_username">Nome de utilizador</string>
     <string name="provider_argument_password">Palavra-passe</string>
     <string name="provider_argument_use_legacy_authentication">Utilizar autenticação legada</string>
+    <string name="provider_argument_volume_name">Nome do volume</string>
     <string name="provider_argument_validation_error_required">É necessário um valor</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Tem ser um URL HTTP ou HTTPS válido (ex: http://192.168.1.100 ou https://google.com)</string>
     <string name="no_provider">Nenhum fornecedor</string>
@@ -130,6 +131,11 @@
     <string name="reset_local_stats_confirm_message">Tem a certeza que quer repor todas as estatísticas de reprodução de multimédia local? Esta ação não poderá ser desfeita.</string>
     <string name="reset_local_stats_confirm_positive">Repor</string>
     <string name="reset_local_stats_success">As estatísticas de reprodução de multimédia local foram repostas</string>
+    <string name="rescan_media_store">Iniciar a reanálise da base de dados da MediaStore</string>
+    <string name="rescan_media_store_confirm_title">Reanalisar base de dados da MediaStore</string>
+    <string name="rescan_media_store_confirm_message">Gostaria de iniciar a reanálise da base de dados da MediaStore? Isso pode corrigir a falta de itens de multimédia local</string>
+    <string name="rescan_media_store_confirm_positive">Reanalisar</string>
+    <string name="rescan_media_store_started">Reanálise da MediaStore inciada</string>
     <string name="split_local_devices">Dividir dispositivos locais</string>
     <string name="split_local_devices_summary">Se ativado, o armazenamento interno e dispositivos externos (cartões SD, dispositivos USB, etc.) aparecerão sob diferentes fornecedores</string>
     <string name="now_playing_widget_description">A reproduzir</string>

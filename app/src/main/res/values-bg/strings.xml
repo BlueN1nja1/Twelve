@@ -33,7 +33,9 @@
     <string name="no_results">Няма резултати</string>
     <string name="album_unknown">Неизвестен албум</string>
     <string name="artist_unknown">Неизвестен изпълнител</string>
+    <string name="audio_unknown">Неизвестно аудио</string>
     <string name="genre_unknown">Неизвестен жанр</string>
+    <string name="playlist_unknown">Неизвестен плейлист</string>
     <plurals name="tracks_count">
         <item quantity="one">%d песен</item>
         <item quantity="other">%d песни</item>
@@ -122,6 +124,11 @@
     <string name="stop_playback_on_task_removed_summary">Спри възпроизвеждането когато приложението се премахне от скорошни</string>
     <string name="skip_silence">Пропусни тишината</string>
     <string name="skip_silence_summary">Пропусни тишината при звуковъзпроизвеждане</string>
+    <string name="rescan_media_store">Активиране на повторно сканиране на базата данни на MediaStore </string>
+    <string name="rescan_media_store_confirm_title">Повторно сканиране на базата данни на MediaStore </string>
+    <string name="rescan_media_store_confirm_message">Бихте ли искали да активирате повторно сканиране на базата данни на MediaStore? Това може да оправи липсващи локални медия файлове</string>
+    <string name="rescan_media_store_confirm_positive">Сканирай отново</string>
+    <string name="rescan_media_store_started">Започва сканиране на MediaStore</string>
     <string name="split_local_devices">Раздели локалните устройства</string>
     <string name="split_local_devices_summary">Ако е включено, вътрешната памет и външни устройства(SD карти, USB устройства, т.н.)  ще се показват под различни оператори</string>
     <string name="now_playing_widget_description">Сега звучи</string>
@@ -177,6 +184,7 @@
     <string name="provider">Доставчик</string>
     <string name="create_playlist_error_empty_name">Няма дефинирано име</string>
     <string name="shuffle_on">Разбъркване вкл.</string>
+    <string name="shuffle_off">Разбъркване изкл.</string>
     <string name="repeat_all">Повтаряй всички</string>
     <string name="repeat_one">Повтаряй една</string>
     <string name="repeat_off">Повтарянето изкл.</string>

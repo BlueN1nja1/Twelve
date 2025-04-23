@@ -97,6 +97,7 @@
     <string name="provider_argument_username">Nome utente</string>
     <string name="provider_argument_password">Password</string>
     <string name="provider_argument_use_legacy_authentication">Usa autenticazione obsoleta</string>
+    <string name="provider_argument_volume_name">Nome del volume</string>
     <string name="provider_argument_validation_error_required">È richiesto un valore</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Deve essere un URL HTTP o HTTPS valido (ad es. http://192.168.1.100 o https://google.com)</string>
     <string name="no_provider">Nessun provider</string>
@@ -130,6 +131,11 @@
     <string name="reset_local_stats_confirm_message">Sei sicuro di voler cacnellare tutte le statistiche della riproduzione multimediale locale? Questa azione è irreversibile.</string>
     <string name="reset_local_stats_confirm_positive">Cancella</string>
     <string name="reset_local_stats_success">Le statistiche della riproduzione multimediale locale sono state cancellate</string>
+    <string name="rescan_media_store">Esegui nuovamente una scansione del database MediaStore</string>
+    <string name="rescan_media_store_confirm_title">Scansiona di nuovo il database MediaStore</string>
+    <string name="rescan_media_store_confirm_message">Vuoi eseguire nuovamente una scansione del database MediaStore? Ciò potrebbe trovare i file multimediali locali mancanti</string>
+    <string name="rescan_media_store_confirm_positive">Scansiona di nuovo</string>
+    <string name="rescan_media_store_started">Scansione di MediaStore avviata</string>
     <string name="split_local_devices">Dividi dispositivi locali</string>
     <string name="split_local_devices_summary">Se abilitato, la memoria interna e i dispositivi di archiviazione esterni (schede SD, dispositivi USB, ecc.) appariranno sotto diversi provider</string>
     <string name="now_playing_widget_description">In riproduzione</string>
