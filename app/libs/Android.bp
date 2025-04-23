@@ -398,16 +398,3 @@ java_import {
         "kotlin-stdlib",
     ],
 }
-
-java_import {
-    name: "Twelve_org.jspecify_jspecify",
-    jars: ["org/jspecify/jspecify/1.0.0/jspecify-1.0.0.jar"],
-    sdk_version: "35",
-    min_sdk_version: "30",
-    apex_available: [
-        "//apex_available:platform",
-        "//apex_available:anyapex",
-    ],
-    static_libs: [
-    ],
-}
