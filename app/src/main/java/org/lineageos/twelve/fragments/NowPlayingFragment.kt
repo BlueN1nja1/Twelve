@@ -7,6 +7,7 @@ package org.lineageos.twelve.fragments
 
 import android.animation.ValueAnimator
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.PixelFormat
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.icu.text.DecimalFormat
@@ -63,9 +64,10 @@ import kotlin.reflect.safeCast
 /**
  * Now playing fragment.
  */
-class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
+class NowPlayingFragment : Fragment(R.layout.fragment_now_playing), SharedPreferences.OnSharedPreferenceChangeListener {
     // View models
     private val viewModel by viewModels<NowPlayingViewModel>()
+    private lateinit var sharedPreferences: SharedPreferences
 
     // Views
     private val albumArtConstraintLayout by getViewProperty<ConstraintLayout?>(R.id.albumArtConstraintLayout)
@@ -286,6 +288,12 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.isPlaying.collectLatest { isPlaying ->
+                        playPauseMaterialButton.setCornerRadiusResource(
+                            when (isPlaying) {
+                                true -> R.dimen.PlayingCornerRadius
+                                false -> R.dimen.PausedCornerRadius
+                            }
+                        )
                         playPauseMaterialButton.setIconResource(
                             when (isPlaying) {
                                 true -> R.drawable.avd_play_to_pause
@@ -611,6 +619,21 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
         visualizerManager.release()
 
         super.onDestroy()
+    }
+
+   override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        if (key == "enable_offload") {
+            updateSpeedButtonVisibility()
+        }
+    }
+
+    private fun updateSpeedButtonVisibility() {
+        val enableOffload = sharedPreferences.getBoolean("enable_offload", false)
+        if (enableOffload) {
+            playbackSpeedMaterialButton.visibility = MaterialButton.GONE
+        } else {
+            playbackSpeedMaterialButton.visibility = MaterialButton.VISIBLE
+        }
     }
 
     companion object {
