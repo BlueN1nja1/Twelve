@@ -5,7 +5,9 @@
 -->
 <resources>
     <string name="app_name">Música</string>
+    <string name="app_permissions_toast">L\'usuariu nun concedió los permisos.</string>
     <string name="visualizer_permissions_toast">El permisu pa grabar audiu ye obligatoriu pal visualizador.</string>
+    <string name="request_status_error_type_invalid_credentials">Les credenciales son inválides</string>
     <string name="main_fragment_section_activity">Actividá</string>
     <string name="main_fragment_section_search">Busca</string>
     <string name="main_fragment_section_library">Biblioteca</string>
@@ -20,11 +22,14 @@
     <string name="visualizer">Visualizador</string>
     <string name="audio_sample_rate_format">%1$s kHz</string>
     <string name="audio_encoding">Codificación</string>
+    <string name="audio_bitrate_format">%1$s kbps</string>
     <string name="provider_argument_server">Sirvidor</string>
     <string name="provider_argument_password">Contraseña</string>
     <string name="providers">Fornidores</string>
+    <string name="delete_provider_confirmation">¿De xuru que quies desaniciar esti fornidor?</string>
     <string name="provider_name">Nome</string>
     <string name="argument_validation_error_title">Error</string>
+    <string name="argument_validation_error_message">Prodúxose un error mentanto s\'analizaben los argumentos siguientes:\n%1$s</string>
     <string name="title_activity_settings">Configuración</string>
     <string name="general_header">Xeneral</string>
     <string name="experimental_header">Esperimental</string>
@@ -36,10 +41,19 @@
     <string name="activity_random_albums">Álbumes aleatorios</string>
     <string name="activity_random_songs">Canciones aleatories</string>
     <string name="content_description_thumbnail">Miniatura</string>
+    <string name="library_item_no_permissions_description">L\'aplicación nun tien los permisos necesarios</string>
+    <string name="library_item_albums">Álbumes</string>
+    <string name="library_item_artists">Artistes</string>
+    <string name="library_item_genres">Xéneros</string>
+    <string name="library_item_playlists">Llistes</string>
     <string name="yes">Sí</string>
     <string name="no">Non</string>
     <string name="playlist_name">Nome</string>
     <string name="provider">Fornidor</string>
+    <string name="repeat_all">Repitir too</string>
+    <string name="repeat_one">Repitir una vegada</string>
+    <string name="repeat_off">Nun repitir</string>
+    <string name="lyrics_not_available">La lletra nun ta disponible</string>
     <string name="favorites_playlist">Favoritos</string>
     <string name="add_to_favorites">Amestar a Favoritos</string>
     <string name="remove_from_favorites">Quitar de Favoritos</string>

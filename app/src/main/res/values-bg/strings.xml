@@ -97,7 +97,9 @@
     <string name="provider_argument_username">Потребителско име</string>
     <string name="provider_argument_password">Парола</string>
     <string name="provider_argument_use_legacy_authentication">Използване на остаряло удостоверяване</string>
+    <string name="provider_argument_volume_name">Име на тома</string>
     <string name="provider_argument_validation_error_required">Нужни са данни</string>
+    <string name="provider_argument_validation_error_malformed_http_uri">Нужен е валиден HTTP или HTTPS адрес (напр. http:192.168.1.100 или https://google.com) </string>
     <string name="no_provider">Няма оператор</string>
     <string name="providers">Доставчици</string>
     <string name="add_provider_action">Добавяне</string>
@@ -124,6 +126,11 @@
     <string name="stop_playback_on_task_removed_summary">Спри възпроизвеждането когато приложението се премахне от скорошни</string>
     <string name="skip_silence">Пропусни тишината</string>
     <string name="skip_silence_summary">Пропусни тишината при звуковъзпроизвеждане</string>
+    <string name="reset_local_stats">Изтрий локалните статистики за медийни файлове</string>
+    <string name="reset_local_stats_confirm_title">Изтрий локалните статистики</string>
+    <string name="reset_local_stats_confirm_message">Сигурен ли си че искаш да изтриеш всички статистики за пускани медийни файлове? Това не може да се върне.</string>
+    <string name="reset_local_stats_confirm_positive">Изтрий</string>
+    <string name="reset_local_stats_success">Статистиките за локални медийни файлове бяха изтрити</string>
     <string name="rescan_media_store">Активиране на повторно сканиране на базата данни на MediaStore </string>
     <string name="rescan_media_store_confirm_title">Повторно сканиране на базата данни на MediaStore </string>
     <string name="rescan_media_store_confirm_message">Бихте ли искали да активирате повторно сканиране на базата данни на MediaStore? Това може да оправи липсващи локални медия файлове</string>
