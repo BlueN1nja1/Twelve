@@ -41,8 +41,8 @@
         <item quantity="other">%d தடம்</item>
     </plurals>
     <plurals name="tracks_duration">
-        <item quantity="one">%d நுணுத்தம்</item>
-        <item quantity="other">%d நுணுத்தம்</item>
+        <item quantity="one">%d நிமிடம்</item>
+        <item quantity="other">%d நிமிடம்</item>
     </plurals>
     <string name="artist_albums_header">தொகுப்புகள்</string>
     <string name="artist_appears_in_album_header">தொகுப்பில் தோன்றும்</string>
@@ -97,6 +97,7 @@
     <string name="provider_argument_username">பயனர்பெயர்</string>
     <string name="provider_argument_password">கடவுச்சொல்</string>
     <string name="provider_argument_use_legacy_authentication">மரபுவழி உறுதிப்படுத்தலைப் பயன்படுத்துக</string>
+    <string name="provider_argument_volume_name">தொகுதிப் பெயர்</string>
     <string name="provider_argument_validation_error_required">ஒரு மதிப்புத் தேவை</string>
     <string name="provider_argument_validation_error_malformed_http_uri">ஏற்கத்தகு HTTP அல்லது HTTPS உரலியாக இருக்க வேண்டும் (எ.கா. http://192.168.1.100 அல்லது https://google.com)</string>
     <string name="no_provider">வழங்கி இல்லை</string>
@@ -130,6 +131,11 @@
     <string name="reset_local_stats_confirm_message">எல்லா உள்ளிட ஊடக இயக்கப் புள்ளிவிவரங்களையும் மீட்டமைக்க விரும்புகிறீரா? இச்செயலைச் செயற்தவிர்க்க இயலாது.</string>
     <string name="reset_local_stats_confirm_positive">மீளமைக்க</string>
     <string name="reset_local_stats_success">உள்ளிட ஊடக இயக்கப் புள்ளிவிவரங்கள் மீட்டமைக்கப்பட்டுள்ளன</string>
+    <string name="rescan_media_store">ஊடகக்கிடங்குத் தரவுத்தள மறுதுழவலை தொடக்கிவிடுக</string>
+    <string name="rescan_media_store_confirm_title">ஊடகக்கிடங்குத் தரவுத்தளத்தை மறுதுழவுக</string>
+    <string name="rescan_media_store_confirm_message">ஊடகக்கிடங்குத் தரவுத்தள மறுதுழவலைத் தொடக்க விரும்புகிறீரா? இது காணாமற்போன அக ஊடக உருப்படிகளைச் சரிசெய்யக்கூடும்</string>
+    <string name="rescan_media_store_confirm_positive">மறுதுழவுக</string>
+    <string name="rescan_media_store_started">ஊடகக்கிடங்கு மறுதுழவு தொடங்கப்பட்டது</string>
     <string name="split_local_devices">உள்ளிடக் கருவிகளைப் பிளவுபடுத்துக</string>
     <string name="split_local_devices_summary">இயக்கப்பட்டால், அகச்சேமிப்பகமும், வெளியமை கருவிகளும் (SD அட்டைகள், USB கருவிகள் போன்றவை) வெவ்வேறு வழங்கிகள்கீழ்த் தோன்றும்</string>
     <string name="now_playing_widget_description">இப்போது இயங்குகின்றது</string>
