@@ -15,6 +15,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.MediaMetadata
 import androidx.media3.common.PlaybackParameters
 import androidx.media3.common.Player
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.Dispatchers
@@ -43,10 +44,12 @@ import org.lineageos.twelve.models.PlaybackProgress
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.models.Thumbnail
+import org.lineageos.twelve.services.TwelveRenderersFactory
 
 /**
  * A view model useful to playback stuff locally (not in the playback service).
  */
+@UnstableApi
 class LocalPlayerViewModel(application: Application) : AndroidViewModel(application) {
     enum class PlaybackSpeed(val value: Float) {
         ONE(1f),
@@ -75,6 +78,12 @@ class LocalPlayerViewModel(application: Application) : AndroidViewModel(applicat
             true
         )
         .setHandleAudioBecomingNoisy(true)
+        .setRenderersFactory(
+            TwelveRenderersFactory(
+                applicationContext,
+                false,
+            )
+        )
         .build()
 
     private val eventsFlow = exoPlayer.eventsFlow()
