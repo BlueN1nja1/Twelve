@@ -105,7 +105,7 @@ class JellyfinAuthenticator(
 
     private fun getAuthenticationRequestHeaders() = Headers.Builder().apply {
         add(
-            "X-Emby-Authorization",
+            "Authorization",
             "MediaBrowser Client=\"${packageName}\", " +
                     "Device=\"${Build.MODEL}\", " +
                     "DeviceId=\"${deviceIdentifier}\", " +
