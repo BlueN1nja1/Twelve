@@ -57,8 +57,9 @@ class SubsonicAuthInterceptor(
             .map { allowedSaltChars.random() }
             .joinToString("")
 
+        @OptIn(ExperimentalStdlibApi::class)
         private fun getSaltedPassword(password: String, salt: String) = md5MessageDigest.digest(
             password.toByteArray() + salt.toByteArray()
-        ).toString()
+        ).toHexString(format = HexFormat {})
     }
 }
