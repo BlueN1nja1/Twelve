@@ -97,6 +97,7 @@
     <string name="provider_argument_username">Όνομα χρήστη</string>
     <string name="provider_argument_password">Κωδικός πρόσβασης</string>
     <string name="provider_argument_use_legacy_authentication">Χρήση ταυτοποίησης παλαιού τύπου</string>
+    <string name="provider_argument_volume_name">Όνομα τόμου</string>
     <string name="provider_argument_validation_error_required">Απαιτείται μια τιμή</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Πρέπει να είναι μια έγκυρη διεύθυνση URL HTTP ή HTTPS (π.χ. http://192.168.1.100 ή https://google.com)</string>
     <string name="no_provider">Κανένας πάροχος</string>
@@ -184,4 +185,8 @@
     <string name="playlist_name">Όνομα</string>
     <string name="provider">Πάροχος</string>
     <string name="create_playlist_error_empty_name">Δεν καθορίστηκε όνομα</string>
+    <string name="lyrics">Στίχοι</string>
+    <string name="favorites_playlist">Αγαπημένα</string>
+    <string name="add_to_favorites">Προσθήκη στα αγαπημένα</string>
+    <string name="remove_from_favorites">Αφαίρεση από τα αγαπημένα</string>
 </resources>
