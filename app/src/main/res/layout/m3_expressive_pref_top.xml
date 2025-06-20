@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/m3_expressive_background_top"
+    android:orientation="vertical">
+
+    <!-- This is where the actual preference content will be inflated -->
+    <include layout="@layout/preference_material"
+        tools:ignore="PrivateResource" />
+
+</LinearLayout>

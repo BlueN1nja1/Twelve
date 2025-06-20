@@ -13,3 +13,5 @@ app/release/baselineProfiles/0/app-release.dm
 app/release/baselineProfiles/1/app-release.dm
 app/release/output-metadata.json
 *.apk
+hs_err_pid18240.log
+replay_pid18240.log

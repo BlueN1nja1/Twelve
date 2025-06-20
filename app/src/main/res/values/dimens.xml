@@ -2,4 +2,6 @@
 <resources>
     <dimen name="PausedCornerRadius">60dp</dimen>
     <dimen name="PlayingCornerRadius">20dp</dimen>
+    <dimen name="preference_category_vertical_padding">16dp</dimen>
+    <dimen name="preference_category_item_vertical_margin">8dp</dimen>
 </resources>
