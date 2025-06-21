@@ -57,8 +57,8 @@
     <string name="open_genre">Abrir gênero</string>
     <string name="rename_playlist">Renomear playlist</string>
     <string name="rename_playlist_positive">Renomear</string>
-    <string name="delete_playlist">Excluir playlist</string>
-    <string name="delete_playlist_message">Tem certeza que deseja excluir esta playlist?</string>
+    <string name="delete_playlist">Apagar playlist</string>
+    <string name="delete_playlist_message">Tem certeza de que quer apagar esta playlist?</string>
     <string name="audio_information">Informações de áudio</string>
     <string name="audio_effects">Efeitos de áudio</string>
     <string name="playback_speed">Velocidade de reprodução</string>
@@ -106,8 +106,8 @@
     <string name="add_provider">Adicionar provedor</string>
     <string name="manage_provider">Gerenciar provedor</string>
     <string name="save_provider_action">Salvar</string>
-    <string name="delete_provider_action">Excluir</string>
-    <string name="delete_provider_confirmation">Tem certeza que deseja excluir este provedor?</string>
+    <string name="delete_provider_action">Apagar</string>
+    <string name="delete_provider_confirmation">Tem certeza que deseja apagar este provedor?</string>
     <string name="provider_name">Nome</string>
     <string name="provider_name_error">Insira um nome</string>
     <string name="provider_type">Tipo de provedor</string>
@@ -128,9 +128,14 @@
     <string name="skip_silence_summary">Pular silêncio ao reproduzir áudio</string>
     <string name="reset_local_stats">Redefinir estatísticas de reprodução de mídia local</string>
     <string name="reset_local_stats_confirm_title">Redefinir estatísticas locais</string>
-    <string name="reset_local_stats_confirm_message">Você tem certeza que deseja redefinir todas as estatísticas de reprodução de mídia local? Essa ação não pode ser desfeita.</string>
+    <string name="reset_local_stats_confirm_message">Tem certeza que deseja redefinir todas as estatísticas de reprodução de mídia local? Essa ação não pode ser desfeita.</string>
     <string name="reset_local_stats_confirm_positive">Redefinir</string>
     <string name="reset_local_stats_success">As estatísticas de reprodução de mídia local foram redefinidas</string>
+    <string name="rescan_media_store">Executar uma nova análise do banco de dados do MediaStore</string>
+    <string name="rescan_media_store_confirm_title">Analisar banco de dados do MediaStore novamente</string>
+    <string name="rescan_media_store_confirm_message">Você gostaria de executar uma análise nova do banco de dados do MediaStore? Isso pode corrigir itens ausentes da mídia local</string>
+    <string name="rescan_media_store_confirm_positive">Analisar</string>
+    <string name="rescan_media_store_started">Análise do MediaStore iniciada</string>
     <string name="split_local_devices">Dividir dispositivos locais</string>
     <string name="split_local_devices_summary">Se ativado, o armazenamento interno e dispositivos externos (cartões SD, dispositivos USB, etc.) aparecerão sob diferentes provedores</string>
     <string name="now_playing_widget_description">Tocando agora</string>

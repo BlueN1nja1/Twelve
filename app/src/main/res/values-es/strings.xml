@@ -97,6 +97,7 @@
     <string name="provider_argument_username">Nombre de usuario</string>
     <string name="provider_argument_password">Contraseña</string>
     <string name="provider_argument_use_legacy_authentication">Usar la autenticación heredada</string>
+    <string name="provider_argument_volume_name">Nombre del volumen</string>
     <string name="provider_argument_validation_error_required">Se requiere un valor</string>
     <string name="provider_argument_validation_error_malformed_http_uri">Debe ser una URL HTTP o HTTPS válida (p. ej. http://192.168.1.100 o https://google.com)</string>
     <string name="no_provider">Sin proveedores</string>
@@ -130,6 +131,7 @@
     <string name="reset_local_stats_confirm_message">¿Seguro que quieres reiniciar todas las estadísticas de reproducción de medios locales? Esta acción no se puede deshacer.</string>
     <string name="reset_local_stats_confirm_positive">Reiniciar</string>
     <string name="reset_local_stats_success">Se han reiniciado las estadísticas de reproducción de medios locales</string>
+    <string name="rescan_media_store_confirm_positive">Volver a analizar</string>
     <string name="split_local_devices">Dividir dispositivos locales</string>
     <string name="split_local_devices_summary">Si está activada, el almacenamiento interno y los dispositivos externos (tarjetas SD, dispositivos USB, etc.) se mostrarán bajo diferentes proveedores.</string>
     <string name="now_playing_widget_description">Reproduciendo ahora</string>

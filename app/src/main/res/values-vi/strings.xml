@@ -75,7 +75,7 @@
     <string name="audio_sample_rate_format">%1$s kHz</string>
     <string name="audio_sample_rate_unknown">Không rõ</string>
     <string name="audio_channel_count">Số kênh</string>
-    <string name="audio_channel_count_unknown"/>
+    <string name="audio_channel_count_unknown">Không rõ</string>
     <string name="audio_encoding">Mã hóa</string>
     <string name="audio_encoding_unknown">Không rõ</string>
     <string name="audio_float_mode">Chế độ dấu chấm động PCM</string>
