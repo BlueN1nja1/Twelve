@@ -7,7 +7,7 @@
     <item android:id="@android:id/mask">
         <shape android:shape="rectangle">
             <solid android:color="@android:color/white" />
-            <corners android:bottomLeftRadius="28dp" android:bottomRightRadius="28dp" android:topLeftRadius="10dp" android:topRightRadius="10dp"/>
+            <corners android:bottomLeftRadius="28dp" android:bottomRightRadius="28dp" android:topLeftRadius="6dp" android:topRightRadius="6dp"/>
         </shape>
     </item>
 
@@ -15,7 +15,7 @@
     <item>
         <shape android:shape="rectangle">
             <solid android:color="@color/cardColor" />
-            <corners android:bottomLeftRadius="28dp" android:bottomRightRadius="28dp" android:topLeftRadius="10dp" android:topRightRadius="10dp"/>
+            <corners android:bottomLeftRadius="28dp" android:bottomRightRadius="28dp" android:topLeftRadius="6dp" android:topRightRadius="6dp"/>
         </shape>
     </item>
 
