@@ -141,6 +141,15 @@ class JellyfinDataSource(
             .setGenreName(genres?.firstOrNull())
             .setYear(productionYear)
             .setIsFavorite(isFavorite == true)
+            .apply {
+                albumId?.let { albumId ->
+                    setThumbnail(
+                        Thumbnail.Builder()
+                            .setUri(client.getAlbumThumbnail(albumId).toUri())
+                            .build()
+                    )
+                }
+            }
             .build()
 
         fun Item.toMediaItemGenre() = Genre.Builder(getGenreUri(id.toString()))
