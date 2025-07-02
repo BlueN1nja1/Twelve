@@ -19,6 +19,7 @@ data class Item(
     @SerialName("Id") val id: UUID,
     @SerialName("Name") val name: String? = null,
     @SerialName("Artists") val artists: List<String>? = null,
+    @SerialName("AlbumId") val albumId: UUID? = null,
     @SerialName("ProductionYear") val productionYear: Int? = null,
     @SerialName("Container") val container: String? = null,
     @SerialName("SourceType") val sourceType: String? = null,
