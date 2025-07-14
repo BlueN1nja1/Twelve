@@ -47,9 +47,14 @@ class SortingChip @JvmOverloads constructor(
             context,
             com.google.android.material.R.attr.colorPrimaryContainer
         )
+        val chipContentColor = MaterialColors.getColor(
+            this,
+            com.google.android.material.R.attr.colorOnPrimaryContainer
+        )
         chipStrokeWidth = 0f
 
         setText(R.string.sort_by_unknown)
+        setTextColor(chipContentColor)
 
         setCloseIcon(R.drawable.ic_arrow_drop_down)
 
@@ -117,7 +122,7 @@ class SortingChip @JvmOverloads constructor(
         isChipIconVisible = true
         chipIconTint = MaterialColors.getColorStateListOrNull(
             context,
-            com.google.android.material.R.attr.colorOnSurface
+            com.google.android.material.R.attr.colorOnPrimaryContainer
         )
     }
 
@@ -126,7 +131,7 @@ class SortingChip @JvmOverloads constructor(
         isCloseIconVisible = true
         closeIconTint = MaterialColors.getColorStateListOrNull(
             context,
-            com.google.android.material.R.attr.colorOnSurface
+            com.google.android.material.R.attr.colorOnPrimaryContainer
         )
     }
 
