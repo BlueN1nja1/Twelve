@@ -5,6 +5,7 @@
 
 package org.lineageos.twelve.utils
 
+import android.provider.MediaStore
 import androidx.media3.common.MimeTypes
 import androidx.media3.common.util.UnstableApi
 import org.lineageos.twelve.models.MediaType
@@ -29,14 +30,18 @@ object MimeUtils {
             "application/vnd.apple.mpegurl",
             "application/vnd.ms-sstr+xml",
             "application/x-mpegurl",
-            "application/x-ogg",
-            "vnd.android.cursor.item/audio" -> MediaType.AUDIO
+            "application/x-ogg" -> MediaType.AUDIO
 
-            "vnd.android.cursor.item/album" -> MediaType.ALBUM
+            MediaStore.Audio.Media.ENTRY_CONTENT_TYPE -> MediaType.AUDIO
 
-            "vnd.android.cursor.item/artist" -> MediaType.ARTIST
+            MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE -> MediaType.ALBUM
 
-            "vnd.android.cursor.item/playlist" -> MediaType.PLAYLIST
+            MediaStore.Audio.Artists.ENTRY_CONTENT_TYPE -> MediaType.ARTIST
+
+            MediaStore.Audio.Genres.ENTRY_CONTENT_TYPE -> MediaType.GENRE
+
+            @Suppress("DEPRECATION")
+            MediaStore.Audio.Playlists.ENTRY_CONTENT_TYPE -> MediaType.PLAYLIST
 
             else -> null
         }

@@ -525,7 +525,7 @@ class SubsonicClient(
      *
      * @since 1.0.0
      * @param artist Artist to search for.
-     * @param album Album to searh for.
+     * @param album Album to search for.
      * @param title Song title to search for.
      * @param any Searches all fields.
      * @param count Maximum number of results to return.
@@ -1266,7 +1266,7 @@ class SubsonicClient(
                 ResponseStatus.OK -> runCatching {
                     data.subsonicResponse.methodValue()!!
                 }.fold(
-                    onSuccess = { Result.Success<T, Error>(it) },
+                    onSuccess = { Result.Success(it) },
                     onFailure = { Result.Error(Error.INVALID_RESPONSE) }
                 )
 

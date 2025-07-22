@@ -6,6 +6,7 @@
 package org.lineageos.twelve.services
 
 import android.content.Context
+import android.media.AudioTrack
 import androidx.annotation.OptIn
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.DefaultRenderersFactory
@@ -16,6 +17,7 @@ import androidx.media3.exoplayer.audio.DefaultAudioSink
 class TwelveRenderersFactory(
     context: Context,
     enableAudioFloatOutput: Boolean,
+    private val onAudioTrackUpdate: (AudioTrack?) -> Unit,
 ) : DefaultRenderersFactory(context) {
     init {
         setEnableAudioFloatOutput(enableAudioFloatOutput)
@@ -27,11 +29,13 @@ class TwelveRenderersFactory(
         context: Context,
         enableFloatOutput: Boolean,
         enableAudioTrackPlaybackParams: Boolean
-    ) = DefaultAudioSink.Builder(context)
-        .setEnableFloatOutput(enableFloatOutput)
-        .setEnableAudioTrackPlaybackParams(enableAudioTrackPlaybackParams)
-        .setAudioProcessors(arrayOf(InfoAudioProcessor()))
-        .setAudioTrackBufferSizeProvider(ProxyDefaultAudioTrackBufferSizeProvider)
-        .setAudioOffloadSupportProvider(DefaultAudioOffloadSupportProvider(context))
-        .build()
+    ) = TwelveAudioSink(
+        DefaultAudioSink.Builder(context)
+            .setEnableFloatOutput(enableFloatOutput)
+            .setEnableAudioTrackPlaybackParams(enableAudioTrackPlaybackParams)
+            .setAudioTrackBufferSizeProvider(ProxyDefaultAudioTrackBufferSizeProvider)
+            .setAudioOffloadSupportProvider(DefaultAudioOffloadSupportProvider(context))
+            .build(),
+        onAudioTrackUpdate,
+    )
 }

@@ -14,6 +14,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.button.MaterialButton
 import kotlinx.coroutines.launch
@@ -22,7 +23,6 @@ import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.models.Provider
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
-import org.lineageos.twelve.ui.recyclerview.UniqueItemDiffCallback
 import org.lineageos.twelve.ui.views.ListItem
 import org.lineageos.twelve.viewmodels.ProvidersViewModel
 
@@ -40,34 +40,39 @@ class ProviderSelectorDialogFragment : MaterialDialogFragment(
     private val recyclerView by getViewProperty<RecyclerView>(R.id.recyclerView)
 
     // Recyclerview
-    private val adapter = object : SimpleListAdapter<Provider, ListItem>(
-        UniqueItemDiffCallback(),
+    private val adapter = object : SimpleListAdapter<Pair<Provider, Boolean>, ListItem>(
+        diffCallback,
         ::ListItem,
     ) {
         override fun ViewHolder.onPrepareView() {
             view.setTrailingView(R.layout.provider_more_button)
+            view.hasRoundedCorners = true
         }
 
-        override fun ViewHolder.onBindView(item: Provider) {
+        override fun ViewHolder.onBindView(item: Pair<Provider, Boolean>) {
+            val (provider, isCurrent) = item
+
             view.setOnClickListener {
-                viewModel.setNavigationProvider(item)
+                viewModel.setNavigationProvider(provider)
                 findNavController().navigateUp()
             }
 
-            view.trailingView?.isVisible = item.type.canBeManaged
+            view.trailingView?.isVisible = provider.type.canBeManaged
             view.trailingView?.setOnClickListener {
                 findNavController().navigateSafe(
                     R.id.action_providerSelectorDialogFragment_to_fragment_provider_information_bottom_sheet_dialog,
-                    ManageProviderFragment.createBundle(providerIdentifier = item),
+                    ManageProviderFragment.createBundle(providerIdentifier = provider),
                     NavOptions.Builder()
                         .setPopUpTo(R.id.mainFragment, false)
                         .build(),
                 )
             }
 
-            view.setLeadingIconImage(item.type.iconDrawableResId)
-            view.headlineText = item.name
-            view.setSupportingText(item.type.nameStringResId)
+            view.setLeadingIconImage(provider.type.iconDrawableResId)
+            view.headlineText = provider.name
+            view.setSupportingText(provider.type.nameStringResId)
+
+            view.isActivated = isCurrent
         }
     }
 
@@ -85,7 +90,7 @@ class ProviderSelectorDialogFragment : MaterialDialogFragment(
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.providers.collect { providers ->
+                viewModel.providersToIsCurrent.collect { providers ->
                     adapter.submitList(providers)
                 }
             }
@@ -96,5 +101,19 @@ class ProviderSelectorDialogFragment : MaterialDialogFragment(
         recyclerView.adapter = null
 
         super.onDestroyView()
+    }
+
+    companion object {
+        private val diffCallback = object : DiffUtil.ItemCallback<Pair<Provider, Boolean>>() {
+            override fun areItemsTheSame(
+                oldItem: Pair<Provider, Boolean>,
+                newItem: Pair<Provider, Boolean>
+            ) = oldItem.first.areItemsTheSame(newItem.first)
+
+            override fun areContentsTheSame(
+                oldItem: Pair<Provider, Boolean>,
+                newItem: Pair<Provider, Boolean>
+            ) = oldItem.first.areContentsTheSame(newItem.first) && oldItem.second == newItem.second
+        }
     }
 }

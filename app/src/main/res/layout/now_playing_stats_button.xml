@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.Material3.CardView.Filled"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="?attr/colorPrimaryContainer"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="8dp"
+        tools:ignore="RtlSymmetry">
+
+        <ImageView
+            android:id="@+id/outputDeviceImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/audio_output"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="6dp"
+            android:src="@drawable/ic_headphones"
+            app:tint="?attr/colorOnPrimaryContainer" />
+
+        <ImageView
+            android:id="@+id/hiResImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/hi_res"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="6dp"
+            android:src="@drawable/ic_high_res"
+            app:tint="?attr/colorOnPrimaryContainer" />
+
+        <ImageView
+            android:id="@+id/potentialIssuesImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/audio_potential_issues"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="6dp"
+            android:src="@drawable/ic_error"
+            app:tint="?attr/colorOnPrimaryContainer" />
+
+        <TextView
+            android:id="@+id/fileTypeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:gravity="center"
+            android:text="@string/audio_file_type_unknown_short"
+            android:textAlignment="gravity"
+            android:textAppearance="?attr/textAppearanceLabelMedium"
+            android:textColor="?attr/colorOnPrimaryContainer"
+            tools:text="FLAC" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

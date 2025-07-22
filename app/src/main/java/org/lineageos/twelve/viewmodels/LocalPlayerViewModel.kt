@@ -49,7 +49,7 @@ import org.lineageos.twelve.services.TwelveRenderersFactory
 /**
  * A view model useful to playback stuff locally (not in the playback service).
  */
-@UnstableApi
+@androidx.annotation.OptIn(UnstableApi::class)
 class LocalPlayerViewModel(application: Application) : AndroidViewModel(application) {
     enum class PlaybackSpeed(val value: Float) {
         ONE(1f),
@@ -82,7 +82,7 @@ class LocalPlayerViewModel(application: Application) : AndroidViewModel(applicat
             TwelveRenderersFactory(
                 applicationContext,
                 false,
-            )
+            ) { }
         )
         .build()
 

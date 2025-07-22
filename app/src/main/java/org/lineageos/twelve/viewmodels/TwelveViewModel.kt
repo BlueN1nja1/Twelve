@@ -40,6 +40,8 @@ import org.lineageos.twelve.services.PlaybackService
 abstract class TwelveViewModel(application: Application) : AndroidViewModel(application) {
     protected val mediaRepository = getApplication<TwelveApplication>().mediaRepository
     protected val providersRepository = getApplication<TwelveApplication>().providersRepository
+    protected val outputConfigurationRepository =
+        getApplication<TwelveApplication>().outputConfigurationRepository
 
     @Suppress("EmptyMethod")
     final override fun <T : Application> getApplication() = super.getApplication<T>()

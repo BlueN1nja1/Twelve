@@ -6,8 +6,9 @@
 package org.lineageos.twelve.ui.views
 
 import android.content.Context
-import android.graphics.Color
+import android.content.res.ColorStateList
 import android.util.AttributeSet
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.AttrRes
@@ -57,15 +58,33 @@ abstract class BaseMediaItemView @JvmOverloads constructor(
             supportingTextView.setTextAndUpdateVisibility(value)
         }
 
+    private var isDimmed: Boolean
+        get() = !headlineTextView.isEnabled
+        set(value) = setViewsProperty(View::setEnabled, !value)
+
     init {
-        setCardBackgroundColor(Color.TRANSPARENT)
+        setCardBackgroundColor(
+            resources.getColorStateList(R.color.list_item_background, context.theme)
+        )
         cardElevation = 0f
         strokeWidth = 0
 
         inflate(context, layoutResId, this)
     }
 
-    final override fun setCardBackgroundColor(color: Int) {
+    override fun setEnabled(enabled: Boolean) {
+        super.setEnabled(enabled)
+
+        setViewsProperty(View::setEnabled, enabled)
+    }
+
+    override fun setSelected(selected: Boolean) {
+        super.setSelected(selected)
+
+        setViewsProperty(View::setSelected, selected)
+    }
+
+    final override fun setCardBackgroundColor(color: ColorStateList?) {
         super.setCardBackgroundColor(color)
     }
 
@@ -126,6 +145,11 @@ abstract class BaseMediaItemView @JvmOverloads constructor(
                 supportingText = null
             }
         }
+
+        isDimmed = when (item) {
+            is Audio -> item.playbackUri == null
+            else -> false
+        }
     }
 
     private fun loadThumbnailImage(data: Thumbnail?, @DrawableRes placeholder: Int) {
@@ -160,6 +184,16 @@ abstract class BaseMediaItemView @JvmOverloads constructor(
 
     private fun setSupportingText(@StringRes resId: Int) =
         supportingTextView.setTextAndUpdateVisibility(resId)
+
+    private inline fun <T> setViewsProperty(
+        setter: View.(T) -> Unit,
+        value: T,
+    ) {
+        headlineTextView.setter(value)
+        placeholderImageView.setter(value)
+        subheadTextView.setter(value)
+        supportingTextView.setter(value)
+    }
 
     // TextView utils
 

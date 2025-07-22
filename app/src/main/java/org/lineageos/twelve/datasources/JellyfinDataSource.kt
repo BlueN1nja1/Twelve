@@ -12,7 +12,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.mapLatest
 import okhttp3.Cache
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
@@ -131,16 +130,16 @@ class JellyfinDataSource(
             .setTitle(name)
             .setType(Audio.Type.MUSIC)
             .setDurationMs(runTimeTicks?.let { it / 10000 })
-            .setArtistUri(getArtistUri(id.toString()))
+            .setArtistUri(getArtistUri(artistItems?.firstOrNull()?.id.toString()))
             .setArtistName(artists?.firstOrNull())
-            .setAlbumUri(getAlbumUri(id.toString()))
+            .setAlbumUri(getAlbumUri(albumId.toString()))
             .setAlbumTitle(album)
             .setDiscNumber(parentIndexNumber)
             .setTrackNumber(indexNumber)
             .setGenreUri(getGenreUri(id.toString()))
             .setGenreName(genres?.firstOrNull())
             .setYear(productionYear)
-            .setIsFavorite(isFavorite == true)
+            .setIsFavorite(userData?.isFavorite == true)
             .apply {
                 albumId?.let { albumId ->
                     setThumbnail(
@@ -205,6 +204,10 @@ class JellyfinDataSource(
 
         fun onPlaylistsChanged() {
             playlistsChanged.value = Any()
+        }
+
+        fun onFavoritesChanged() {
+            favoritesChanged.value = Any()
         }
     }
 
@@ -283,6 +286,7 @@ class JellyfinDataSource(
                 startsWith(audiosUri.toString()) -> MediaType.AUDIO
                 startsWith(genresUri.toString()) -> MediaType.GENRE
                 startsWith(playlistsUri.toString()) -> MediaType.PLAYLIST
+                startsWith(favoritesUri.toString()) -> MediaType.PLAYLIST
                 else -> null
             }
         }?.let {
@@ -294,7 +298,60 @@ class JellyfinDataSource(
 
     override fun activity(
         providerIdentifier: ProviderIdentifier,
-    ) = flowOf(Result.Success<_, Error>(listOf<ActivityTab>()))
+    ) = providersManager.mapWithInstanceOf(providerIdentifier) {
+        val randomSongs = client.audioSuggestions().map { queryResult ->
+            ActivityTab(
+                "random_songs",
+                LocalizedString.StringResIdLocalizedString(
+                    R.string.activity_random_songs,
+                ),
+                queryResult.items.map { it.toMediaItemAudio() }
+            )
+        }
+
+        val randomAlbums = client.albumSuggestions().map { queryResult ->
+            ActivityTab(
+                "random_albums",
+                LocalizedString.StringResIdLocalizedString(
+                    R.string.activity_random_albums,
+                ),
+                queryResult.items.map { it.toMediaItemAlbum() }
+            )
+        }
+
+        val randomArtists = client.artistSuggestions().map { queryResult ->
+            ActivityTab(
+                "random_artists",
+                LocalizedString.StringResIdLocalizedString(
+                    R.string.activity_random_artists,
+                ),
+                queryResult.items.map { it.toMediaItemArtist() }
+            )
+        }
+
+        val randomPlaylists = client.playlistSuggestions().map { queryResult ->
+            ActivityTab(
+                "random_playlists",
+                LocalizedString.StringResIdLocalizedString(
+                    R.string.activity_random_playlists,
+                ),
+                queryResult.items.map { it.toMediaItemPlaylist() }
+            )
+        }
+
+        Result.Success(
+            listOf(
+                randomSongs,
+                randomAlbums,
+                randomArtists,
+                randomPlaylists,
+            ).mapNotNull {
+                it.getOrNull()?.takeIf { activityTab ->
+                    activityTab.items.isNotEmpty()
+                }
+            }
+        )
+    }
 
     override fun albums(
         providerIdentifier: ProviderIdentifier,
@@ -363,10 +420,12 @@ class JellyfinDataSource(
         }
     }
 
-    override fun audio(audioUri: Uri) = providersManager.mapWithInstanceOf(audioUri) {
-        val id = UUID.fromString(audioUri.lastPathSegment!!)
-        client.getAudio(id).map {
-            it.toMediaItemAudio()
+    override fun audio(audioUri: Uri) = providersManager.flatMapWithInstanceOf(audioUri) {
+        favoritesChanged.mapLatest {
+            val id = UUID.fromString(audioUri.lastPathSegment!!)
+            client.getAudio(id).map {
+                it.toMediaItemAudio()
+            }
         }
     }
 
@@ -440,7 +499,7 @@ class JellyfinDataSource(
         providersManager.flatMapWithInstanceOf(audioUri) {
             combine(
                 favoritesChanged.mapLatest {
-                    val isFavorite = client.getAudio(audioId).getOrNull()?.isFavorite
+                    val isFavorite = client.getAudio(audioId).getOrNull()?.userData?.isFavorite
                     favoritesPlaylist to (isFavorite == true)
                 },
                 playlistsChanged.mapLatest {
@@ -551,6 +610,8 @@ class JellyfinDataSource(
         when (isFavorite) {
             true -> client.addToFavorites(UUID.fromString(audioUri.lastPathSegment!!))
             false -> client.removeFromFavorites(UUID.fromString(audioUri.lastPathSegment!!))
+        }.map {
+            onFavoritesChanged()
         }
     }
 

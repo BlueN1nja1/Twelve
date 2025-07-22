@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nestedScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
+
+            <!-- Potential issues -->
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/potentialIssuesHeaderListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:headlineText="@string/audio_potential_issues"
+                app:leadingIconImage="@drawable/ic_error" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/potentialIssueDownsamplingListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:headlineText="@string/audio_output_issue_downsampling"
+                app:supportingText="@string/audio_output_issue_downsampling_description" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/potentialIssuePcmFloatModeDisabledListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:headlineText="@string/audio_output_issue_pcm_float_mode_disabled"
+                app:supportingText="@string/audio_output_issue_pcm_float_mode_disabled_description" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/potentialIssueDownmixingListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:headlineText="@string/audio_output_issue_downmixing"
+                app:supportingText="@string/audio_output_issue_downmixing_description" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/potentialIssuePostProcessingLossyCompressionListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:headlineText="@string/audio_output_issue_post_processing_lossy_compression"
+                app:supportingText="@string/audio_output_issue_post_processing_lossy_compression_description" />
+
+            <!-- Source -->
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/sourceHeaderListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_source"
+                app:leadingIconImage="@drawable/ic_audio_file" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/sourceFileTypeListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_file_type"
+                app:supportingText="@string/audio_file_type_unknown" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/sourceEncodingListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_encoding"
+                app:supportingText="@string/audio_encoding_unknown" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/sourceCompressionListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_format_compression"
+                app:supportingText="@string/audio_format_compression_unknown" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/sourceSampleRateListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_sample_rate"
+                app:supportingText="@string/audio_sample_rate_unknown" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/sourceChannelCountListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_channel_count"
+                app:supportingText="@string/audio_channel_count_unknown" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/sourcePeakBitrateListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_peak_bitrate"
+                app:supportingText="@string/audio_bitrate_unknown" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/sourceAverageBitrateListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_average_bitrate"
+                app:supportingText="@string/audio_bitrate_unknown" />
+
+            <!-- Transcoding -->
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/transcodingHeaderListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_transcoding"
+                app:leadingIconImage="@drawable/ic_conversion_path" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/transcodingOutputModeListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_output_mode"
+                app:supportingText="@string/audio_output_mode_unknown" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/transcodingEncodingListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_encoding"
+                app:supportingText="@string/audio_encoding_unknown" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/transcodingCompressionListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_format_compression"
+                app:supportingText="@string/audio_format_compression_unknown" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/transcodingSampleRateListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_sample_rate"
+                app:supportingText="@string/audio_sample_rate_unknown" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/transcodingChannelCountListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_channel_count"
+                app:supportingText="@string/audio_channel_count_unknown" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/transcodingBitrateListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_bitrate"
+                app:supportingText="@string/audio_bitrate_unknown" />
+
+            <!-- Device -->
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/deviceHeaderListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_output"
+                app:leadingIconImage="@drawable/ic_media_output" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/deviceNameListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_output_device_name"
+                app:supportingText="@string/audio_output_device_name_unknown" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/deviceTypeListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_output_device_type"
+                app:supportingText="@string/audio_output_device_type_unknown" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/deviceMaxSampleRateListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_sample_rate"
+                app:supportingText="@string/audio_sample_rate_unknown" />
+
+            <org.lineageos.twelve.ui.views.ListItem
+                android:id="@+id/deviceMaxChannelCountListItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:headlineText="@string/audio_channel_count"
+                app:supportingText="@string/audio_channel_count_unknown" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</androidx.core.widget.NestedScrollView>

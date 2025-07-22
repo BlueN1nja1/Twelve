@@ -259,6 +259,50 @@ class JellyfinClient(
         ),
     ).execute(api).mapToError()
 
+    suspend fun audioSuggestions() = ApiRequest.get<QueryResult>(
+        listOf(
+            "Items",
+            "Suggestions",
+        ),
+        queryParameters = listOf(
+            "Type" to "Audio",
+            "Limit" to 25,
+        )
+    ).execute(api).mapToError()
+
+    suspend fun albumSuggestions() = ApiRequest.get<QueryResult>(
+        listOf(
+            "Items",
+            "Suggestions",
+        ),
+        queryParameters = listOf(
+            "Type" to "MusicAlbum",
+            "Limit" to 10,
+        )
+    ).execute(api).mapToError()
+
+    suspend fun playlistSuggestions() = ApiRequest.get<QueryResult>(
+        listOf(
+            "Items",
+            "Suggestions",
+        ),
+        queryParameters = listOf(
+            "Type" to "Playlist",
+            "Limit" to 10,
+        )
+    ).execute(api).mapToError()
+
+    suspend fun artistSuggestions() = ApiRequest.get<QueryResult>(
+        listOf(
+            "Items",
+            "Suggestions",
+        ),
+        queryParameters = listOf(
+            "Type" to "MusicArtist",
+            "Limit" to 10,
+        )
+    ).execute(api).mapToError()
+
     private suspend fun getItem(id: UUID) = ApiRequest.get<Item>(
         listOf(
             "Items",

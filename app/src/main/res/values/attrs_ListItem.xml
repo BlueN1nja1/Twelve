@@ -5,7 +5,9 @@
 -->
 <resources>
     <declare-styleable name="ListItem">
+        <attr name="hasRoundedCorners" format="boolean" />
         <attr name="headlineText" format="string" />
+        <attr name="isDimmed" format="boolean" />
         <attr name="leadingIconImage" format="reference" />
         <attr name="leadingText" format="string" />
         <attr name="leadingViewIsVisible" format="boolean" />

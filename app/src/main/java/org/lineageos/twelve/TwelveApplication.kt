@@ -14,6 +14,7 @@ import com.google.android.material.color.DynamicColors
 import kotlinx.coroutines.MainScope
 import org.lineageos.twelve.database.TwelveDatabase
 import org.lineageos.twelve.repositories.MediaRepository
+import org.lineageos.twelve.repositories.OutputConfigurationRepository
 import org.lineageos.twelve.repositories.ProvidersRepository
 import org.lineageos.twelve.repositories.ResumptionPlaylistRepository
 import org.lineageos.twelve.ui.coil.ThumbnailMapper
@@ -29,6 +30,7 @@ class TwelveApplication : Application(), SingletonImageLoader.Factory {
         MediaRepository(applicationContext, coroutineScope, providersRepository, database)
     }
     val resumptionPlaylistRepository by lazy { ResumptionPlaylistRepository(database) }
+    val outputConfigurationRepository by lazy { OutputConfigurationRepository() }
 
     override fun onCreate() {
         super.onCreate()

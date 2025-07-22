@@ -35,21 +35,6 @@ data class Lyrics(
         private val lines = mutableListOf<TempLine>()
 
         /**
-         * Add a new line.
-         *
-         * @param line The [Line]
-         */
-        fun addLine(line: Line) = apply {
-            lines.add(
-                TempLine(
-                    text = line.text,
-                    startMs = line.durationMs?.first,
-                    endMs = line.durationMs?.last,
-                )
-            )
-        }
-
-        /**
          * Add a new line. If necessary, end instant will be calculated from the other lines.
          *
          * @param text [Line.text]

@@ -63,6 +63,12 @@ android {
     }
 }
 
+kapt {
+    arguments {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
+}
+
 dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.appcompat)
@@ -89,11 +95,7 @@ dependencies {
     implementation(libs.androidx.viewpager2)
     implementation(libs.coil)
     implementation(libs.coil.network.okhttp)
-    implementation(libs.kotlinx.coroutines.guava) {
-        // Exclude compile time dependencies
-        exclude("com.google.j2objc", "j2objc-annotations")
-        exclude("org.checkerframework", "checker-qual")
-    }
+    implementation(libs.kotlinx.coroutines.guava)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.material)
     implementation(libs.nier.visualizer) {
@@ -117,6 +119,8 @@ configure<GenerateBpPluginExtension> {
             module.group == "com.google.errorprone" -> true
             module.group == "com.google.guava" -> true
             module.group == "junit" -> true
+            module.group == "com.google.android.material" -> true
+            module.group == "com.google.guava" -> true
             else -> false
         }
     }

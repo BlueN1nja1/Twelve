@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2023-2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2023-2025 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -7,7 +7,6 @@ package org.lineageos.twelve.ui.views
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.Icon
 import android.net.Uri
@@ -43,6 +42,8 @@ class ListItem @JvmOverloads constructor(
     private val trailingIconImageView by lazy { findViewById<ImageView>(R.id.trailingIconImageView) }
     private val trailingSupportingTextView by lazy { findViewById<TextView>(R.id.trailingSupportingTextView) }
     private val trailingViewContainerFrameLayout by lazy { findViewById<FrameLayout>(R.id.trailingViewContainerFrameLayout) }
+
+    private var cardCornerRadius: Float = 0f
 
     var leadingIconImage: Drawable?
         get() = leadingIconImageView.drawable
@@ -104,13 +105,40 @@ class ListItem @JvmOverloads constructor(
             leadingViewContainerFrameLayout.updateVisibility(value)
         }
 
+    var isDimmed: Boolean
+        get() = !headlineTextView.isEnabled
+        set(value) = setViewsProperty(View::setEnabled, !value)
+
+    var hasRoundedCorners: Boolean = false
+        set(value) {
+            field = value
+
+            super.setRadius(
+                when (value) {
+                    true -> cardCornerRadius
+                    false -> 0f
+                }
+            )
+        }
+
     init {
-        setCardBackgroundColor(Color.TRANSPARENT)
+        setCardBackgroundColor(
+            resources.getColorStateList(R.color.list_item_background, context.theme)
+        )
         cardElevation = 0f
         radius = 0f
         strokeWidth = 0
 
         inflate(context, R.layout.list_item, this)
+
+        context.obtainStyledAttributes(
+            attrs, androidx.cardview.R.styleable.CardView, defStyleAttr, 0
+        ).use {
+            cardCornerRadius = it.getDimension(
+                androidx.cardview.R.styleable.CardView_cardCornerRadius,
+                resources.getDimension(R.dimen.list_item_default_corner_radius)
+            )
+        }
 
         context.obtainStyledAttributes(attrs, R.styleable.ListItem, 0, 0).apply {
             try {
@@ -132,10 +160,30 @@ class ListItem @JvmOverloads constructor(
                     setTrailingView(it)
                 }
                 trailingViewIsVisible = getBoolean(R.styleable.ListItem_trailingViewIsVisible, true)
+                isDimmed = getBoolean(R.styleable.ListItem_isDimmed, false)
+                hasRoundedCorners = getBoolean(R.styleable.ListItem_hasRoundedCorners, false)
             } finally {
                 recycle()
             }
         }
+    }
+
+    override fun setEnabled(enabled: Boolean) {
+        super.setEnabled(enabled)
+
+        setViewsProperty(View::setEnabled, enabled)
+    }
+
+    override fun setSelected(selected: Boolean) {
+        super.setSelected(selected)
+
+        setViewsProperty(View::setSelected, selected)
+    }
+
+    override fun setRadius(radius: Float) {
+        super.setRadius(radius)
+
+        cardCornerRadius = radius
     }
 
     fun setHeadlineText(@StringRes resId: Int) = headlineTextView.setTextAndUpdateVisibility(resId)
@@ -178,6 +226,20 @@ class ListItem @JvmOverloads constructor(
     fun setTrailingView(@LayoutRes resId: Int) =
         trailingViewContainerFrameLayout.setChildAndUpdateVisibility(resId)
 
+    private inline fun <T> setViewsProperty(
+        setter: View.(T) -> Unit,
+        value: T,
+    ) {
+        headlineTextView.setter(value)
+        leadingIconImageView.setter(value)
+        leadingTextView.setter(value)
+        leadingView?.setter(value)
+        supportingTextView.setter(value)
+        trailingIconImageView.setter(value)
+        trailingSupportingTextView.setter(value)
+        trailingView?.setter(value)
+    }
+
     // FrameLayout utils
 
     private fun FrameLayout.updateVisibility(isVisible: Boolean) {
@@ -188,6 +250,9 @@ class ListItem @JvmOverloads constructor(
         removeAllViews()
         child?.let {
             addView(it)
+            // Sync up states
+            it.isEnabled = isEnabled
+            it.isSelected = isSelected
         }
         updateVisibility(true)
     }

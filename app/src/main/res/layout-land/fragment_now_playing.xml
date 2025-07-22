@@ -25,31 +25,13 @@
             app:titleTextAppearance="?attr/textAppearanceTitleMedium"
             tools:title="Eyes shut, mouth still">
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/fileTypeMaterialCardView"
-                style="@style/Widget.Material3.CardView.Filled"
+            <include
+                android:id="@+id/statsMaterialCardView"
+                layout="@layout/now_playing_stats_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:layout_marginHorizontal="16dp"
-                android:visibility="gone"
-                app:cardBackgroundColor="?attr/colorPrimaryContainer"
-                app:cardCornerRadius="4dp"
-                app:contentPaddingLeft="4dp"
-                app:contentPaddingRight="4dp"
-                tools:visibility="visible">
-
-                <TextView
-                    android:id="@+id/fileTypeTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:gravity="center"
-                    android:textAlignment="gravity"
-                    android:textAppearance="?attr/textAppearanceLabelMedium"
-                    android:textColor="?attr/colorOnPrimaryContainer"
-                    tools:text="FLAC" />
-
-            </com.google.android.material.card.MaterialCardView>
+                android:layout_marginHorizontal="16dp" />
 
         </com.google.android.material.appbar.MaterialToolbar>
 

@@ -27,7 +27,7 @@
         android:layout_marginEnd="16dp"
         android:importantForAccessibility="no"
         android:visibility="gone"
-        app:tint="?attr/colorOnSurfaceVariant"
+        app:tint="@color/list_item_primary"
         tools:src="@android:drawable/star_on"
         tools:visibility="visible" />
 
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:visibility="gone"
-        app:tint="?attr/colorOnSurfaceVariant"
+        app:tint="@color/list_item_secondary"
         tools:text="Leading"
         tools:visibility="visible" />
 
@@ -55,7 +55,7 @@
             android:ellipsize="end"
             android:hyphenationFrequency="normal"
             android:maxLines="1"
-            android:textColor="?attr/colorOnSurface"
+            android:textColor="@color/list_item_primary"
             tools:text="Headline" />
 
         <TextView
@@ -66,7 +66,7 @@
             android:ellipsize="end"
             android:hyphenationFrequency="normal"
             android:maxLines="2"
-            android:textColor="?attr/colorOnSurfaceVariant"
+            android:textColor="@color/list_item_secondary"
             tools:text="Supporting" />
 
     </LinearLayout>
@@ -81,7 +81,7 @@
         android:hyphenationFrequency="normal"
         android:maxLines="1"
         android:textAlignment="viewEnd"
-        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textColor="@color/list_item_secondary"
         android:visibility="gone"
         tools:text="Trailing"
         tools:visibility="visible" />
@@ -93,7 +93,7 @@
         android:layout_marginStart="16dp"
         android:importantForAccessibility="no"
         android:visibility="gone"
-        app:tint="?attr/colorOnSurfaceVariant"
+        app:tint="@color/list_item_secondary"
         tools:src="@android:drawable/star_on"
         tools:visibility="visible" />
 

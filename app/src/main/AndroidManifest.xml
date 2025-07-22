@@ -53,6 +53,7 @@
 
                 <data android:mimeType="vnd.android.cursor.item/album" />
                 <data android:mimeType="vnd.android.cursor.item/artist" />
+                <data android:mimeType="vnd.android.cursor.item/genre" />
                 <!-- Deprecated, we cannot handle those as we use our internal database -->
                 <!--<data android:mimeType="vnd.android.cursor.item/playlist" />-->
 

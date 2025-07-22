@@ -32,7 +32,7 @@
 
         <action
             android:id="@+id/action_nowPlayingFragment_to_fragment_now_playing_stats_dialog"
-            app:destination="@+id/fragment_now_playing_stats_dialog"
+            app:destination="@+id/fragment_now_playing_stats_bottom_sheet_dialog"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
