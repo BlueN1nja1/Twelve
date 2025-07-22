@@ -48,6 +48,7 @@ import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.ext.updatePadding
 import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.FlowResult.Companion.getOrNull
+import org.lineageos.twelve.models.OutputConfiguration
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.models.Result
@@ -78,16 +79,18 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
     private val currentTimestampTextView by getViewProperty<TextView>(R.id.currentTimestampTextView)
     private val durationTimestampTextView by getViewProperty<TextView>(R.id.durationTimestampTextView)
     private val equalizerMaterialButton by getViewProperty<MaterialButton>(R.id.equalizerMaterialButton)
-    private val fileTypeMaterialCardView by getViewProperty<MaterialCardView>(R.id.fileTypeMaterialCardView)
     private val fileTypeTextView by getViewProperty<TextView>(R.id.fileTypeTextView)
+    private val hiResImageView by getViewProperty<ImageView>(R.id.hiResImageView)
     private val isFavoriteMaterialButton by getViewProperty<MaterialButton>(R.id.isFavoriteMaterialButton)
     private val linearProgressIndicator by getViewProperty<LinearProgressIndicator>(R.id.linearProgressIndicator)
     private val lyricsMaterialCardView by getViewProperty<MaterialCardView>(R.id.lyricsMaterialCardView)
     private val nestedScrollView by getViewProperty<NestedScrollView>(R.id.nestedScrollView)
     private val nextLyricsTextView by getViewProperty<TextView>(R.id.nextLyricsTextView)
     private val nextTrackMaterialButton by getViewProperty<MaterialButton>(R.id.nextTrackMaterialButton)
+    private val outputDeviceImageView by getViewProperty<ImageView>(R.id.outputDeviceImageView)
     private val playPauseMaterialButton by getViewProperty<MaterialButton>(R.id.playPauseMaterialButton)
     private val playbackSpeedMaterialButton by getViewProperty<MaterialButton>(R.id.playbackSpeedMaterialButton)
+    private val potentialIssuesImageView by getViewProperty<ImageView>(R.id.potentialIssuesImageView)
     private val previousLyricsTextView by getViewProperty<TextView>(R.id.previousLyricsTextView)
     private val previousTrackMaterialButton by getViewProperty<MaterialButton>(R.id.previousTrackMaterialButton)
     private val progressSlider by getViewProperty<Slider>(R.id.progressSlider)
@@ -97,6 +100,7 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
     private val showLyricsMaterialButton by getViewProperty<MaterialButton>(R.id.showLyricsMaterialButton)
     private val shuffleMarkerImageView by getViewProperty<ImageView>(R.id.shuffleMarkerImageView)
     private val shuffleMaterialButton by getViewProperty<MaterialButton>(R.id.shuffleMaterialButton)
+    private val statsMaterialCardView by getViewProperty<MaterialCardView>(R.id.statsMaterialCardView)
     private val toolbar by getViewProperty<MaterialToolbar>(R.id.toolbar)
     private val visualizerMaterialButton by getViewProperty<MaterialButton>(R.id.visualizerMaterialButton)
     private val visualizerSurfaceView by getViewProperty<SurfaceView>(R.id.visualizerSurfaceView)
@@ -175,7 +179,7 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
             findNavController().navigateUp()
         }
 
-        fileTypeMaterialCardView.setOnClickListener {
+        statsMaterialCardView.setOnClickListener {
             findNavController().navigateSafe(
                 R.id.action_nowPlayingFragment_to_fragment_now_playing_stats_dialog
             )
@@ -400,13 +404,51 @@ class NowPlayingFragment : Fragment(R.layout.fragment_now_playing) {
                 }
 
                 launch {
-                    viewModel.displayFileType.collectLatest {
-                        it?.let { displayFileType ->
-                            fileTypeTextView.text = displayFileType
-                            fileTypeMaterialCardView.isVisible = true
+                    viewModel.displayFileType.collectLatest { displayFileType ->
+                        fileTypeTextView.text = displayFileType ?: getString(
+                            R.string.audio_file_type_unknown_short
+                        )
+                    }
+                }
+
+                launch {
+                    viewModel.outputConfiguration.collectLatest { outputConfiguration ->
+                        outputConfiguration?.device?.type?.also {
+                            val deviceDrawableResId = when (it) {
+                                OutputConfiguration.Device.Type.BUILTIN ->
+                                    R.drawable.ic_mobile_speaker
+
+                                OutputConfiguration.Device.Type.HEADPHONES ->
+                                    R.drawable.ic_headphones
+
+                                OutputConfiguration.Device.Type.EXTERNAL_SPEAKERS ->
+                                    R.drawable.ic_speaker_group
+
+                                OutputConfiguration.Device.Type.BLUETOOTH ->
+                                    R.drawable.ic_bluetooth
+
+                                OutputConfiguration.Device.Type.HDMI ->
+                                    R.drawable.ic_settings_input_hdmi
+
+                                OutputConfiguration.Device.Type.USB ->
+                                    R.drawable.ic_usb
+
+                                OutputConfiguration.Device.Type.REMOTE ->
+                                    R.drawable.ic_cast
+
+                                OutputConfiguration.Device.Type.HEARING_AID ->
+                                    R.drawable.ic_hearing_aid
+                            }
+                            outputDeviceImageView.setImageResource(deviceDrawableResId)
+                            outputDeviceImageView.isVisible = true
                         } ?: run {
-                            fileTypeMaterialCardView.isVisible = false
+                            outputDeviceImageView.isVisible = false
                         }
+
+                        hiResImageView.isVisible = outputConfiguration?.verdict?.hiRes == true
+
+                        potentialIssuesImageView.isVisible =
+                            outputConfiguration?.verdict?.potentialIssues?.isNotEmpty() == true
                     }
                 }
 

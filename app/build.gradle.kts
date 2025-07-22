@@ -63,6 +63,12 @@ android {
     }
 }
 
+kapt {
+    arguments {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
+}
+
 dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.appcompat)

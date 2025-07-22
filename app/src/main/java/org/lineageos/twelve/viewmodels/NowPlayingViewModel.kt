@@ -60,7 +60,10 @@ import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.models.Result
 import org.lineageos.twelve.services.PlaybackService
 import org.lineageos.twelve.services.PlaybackService.CustomCommand.Companion.sendCustomCommand
+import org.lineageos.twelve.services.ProxyDefaultAudioTrackBufferSizeProvider
 import org.lineageos.twelve.utils.MimeUtils
+import org.lineageos.twelve.utils.OutputConfigurationUtils
+import org.lineageos.twelve.utils.OutputConfigurationUtils.toModel
 
 open class NowPlayingViewModel(application: Application) : TwelveViewModel(application) {
     enum class VisualizerType(val factory: () -> Array<IRenderer>?) {
@@ -394,6 +397,51 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
             initialValue = FlowResult.Loading()
+        )
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    private val outputSource = currentTrackFormat
+        .mapLatest { it?.toModel() }
+        .flowOn(Dispatchers.IO)
+        .shareIn(
+            viewModelScope,
+            started = SharingStarted.WhileSubscribed(),
+            replay = 1
+        )
+
+    private val outputTranscoding = combine(
+        ProxyDefaultAudioTrackBufferSizeProvider.transcodingData,
+        outputConfigurationRepository.audioFormat,
+    ) { transcodingData, audioFormat ->
+        OutputConfigurationUtils.buildOutputTranscoding(
+            transcodingData = transcodingData,
+            audioFormat = audioFormat,
+        )
+    }
+        .flowOn(Dispatchers.IO)
+        .shareIn(
+            viewModelScope,
+            started = SharingStarted.WhileSubscribed(),
+            replay = 1
+        )
+
+    @androidx.annotation.OptIn(UnstableApi::class)
+    val outputConfiguration = combine(
+        outputSource,
+        outputTranscoding,
+        outputConfigurationRepository.device,
+    ) { outputSource, outputTranscoding, outputDevice ->
+        OutputConfigurationUtils.classify(
+            source = outputSource,
+            transcoding = outputTranscoding,
+            device = outputDevice,
+        )
+    }
+        .flowOn(Dispatchers.IO)
+        .stateIn(
+            viewModelScope,
+            started = SharingStarted.WhileSubscribed(),
+            initialValue = null
         )
 
     fun togglePlayPause() {

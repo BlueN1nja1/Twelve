@@ -25,8 +25,7 @@ class DisplayAwareGridLayoutManager @JvmOverloads constructor(
         /**
          * Maximum thumbnail size, useful for high density screens.
          */
-        private val MAX_THUMBNAIL_SIZE
-            get() = 256
+        private const val MAX_THUMBNAIL_SIZE = 256
 
         private enum class Orientation {
             VERTICAL,
