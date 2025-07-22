@@ -322,4 +322,15 @@
     <string name="favorites_playlist">Favorites</string>
     <string name="add_to_favorites">Add to favorites</string>
     <string name="remove_from_favorites">Remove from favorites</string>
+    <string name="request_status_error_type_unknown">Unknown Error</string>
+    <string name="request_status_error_type_not_found">Not Found</string>
+    <string name="request_status_error_type_io">Input / Output Error...</string>
+    <string name="request_status_error_type_authentication_required">Authentication Error...</string>
+    <string name="request_status_error_type_invalid_credentials">Invalid Credentials...</string>
+    <string name="audio_output_not_available_in_current_configuration">Audio Output not available in the current configuration...</string>
+    <string name="audio_float_mode">PCM Floating Point Mode</string>
+    <string name="audio_float_mode_unknown">Unknown...</string>
+    <string name="audio_float_mode_enabled">Audio Float Enabled</string>
+    <string name="audio_float_mode_disabled">Audio Float Disabled</string>
+    <string name="local_volume_name">Drive Name</string>
 </resources>
