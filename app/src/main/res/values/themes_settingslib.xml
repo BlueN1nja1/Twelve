@@ -5,7 +5,7 @@
 -->
 <resources>
     <!-- Settings activity theme. -->
-    <style name="Theme.SettingsLib" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.SettingsLib" parent="Theme.Material3Expressive.DayNight.NoActionBar">
         <item name="android:listPreferredItemPaddingLeft">24dp</item>
         <item name="android:listPreferredItemPaddingStart">24dp</item>
         <item name="alertDialogTheme">@style/Theme.SettingsLib.AlertDialog</item>
@@ -27,7 +27,7 @@
     </style>
 
     <!-- Settings alert dialog theme. -->
-    <style name="Theme.SettingsLib.AlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+    <style name="Theme.SettingsLib.AlertDialog" parent="ThemeOverlay.Material3Expressive.MaterialAlertDialog">
         <item name="android:colorBackground">?attr/colorSurface</item>
         <item name="dialogCornerRadius">16dp</item>
     </style>

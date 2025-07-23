@@ -6,7 +6,11 @@
 <resources>
     <color name="accent">#1a73e8</color>
     <color name="accentinverse">#A9E0FF</color>
+    <color name="accentsecondary">#3b48f7</color>
+    <color name="buttoniconcolor">#003352</color>
     <color name="cardColor">#ffffff</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="buttonColor">#f2f2f2</color>
     <color name="headerTextColor">#ffffff</color>
     <color name="text">#000000</color>
 </resources>

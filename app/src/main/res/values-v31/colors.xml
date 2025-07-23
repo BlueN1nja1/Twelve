@@ -5,4 +5,10 @@
 -->
 <resources>
     <color name="accent">@android:color/system_accent1_600</color>
+    <color name="colorPrimary">@android:color/system_neutral2_50</color>
+    <color name="cardColor">@android:color/system_accent1_10</color>
+    <color name="cos">@android:color/system_accent1_10</color>
+    <color name="accentinverse">@android:color/system_accent2_100</color>
+    <color name="accentsecondary">@android:color/system_accent1_100</color>
+    <color name="buttoniconcolor">@android:color/system_accent1_0</color>
 </resources>

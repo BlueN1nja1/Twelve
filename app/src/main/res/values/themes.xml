@@ -5,13 +5,13 @@
 -->
 <resources>
     <!-- Application theme -->
-    <style name="Theme.Twelve" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.Twelve" parent="Theme.Material3Expressive.DayNight.NoActionBar">
         <item name="android:enforceNavigationBarContrast">true</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="enableEdgeToEdge">true</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorPrimary">@color/accent</item>
-        <item name="colorPrimaryContainer">@color/accentinverse</item>
+        <item name="colorPrimaryContainer">@color/accentsecondary</item>
         <item name="colorSecondaryContainer">@color/accentinverse</item>
     </style>
 
@@ -65,7 +65,7 @@
     </style>
 
     <!-- Now playing fragment -->
-    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Primary" parent="Widget.Material3.Button.IconButton.Filled">
+    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Primary" parent="Widget.Material3Expressive.Button.IconButton.Filled">
         <item name="android:layout_width">72dp</item>
         <item name="android:layout_height">72dp</item>
         <item name="android:padding">0dp</item>
@@ -73,7 +73,7 @@
         <item name="iconSize">36dp</item>
     </style>
 
-    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Secondary" parent="Widget.Material3.Button.IconButton">
+    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Secondary" parent="Widget.Material3Expressive.Button.IconButton">
         <item name="android:layout_width">72dp</item>
         <item name="android:layout_height">72dp</item>
         <item name="android:padding">0dp</item>
@@ -104,19 +104,25 @@
         <item name="tint">@color/accent</item>
     </style>
 
-    <style name="Theme.Twelve.NowPlayingFragment.BottomBarButton" parent="Widget.Material3.Button.IconButton">
+    <style name="Theme.Twelve.NowPlayingFragment.BottomBarButton" parent="Widget.Material3Expressive.Button.IconButton">
         <item name="android:layout_width">48dp</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:padding">0dp</item>
-        <item name="android:textColor">@color/text</item>
+        <item name="android:colorPrimary">@color/colorPrimary</item>
+        <item name="android:textColor">@color/buttoniconcolor</item>
+        <item name="android:textSize">13.5sp</item>
         <item name="iconGravity">textStart</item>
         <item name="iconSize">24dp</item>
-        <item name="iconTint">@color/text</item>
+        <item name="iconTint">@color/buttoniconcolor</item>
+    </style>
+
+    <style name="Theme.Twelve.CardView" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/cardColor</item>
     </style>
 
     <!-- App widget -->
-    <style name="Theme.Twelve.AppWidgetContainer" parent="Theme.Material3.DynamicColors.DayNight">
+    <style name="Theme.Twelve.AppWidgetContainer" parent="Theme.Material3Expressive.DynamicColors.DayNight">
         <item name="appWidgetRadius">28dp</item>
     </style>
 </resources>
