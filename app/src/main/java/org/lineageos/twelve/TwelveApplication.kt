@@ -32,13 +32,6 @@ class TwelveApplication : Application(), SingletonImageLoader.Factory {
     val resumptionPlaylistRepository by lazy { ResumptionPlaylistRepository(database) }
     val outputConfigurationRepository by lazy { OutputConfigurationRepository() }
 
-    override fun onCreate() {
-        super.onCreate()
-
-        // Observe dynamic colors changes
-        DynamicColors.applyToActivitiesIfAvailable(this)
-    }
-
     override fun newImageLoader(context: PlatformContext) = ImageLoader.Builder(this)
         .components {
             add(ThumbnailMapper)
