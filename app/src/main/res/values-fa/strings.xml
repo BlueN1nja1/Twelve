@@ -7,11 +7,6 @@
     <string name="app_name">موسیقی</string>
     <string name="app_permissions_toast">مجوز توسط کاربر داده نشد.</string>
     <string name="visualizer_permissions_toast">مجوز ضبط صدا برای بصری ساز مورد نیاز است.</string>
-    <string name="request_status_error_type_unknown">ناشناخته</string>
-    <string name="request_status_error_type_not_found">یافت نشد</string>
-    <string name="request_status_error_type_io">خطای I/O</string>
-    <string name="request_status_error_type_authentication_required">تایید اعتبار لازم است</string>
-    <string name="request_status_error_type_invalid_credentials">نام کاربری و یا گذرواژه نامعتبر است</string>
     <string name="main_fragment_section_activity">فعالیت</string>
     <string name="main_fragment_section_search">جستجو</string>
     <string name="main_fragment_section_library">کتابخانه</string>
@@ -64,13 +59,11 @@
     <string name="playback_speed">سرعت پخش</string>
     <string name="playback_speed_format">%1$sx</string>
     <string name="playback_pitch_slider_description">پخش صدای زیر و بم</string>
-    <string name="playbacl_pitch_unlock">باز کردن تغییر زیر و بمی صدا</string>
     <string name="playback_warning">سرعت و زیر و بمی صدا ممکن است به درستی کار نکند در حالی که ویژگی تخلیه پخش فعال است. سعی کنید آن را در تنظیمات برنامه تغییر دهید.</string>
     <string name="visualizer">جلوه های تصویری</string>
     <string name="audio_source">منبع</string>
     <string name="audio_transcoding">تبدیل دیجیتال</string>
     <string name="audio_output">خروجی</string>
-    <string name="audio_output_not_available_in_current_configuration">اطلاعات خروجی در پیکربندی فعلی موجود نیست</string>
     <string name="audio_file_type">نوع فایل</string>
     <string name="audio_file_type_unknown">ناشناخته</string>
     <string name="audio_sample_rate">نرخ نمونه</string>
@@ -80,10 +73,6 @@
     <string name="audio_channel_count_unknown">ناشناخته</string>
     <string name="audio_encoding">رمزگذاری</string>
     <string name="audio_encoding_unknown">ناشناخته</string>
-    <string name="audio_float_mode">حالت PCM شناور </string>
-    <string name="audio_float_mode_unknown">ناشناخته</string>
-    <string name="audio_float_mode_enabled">فعال</string>
-    <string name="audio_float_mode_disabled">غیرفعال</string>
     <string name="audio_output_mode">حالت خروجی</string>
     <string name="audio_output_mode_unknown">ناشناخته</string>
     <string name="audio_output_mode_pcm">PCM</string>
@@ -175,7 +164,6 @@
     <string name="yes">بله</string>
     <string name="no">خير</string>
     <string name="unknown">ناشناخته</string>
-    <string name="local_volume_name">نوع صدا</string>
     <string name="subsonic_version">نسخه فراصوت</string>
     <string name="subsonic_server_type">نوع سرور</string>
     <string name="subsonic_server_version">نسخه سرور</string>

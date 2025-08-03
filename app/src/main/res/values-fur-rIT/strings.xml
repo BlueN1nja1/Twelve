@@ -7,11 +7,6 @@
     <string name="app_name">Musiche</string>
     <string name="app_permissions_toast">L\'utent nol à concedût i permès.</string>
     <string name="visualizer_permissions_toast">Al è necessari il permès di regjistrazion audio pal visualizadôr.</string>
-    <string name="request_status_error_type_unknown">No cognossût</string>
-    <string name="request_status_error_type_not_found">No cjatât</string>
-    <string name="request_status_error_type_io">Erôr di I/O</string>
-    <string name="request_status_error_type_authentication_required">Autenticazion necessarie</string>
-    <string name="request_status_error_type_invalid_credentials">Credenziâls no validis</string>
     <string name="main_fragment_section_activity">Ativitâts</string>
     <string name="main_fragment_section_search">Ricercje</string>
     <string name="main_fragment_section_library">Librarie</string>
@@ -64,13 +59,11 @@
     <string name="playback_speed">Velocitât di riproduzion</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Ton di riproduzion</string>
-    <string name="playbacl_pitch_unlock">Sbloche la modifiche dal ton</string>
     <string name="playback_warning">Al è pussibil che la regolazion de velocitât e dal ton no funzionin ben intant che la funzion di offload audio pe riproduzion e je ative. Prove a comutâle tes impostazions de aplicazion.</string>
     <string name="visualizer">Visualizadôr</string>
     <string name="audio_source">Sorzint</string>
     <string name="audio_transcoding">Transcodificazion</string>
     <string name="audio_output">Jessude</string>
-    <string name="audio_output_not_available_in_current_configuration">Lis informazions di jessude audio no son disponibilis par cheste configurazion</string>
     <string name="audio_file_type">Gjenar di file</string>
     <string name="audio_file_type_unknown">No cognossût</string>
     <string name="audio_sample_rate">Frecuence di campionament</string>
@@ -80,10 +73,6 @@
     <string name="audio_channel_count_unknown">No cognossût</string>
     <string name="audio_encoding">Codificazion</string>
     <string name="audio_encoding_unknown">No cognossût</string>
-    <string name="audio_float_mode">Modalitât PCM float</string>
-    <string name="audio_float_mode_unknown">No cognossût</string>
-    <string name="audio_float_mode_enabled">Ativade</string>
-    <string name="audio_float_mode_disabled">Disativade</string>
     <string name="audio_output_mode">Modalitât di jessude</string>
     <string name="audio_output_mode_unknown">No cognossude</string>
     <string name="audio_output_mode_pcm">PCM</string>
@@ -169,7 +158,6 @@
     <string name="yes">Sì</string>
     <string name="no">No</string>
     <string name="unknown">No cognossût</string>
-    <string name="local_volume_name">Non dal volum</string>
     <string name="subsonic_version">Version di Subsonic</string>
     <string name="subsonic_server_type">Gjenar di servidôr</string>
     <string name="subsonic_server_version">Version dal servidôr</string>

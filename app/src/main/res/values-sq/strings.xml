@@ -7,11 +7,6 @@
     <string name="app_name">Muzika</string>
     <string name="app_permissions_toast">Lejet nuk janë dhënë nga përdoruesi.</string>
     <string name="visualizer_permissions_toast">Kërkohet leja e regjistrimit të audios për vizualizuesin.</string>
-    <string name="request_status_error_type_unknown">I panjohur</string>
-    <string name="request_status_error_type_not_found">Nuk u gjet</string>
-    <string name="request_status_error_type_io">I/O gabim</string>
-    <string name="request_status_error_type_authentication_required">Kërkohet autentifikim</string>
-    <string name="request_status_error_type_invalid_credentials">Kredencialet e pavlefshme</string>
     <string name="main_fragment_section_activity">Aktiviteti</string>
     <string name="main_fragment_section_search">Kërko</string>
     <string name="main_fragment_section_library">Libraria</string>
@@ -62,13 +57,11 @@
     <string name="playback_speed">Shpejtësia e luajtjes</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Hapi i riprodhimit</string>
-    <string name="playbacl_pitch_unlock">Zhblloko ndryshimin e zërit</string>
     <string name="playback_warning">Shpejtësia dhe lartësia mund të mos funksionojnë siç duhet ndërsa funksioni i shkarkimit të riprodhimit është i aktivizuar.  Provoni ta ndryshoni atë në cilësimet e aplikacionit.</string>
     <string name="visualizer">Vizualizues</string>
     <string name="audio_source">Burim</string>
     <string name="audio_transcoding">Transkodim</string>
     <string name="audio_output">Dalje</string>
-    <string name="audio_output_not_available_in_current_configuration">Informacioni i audios nuk është i disponueshëm në konfigurim.</string>
     <string name="audio_file_type">Lloji i skedarit</string>
     <string name="audio_file_type_unknown">E panjohur</string>
     <string name="audio_sample_rate">Norma e mostrës</string>
@@ -78,10 +71,6 @@
     <string name="audio_channel_count_unknown">E panjohur</string>
     <string name="audio_encoding">Kodimi</string>
     <string name="audio_encoding_unknown">E panjohur</string>
-    <string name="audio_float_mode">Modaliti \"PCM Float\"</string>
-    <string name="audio_float_mode_unknown">E panjohur</string>
-    <string name="audio_float_mode_enabled">E aktivizuar</string>
-    <string name="audio_float_mode_disabled">E çaktivizuar</string>
     <string name="audio_output_mode">Modaliti i daljes</string>
     <string name="audio_output_mode_unknown">E panjohur</string>
     <string name="audio_output_mode_pcm">PCM</string>
@@ -167,7 +156,6 @@
     <string name="yes">Po</string>
     <string name="no">Jo</string>
     <string name="unknown">I panjohur</string>
-    <string name="local_volume_name">Emri i volumit</string>
     <string name="subsonic_version">Versioni nënsonik</string>
     <string name="subsonic_server_type">Lloji i serverit</string>
     <string name="subsonic_server_version">Versioni i Serverit</string>

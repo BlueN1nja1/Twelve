@@ -7,11 +7,6 @@
     <string name="app_name">Μουσική</string>
     <string name="app_permissions_toast">Τα δικαιώματα δε χορηγήθηκαν από το χρήστη.</string>
     <string name="visualizer_permissions_toast">Απαιτούνται δικαιώματα εγγραφής ήχου για τον οπτικοποιητή.</string>
-    <string name="request_status_error_type_unknown">Άγνωστο</string>
-    <string name="request_status_error_type_not_found">Δε βρέθηκε</string>
-    <string name="request_status_error_type_io">Σφάλμα εισόδου/εξόδου</string>
-    <string name="request_status_error_type_authentication_required">Απαιτείται έλεγχος ταυτότητας</string>
-    <string name="request_status_error_type_invalid_credentials">Μη έγκυρα διαπιστευτήρια</string>
     <string name="main_fragment_section_activity">Δραστηριότητα</string>
     <string name="main_fragment_section_search">Αναζήτηση</string>
     <string name="main_fragment_section_library">Βιβλιοθήκη</string>
@@ -64,13 +59,11 @@
     <string name="playback_speed">Ταχύτητα αναπαραγωγής</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Τόνος αναπαραγωγής</string>
-    <string name="playbacl_pitch_unlock">Ξεκλείδωμα αλλαγής τόνου</string>
     <string name="playback_warning">Η ταχύτητα και ο τόνος ενδέχεται να μη λειτουργούν σωστά ενώ είναι ενεργοποιημένη η λειτουργία αναπαραγωγής offload. Δοκιμάστε να την αλλάξετε στις ρυθμίσεις της εφαρμογής.</string>
     <string name="visualizer">Οπτικοποιητής</string>
     <string name="audio_source">Πηγή</string>
     <string name="audio_transcoding">Διακωδικοποίηση</string>
     <string name="audio_output">Έξοδος</string>
-    <string name="audio_output_not_available_in_current_configuration">Οι πληροφορίες εξόδου δεν είναι διαθέσιμες στην τρέχουσα διαμόρφωση</string>
     <string name="audio_file_type">Τύπος αρχείου</string>
     <string name="audio_file_type_unknown">Άγνωστος</string>
     <string name="audio_sample_rate">Ρυθμός δειγματοληψίας</string>
@@ -80,10 +73,6 @@
     <string name="audio_channel_count_unknown">Άγνωστος</string>
     <string name="audio_encoding">Κωδικοποίηση</string>
     <string name="audio_encoding_unknown">Άγνωστη</string>
-    <string name="audio_float_mode">Λειτουργία PCM float</string>
-    <string name="audio_float_mode_unknown">Άγνωστη</string>
-    <string name="audio_float_mode_enabled">Ενεργή</string>
-    <string name="audio_float_mode_disabled">Ανενεργή</string>
     <string name="audio_output_mode">Λειτουργία εξόδου</string>
     <string name="audio_output_mode_unknown">Άγνωστη</string>
     <string name="audio_output_mode_pcm">PCM</string>
@@ -170,7 +159,6 @@
     <string name="yes">Ναι</string>
     <string name="no">Όχι</string>
     <string name="unknown">Άγνωστο</string>
-    <string name="local_volume_name">Όνομα τόμου</string>
     <string name="subsonic_version">Έκδοση Subsonic</string>
     <string name="subsonic_server_type">Τύπος διακομιστή</string>
     <string name="subsonic_server_version">Έκδοση διακομιστή</string>

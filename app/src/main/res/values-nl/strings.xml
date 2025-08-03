@@ -7,11 +7,6 @@
     <string name="app_name">Muziek</string>
     <string name="app_permissions_toast">Machtigingen niet toegekend door de gebruiker.</string>
     <string name="visualizer_permissions_toast">Toestemming voor audio-opname is vereist voor de visualizer.</string>
-    <string name="request_status_error_type_unknown">Onbekend</string>
-    <string name="request_status_error_type_not_found">Niet gevonden</string>
-    <string name="request_status_error_type_io">I/O-fout</string>
-    <string name="request_status_error_type_authentication_required">Authentificatie vereist</string>
-    <string name="request_status_error_type_invalid_credentials">Ongeldige referenties</string>
     <string name="main_fragment_section_activity">Activiteit</string>
     <string name="main_fragment_section_search">Zoek</string>
     <string name="main_fragment_section_library">Bibliotheek</string>
@@ -62,13 +57,11 @@
     <string name="playback_speed">Afspeelsnelheid</string>
     <string name="playback_speed_format">%1$sx</string>
     <string name="playback_pitch_slider_description">Afspeeltoonhoogte</string>
-    <string name="playbacl_pitch_unlock">Veranderen van afsperltoonhoogte ontgrendelen</string>
     <string name="playback_warning">Mogelijk werkt de afsperlsnelheid en  - toonhoogte niet goed als het afspelen van de functie is ingeschakeld. Zet deze aan in de instellingen van de app.</string>
     <string name="visualizer">Visualisatie</string>
     <string name="audio_source">Bron</string>
     <string name="audio_transcoding">Transcoderen</string>
     <string name="audio_output">Uitvoer</string>
-    <string name="audio_output_not_available_in_current_configuration">Uitvoerinformatie is niet beschikbaar in de huidige configuratie</string>
     <string name="audio_file_type">Bestandstype</string>
     <string name="audio_file_type_unknown">Onbekend</string>
     <string name="audio_sample_rate">Bemonsteringsfrequentie</string>
@@ -78,10 +71,6 @@
     <string name="audio_channel_count_unknown">Onbekend</string>
     <string name="audio_encoding">Versleutelen</string>
     <string name="audio_encoding_unknown">Onbekend</string>
-    <string name="audio_float_mode">PCM float modus</string>
-    <string name="audio_float_mode_unknown">Onbekend</string>
-    <string name="audio_float_mode_enabled">Ingeschakeld</string>
-    <string name="audio_float_mode_disabled">Uitgeschakeld</string>
     <string name="audio_output_mode">Uitvoermodus</string>
     <string name="audio_output_mode_unknown">Onbekend</string>
     <string name="audio_output_mode_pcm">PCM</string>

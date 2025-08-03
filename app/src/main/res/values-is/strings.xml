@@ -6,11 +6,6 @@
 <resources>
     <string name="app_name">Tónlist</string>
     <string name="app_permissions_toast">Heimildir ekki veittar af notandanum.</string>
-    <string name="request_status_error_type_unknown">Óþekkt</string>
-    <string name="request_status_error_type_not_found">Fannst ekki</string>
-    <string name="request_status_error_type_io">I/O-villa</string>
-    <string name="request_status_error_type_authentication_required">Auðkenningar krafist</string>
-    <string name="request_status_error_type_invalid_credentials">Ógild auðkenni</string>
     <string name="main_fragment_section_activity">Virkni</string>
     <string name="main_fragment_section_search">Leita</string>
     <string name="main_fragment_section_library">Safn</string>
@@ -49,7 +44,6 @@
     <string name="audio_source">Upptök</string>
     <string name="audio_transcoding">Umkóðun</string>
     <string name="audio_output">Úttak</string>
-    <string name="audio_output_not_available_in_current_configuration">Upplýsingar um frálag eru ekki tiltækar í fyrirliggjandi uppsetningu</string>
     <string name="audio_file_type">Tegund skráar</string>
     <string name="audio_file_type_unknown">Óþekkt</string>
     <string name="audio_sample_rate">Safntíðni</string>
@@ -58,10 +52,6 @@
     <string name="audio_channel_count_unknown">Óþekkt</string>
     <string name="audio_encoding">Kóðun</string>
     <string name="audio_encoding_unknown">Óþekkt</string>
-    <string name="audio_float_mode">PCM-fleytihamur</string>
-    <string name="audio_float_mode_unknown">Óþekkt</string>
-    <string name="audio_float_mode_enabled">Virkt</string>
-    <string name="audio_float_mode_disabled">Óvirkt</string>
     <string name="audio_output_mode">Frálagshamur</string>
     <string name="audio_output_mode_unknown">Óþekkt</string>
     <string name="audio_output_mode_passthrough">GegnumstreymiPassthrough</string>

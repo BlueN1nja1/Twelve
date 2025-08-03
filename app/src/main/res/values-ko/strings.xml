@@ -7,11 +7,6 @@
     <string name="app_name">음악</string>
     <string name="app_permissions_toast">사용자에 의해 권한이 허용되어 있지 않습니다.</string>
     <string name="visualizer_permissions_toast">시각화 기능을 사용하려면 오디오 녹음 권한이 필요합니다.</string>
-    <string name="request_status_error_type_unknown">알 수 없음</string>
-    <string name="request_status_error_type_not_found">찾을 수 없음</string>
-    <string name="request_status_error_type_io">I/O 오류</string>
-    <string name="request_status_error_type_authentication_required">인증 필요</string>
-    <string name="request_status_error_type_invalid_credentials">잘못된 자격 증명</string>
     <string name="main_fragment_section_activity">액티비티</string>
     <string name="main_fragment_section_search">검색</string>
     <string name="main_fragment_section_library">라이브러리</string>
@@ -62,13 +57,11 @@
     <string name="playback_speed">재생 속도</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">재생 피치</string>
-    <string name="playbacl_pitch_unlock">피치 변경 잠금 해제</string>
     <string name="playback_warning">속도 및 피치 컨트롤은 오프로드 옵션이 켜져 있는 경우 정상적으로 사용하지 못할 수 있습니다. 앱 설정에서 오프로드 옵션을 확인하세요.</string>
     <string name="visualizer">시각화</string>
     <string name="audio_source">소스</string>
     <string name="audio_transcoding">트랜스코딩</string>
     <string name="audio_output">출력</string>
-    <string name="audio_output_not_available_in_current_configuration">현재 설정에서 출력 정보를 알 수 없음</string>
     <string name="audio_file_type">파일 형식</string>
     <string name="audio_file_type_unknown">알 수 없음</string>
     <string name="audio_sample_rate">샘플 레이트</string>
@@ -78,10 +71,6 @@
     <string name="audio_channel_count_unknown">알 수 없음</string>
     <string name="audio_encoding">인코딩</string>
     <string name="audio_encoding_unknown">알 수 없음</string>
-    <string name="audio_float_mode">PCM 부동 소수점 모드</string>
-    <string name="audio_float_mode_unknown">알 수 없음</string>
-    <string name="audio_float_mode_enabled">켜짐</string>
-    <string name="audio_float_mode_disabled">꺼짐</string>
     <string name="audio_output_mode">출력 모드</string>
     <string name="audio_output_mode_unknown">알 수 없음</string>
     <string name="audio_output_mode_pcm">PCM</string>
@@ -173,7 +162,6 @@
     <string name="yes">예</string>
     <string name="no">아니오</string>
     <string name="unknown">알 수 없음</string>
-    <string name="local_volume_name">볼륨 이름</string>
     <string name="subsonic_version">Subsonic 버전</string>
     <string name="subsonic_server_type">서버 유형</string>
     <string name="subsonic_server_version">서버 버전</string>

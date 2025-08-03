@@ -7,7 +7,6 @@
     <string name="app_name">Música</string>
     <string name="app_permissions_toast">L\'usuariu nun concedió los permisos.</string>
     <string name="visualizer_permissions_toast">El permisu pa grabar audiu ye obligatoriu pal visualizador.</string>
-    <string name="request_status_error_type_invalid_credentials">Les credenciales son inválides</string>
     <string name="main_fragment_section_activity">Actividá</string>
     <string name="main_fragment_section_search">Busca</string>
     <string name="main_fragment_section_library">Biblioteca</string>

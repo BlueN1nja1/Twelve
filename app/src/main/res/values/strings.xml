@@ -88,7 +88,7 @@
     <string name="playback_speed">Playback speed</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Playback pitch</string>
-    <string name="playbacl_pitch_unlock">Unlock pitch change</string>
+    <string name="playback_pitch_unlock">Unlock pitch change</string>
     <string name="playback_warning">Speed and pitch may not work correctly while playback offload feature is enabled. Try toggling it in the app\'s settings.</string>
     <string name="visualizer">Visualizer</string>
     <string name="hi_res" translatable="false">Hi-Res</string>

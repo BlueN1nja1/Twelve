@@ -5,8 +5,6 @@
 -->
 <resources>
     <string name="app_name">Musique</string>
-    <string name="request_status_error_type_unknown">Inconnu</string>
-    <string name="request_status_error_type_authentication_required">Authentification requise</string>
     <string name="main_fragment_section_activity">Activité</string>
     <string name="main_fragment_section_library">Bibliothèque</string>
     <string name="library_fragment_menu_albums">Albums</string>
@@ -52,9 +50,6 @@
     <string name="audio_channel_count_unknown">Inconnu</string>
     <string name="audio_encoding">Encodage</string>
     <string name="audio_encoding_unknown">Inconnu</string>
-    <string name="audio_float_mode_unknown">Inconnu</string>
-    <string name="audio_float_mode_enabled">Activé</string>
-    <string name="audio_float_mode_disabled">Désactivé</string>
     <string name="audio_output_mode_unknown">Inconnu</string>
     <string name="audio_bitrate_unknown">Inconnu</string>
     <string name="audio_bitrate_format">%1$s kbps</string>
