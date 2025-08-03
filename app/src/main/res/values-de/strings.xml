@@ -7,11 +7,6 @@
     <string name="app_name">Musik</string>
     <string name="app_permissions_toast">Berechtigungen vom Nutzer nicht erteilt.</string>
     <string name="visualizer_permissions_toast">Für die Visualisierung ist die Berechtigung zur Audioaufnahme erforderlich.</string>
-    <string name="request_status_error_type_unknown">Unbekannt</string>
-    <string name="request_status_error_type_not_found">Nicht gefunden</string>
-    <string name="request_status_error_type_io">E/A-Fehler</string>
-    <string name="request_status_error_type_authentication_required">Authentifizierung erforderlich</string>
-    <string name="request_status_error_type_invalid_credentials">Ungültige Anmeldedaten</string>
     <string name="main_fragment_section_activity">Aktivität</string>
     <string name="main_fragment_section_search">Suche</string>
     <string name="main_fragment_section_library">Bibliothek</string>
@@ -64,13 +59,11 @@
     <string name="playback_speed">Wiedergabegeschwindigkeit</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Tonhöhe</string>
-    <string name="playbacl_pitch_unlock">Tonhöhenänderung freischalten</string>
     <string name="playback_warning">Geschwindigkeit und Tonhöhe funktionieren ggf. nicht richtig, wenn die Wiedergabe-Offload-Funktion aktiviert ist. Versuche es in den Einstellungen der App umzustellen.</string>
     <string name="visualizer">Visualisierung</string>
     <string name="audio_source">Quelle</string>
     <string name="audio_transcoding">Umwandlung</string>
     <string name="audio_output">Ausgabe</string>
-    <string name="audio_output_not_available_in_current_configuration">Ausgabeinformationen sind in der aktuellen Konfiguration nicht verfügbar</string>
     <string name="audio_file_type">Dateityp</string>
     <string name="audio_file_type_unknown">Unbekannt</string>
     <string name="audio_sample_rate">Abtastrate</string>
@@ -80,10 +73,6 @@
     <string name="audio_channel_count_unknown">Unbekannt</string>
     <string name="audio_encoding">Kodierung</string>
     <string name="audio_encoding_unknown">Unbekannt</string>
-    <string name="audio_float_mode">PCM-Gleitkomma-Modus</string>
-    <string name="audio_float_mode_unknown">Unbekannt</string>
-    <string name="audio_float_mode_enabled">Aktiviert</string>
-    <string name="audio_float_mode_disabled">Deaktiviert</string>
     <string name="audio_output_mode">Ausgabemodus</string>
     <string name="audio_output_mode_unknown">Unbekannt</string>
     <string name="audio_output_mode_pcm">PCM</string>
@@ -169,7 +158,6 @@
     <string name="yes">Ja</string>
     <string name="no">Nein</string>
     <string name="unknown">Unbekannt</string>
-    <string name="local_volume_name">Laufwerkname</string>
     <string name="subsonic_version">Subsonic-Version</string>
     <string name="subsonic_server_type">Servertyp</string>
     <string name="subsonic_server_version">Serverversion</string>

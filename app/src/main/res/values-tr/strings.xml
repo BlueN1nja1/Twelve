@@ -7,11 +7,6 @@
     <string name="app_name">Müzik</string>
     <string name="app_permissions_toast">Kullanıcı, izinleri vermedi.</string>
     <string name="visualizer_permissions_toast">Görselleştirici için ses kaydetme izni gereklidir.</string>
-    <string name="request_status_error_type_unknown">Bilinmiyor</string>
-    <string name="request_status_error_type_not_found">Bulunamadı</string>
-    <string name="request_status_error_type_io">I/O hatası</string>
-    <string name="request_status_error_type_authentication_required">Kimlik doğrulama gerekiyor</string>
-    <string name="request_status_error_type_invalid_credentials">Geçersiz giriş bilgileri</string>
     <string name="main_fragment_section_activity">Etkinlik</string>
     <string name="main_fragment_section_search">Ara</string>
     <string name="main_fragment_section_library">Kütüphane</string>
@@ -64,13 +59,11 @@
     <string name="playback_speed">Oynatma hızı</string>
     <string name="playback_speed_format">%1$sx</string>
     <string name="playback_pitch_slider_description">Oynatma perdesi</string>
-    <string name="playbacl_pitch_unlock">Perde değişikliğine izin ver</string>
     <string name="playback_warning">Offload özelliği aktifse, oynatma sırasında hız ve perde özellikleri düzgün çalışmayabilir. Uygulama\'nın ayarlarından açmayı deneyin.</string>
     <string name="visualizer">Görselleştirici</string>
     <string name="audio_source">Kaynak</string>
     <string name="audio_transcoding">Dönüştürülüyor</string>
     <string name="audio_output">Çıktı</string>
-    <string name="audio_output_not_available_in_current_configuration">Şu an ki yapılandırmada çıktı bilgisi kullanılamıyor</string>
     <string name="audio_file_type">Dosya tipi</string>
     <string name="audio_file_type_unknown">Bilinmeyen</string>
     <string name="audio_sample_rate">Örnekleme hızı</string>
@@ -80,10 +73,6 @@
     <string name="audio_channel_count_unknown">Bilinmiyor</string>
     <string name="audio_encoding">Kodlama</string>
     <string name="audio_encoding_unknown">Bilinmiyor</string>
-    <string name="audio_float_mode">PCM float modu</string>
-    <string name="audio_float_mode_unknown">Bilinmiyor</string>
-    <string name="audio_float_mode_enabled">Etkinleştirildi</string>
-    <string name="audio_float_mode_disabled">Kullanım dışı</string>
     <string name="audio_output_mode">Çıkış modu</string>
     <string name="audio_output_mode_unknown">Bilinmiyor</string>
     <string name="audio_output_mode_pcm">PCM</string>
@@ -175,7 +164,6 @@
     <string name="yes">Evet</string>
     <string name="no">Hayır</string>
     <string name="unknown">Bilinmeyen</string>
-    <string name="local_volume_name">Bölüm adı</string>
     <string name="subsonic_version">Subsonic versiyonu</string>
     <string name="subsonic_server_type">Sunucu tipi</string>
     <string name="subsonic_server_version">Sunucu sürümü</string>

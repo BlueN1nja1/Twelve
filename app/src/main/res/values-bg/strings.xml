@@ -7,11 +7,6 @@
     <string name="app_name">Музика</string>
     <string name="app_permissions_toast">Потребителят не е дал позволения на приложението</string>
     <string name="visualizer_permissions_toast">Визуализаторът има нужда от позволение за записване на аудио</string>
-    <string name="request_status_error_type_unknown">Неизвестно</string>
-    <string name="request_status_error_type_not_found">Няма информация</string>
-    <string name="request_status_error_type_io">Вход/Изход грешка</string>
-    <string name="request_status_error_type_authentication_required">Необходимо е удостоверяване</string>
-    <string name="request_status_error_type_invalid_credentials">Невалидни идентификационни данни</string>
     <string name="main_fragment_section_activity">Активност</string>
     <string name="main_fragment_section_search">Търсене</string>
     <string name="main_fragment_section_library">Библиотека</string>
@@ -64,13 +59,11 @@
     <string name="playback_speed">Скорост на възпроизвеждане</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Височина на тона на възпроизвеждане</string>
-    <string name="playbacl_pitch_unlock">Отключване промяна на тона</string>
     <string name="playback_warning">Скорост и височина на тона може да не работят правилно, докато е включено разтоварване на възпроизвеждането. Превключете го през настройките на приложението.</string>
     <string name="visualizer">Визуализатор</string>
     <string name="audio_source">Източник</string>
     <string name="audio_transcoding">Транскодиране</string>
     <string name="audio_output">Изход</string>
-    <string name="audio_output_not_available_in_current_configuration">Липсва информация за аудио възпроизвеждането с текущата настройка</string>
     <string name="audio_file_type">Вид файл</string>
     <string name="audio_file_type_unknown">Неизвестно</string>
     <string name="audio_sample_rate">Честота на дискретизация</string>
@@ -80,10 +73,6 @@
     <string name="audio_channel_count_unknown">Неизвестно</string>
     <string name="audio_encoding">Кодиране</string>
     <string name="audio_encoding_unknown">Неизвестно</string>
-    <string name="audio_float_mode">Режим плаващ PCM</string>
-    <string name="audio_float_mode_unknown">Неизвестно</string>
-    <string name="audio_float_mode_enabled">Включено</string>
-    <string name="audio_float_mode_disabled">Изключено</string>
     <string name="audio_output_mode">Режим на възпроизвеждане</string>
     <string name="audio_output_mode_unknown">Неизвестно</string>
     <string name="audio_output_mode_pcm">PCM</string>
@@ -175,7 +164,6 @@
     <string name="yes">Да</string>
     <string name="no">Не</string>
     <string name="unknown">Неизвестно</string>
-    <string name="local_volume_name">Име на тома</string>
     <string name="subsonic_version">Версия на Subsonic</string>
     <string name="subsonic_server_type">Вид на сървъра</string>
     <string name="subsonic_server_version">Версия на сървъра</string>

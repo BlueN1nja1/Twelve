@@ -5,7 +5,6 @@
 -->
 <resources>
     <string name="playback_pitch_slider_description">גובה צליל נגינה</string>
-    <string name="playbacl_pitch_unlock">התר שינוי גובה צליל</string>
     <string name="playback_warning">יתכן וגובה הצליל ומהירותו ישתבש כשמופעל מצב offload. נסה להפעיל ולכבות מצב offload בהגדרות האפליקציה.</string>
     <string name="no_provider">אין ספק</string>
     <string name="experimental_header">ניסיוני</string>
