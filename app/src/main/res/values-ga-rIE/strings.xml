@@ -65,6 +65,7 @@
     <string name="playback_speed">Luas athsheinm</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Tuinairde athsheinm</string>
+    <string name="playback_pitch_unlock">Díghlasáil athrú páirce</string>
     <string name="playback_warning">Seans nach n-oibreoidh luas agus tuinairde i gceart agus an ghné díluchtaithe athsheinm cumasaithe. Bain triail as é a scoránú i socruithe na haipe.</string>
     <string name="visualizer">Amharcléiritheoir</string>
     <string name="audio_potential_issues">Fadhbanna féideartha</string>

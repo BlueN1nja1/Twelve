@@ -100,6 +100,7 @@
     <string name="audio_format_compression_unknown">Desconocido</string>
     <string name="audio_format_compression_lossy">Con pérdidas</string>
     <string name="audio_format_compression_lossless">Sin pérdidas</string>
+    <string name="audio_format_compression_uncompressed">Sin compresión</string>
     <string name="audio_output_issue_downsampling">Reducción de muestreo</string>
     <string name="audio_output_issue_downsampling_description">Actualmente, la aplicación está reduciendo la resolución del audio debido a que el dispositivo de salida no admite la frecuencia de muestreo objetivo</string>
     <string name="audio_output_issue_pcm_float_mode_disabled">La salida de coma flotante de 32 bits está deshabilitada</string>

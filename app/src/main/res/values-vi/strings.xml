@@ -57,6 +57,7 @@
     <string name="playback_speed">Tốc độ phát lại</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Cao độ phát lại</string>
+    <string name="playback_pitch_unlock">Mở khóa thay đổi cao độ</string>
     <string name="playback_warning">Tốc độ và cao độ có thể không hoạt động chính xác khi tính năng chuyển tải phát lại được bật. Hãy thử bật/tắt tính năng này trong cài đặt của ứng dụng.</string>
     <string name="visualizer">Sóng nhạc</string>
     <string name="audio_potential_issues">Các vấn đề tiềm ẩn</string>

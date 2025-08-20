@@ -59,6 +59,7 @@
     <string name="playback_speed">Velocitat de reproducció</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">To de reproducció</string>
+    <string name="playback_pitch_unlock">Desbloca el canvi de to</string>
     <string name="playback_warning">És possible que la velocitat i el to no funcionin correctament mentre la funció de baixada de reproducció està activada. Proveu de canviar-lo a la configuració de l\'aplicació.</string>
     <string name="visualizer">Visualitzador</string>
     <string name="audio_potential_issues">Problemes potencials</string>

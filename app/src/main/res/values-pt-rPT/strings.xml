@@ -59,6 +59,7 @@
     <string name="playback_speed">Velocidade de reprodução</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Tom de reprodução</string>
+    <string name="playback_pitch_unlock">Desbloquear a alteração de tom</string>
     <string name="playback_warning">A velocidade e o tom podem não funcionar corretamente enquanto a funcionalidade de reprodução de descarregamento estiver ativada. Tente alterná-la nas definições da aplicação.</string>
     <string name="visualizer">Visualizador</string>
     <string name="audio_potential_issues">Problemas possíveis</string>

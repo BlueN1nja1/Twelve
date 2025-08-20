@@ -7,7 +7,7 @@
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-common",
-    aars: ["androidx/media3/media3-common/1.6.1/media3-common-1.6.1.aar"],
+    aars: ["androidx/media3/media3-common/1.8.0/media3-common-1.8.0.aar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [
@@ -23,7 +23,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-common-ktx",
-    aars: ["androidx/media3/media3-common-ktx/1.6.1/media3-common-ktx-1.6.1.aar"],
+    aars: ["androidx/media3/media3-common-ktx/1.8.0/media3-common-ktx-1.8.0.aar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [
@@ -41,7 +41,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-container",
-    aars: ["androidx/media3/media3-container/1.6.1/media3-container-1.6.1.aar"],
+    aars: ["androidx/media3/media3-container/1.8.0/media3-container-1.8.0.aar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [
@@ -56,7 +56,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-database",
-    aars: ["androidx/media3/media3-database/1.6.1/media3-database-1.6.1.aar"],
+    aars: ["androidx/media3/media3-database/1.8.0/media3-database-1.8.0.aar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [
@@ -71,7 +71,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-datasource",
-    aars: ["androidx/media3/media3-datasource/1.6.1/media3-datasource-1.6.1.aar"],
+    aars: ["androidx/media3/media3-datasource/1.8.0/media3-datasource-1.8.0.aar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [
@@ -88,7 +88,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-decoder",
-    aars: ["androidx/media3/media3-decoder/1.6.1/media3-decoder-1.6.1.aar"],
+    aars: ["androidx/media3/media3-decoder/1.8.0/media3-decoder-1.8.0.aar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [
@@ -103,7 +103,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer",
-    aars: ["androidx/media3/media3-exoplayer/1.6.1/media3-exoplayer-1.6.1.aar"],
+    aars: ["androidx/media3/media3-exoplayer/1.8.0/media3-exoplayer-1.8.0.aar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [
@@ -126,7 +126,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer-hls",
-    aars: ["androidx/media3/media3-exoplayer-hls/1.6.1/media3-exoplayer-hls-1.6.1.aar"],
+    aars: ["androidx/media3/media3-exoplayer-hls/1.8.0/media3-exoplayer-hls-1.8.0.aar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [
@@ -141,7 +141,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer-midi",
-    aars: ["androidx/media3/media3-exoplayer-midi/1.6.1/media3-exoplayer-midi-1.6.1.aar"],
+    aars: ["androidx/media3/media3-exoplayer-midi/1.8.0/media3-exoplayer-midi-1.8.0.aar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [
@@ -160,7 +160,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer-rtsp",
-    aars: ["androidx/media3/media3-exoplayer-rtsp/1.6.1/media3-exoplayer-rtsp-1.6.1.aar"],
+    aars: ["androidx/media3/media3-exoplayer-rtsp/1.8.0/media3-exoplayer-rtsp-1.8.0.aar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [
@@ -175,7 +175,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-exoplayer-smoothstreaming",
-    aars: ["androidx/media3/media3-exoplayer-smoothstreaming/1.6.1/media3-exoplayer-smoothstreaming-1.6.1.aar"],
+    aars: ["androidx/media3/media3-exoplayer-smoothstreaming/1.8.0/media3-exoplayer-smoothstreaming-1.8.0.aar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [
@@ -190,7 +190,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-extractor",
-    aars: ["androidx/media3/media3-extractor/1.6.1/media3-extractor-1.6.1.aar"],
+    aars: ["androidx/media3/media3-extractor/1.8.0/media3-extractor-1.8.0.aar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [
@@ -207,7 +207,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-session",
-    aars: ["androidx/media3/media3-session/1.6.1/media3-session-1.6.1.aar"],
+    aars: ["androidx/media3/media3-session/1.8.0/media3-session-1.8.0.aar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [
@@ -225,7 +225,7 @@ android_library_import {
 
 android_library_import {
     name: "Twelve_androidx.media3_media3-ui",
-    aars: ["androidx/media3/media3-ui/1.6.1/media3-ui-1.6.1.aar"],
+    aars: ["androidx/media3/media3-ui/1.8.0/media3-ui-1.8.0.aar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [
@@ -255,7 +255,7 @@ android_library_import {
 
 java_import {
     name: "Twelve_com.github.philburk_jsyn",
-    jars: ["com/github/philburk/jsyn/40a41092cbab558d7d410ec43d93bb1e4121e86a/jsyn-40a41092cbab558d7d410ec43d93bb1e4121e86a.jar"],
+    jars: ["com/github/philburk/jsyn/3f6b44b853bccc0d2e3027104d575fcc5ccb6d4e/jsyn-3f6b44b853bccc0d2e3027104d575fcc5ccb6d4e.jar"],
     sdk_version: "35",
     min_sdk_version: "30",
     apex_available: [

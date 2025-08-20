@@ -59,6 +59,7 @@
     <string name="playback_speed">قويۇش سۈرئىتى</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">كۈينى قويىدۇ</string>
+    <string name="playback_pitch_unlock">كۈي ئۆزگىرىش قۇلۇپىنى ئاچىدۇ</string>
     <string name="playback_warning">قويۇش يۈك چۈشۈرۈش ئىقتىدارى قوزغىتىلسا، سۈرئەت ۋە كۈي ئادەتتىكىدەك ئىشلىمەسلىكى مۇمكىن. ئەپنىڭ تەڭشىكىدە بۇ ئىقتىدارنى ئالماشتۇرۇشنى سىناڭ.</string>
     <string name="visualizer">ئوبرازلاشتۇرغۇچ</string>
     <string name="audio_potential_issues">يوشۇرۇن مەسىلە</string>

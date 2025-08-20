@@ -59,6 +59,7 @@
     <string name="playback_speed">Oxutma sürəti</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Oxutma ucalığı</string>
+    <string name="playback_pitch_unlock">Ucalıq dəyişdirmə kilidini aç</string>
     <string name="playback_warning">Playback offload özəlliyi fəal olduqda sürət və ucalıq düzgün işləməyə bilər. Tətbiq ayarlarında açmağa çalışın.</string>
     <string name="visualizer">Vizuallaşdırıcı</string>
     <string name="audio_potential_issues">Potensial problemlər</string>
