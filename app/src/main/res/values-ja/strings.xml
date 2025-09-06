@@ -57,6 +57,7 @@
     <string name="playback_speed">再生速度</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">再生ピッチ</string>
+    <string name="playback_pitch_unlock">ピッチ変更をアンロック</string>
     <string name="playback_warning">再生オフロード機能が有効な場合、速度とピッチが正しく動作しない可能性があります。アプリの設定で切り替えてみてください。</string>
     <string name="visualizer">ビジュアライザー</string>
     <string name="audio_potential_issues">潜在的な問題</string>

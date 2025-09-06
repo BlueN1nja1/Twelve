@@ -59,6 +59,7 @@
     <string name="playback_speed">Velocità di riproduzione</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Tono di riproduzione</string>
+    <string name="playback_pitch_unlock">Sblocca il cambio di tono</string>
     <string name="playback_warning">La regolazione della velocità e del tono potrebbe non funzionare correttamente mentre la funzione di offload è abilitata. Prova a disattivarla nelle impostazioni dell\'applicazione.</string>
     <string name="visualizer">Visualizzatore</string>
     <string name="audio_potential_issues">Potenziali problemi</string>

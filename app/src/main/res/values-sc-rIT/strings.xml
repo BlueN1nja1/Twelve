@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="audio_output_issue_downsampling">Reduida de campione</string>
+    <string name="audio_output_issue_downsampling_description">S\'aplicatzione immoe est reduende su campione de s\'àudio ca su dispositivu de essida non suportat sa frecuèntzia de su campione de destinatzione</string>
+    <string name="audio_output_issue_pcm_float_mode_disabled">S\'essida a vìrgula mòbile de 32-bit est disativada</string>
+    <string name="audio_output_issue_pcm_float_mode_disabled_description">Sa calidade de s\'àudio podet èssere mègius cun sa modalidade de essida a vìrgula mòbile de 32-bit. Dda podes ativare dae is cunfiguratziones de s\'aplicatzione</string>
+    <string name="audio_output_issue_downmixing">Misturu a reduida</string>
+    <string name="audio_output_issue_downmixing_description">S\'aplicatzione immoe est misturende a reduida s\'àudio ca su dispositivu de essida non suportat su contu de canales de destinatzione</string>
+</resources>

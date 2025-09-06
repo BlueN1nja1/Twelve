@@ -59,6 +59,7 @@
     <string name="playback_speed">Lejátszási sebesség</string>
     <string name="playback_speed_format">%1$sx</string>
     <string name="playback_pitch_slider_description">Lejátszási hangmagasság</string>
+    <string name="playback_pitch_unlock">A torzítás feloldása</string>
     <string name="playback_warning">Előfordulhat, hogy a sebesség és a hangmagasság nem működik megfelelően, ha a lejátszási tehermentesítés funkció engedélyezve van. Próbálja meg átkapcsolni az alkalmazás beállításaiban.</string>
     <string name="visualizer">Vizualizáló</string>
     <string name="audio_potential_issues">Lehetséges problémák</string>

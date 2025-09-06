@@ -63,6 +63,7 @@
     <string name="playback_speed">Hitrost predvajanja</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Višina tona predvajanja</string>
+    <string name="playback_pitch_unlock">Odkleni spremembo višine tona</string>
     <string name="playback_warning">Hitrost in višina tona morda ne bosta delovali pravilno, ko je funkcija razbremenitve predvajanja omogočena. Poskusite jo preklopiti v nastavitvah aplikacije.</string>
     <string name="visualizer">Vizualizator</string>
     <string name="audio_potential_issues">Morebitne težave</string>

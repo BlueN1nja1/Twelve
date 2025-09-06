@@ -59,6 +59,7 @@
     <string name="playback_speed">Velocidade de reprodução</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Tom de reprodução</string>
+    <string name="playback_pitch_unlock">Desbloquear mudança de tom</string>
     <string name="playback_warning">Velocidade e tom podem não funcionar corretamente enquanto o recurso de descarga da reprodução estiver ativado. Tente mudá-lo nas configurações do app.</string>
     <string name="visualizer">Visualizador</string>
     <string name="audio_potential_issues">Possíveis problemas</string>

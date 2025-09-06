@@ -5,7 +5,12 @@
 
 package org.lineageos.twelve.services
 
+import android.media.AudioDeviceInfo
 import android.media.AudioTrack
+import androidx.media3.common.Format
+import androidx.media3.common.util.Clock
+import androidx.media3.exoplayer.analytics.PlayerId
+import androidx.media3.exoplayer.audio.AudioOffloadSupport
 import androidx.media3.exoplayer.audio.AudioSink
 import androidx.media3.exoplayer.audio.DefaultAudioSink
 import java.nio.ByteBuffer
@@ -25,6 +30,18 @@ class TwelveAudioSink(
         isAccessible = true
     }
 
+    override fun setPlayerId(playerId: PlayerId?) {
+        defaultAudioSink.setPlayerId(playerId)
+    }
+
+    override fun setClock(clock: Clock) {
+        defaultAudioSink.setClock(clock)
+    }
+
+    override fun getFormatOffloadSupport(format: Format): AudioOffloadSupport {
+        return defaultAudioSink.getFormatOffloadSupport(format)
+    }
+
     override fun handleBuffer(
         buffer: ByteBuffer,
         presentationTimeUs: Long,
@@ -35,9 +52,25 @@ class TwelveAudioSink(
         onAudioTrackUpdate(audioTrackField.get(defaultAudioSink) as? AudioTrack)
     }
 
+    override fun setPreferredDevice(audioDeviceInfo: AudioDeviceInfo?) {
+        defaultAudioSink.setPreferredDevice(audioDeviceInfo)
+    }
+
+    override fun setOffloadMode(offloadMode: Int) {
+        defaultAudioSink.setOffloadMode(offloadMode)
+    }
+
+    override fun setOffloadDelayPadding(delayInFrames: Int, paddingInFrames: Int) {
+        defaultAudioSink.setOffloadDelayPadding(delayInFrames, paddingInFrames)
+    }
+
     override fun flush() = try {
         defaultAudioSink.flush()
     } finally {
         onAudioTrackUpdate(null)
+    }
+
+    override fun release() {
+        defaultAudioSink.release()
     }
 }

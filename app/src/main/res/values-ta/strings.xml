@@ -59,6 +59,7 @@
     <string name="playback_speed">இயக்க விரைவு</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">இயக்கக் குரலெடுப்பு</string>
+    <string name="playback_pitch_unlock">குரலெடுப்பு மாற்றத்தைத் திறக்க</string>
     <string name="playback_warning">இயக்கப் பளு அகற்றச் சிறப்பியல் இயக்கப்பட்டிருக்கும்போது, விரைவும், குரலெடுப்பும் சரியாக வேலை செய்யாமல் போகலாம். அதனின், நிலைமாற்ற செயலியது அமைப்புகளில் முயல்க.</string>
     <string name="visualizer">அகக்காணி</string>
     <string name="audio_potential_issues">ஒல்லும் சிக்கல்கள்</string>
@@ -101,6 +102,9 @@
     <string name="audio_format_compression_lossy">இழப்புடையது</string>
     <string name="audio_format_compression_lossless">இழப்பற்றது</string>
     <string name="audio_format_compression_uncompressed">சுருக்கப்படாதது</string>
+    <string name="audio_output_issue_downsampling">குறை கூறெடுத்தல்</string>
+    <string name="audio_output_issue_downsampling_description">இலக்கு மாதிரி விகிதத்தை வெளியீட்டுக் கருவி ஆதரிக்காததால், செயலி தற்போது ஒலியைக் குறை கூறெடுத்து வருகிறது</string>
+    <string name="audio_output_issue_pcm_float_mode_disabled">32-இரும மிதவைப்புள்ளி வெளியீடு முடக்கப்பட்டுள்ளது</string>
     <string name="provider_type_local">உள்ளிடம்</string>
     <string name="provider_argument_server">வழங்கி</string>
     <string name="provider_argument_username">பயனர்பெயர்</string>

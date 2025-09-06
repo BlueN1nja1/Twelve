@@ -61,6 +61,7 @@
     <string name="playback_speed">Viteza de redare</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Ton de redare</string>
+    <string name="playback_pitch_unlock">Deblochează schimbarea tonului</string>
     <string name="playback_warning">Viteza și tonul ar putea să nu funcționeze corect în timp ce funcția de redare offload este activată. Încercați să o schimbați în setările aplicației.</string>
     <string name="visualizer">Vizualizator</string>
     <string name="audio_potential_issues">Probleme posibile</string>
