@@ -59,6 +59,7 @@
     <string name="playback_speed">Скорост на възпроизвеждане</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Височина на тона на възпроизвеждане</string>
+    <string name="playback_pitch_unlock">Отключване промяна на тона</string>
     <string name="playback_warning">Скорост и височина на тона може да не работят правилно, докато е включено разтоварване на възпроизвеждането. Превключете го през настройките на приложението.</string>
     <string name="visualizer">Визуализатор</string>
     <string name="audio_potential_issues">Възможни проблеми</string>
