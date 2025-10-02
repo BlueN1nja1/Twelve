@@ -57,8 +57,6 @@ import org.lineageos.twelve.query.like
 import org.lineageos.twelve.query.neq
 import org.lineageos.twelve.query.query
 import org.lineageos.twelve.repositories.ProvidersRepository
-import java.time.LocalDateTime
-import kotlin.random.Random
 
 /**
  * [MediaStore.Audio] backed data source.
@@ -175,8 +173,6 @@ class MediaStoreDataSource(
             artists(providerIdentifier, SortingRule(SortingStrategy.NAME)),
             genres(providerIdentifier, SortingRule(SortingStrategy.NAME)),
         ) { mostPlayed, albums, artists, genres ->
-            val now = LocalDateTime.now()
-
             Result.Success(
                 listOf(
                     mostPlayed.map {
@@ -194,7 +190,7 @@ class MediaStoreDataSource(
                             LocalizedString.StringResIdLocalizedString(
                                 R.string.activity_random_albums
                             ),
-                            it.shuffled(Random(now.dayOfYear)),
+                            it.shuffled(),
                         )
                     },
                     artists.map {
@@ -203,7 +199,7 @@ class MediaStoreDataSource(
                             LocalizedString.StringResIdLocalizedString(
                                 R.string.activity_random_artists
                             ),
-                            it.shuffled(Random(now.dayOfYear)),
+                            it.shuffled(),
                         )
                     },
                     genres.map {
@@ -212,7 +208,7 @@ class MediaStoreDataSource(
                             LocalizedString.StringResIdLocalizedString(
                                 R.string.activity_random_genres
                             ),
-                            it.shuffled(Random(now.dayOfYear)),
+                            it.shuffled(),
                         )
                     },
                 ).mapNotNull {
@@ -278,6 +274,36 @@ class MediaStoreDataSource(
                 ).toTypedArray(),
             )
         ).mapEachRowToArtist().mapLatest {
+            Result.Success(it)
+        }
+    }
+
+    override fun audios(
+        providerIdentifier: ProviderIdentifier,
+        sortingRule: SortingRule,
+    ) = providersManager.flatMapWithInstanceOf(providerIdentifier) {
+        contentResolver.queryFlow(
+            audiosUri,
+            audiosProjection,
+            bundleOf(
+                ContentResolver.QUERY_ARG_SORT_COLUMNS to listOfNotNull(
+                    when (sortingRule.strategy) {
+                        SortingStrategy.ARTIST_NAME -> MediaStore.Audio.AudioColumns.ARTIST
+                        SortingStrategy.CREATION_DATE -> MediaStore.Audio.AudioColumns.YEAR
+                        SortingStrategy.NAME -> MediaStore.Audio.AudioColumns.TITLE
+                        else -> null
+                    }?.let { column ->
+                        when (sortingRule.reverse) {
+                            true -> "$column DESC"
+                            false -> column
+                        }
+                    },
+                    MediaStore.Audio.AudioColumns.TITLE.takeIf {
+                        sortingRule.strategy != SortingStrategy.NAME
+                    },
+                ).toTypedArray(),
+            )
+        ).mapEachRowToAudio().mapLatest {
             Result.Success(it)
         }
     }

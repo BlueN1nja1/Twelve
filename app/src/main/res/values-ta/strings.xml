@@ -105,6 +105,7 @@
     <string name="audio_output_issue_downsampling">குறை கூறெடுத்தல்</string>
     <string name="audio_output_issue_downsampling_description">இலக்கு மாதிரி விகிதத்தை வெளியீட்டுக் கருவி ஆதரிக்காததால், செயலி தற்போது ஒலியைக் குறை கூறெடுத்து வருகிறது</string>
     <string name="audio_output_issue_pcm_float_mode_disabled">32-இரும மிதவைப்புள்ளி வெளியீடு முடக்கப்பட்டுள்ளது</string>
+    <string name="audio_output_issue_post_processing_lossy_compression_description">இச்செயலி ஒலித்தரவை இழப்பு குறியாக்கமாகச் சுருக்குகிறது. ஒலித்தரம் பாதிக்கப்படலாம்</string>
     <string name="provider_type_local">உள்ளிடம்</string>
     <string name="provider_argument_server">வழங்கி</string>
     <string name="provider_argument_username">பயனர்பெயர்</string>

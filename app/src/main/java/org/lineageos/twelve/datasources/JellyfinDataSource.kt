@@ -371,6 +371,15 @@ class JellyfinDataSource(
         }
     }
 
+    override fun audios(
+        providerIdentifier: ProviderIdentifier,
+        sortingRule: SortingRule,
+    ) = providersManager.mapWithInstanceOf(providerIdentifier) {
+        client.getAudios(sortingRule).map { queryResult ->
+            queryResult.items.map { it.toMediaItemAudio() }
+        }
+    }
+
     override fun genres(
         providerIdentifier: ProviderIdentifier,
         sortingRule: SortingRule,

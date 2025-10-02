@@ -10,6 +10,7 @@
     <string name="main_fragment_section_activity">アクティビティ</string>
     <string name="main_fragment_section_search">検索</string>
     <string name="main_fragment_section_library">ライブラリ</string>
+    <string name="play_random_songs">ランダムな曲を再生</string>
     <string name="search_hint">検索…</string>
     <string name="library_fragment_menu_albums">アルバム</string>
     <string name="library_fragment_menu_artists">アーティスト</string>

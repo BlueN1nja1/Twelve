@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.stateIn
 import org.lineageos.twelve.models.Provider
 import org.lineageos.twelve.models.areItemsTheSame
 
-open class ProvidersViewModel(application: Application) : TwelveViewModel(application) {
+class ProvidersViewModel(application: Application) : TwelveViewModel(application) {
     val navigationProvider = mediaRepository.navigationProvider
         .stateIn(
             viewModelScope,

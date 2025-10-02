@@ -10,6 +10,7 @@
     <string name="main_fragment_section_activity">Activitate</string>
     <string name="main_fragment_section_search">Căutare</string>
     <string name="main_fragment_section_library">Bibliotecă</string>
+    <string name="play_random_songs">Redă melodii aleatoare</string>
     <string name="search_hint">Căutare…</string>
     <string name="library_fragment_menu_albums">Albume</string>
     <string name="library_fragment_menu_artists">Artiști</string>

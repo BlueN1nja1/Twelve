@@ -214,6 +214,13 @@ class MediaRepository(
     ) = withNavigationDataSourceAndProviderFlow { artists(it, sortingRule) }
 
     /**
+     * @see MediaDataSource.audios
+     */
+    fun audios(
+        sortingRule: SortingRule = defaultAudiosSortingRule,
+    ) = withNavigationDataSourceAndProviderFlow { audios(it, sortingRule) }
+
+    /**
      * @see MediaDataSource.genres
      */
     fun genres(
@@ -417,6 +424,10 @@ class MediaRepository(
 
         val defaultArtistsSortingRule = SortingRule(
             SortingStrategy.MODIFICATION_DATE, true
+        )
+
+        val defaultAudiosSortingRule = SortingRule(
+            SortingStrategy.NAME
         )
 
         val defaultGenresSortingRule = SortingRule(

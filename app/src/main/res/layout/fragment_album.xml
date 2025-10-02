@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><!--
+<?xml version="1.0" encoding="utf-8"?>
+<!--
      SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
@@ -95,11 +96,10 @@
         android:indeterminate="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    <include layout="@layout/play_buttons"
-        android:layout_width="wrap_content"
+    <include
+        layout="@layout/play_buttons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:paddingBottom="16dp"
         app:layout_anchor="@+id/recyclerView"
         app:layout_anchorGravity="bottom|end"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior" />

@@ -10,6 +10,7 @@
     <string name="main_fragment_section_activity">Hoạt động</string>
     <string name="main_fragment_section_search">Tìm kiếm</string>
     <string name="main_fragment_section_library">Thư viện</string>
+    <string name="play_random_songs">Phát các bài hát ngẫu nhiên</string>
     <string name="search_hint">Tìm…</string>
     <string name="library_fragment_menu_albums">Album</string>
     <string name="library_fragment_menu_artists">Nghệ sĩ</string>

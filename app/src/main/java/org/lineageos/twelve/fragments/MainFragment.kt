@@ -31,9 +31,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import com.google.android.material.search.SearchView
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.R
@@ -52,27 +54,27 @@ import org.lineageos.twelve.models.Genre
 import org.lineageos.twelve.models.MediaItem
 import org.lineageos.twelve.models.Playlist
 import org.lineageos.twelve.models.Result
+import org.lineageos.twelve.models.Result.Companion.onError
 import org.lineageos.twelve.models.areContentsTheSame
 import org.lineageos.twelve.models.areItemsTheSame
 import org.lineageos.twelve.ui.recyclerview.SimpleListAdapter
 import org.lineageos.twelve.ui.views.ListItem
 import org.lineageos.twelve.ui.views.NowPlayingBar
-import org.lineageos.twelve.viewmodels.NowPlayingViewModel
-import org.lineageos.twelve.viewmodels.ProvidersViewModel
-import org.lineageos.twelve.viewmodels.SearchViewModel
+import org.lineageos.twelve.viewmodels.MainViewModel
 
 /**
  * The home page.
  */
 class MainFragment : Fragment(R.layout.fragment_main) {
     // View models
-    private val viewModel by viewModels<NowPlayingViewModel>()
-    private val providersViewModel by viewModels<ProvidersViewModel>()
-    private val searchViewModel by viewModels<SearchViewModel>()
+    private val viewModel by viewModels<MainViewModel>()
 
     // Views
     private val navigationBarView by getViewProperty<NavigationBarView>(R.id.navigationBarView)
     private val nowPlayingBar by getViewProperty<NowPlayingBar>(R.id.nowPlayingBar)
+    private val playRandomSongsExtendedFloatingActionButton by getViewProperty<ExtendedFloatingActionButton>(
+        R.id.playRandomSongsExtendedFloatingActionButton
+    )
     private val providerMaterialButton by getViewProperty<MaterialButton>(R.id.providerMaterialButton)
     private val searchLinearProgressIndicator by getViewProperty<LinearProgressIndicator>(R.id.searchLinearProgressIndicator)
     private val searchNoElementsLinearLayout by getViewProperty<LinearLayout>(R.id.searchNoElementsLinearLayout)
@@ -305,7 +307,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             )
         }
         providerMaterialButton.setOnLongClickListener {
-            providersViewModel.navigationProvider.value?.let {
+            viewModel.navigationProvider.value?.let {
                 findNavController().navigateSafe(
                     R.id.action_mainFragment_to_fragment_provider_information_bottom_sheet_dialog,
                     ManageProviderFragment.createBundle(providerIdentifier = it),
@@ -317,6 +319,18 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         settingsMaterialButton.setOnClickListener {
             val intent = Intent(context, SettingsActivity::class.java)
             startActivity(intent)
+        }
+
+        playRandomSongsExtendedFloatingActionButton.setOnClickListener {
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.playAllAudios().onError {
+                    Snackbar.make(
+                        navigationBarView,
+                        it.toString(),
+                        Snackbar.LENGTH_SHORT,
+                    ).show()
+                }
+            }
         }
 
         // View pager
@@ -362,19 +376,19 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         searchRecyclerView.adapter = searchAdapter
 
         searchView.editText.addTextChangedListener { text ->
-            searchViewModel.setSearchQuery(text.toString())
+            viewModel.setSearchQuery(text.toString())
         }
         searchView.editText.setOnEditorActionListener { _, _, _ ->
             inputMethodManager.scheduleHideSoftInput(searchView.editText, 0)
             searchView.editText.clearFocus()
-            searchViewModel.setSearchQuery(searchView.editText.text.toString(), true)
+            viewModel.setSearchQuery(searchView.editText.text.toString(), true)
             true
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    providersViewModel.navigationProvider.collectLatest {
+                    viewModel.navigationProvider.collectLatest {
                         it?.let {
                             providerMaterialButton.text = it.name
                             providerMaterialButton.setIconResource(it.type.iconDrawableResId)
@@ -432,7 +446,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
 
                 launch {
-                    searchViewModel.searchResults.collectLatest {
+                    viewModel.searchResults.collectLatest {
                         searchLinearProgressIndicator.setProgressCompat(it)
 
                         when (it) {

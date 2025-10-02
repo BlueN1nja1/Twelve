@@ -10,6 +10,7 @@
     <string name="main_fragment_section_activity">Dejavnost</string>
     <string name="main_fragment_section_search">Iskanje</string>
     <string name="main_fragment_section_library">Knjižnica</string>
+    <string name="play_random_songs">Predvajaj naključne skladbe</string>
     <string name="search_hint">Išči …</string>
     <string name="library_fragment_menu_albums">Albumi</string>
     <string name="library_fragment_menu_artists">Izvajalci</string>

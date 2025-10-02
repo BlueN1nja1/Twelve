@@ -92,6 +92,17 @@ interface MediaDataSource {
     ): Flow<MediaRequestStatus<List<Artist>>>
 
     /**
+     * Get all the audios.
+     *
+     * @param providerIdentifier The [ProviderIdentifier] of the provider
+     * @param sortingRule The [SortingRule] to use
+     */
+    fun audios(
+        providerIdentifier: ProviderIdentifier,
+        sortingRule: SortingRule,
+    ): Flow<MediaRequestStatus<List<Audio>>>
+
+    /**
      * Get all the genres. All genres must have at least one audio associated with them.
      *
      * @param providerIdentifier The [ProviderIdentifier] of the provider

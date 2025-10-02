@@ -88,6 +88,11 @@ class FileDataSource(
         sortingRule: SortingRule,
     ) = flowOf(Result.Error<List<Artist>, _>(Error.NOT_IMPLEMENTED))
 
+    override fun audios(
+        providerIdentifier: ProviderIdentifier,
+        sortingRule: SortingRule,
+    ) = flowOf(Result.Error<List<Audio>, _>(Error.NOT_IMPLEMENTED))
+
     override fun genres(
         providerIdentifier: ProviderIdentifier,
         sortingRule: SortingRule,

@@ -10,6 +10,7 @@
     <string name="main_fragment_section_activity">活动</string>
     <string name="main_fragment_section_search">搜索</string>
     <string name="main_fragment_section_library">库</string>
+    <string name="play_random_songs">随机播放歌曲</string>
     <string name="search_hint">搜索…</string>
     <string name="library_fragment_menu_albums">专辑</string>
     <string name="library_fragment_menu_artists">艺术家</string>

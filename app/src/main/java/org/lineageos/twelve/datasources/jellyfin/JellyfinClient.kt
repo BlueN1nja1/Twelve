@@ -65,6 +65,14 @@ class JellyfinClient(
 
     private val api = Api(okHttpClient, serverUri)
 
+    suspend fun getAudios(sortingRule: SortingRule) = ApiRequest.get<QueryResult>(
+        listOf("Items"),
+        queryParameters = listOf(
+            "IncludeItemTypes" to "Audio",
+            "Recursive" to true,
+        ) + getSortParameter(sortingRule),
+    ).execute(api).mapToError()
+
     suspend fun getAlbums(sortingRule: SortingRule) = ApiRequest.get<QueryResult>(
         listOf("Items"),
         queryParameters = listOf(

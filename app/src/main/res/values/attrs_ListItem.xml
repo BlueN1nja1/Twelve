@@ -5,6 +5,7 @@
 -->
 <resources>
     <declare-styleable name="ListItem">
+        <attr name="cardCornerRadius" format="dimension" />
         <attr name="hasRoundedCorners" format="boolean" />
         <attr name="headlineText" format="string" />
         <attr name="isDimmed" format="boolean" />

@@ -10,6 +10,7 @@
     <string name="main_fragment_section_activity">Actividad</string>
     <string name="main_fragment_section_search">Búsqueda</string>
     <string name="main_fragment_section_library">Biblioteca</string>
+    <string name="play_random_songs">Reproducir canciones aleatorias</string>
     <string name="search_hint">Buscar…</string>
     <string name="library_fragment_menu_albums">Álbumes</string>
     <string name="library_fragment_menu_artists">Artistas</string>
@@ -59,6 +60,7 @@
     <string name="playback_speed">Velocidad de reproducción</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="playback_pitch_slider_description">Tono de reproducción</string>
+    <string name="playback_pitch_unlock">Desbloquear cambio de tono</string>
     <string name="playback_warning">Es posible que la velocidad y el tono no funcionen correctamente si la función de descarga de reproducción está activada. Prueba a desactivarla en los ajustes de la aplicación.</string>
     <string name="visualizer">Visualizador</string>
     <string name="audio_potential_issues">Posibles problemas</string>

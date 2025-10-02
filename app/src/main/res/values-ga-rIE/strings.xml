@@ -10,6 +10,7 @@
     <string name="main_fragment_section_activity">Gníomhaíocht</string>
     <string name="main_fragment_section_search">Cuardach</string>
     <string name="main_fragment_section_library">Leabharlann</string>
+    <string name="play_random_songs">Seinn amhráin randamacha</string>
     <string name="search_hint">Cuardaigh…</string>
     <string name="library_fragment_menu_albums">Albaim</string>
     <string name="library_fragment_menu_artists">Ealaíontóirí</string>

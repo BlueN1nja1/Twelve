@@ -51,5 +51,33 @@ sealed interface Result<T, E> {
         inline fun <T, E, R> Result<T, E>.map(
             mapping: (T) -> R
         ): Result<R, E> = flatMap { Success(mapping(it)) }
+
+        /**
+         * Execute a block if the result is [Success].
+         *
+         * @param block The block to execute
+         */
+        inline fun <R : Result<T, E>, reified T, E> R.onSuccess(
+            block: (T) -> Unit,
+        ): R = this.also {
+            when (this) {
+                is Success<*, *> -> block(data as T)
+                is Error<*, *> -> Unit
+            }
+        }
+
+        /**
+         * Execute a block if the result is [Error].
+         *
+         * @param block The block to execute
+         */
+        inline fun <R : Result<T, E>, T, reified E> R.onError(
+            block: (E) -> Unit,
+        ): R = this.also {
+            when (this) {
+                is Success<*, *> -> Unit
+                is Error<*, *> -> block(error as E)
+            }
+        }
     }
 }

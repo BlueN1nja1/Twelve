@@ -8,10 +8,10 @@ import org.lineageos.generatebp.models.Module
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kapt)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.lineageos.generatebp)
 }
 

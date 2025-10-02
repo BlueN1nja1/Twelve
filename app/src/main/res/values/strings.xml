@@ -15,6 +15,9 @@
     <string name="main_fragment_section_search">Search</string>
     <string name="main_fragment_section_library">Library</string>
 
+    <!-- Main fragment - Play random songs button -->
+    <string name="play_random_songs">Play random songs</string>
+
     <!-- Search fragment -->
     <string name="search_hint">Search…</string>
 

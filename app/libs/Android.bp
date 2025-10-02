@@ -31,8 +31,8 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
-        "Twelve_androidx.media3_media3-common",
         "androidx.core_core",
+        "Twelve_androidx.media3_media3-common",
         "kotlin-stdlib",
         "kotlinx-coroutines-android",
         "kotlinx-coroutines-core",
@@ -49,8 +49,8 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
-        "Twelve_androidx.media3_media3-common",
         "androidx.annotation_annotation",
+        "Twelve_androidx.media3_media3-common",
     ],
 }
 
@@ -64,8 +64,8 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
-        "Twelve_androidx.media3_media3-common",
         "androidx.annotation_annotation",
+        "Twelve_androidx.media3_media3-common",
     ],
 }
 
@@ -79,10 +79,10 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
-        "Twelve_androidx.media3_media3-common",
-        "Twelve_androidx.media3_media3-database",
         "androidx.annotation_annotation",
         "androidx.exifinterface_exifinterface",
+        "Twelve_androidx.media3_media3-common",
+        "Twelve_androidx.media3_media3-database",
     ],
 }
 
@@ -96,8 +96,8 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
-        "Twelve_androidx.media3_media3-common",
         "androidx.annotation_annotation",
+        "Twelve_androidx.media3_media3-common",
     ],
 }
 
@@ -111,16 +111,16 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
+        "androidx.annotation_annotation",
+        "androidx.collection_collection",
+        "androidx.core_core",
+        "androidx.exifinterface_exifinterface",
         "Twelve_androidx.media3_media3-common",
         "Twelve_androidx.media3_media3-container",
         "Twelve_androidx.media3_media3-database",
         "Twelve_androidx.media3_media3-datasource",
         "Twelve_androidx.media3_media3-decoder",
         "Twelve_androidx.media3_media3-extractor",
-        "androidx.annotation_annotation",
-        "androidx.collection_collection",
-        "androidx.core_core",
-        "androidx.exifinterface_exifinterface",
     ],
 }
 
@@ -134,8 +134,8 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
-        "Twelve_androidx.media3_media3-exoplayer",
         "androidx.annotation_annotation",
+        "Twelve_androidx.media3_media3-exoplayer",
     ],
 }
 
@@ -149,12 +149,12 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
+        "androidx.annotation_annotation",
         "Twelve_androidx.media3_media3-common",
         "Twelve_androidx.media3_media3-decoder",
         "Twelve_androidx.media3_media3-exoplayer",
         "Twelve_androidx.media3_media3-extractor",
         "Twelve_com.github.philburk_jsyn",
-        "androidx.annotation_annotation",
     ],
 }
 
@@ -168,8 +168,8 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
-        "Twelve_androidx.media3_media3-exoplayer",
         "androidx.annotation_annotation",
+        "Twelve_androidx.media3_media3-exoplayer",
     ],
 }
 
@@ -183,8 +183,8 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
-        "Twelve_androidx.media3_media3-exoplayer",
         "androidx.annotation_annotation",
+        "Twelve_androidx.media3_media3-exoplayer",
     ],
 }
 
@@ -198,10 +198,10 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
+        "androidx.annotation_annotation",
         "Twelve_androidx.media3_media3-common",
         "Twelve_androidx.media3_media3-container",
         "Twelve_androidx.media3_media3-decoder",
-        "androidx.annotation_annotation",
     ],
 }
 
@@ -215,11 +215,11 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
-        "Twelve_androidx.media3_media3-common",
-        "Twelve_androidx.media3_media3-datasource",
         "androidx.collection_collection",
         "androidx.core_core",
         "androidx.media_media",
+        "Twelve_androidx.media3_media3-common",
+        "Twelve_androidx.media3_media3-datasource",
     ],
 }
 
@@ -233,8 +233,8 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
-        "Twelve_androidx.media3_media3-common",
         "androidx.annotation_annotation",
+        "Twelve_androidx.media3_media3-common",
         "androidx.recyclerview_recyclerview",
     ],
 }
@@ -359,13 +359,13 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
-        "Twelve_com.squareup.okio_okio",
         "androidx.annotation_annotation",
         "androidx.appcompat_appcompat-resources",
         "androidx.core_core-ktx",
         "androidx.exifinterface_exifinterface",
         "androidx.lifecycle_lifecycle-runtime",
         "androidx.profileinstaller_profileinstaller",
+        "Twelve_com.squareup.okio_okio",
         "kotlin-stdlib",
         "kotlinx-coroutines-android",
         "kotlinx-coroutines-core",
@@ -395,8 +395,8 @@ android_library_import {
         "//apex_available:anyapex",
     ],
     static_libs: [
-        "Twelve_io.coil-kt.coil3_coil-core",
         "androidx.core_core-ktx",
+        "Twelve_io.coil-kt.coil3_coil-core",
         "kotlin-stdlib",
     ],
 }

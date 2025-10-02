@@ -10,6 +10,7 @@
     <string name="main_fragment_section_activity">Tevékenység</string>
     <string name="main_fragment_section_search">Keresés</string>
     <string name="main_fragment_section_library">Könyvtár</string>
+    <string name="play_random_songs">Számok véletlenszerű lejátszása</string>
     <string name="search_hint">Keresés folyamatban…</string>
     <string name="library_fragment_menu_albums">Albumok</string>
     <string name="library_fragment_menu_artists">Előadók</string>

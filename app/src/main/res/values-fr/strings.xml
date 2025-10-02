@@ -40,7 +40,9 @@
     <string name="delete_playlist_message">Voulez-vous vraiment supprimer cette liste de lecture ?</string>
     <string name="playback_speed_format">%1$s×</string>
     <string name="visualizer">Visualiseur</string>
+    <string name="audio_potential_issues">Problèmes potentiels </string>
     <string name="audio_source">Source</string>
+    <string name="audio_transcoding">Transcodage</string>
     <string name="audio_output">Sortie</string>
     <string name="audio_file_type">Type de fichier</string>
     <string name="audio_file_type_unknown">Inconnu</string>
@@ -53,6 +55,12 @@
     <string name="audio_output_mode_unknown">Inconnu</string>
     <string name="audio_bitrate_unknown">Inconnu</string>
     <string name="audio_bitrate_format">%1$s kbps</string>
+    <string name="audio_output_device_name">Nom</string>
+    <string name="audio_output_device_name_unknown">Inconnu </string>
+    <string name="audio_output_device_type_unknown">Inconnu </string>
+    <string name="audio_output_device_type_bluetooth">Bluetooth</string>
+    <string name="audio_output_device_type_hdmi">HDMI</string>
+    <string name="audio_output_device_type_usb">USB</string>
     <string name="provider_argument_server">Serveur</string>
     <string name="provider_argument_username">Nom d’utilisateur</string>
     <string name="provider_argument_password">Mot de passe</string>
@@ -63,12 +71,14 @@
     <string name="add_provider">Ajouter un fournisseur</string>
     <string name="save_provider_action">Enregistrer</string>
     <string name="delete_provider_action">Supprimer</string>
+    <string name="delete_provider_confirmation">Êtes-vous sûr de vouloir supprimer ce fournisseur ?</string>
     <string name="provider_name">Nom</string>
     <string name="provider_type">Type de fournisseur</string>
     <string name="provider_type_error">Sélectionnez un type de fournisseur</string>
     <string name="argument_validation_error_title">Erreur</string>
     <string name="argument_validation_error_item">%1$s : %2$s</string>
     <string name="title_activity_settings">Paramètres</string>
+    <string name="reset_local_stats_confirm_positive">Réinitialiser</string>
     <string name="now_playing_widget_dummy_title">Titre</string>
     <string name="now_playing_widget_dummy_artist">Artiste</string>
     <string name="album_disc_header">Disque %1$d</string>
@@ -87,6 +97,7 @@
     <string name="yes">Oui</string>
     <string name="no">Non</string>
     <string name="unknown">Inconnu</string>
+    <string name="subsonic_license">Licence</string>
     <string name="jellyfin_server_name">Nom du serveur</string>
     <string name="jellyfin_version">Version</string>
     <string name="playlist_name">Nom</string>

@@ -38,7 +38,6 @@ import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.loadThumbnail
 import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.ext.setProgressCompat
-import org.lineageos.twelve.ext.updateMargin
 import org.lineageos.twelve.ext.updatePadding
 import org.lineageos.twelve.models.Audio
 import org.lineageos.twelve.models.Error
@@ -188,7 +187,7 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
         ) { v, windowInsets ->
             val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
 
-            v.updateMargin(
+            v.updatePadding(
                 insets,
                 bottom = true,
             )

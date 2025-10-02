@@ -10,6 +10,7 @@
     <string name="main_fragment_section_activity">Fəaliyyət</string>
     <string name="main_fragment_section_search">Axtar</string>
     <string name="main_fragment_section_library">Kitabxana</string>
+    <string name="play_random_songs">Təsadüfi mahnıları oxut</string>
     <string name="search_hint">Axtar…</string>
     <string name="library_fragment_menu_albums">Albomlar</string>
     <string name="library_fragment_menu_artists">Sənətçilər</string>
