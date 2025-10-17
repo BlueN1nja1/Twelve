@@ -10,7 +10,7 @@ Original Repo can be found here: https://github.com/LineageOS/android_packages_a
 
 NOTICE: The 2.0.0 update is currently in development... Stay tuned for more info.
 
-**Keep in mind this project is currently on hiatus until Winter 2025.**
+**Keep in mind that this project is currently on hiatus until Winter 2025.**
 
 Current Features:
 ---------------------------------------------------------------------------------------------------------------------
