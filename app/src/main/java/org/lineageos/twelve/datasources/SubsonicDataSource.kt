@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -55,7 +55,7 @@ class SubsonicDataSource(
     providersRepository: ProvidersRepository,
     cache: Cache? = null,
 ) : MediaDataSource {
-    private inner class SubsonicInstance(
+    private class SubsonicInstance(
         server: String,
         val subsonicClient: SubsonicClient,
     ) : ProvidersManager.Instance {
@@ -700,7 +700,13 @@ class SubsonicDataSource(
         }
     }
 
-    override suspend fun onAudioPlayed(audioUri: Uri) = Result.Success<Unit, Error>(Unit)
+    override suspend fun onAudioPlayed(
+        audioUri: Uri,
+        positionMs: Long,
+    ): MediaRequestStatus<Unit> = providersManager.doWithInstanceOf(audioUri) {
+        subsonicClient.scrobble(ids = listOf(audioUri.lastPathSegment!!))
+        Result.Success(Unit)
+    }
 
     override suspend fun setFavorite(
         audioUri: Uri,

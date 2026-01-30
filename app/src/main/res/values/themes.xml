@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <!-- Application theme -->
-    <style name="Theme.Twelve" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.Twelve" parent="Theme.Material3Expressive.DayNight.NoActionBar">
         <item name="android:enforceNavigationBarContrast">true</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="enableEdgeToEdge">true</item>
+        <item name="materialSwitchStyle">@style/Widget.SettingsLib.MaterialSwitch</item>
     </style>
 
-    <style name="Theme.Twelve.Dialog" parent="Theme.Material3.DayNight.Dialog.Alert">
+    <!-- Base dialog theme -->
+    <style name="BaseTheme.Twelve.Dialog" parent="Theme.Material3Expressive.Light.Dialog.Alert" />
+
+    <!-- Dialog theme -->
+    <style name="Theme.Twelve.Dialog" parent="BaseTheme.Twelve.Dialog">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="materialSwitchStyle">@style/Widget.SettingsLib.MaterialSwitch</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
@@ -43,41 +49,33 @@
     <style name="Theme.Twelve.NoElements.TextView" parent="Widget.AppCompat.TextView">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAppearance">@style/TextAppearance.Material3.BodyLarge</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyLarge</item>
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
 
-    <!-- Now playing bar -->
-    <style name="Theme.Twelve.NowPlayingBar.CardView" parent="@style/Widget.Material3.CardView.Filled">
-        <item name="shapeAppearanceOverlay">
-            @style/Theme.Twelve.NowPlayingBar.CardView.ShapeAppearanceOverlay
+    <!-- Now playing fragment -->
+    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Primary" parent="Widget.Material3Expressive.Button.IconButton">
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconSize">36dp</item>
+    </style>
+
+    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Tertiary" parent="Widget.Material3Expressive.Button.IconButton">
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:padding">0dp</item>
+        <item name="backgroundTint">?attr/colorTertiaryContainer</item>
+        <item name="iconTint">?attr/colorOnTertiaryContainer</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconSize">36dp</item>
+        <item name="materialSizeOverlay">
+            @style/SizeOverlay.Material3Expressive.Button.IconButton.Small.Narrow
         </item>
     </style>
 
-    <style name="Theme.Twelve.NowPlayingBar.CardView.ShapeAppearanceOverlay" parent="@style/ShapeAppearanceOverlay.Material3.Corner.Top">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopLeft">12dp</item>
-        <item name="cornerSizeTopRight">12dp</item>
-    </style>
-
-    <!-- Now playing fragment -->
-    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Primary" parent="Widget.Material3.Button.IconButton.Filled">
-        <item name="android:layout_width">72dp</item>
-        <item name="android:layout_height">72dp</item>
-        <item name="android:padding">0dp</item>
-        <item name="iconGravity">textStart</item>
-        <item name="iconSize">36dp</item>
-    </style>
-
-    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Secondary" parent="Widget.Material3.Button.IconButton">
-        <item name="android:layout_width">72dp</item>
-        <item name="android:layout_height">72dp</item>
-        <item name="android:padding">0dp</item>
-        <item name="iconGravity">textStart</item>
-        <item name="iconSize">36dp</item>
-    </style>
-
-    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Tertiary" parent="Widget.Material3.Button.IconButton">
+    <style name="Theme.Twelve.NowPlayingFragment.MediaButton.Standard" parent="Widget.Material3Expressive.Button.IconButton.Standard">
         <item name="android:layout_width">48dp</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:layout_gravity">center</item>
@@ -100,19 +98,19 @@
         <item name="tint">?attr/colorPrimary</item>
     </style>
 
-    <style name="Theme.Twelve.NowPlayingFragment.BottomBarButton" parent="Widget.Material3.Button.IconButton">
+    <style name="Theme.Twelve.NowPlayingFragment.BottomBarButton" parent="Widget.Material3Expressive.Button.IconButton.Tonal">
         <item name="android:layout_width">48dp</item>
         <item name="android:layout_height">48dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:padding">0dp</item>
-        <item name="android:textColor">?attr/colorOnSecondaryContainer</item>
+        <item name="android:insetLeft">0dp</item>
+        <item name="android:insetRight">0dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceLabelLarge</item>
         <item name="iconGravity">textStart</item>
-        <item name="iconSize">24dp</item>
-        <item name="iconTint">?attr/colorOnSecondaryContainer</item>
     </style>
 
     <!-- App widget -->
-    <style name="Theme.Twelve.AppWidgetContainer" parent="Theme.Material3.DynamicColors.DayNight">
+    <style name="Theme.Twelve.AppWidgetContainer" parent="Theme.Material3Expressive.DynamicColors.DayNight">
         <item name="appWidgetRadius">28dp</item>
     </style>
 </resources>

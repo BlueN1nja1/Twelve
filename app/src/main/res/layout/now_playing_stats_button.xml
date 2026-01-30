@@ -6,10 +6,10 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Widget.Material3.CardView.Filled"
+    style="?attr/materialCardViewFilledStyle"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardBackgroundColor="?attr/colorPrimaryContainer"
+    app:cardBackgroundColor="?attr/colorSurfaceContainerHighest"
     app:cardCornerRadius="8dp">
 
     <LinearLayout
@@ -27,7 +27,7 @@
             android:paddingHorizontal="4dp"
             android:paddingVertical="6dp"
             android:src="@drawable/ic_headphones"
-            app:tint="?attr/colorOnPrimaryContainer" />
+            app:tint="?attr/colorOnSurface" />
 
         <ImageView
             android:id="@+id/hiResImageView"
@@ -37,7 +37,7 @@
             android:paddingHorizontal="4dp"
             android:paddingVertical="6dp"
             android:src="@drawable/ic_high_res"
-            app:tint="?attr/colorOnPrimaryContainer" />
+            app:tint="?attr/colorOnSurface" />
 
         <ImageView
             android:id="@+id/potentialIssuesImageView"
@@ -47,7 +47,7 @@
             android:paddingHorizontal="4dp"
             android:paddingVertical="6dp"
             android:src="@drawable/ic_error"
-            app:tint="?attr/colorOnPrimaryContainer" />
+            app:tint="?attr/colorOnSurface" />
 
         <TextView
             android:id="@+id/fileTypeTextView"
@@ -58,7 +58,7 @@
             android:text="@string/audio_file_type_unknown_short"
             android:textAlignment="gravity"
             android:textAppearance="?attr/textAppearanceLabelMedium"
-            android:textColor="?attr/colorOnPrimaryContainer"
+            android:textColor="?attr/colorOnSurface"
             tools:text="FLAC" />
 
     </LinearLayout>

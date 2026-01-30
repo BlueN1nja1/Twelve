@@ -6,7 +6,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Widget.Material3.CardView.Filled"
+    style="?attr/materialCardViewFilledStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:cardBackgroundColor="?attr/colorSurface"
@@ -19,7 +19,7 @@
         android:orientation="vertical">
 
         <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.Material3.CardView.Filled"
+            style="?attr/materialCardViewFilledStyle"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_marginBottom="8dp"
@@ -131,14 +131,14 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/playPauseMaterialButton"
-                style="@style/Widget.Material3.Button.IconButton.Filled"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:icon="@drawable/ic_play_arrow" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/playbackSpeedMaterialButton"
-                style="@style/Widget.Material3.Button.IconButton"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:padding="0dp"
@@ -165,7 +165,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/shuffleMaterialButton"
-                    style="@style/Widget.Material3.Button.IconButton"
+                    style="?attr/materialIconButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:icon="@drawable/ic_shuffle" />
@@ -188,7 +188,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/repeatMaterialButton"
-                    style="@style/Widget.Material3.Button.IconButton"
+                    style="?attr/materialIconButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:icon="@drawable/ic_repeat" />
@@ -197,14 +197,14 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/previousTrackMaterialButton"
-                style="@style/Widget.Material3.Button.IconButton"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:icon="@drawable/ic_skip_previous" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/nextTrackMaterialButton"
-                style="@style/Widget.Material3.Button.IconButton"
+                style="?attr/materialIconButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:icon="@drawable/ic_skip_next" />

@@ -16,21 +16,21 @@
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/shufflePlayExtendedFloatingActionButton"
+        style="?attr/floatingActionButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="18dp"
-        android:textColor="?attr/colorOnTertiaryContainer"
         android:tooltipText="@string/shuffle_play"
         android:visibility="gone"
-        app:backgroundTint="?attr/colorTertiaryContainer"
         app:collapsedSize="46dp"
         app:icon="@drawable/ic_shuffle_play"
-        app:iconTint="?attr/colorOnTertiaryContainer"
+        app:materialThemeOverlay="@style/ThemeOverlay.Material3Expressive.FloatingActionButton.TertiaryContainer"
         tools:visibility="visible" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/playAllExtendedFloatingActionButton"
+        style="?attr/floatingActionButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -38,6 +38,7 @@
         android:text="@string/play_all"
         android:visibility="gone"
         app:icon="@drawable/ic_play_arrow"
+        app:materialThemeOverlay="@style/ThemeOverlay.Material3Expressive.FloatingActionButton.PrimaryContainer"
         tools:visibility="visible" />
 
 </LinearLayout>

@@ -10,7 +10,6 @@ import kotlinx.serialization.Serializable
 /**
  * Lyrics.
  */
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 @Serializable
 data class Lyrics(
     val value: String,

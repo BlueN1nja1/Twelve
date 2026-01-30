@@ -8,5 +8,4 @@ package org.lineageos.twelve.datasources.subsonic.models
 import android.net.Uri
 import kotlinx.serialization.Serializable
 
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 typealias UriAsString = @Serializable(with = UriSerializer::class) Uri

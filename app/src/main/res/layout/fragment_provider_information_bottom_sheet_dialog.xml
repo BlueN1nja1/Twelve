@@ -22,7 +22,7 @@
             android:paddingBottom="12dp">
 
             <com.google.android.material.card.MaterialCardView
-                style="@style/Widget.Material3.CardView.Filled"
+                style="?attr/materialCardViewFilledStyle"
                 android:layout_width="72dp"
                 android:layout_height="72dp"
                 app:cardCornerRadius="8dp">

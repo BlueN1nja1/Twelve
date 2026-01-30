@@ -13,7 +13,6 @@ import kotlinx.serialization.UseSerializers
 import org.lineageos.twelve.datasources.jellyfin.serializers.UUIDSerializer
 import java.util.UUID
 
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 @Serializable
 data class PlaylistItems(
     @SerialName("ItemIds") val itemIds: List<UUID>,

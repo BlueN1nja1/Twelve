@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2025-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -27,7 +27,7 @@ import org.lineageos.twelve.models.Result.Companion.map
 /**
  * Home page view model.
  */
-class MainViewModel(application: Application) : NowPlayingViewModel(application) {
+class MainViewModel(application: Application) : TwelveViewModel(application) {
     val navigationProvider = mediaRepository.navigationProvider
         .stateIn(
             viewModelScope,

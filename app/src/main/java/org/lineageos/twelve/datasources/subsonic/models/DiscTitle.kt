@@ -15,7 +15,6 @@ import kotlinx.serialization.Serializable
  * @param disc The disc number
  * @param title The name of the disc
  */
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 @Serializable
 data class DiscTitle(
     val disc: Int,

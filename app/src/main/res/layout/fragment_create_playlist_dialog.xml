@@ -73,14 +73,14 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/cancelMaterialButton"
-                style="@style/Widget.Material3.Button.TextButton.Dialog"
+                style="@style/Widget.Material3Expressive.Button.TextButton.Dialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@android:string/cancel" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/createMaterialButton"
-                style="@style/Widget.Material3.Button.TextButton.Dialog"
+                style="@style/Widget.Material3Expressive.Button.TextButton.Dialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/create_playlist_confirm" />

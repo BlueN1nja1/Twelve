@@ -19,7 +19,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.divider.MaterialDivider
@@ -43,7 +42,7 @@ import org.lineageos.twelve.viewmodels.ProviderViewModel
 /**
  * Fragment used to show useful information regarding a provider.
  */
-class ProviderInformationBottomSheetDialogFragment : BottomSheetDialogFragment(
+class ProviderInformationBottomSheetDialogFragment : TwelveBottomSheetDialogFragment(
     R.layout.fragment_provider_information_bottom_sheet_dialog
 ) {
     // View models

@@ -74,7 +74,7 @@ abstract class AppWidgetUpdater<T : AppWidgetProvider>(
         imageLoader.execute(imageRequest)
     }
 
-    private inner class RemoteViewsTarget(
+    private class RemoteViewsTarget(
         private val remoteViews: RemoteViews,
         @IdRes private val imageViewResId: Int
     ) : Target {

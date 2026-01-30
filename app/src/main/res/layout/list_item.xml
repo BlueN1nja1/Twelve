@@ -49,7 +49,7 @@
 
         <TextView
             android:id="@+id/headlineTextView"
-            style="@style/TextAppearance.Material3.BodyLarge"
+            style="?attr/textAppearanceBodyLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -60,7 +60,7 @@
 
         <TextView
             android:id="@+id/supportingTextView"
-            style="@style/TextAppearance.Material3.BodyMedium"
+            style="?attr/textAppearanceBodyMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -73,7 +73,7 @@
 
     <TextView
         android:id="@+id/trailingSupportingTextView"
-        style="@style/TextAppearance.Material3.BodyMedium"
+        style="?attr/textAppearanceBodyMedium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2022-2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2022-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -137,3 +137,8 @@ fun View.updateMargin(
         bottomMargin = insets.bottom.takeIf { bottom } ?: bottomMargin
     }
 }
+
+/**
+ * @see toPx
+ */
+fun View.toPx(dp: Int) = resources.displayMetrics.toPx(dp)

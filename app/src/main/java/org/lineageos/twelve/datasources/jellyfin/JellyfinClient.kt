@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -12,6 +12,7 @@ import org.lineageos.twelve.datasources.jellyfin.models.CreatePlaylist
 import org.lineageos.twelve.datasources.jellyfin.models.CreatePlaylistResult
 import org.lineageos.twelve.datasources.jellyfin.models.Item
 import org.lineageos.twelve.datasources.jellyfin.models.Lyrics
+import org.lineageos.twelve.datasources.jellyfin.models.PlaybackStartInfo
 import org.lineageos.twelve.datasources.jellyfin.models.PlaylistItems
 import org.lineageos.twelve.datasources.jellyfin.models.QueryResult
 import org.lineageos.twelve.datasources.jellyfin.models.SystemInfo
@@ -78,6 +79,7 @@ class JellyfinClient(
         queryParameters = listOf(
             "IncludeItemTypes" to "MusicAlbum",
             "Recursive" to true,
+            "Limit" to 50,
         ) + getSortParameter(sortingRule),
     ).execute(api).mapToError()
 
@@ -223,7 +225,7 @@ class JellyfinClient(
         ),
     ).execute(api).mapToError()
 
-    suspend fun addItemToPlaylist(id: UUID, audioId: UUID) = ApiRequest.post<Any, Unit>(
+    suspend fun addItemToPlaylist(id: UUID, audioId: UUID) = ApiRequest.post<Unit, Unit>(
         listOf(
             "Playlists",
             id.toString(),
@@ -253,7 +255,7 @@ class JellyfinClient(
         ),
     ).execute(api).mapToError()
 
-    suspend fun addToFavorites(id: UUID) = ApiRequest.post<Any, Unit>(
+    suspend fun addToFavorites(id: UUID) = ApiRequest.post<Unit, Unit>(
         listOf(
             "UserFavoriteItems",
             id.toString(),
@@ -265,6 +267,16 @@ class JellyfinClient(
             "UserFavoriteItems",
             id.toString(),
         ),
+    ).execute(api).mapToError()
+
+    suspend fun frequentlyPlayedAudio() = ApiRequest.get<QueryResult>(
+        listOf("Items"), queryParameters = listOf(
+            "SortBy" to "PlayCount",
+            "SortOrder" to "Descending",
+            "Type" to "Audio",
+            "Recursive" to true,
+            "Limit" to 12,
+        )
     ).execute(api).mapToError()
 
     suspend fun audioSuggestions() = ApiRequest.get<QueryResult>(
@@ -309,6 +321,17 @@ class JellyfinClient(
             "Type" to "MusicArtist",
             "Limit" to 10,
         )
+    ).execute(api).mapToError()
+
+    suspend fun broadcastPlaybackStart(
+        itemId: UUID,
+        positionTicks: Long = 0L,
+    ) = ApiRequest.post<PlaybackStartInfo, Unit>(
+        listOf(
+            "Sessions",
+            "Playing",
+        ),
+        data = PlaybackStartInfo(itemId.toString(), positionTicks)
     ).execute(api).mapToError()
 
     private suspend fun getItem(id: UUID) = ApiRequest.get<Item>(

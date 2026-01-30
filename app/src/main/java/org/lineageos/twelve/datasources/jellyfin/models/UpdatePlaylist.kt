@@ -8,7 +8,6 @@ package org.lineageos.twelve.datasources.jellyfin.models
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 @Serializable
 data class UpdatePlaylist(
     @SerialName("Name") val name: String,

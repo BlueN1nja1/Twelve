@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -108,10 +108,6 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
                     is AlbumViewModel.AlbumContent.AudioItem -> {
                         view.setOnClickListener {
                             viewModel.playAlbum(item.audio)
-
-                            findNavController().navigateSafe(
-                                R.id.action_albumFragment_to_fragment_now_playing
-                            )
                         }
                         view.setOnLongClickListener {
                             findNavController().navigateSafe(
@@ -247,14 +243,10 @@ class AlbumFragment : Fragment(R.layout.fragment_album) {
 
         playAllExtendedFloatingActionButton.setOnClickListener {
             viewModel.playAlbum()
-
-            findNavController().navigateSafe(R.id.action_albumFragment_to_fragment_now_playing)
         }
 
         shufflePlayExtendedFloatingActionButton.setOnClickListener {
             viewModel.shufflePlayAlbum()
-
-            findNavController().navigateSafe(R.id.action_albumFragment_to_fragment_now_playing)
         }
 
         viewModel.loadAlbum(albumUri)

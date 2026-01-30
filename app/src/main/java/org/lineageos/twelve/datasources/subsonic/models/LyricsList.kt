@@ -15,7 +15,6 @@ import kotlinx.serialization.Serializable
  * @param structuredLyrics Structured lyrics. There can be multiple lyrics of the same type with the
  *   same language
  */
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 @Serializable
 data class LyricsList(
     val structuredLyrics: List<StructuredLyrics>,

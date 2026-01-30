@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -8,83 +8,50 @@ package org.lineageos.twelve.ui.views
 import android.content.Context
 import android.graphics.drawable.AnimatedVectorDrawable
 import android.util.AttributeSet
-import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.updateLayoutParams
-import androidx.media3.common.MediaItem
+import androidx.annotation.AttrRes
 import androidx.media3.common.MediaMetadata
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
+import com.google.android.material.color.MaterialColors
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import org.lineageos.twelve.R
 import org.lineageos.twelve.ext.loadThumbnail
-import org.lineageos.twelve.ext.slideDown
-import org.lineageos.twelve.ext.slideUp
 import org.lineageos.twelve.models.Thumbnail
 import kotlin.reflect.safeCast
 
 class NowPlayingBar @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null
-) : FrameLayout(context, attrs) {
+    context: Context,
+    attrs: AttributeSet? = null,
+    @AttrRes defStyleAttr: Int = com.google.android.material.R.attr.materialCardViewStyle,
+) : MaterialCardView(context, attrs, defStyleAttr) {
     private val artistNameTextView by lazy { findViewById<TextView>(R.id.artistNameTextView) }
     private val albumTitleTextView by lazy { findViewById<TextView>(R.id.albumTitleTextView) }
     private val circularProgressIndicator by lazy { findViewById<CircularProgressIndicator>(R.id.circularProgressIndicator) }
-    private val materialCardView by lazy { findViewById<MaterialCardView>(R.id.materialCardView) }
     private val playPauseMaterialButton by lazy { findViewById<MaterialButton>(R.id.playPauseMaterialButton) }
     private val thumbnailImageView by lazy { findViewById<ImageView>(R.id.thumbnailImageView) }
     private val titleTextView by lazy { findViewById<TextView>(R.id.titleTextView) }
 
-    private var isBottomNavigationBar = false
-
     init {
+        setCardBackgroundColor(
+            MaterialColors.getColorStateList(
+                context,
+                com.google.android.material.R.attr.colorSurfaceContainer,
+                cardBackgroundColor,
+            )
+        )
+        cardElevation = 0f
+        radius = 0f
+        strokeWidth = 0
+
         inflate(context, R.layout.now_playing_bar, this)
-
-        context.obtainStyledAttributes(attrs, R.styleable.NowPlayingBar, 0, 0).apply {
-            try {
-                isBottomNavigationBar = getBoolean(
-                    R.styleable.NowPlayingBar_isBottomNavigationBar,
-                    false
-                )
-            } finally {
-                recycle()
-            }
-        }
-
-        ViewCompat.setOnApplyWindowInsetsListener(this) { _, windowInsets ->
-            val insets = windowInsets.getInsets(
-                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
-            )
-
-            updateLayoutParams<MarginLayoutParams> {
-                leftMargin = insets.left
-                rightMargin = insets.right
-            }
-
-            materialCardView.setContentPadding(
-                0,
-                0,
-                0,
-                when (isBottomNavigationBar) {
-                    true -> insets.bottom
-                    false -> 0
-                }
-            )
-
-            windowInsets
-        }
 
         circularProgressIndicator.min = 0
     }
 
     fun setOnPlayPauseClickListener(l: OnClickListener?) =
         playPauseMaterialButton.setOnClickListener(l)
-
-    fun setOnNowPlayingClickListener(l: OnClickListener?) {
-        materialCardView.setOnClickListener(l)
-    }
 
     fun updateIsPlaying(isPlaying: Boolean) {
         playPauseMaterialButton.setIconResource(
@@ -94,14 +61,6 @@ class NowPlayingBar @JvmOverloads constructor(
             }
         )
         AnimatedVectorDrawable::class.safeCast(playPauseMaterialButton.icon)?.start()
-    }
-
-    fun updateMediaItem(mediaItem: MediaItem?) {
-        if (mediaItem != null) {
-            slideUp()
-        } else {
-            slideDown()
-        }
     }
 
     fun updateMediaMetadata(mediaMetadata: MediaMetadata) {

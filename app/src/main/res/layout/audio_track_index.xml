@@ -4,9 +4,9 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    style="@style/Widget.Material3.CardView.Filled"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="?attr/materialCardViewFilledStyle"
     android:layout_width="24dp"
     android:layout_height="24dp"
     app:cardBackgroundColor="?attr/colorPrimaryContainer"

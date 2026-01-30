@@ -5,7 +5,7 @@
 -->
 <resources>
     <!-- App widget -->
-    <style name="Theme.Twelve.AppWidgetContainer" parent="Theme.Material3.DynamicColors.DayNight">
+    <style name="Theme.Twelve.AppWidgetContainer" parent="Theme.Material3Expressive.DynamicColors.DayNight">
         <item name="appWidgetRadius">@android:dimen/system_app_widget_background_radius</item>
     </style>
 </resources>

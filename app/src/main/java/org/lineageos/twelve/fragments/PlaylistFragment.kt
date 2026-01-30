@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -95,10 +95,6 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
             override fun ViewHolder.onBindView(item: Audio) {
                 view.setOnClickListener {
                     viewModel.playPlaylist(bindingAdapterPosition)
-
-                    findNavController().navigateSafe(
-                        R.id.action_playlistFragment_to_fragment_now_playing
-                    )
                 }
                 view.setOnLongClickListener {
                     findNavController().navigateSafe(
@@ -217,14 +213,10 @@ class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
 
         playAllExtendedFloatingActionButton.setOnClickListener {
             viewModel.playPlaylist()
-
-            findNavController().navigateSafe(R.id.action_playlistFragment_to_fragment_now_playing)
         }
 
         shufflePlayExtendedFloatingActionButton.setOnClickListener {
             viewModel.shufflePlayPlaylist()
-
-            findNavController().navigateSafe(R.id.action_playlistFragment_to_fragment_now_playing)
         }
 
         viewModel.loadPlaylist(playlistUri)

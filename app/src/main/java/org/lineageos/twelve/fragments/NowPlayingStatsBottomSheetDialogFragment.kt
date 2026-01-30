@@ -15,7 +15,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.R
@@ -29,7 +28,7 @@ import java.util.Locale
  * A fragment showing playback statistics for nerds and audiophiles thinking that audio files
  * with a sample rate higher than 48 kHz is better.
  */
-class NowPlayingStatsBottomSheetDialogFragment : BottomSheetDialogFragment(
+class NowPlayingStatsBottomSheetDialogFragment : TwelveBottomSheetDialogFragment(
     R.layout.fragment_now_playing_stats_bottom_sheet_dialog
 ) {
     // View models

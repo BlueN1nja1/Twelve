@@ -23,7 +23,6 @@ import kotlinx.serialization.Serializable
  * @param offset The offset to apply to all lyrics, in milliseconds. Positive means lyrics appear
  *   sooner, negative means later. If not included, the offset must be assumed to be 0
  */
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 @Serializable
 data class StructuredLyrics(
     val lang: String,

@@ -19,7 +19,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import coil3.load
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -43,7 +42,7 @@ import org.lineageos.twelve.viewmodels.MediaItemViewModel
 /**
  * Audio information.
  */
-class MediaItemBottomSheetDialogFragment : BottomSheetDialogFragment(
+class MediaItemBottomSheetDialogFragment : TwelveBottomSheetDialogFragment(
     R.layout.fragment_media_item_bottom_sheet_dialog
 ) {
     // View models

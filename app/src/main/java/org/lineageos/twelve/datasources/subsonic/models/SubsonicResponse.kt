@@ -9,7 +9,6 @@ import kotlinx.serialization.Serializable
 
 typealias TODO = (Nothing?)
 
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 @Serializable
 data class SubsonicResponse(
     val musicFolders: TODO = null,

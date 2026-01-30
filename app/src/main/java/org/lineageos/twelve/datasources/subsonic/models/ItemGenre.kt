@@ -14,7 +14,6 @@ import kotlinx.serialization.Serializable
  *
  * @param name Genre name
  */
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 @Serializable
 data class ItemGenre(
     val name: String,

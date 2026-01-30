@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -299,6 +299,16 @@ class JellyfinDataSource(
     override fun activity(
         providerIdentifier: ProviderIdentifier,
     ) = providersManager.mapWithInstanceOf(providerIdentifier) {
+        val frequentlyPlayedSongs = client.frequentlyPlayedAudio().map { queryResult ->
+            ActivityTab(
+                "frequently_played_songs",
+                LocalizedString.StringResIdLocalizedString(
+                    R.string.activity_most_played_songs,
+                ),
+                queryResult.items.map { it.toMediaItemAudio() }
+            )
+        }
+
         val randomSongs = client.audioSuggestions().map { queryResult ->
             ActivityTab(
                 "random_songs",
@@ -341,6 +351,7 @@ class JellyfinDataSource(
 
         Result.Success(
             listOf(
+                frequentlyPlayedSongs,
                 randomSongs,
                 randomAlbums,
                 randomArtists,
@@ -398,7 +409,7 @@ class JellyfinDataSource(
                 buildList {
                     add(favoritesPlaylist)
 
-                    queryResult.items.forEach { add(it.toMediaItemPlaylist()) }
+                    addAll(queryResult.items.map { it.toMediaItemPlaylist() })
                 }
             }
         }
@@ -610,7 +621,16 @@ class JellyfinDataSource(
         }
     }
 
-    override suspend fun onAudioPlayed(audioUri: Uri) = Result.Success<Unit, Error>(Unit)
+    override suspend fun onAudioPlayed(
+        audioUri: Uri,
+        positionMs: Long,
+    ) = providersManager.doWithInstanceOf(audioUri) {
+        val itemId = UUID.fromString(audioUri.lastPathSegment!!)
+        client.broadcastPlaybackStart(
+            itemId = itemId,
+            positionTicks = positionMs,
+        )
+    }
 
     override suspend fun setFavorite(
         audioUri: Uri,

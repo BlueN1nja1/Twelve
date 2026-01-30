@@ -1,104 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/materialCardView"
-    style="@style/Theme.Twelve.NowPlayingBar.CardView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardBackgroundColor="?attr/colorSurfaceContainer">
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="16dp">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/thumbnailMaterialCardView"
+        style="?attr/materialCardViewFilledStyle"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        app:cardBackgroundColor="?attr/colorSecondaryContainer">
+
+        <ImageView
+            android:id="@+id/thumbnailImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/content_description_thumbnail" />
+
+    </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="16dp">
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/thumbnailMaterialCardView"
-            style="@style/Widget.Material3.CardView.Filled"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            app:cardBackgroundColor="?attr/colorSecondaryContainer">
-
-            <ImageView
-                android:id="@+id/thumbnailImageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/content_description_thumbnail" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <LinearLayout
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceBodyLarge"
+            android:textColor="?attr/colorOnSurface"
+            tools:text="Tokyo Story" />
 
-            <TextView
-                android:id="@+id/titleTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textAppearance="?attr/textAppearanceBodyLarge"
-                android:textColor="?attr/colorOnSurface"
-                tools:text="Tokyo Story" />
+        <TextView
+            android:id="@+id/artistNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorOnSurface"
+            tools:text="Ryuichi Sakamoto" />
 
-            <TextView
-                android:id="@+id/artistNameTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:textColor="?attr/colorOnSurface"
-                tools:text="Ryuichi Sakamoto" />
-
-            <TextView
-                android:id="@+id/albumTitleTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textAppearance="?attr/textAppearanceBodyMedium"
-                android:textColor="?attr/colorOnSurface"
-                tools:text="Sweet Revenge" />
-
-        </LinearLayout>
-
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.progressindicator.CircularProgressIndicator
-                android:id="@+id/circularProgressIndicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/playPauseMaterialButton"
-                style="@style/Widget.Material3.Button.IconButton.Filled"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="@string/content_description_play_pause"
-                android:padding="0dp"
-                android:src="@drawable/avd_play_to_pause"
-                app:iconGravity="textStart"
-                app:iconTint="?attr/colorOnSurface" />
-
-        </FrameLayout>
+        <TextView
+            android:id="@+id/albumTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:textColor="?attr/colorOnSurface"
+            tools:text="Sweet Revenge" />
 
     </LinearLayout>
 
-</com.google.android.material.card.MaterialCardView>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/circularProgressIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/playPauseMaterialButton"
+            style="?attr/materialIconButtonFilledStyle"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/content_description_play_pause"
+            android:padding="0dp"
+            android:src="@drawable/avd_play_to_pause"
+            app:iconGravity="textStart"
+            app:iconTint="?attr/colorOnSurface" />
+
+    </FrameLayout>
+
+</LinearLayout>

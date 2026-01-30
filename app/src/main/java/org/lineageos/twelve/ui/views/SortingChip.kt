@@ -112,7 +112,7 @@ class SortingChip @JvmOverloads constructor(
                     }
                 )
             } else {
-                it.setIcon(null)
+                it.icon = null
             }
         }
     }

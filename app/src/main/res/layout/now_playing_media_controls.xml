@@ -13,7 +13,6 @@
     <FrameLayout
         style="@style/Theme.Twelve.NowPlayingFragment.MediaButton.Tertiary.Container"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/previousTrackMaterialButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -24,41 +23,52 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/shuffleMaterialButton"
-            style="@style/Theme.Twelve.NowPlayingFragment.MediaButton.Tertiary"
+            style="@style/Theme.Twelve.NowPlayingFragment.MediaButton.Standard"
             app:icon="@drawable/ic_shuffle" />
 
     </FrameLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/previousTrackMaterialButton"
-        style="@style/Theme.Twelve.NowPlayingFragment.MediaButton.Secondary"
-        app:icon="@drawable/ic_skip_previous"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/playPauseMaterialButton"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/playPauseMaterialButton"
-        style="@style/Theme.Twelve.NowPlayingFragment.MediaButton.Primary"
-        app:icon="@drawable/ic_play_arrow"
+    <com.google.android.material.button.MaterialButtonGroup
+        android:id="@+id/primaryMaterialButtonGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:spacing="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/nextTrackMaterialButton"
-        style="@style/Theme.Twelve.NowPlayingFragment.MediaButton.Secondary"
-        app:icon="@drawable/ic_skip_next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/playPauseMaterialButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/previousTrackMaterialButton"
+            style="?attr/materialIconButtonFilledTonalStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_skip_previous"
+            app:materialSizeOverlay="@style/SizeOverlay.Material3Expressive.Button.IconButton.Large.Narrow" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/playPauseMaterialButton"
+            style="?attr/materialIconButtonFilledStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_play_arrow"
+            app:materialSizeOverlay="@style/SizeOverlay.Material3Expressive.Button.IconButton.Large.Wide.Square" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/nextTrackMaterialButton"
+            style="?attr/materialIconButtonFilledTonalStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:icon="@drawable/ic_skip_next"
+            app:materialSizeOverlay="@style/SizeOverlay.Material3Expressive.Button.IconButton.Large.Narrow" />
+
+    </com.google.android.material.button.MaterialButtonGroup>
 
     <FrameLayout
         style="@style/Theme.Twelve.NowPlayingFragment.MediaButton.Tertiary.Container"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/nextTrackMaterialButton"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
@@ -68,7 +78,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/repeatMaterialButton"
-            style="@style/Theme.Twelve.NowPlayingFragment.MediaButton.Tertiary"
+            style="@style/Theme.Twelve.NowPlayingFragment.MediaButton.Standard"
             app:icon="@drawable/ic_repeat" />
 
     </FrameLayout>

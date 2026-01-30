@@ -19,7 +19,6 @@ import kotlinx.serialization.Serializable
  * @param artist The artist taking on the role (Note: Only the required ArtistID3 fields should be
  *   returned by default)
  */
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 @Serializable
 data class Contributor(
     val role: String,

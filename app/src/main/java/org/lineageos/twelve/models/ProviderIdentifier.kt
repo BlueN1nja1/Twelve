@@ -17,7 +17,6 @@ import kotlinx.serialization.Serializable
  */
 @Parcelize
 @Serializable
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 open class ProviderIdentifier(
     open val type: ProviderType,
     open val typeId: Long,

@@ -7,7 +7,6 @@ package org.lineageos.twelve.fragments
 
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -28,27 +27,22 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
     // ViewPager2
     private enum class Menus(
         @StringRes val titleStringResId: Int,
-        @DrawableRes val iconDrawableResId: Int,
         val fragment: () -> Fragment,
     ) {
         ALBUMS(
             R.string.library_fragment_menu_albums,
-            R.drawable.ic_album,
             { AlbumsFragment() },
         ),
         ARTISTS(
             R.string.library_fragment_menu_artists,
-            R.drawable.ic_person,
             { ArtistsFragment() },
         ),
         GENRES(
             R.string.library_fragment_menu_genres,
-            R.drawable.ic_genres,
             { GenresFragment() },
         ),
         PLAYLISTS(
             R.string.library_fragment_menu_playlists,
-            R.drawable.ic_playlist_play,
             { PlaylistsFragment() },
         ),
     }
@@ -69,7 +63,6 @@ class LibraryFragment : Fragment(R.layout.fragment_library) {
 
             tab.setText(menu.titleStringResId)
             tab.setContentDescription(menu.titleStringResId)
-            tab.setIcon(menu.iconDrawableResId)
         }.attach()
     }
 

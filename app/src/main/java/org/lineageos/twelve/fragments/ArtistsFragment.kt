@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -9,6 +9,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.LinearLayout
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -25,6 +27,7 @@ import org.lineageos.twelve.R
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.navigateSafe
 import org.lineageos.twelve.ext.setProgressCompat
+import org.lineageos.twelve.ext.updatePadding
 import org.lineageos.twelve.models.Artist
 import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.SortingStrategy
@@ -88,6 +91,22 @@ class ArtistsFragment : Fragment(R.layout.fragment_artists) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Insets
+        ViewCompat.setOnApplyWindowInsetsListener(recyclerView) { v, windowInsets ->
+            val insets = windowInsets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or WindowInsetsCompat.Type.displayCutout()
+            )
+
+            v.updatePadding(
+                insets,
+                start = true,
+                end = true,
+                bottom = true,
+            )
+
+            windowInsets
+        }
 
         sortingChip.setSortingStrategies(
             sortedMapOf(

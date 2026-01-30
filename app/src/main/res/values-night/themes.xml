@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Base dialog theme -->
+    <style name="BaseTheme.Twelve.Dialog" parent="Theme.Material3Expressive.Dark.Dialog.Alert" />
+</resources>

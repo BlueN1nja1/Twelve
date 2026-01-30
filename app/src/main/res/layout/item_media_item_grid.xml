@@ -19,7 +19,7 @@
         android:layout_marginBottom="8dp">
 
         <androidx.cardview.widget.CardView
-            style="@style/Widget.Material3.CardView.Filled"
+            style="?attr/materialCardViewFilledStyle"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:cardBackgroundColor="@android:color/transparent"

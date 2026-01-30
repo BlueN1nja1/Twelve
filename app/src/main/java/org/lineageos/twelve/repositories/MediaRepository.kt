@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -333,9 +333,9 @@ class MediaRepository(
     /**
      * @see MediaDataSource.onAudioPlayed
      */
-    suspend fun onAudioPlayed(audioUri: Uri) =
+    suspend fun onAudioPlayed(audioUri: Uri, positionMs: Long) =
         withMediaItemsDataSource(audioUri) {
-            onAudioPlayed(audioUri)
+            onAudioPlayed(audioUri, positionMs)
         }
 
     /**

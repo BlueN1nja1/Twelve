@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
     <!-- Settings activity theme. -->
-    <style name="Theme.SettingsLib" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.SettingsLib" parent="Theme.Material3Expressive.DayNight.NoActionBar">
         <item name="android:listPreferredItemPaddingLeft">24dp</item>
         <item name="android:listPreferredItemPaddingStart">24dp</item>
         <item name="alertDialogTheme">@style/Theme.SettingsLib.AlertDialog</item>
         <item name="materialAlertDialogTheme">@style/Theme.SettingsLib.AlertDialog</item>
+        <item name="materialSwitchStyle">@style/Widget.SettingsLib.MaterialSwitch</item>
         <item name="preferenceTheme">@style/Theme.SettingsLib.PreferenceTheme</item>
     </style>
 
     <!-- Settings alert dialog theme. -->
-    <style name="Theme.SettingsLib.AlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+    <style name="Theme.SettingsLib.AlertDialog" parent="ThemeOverlay.Material3Expressive.MaterialAlertDialog">
         <item name="android:colorBackground">?attr/colorSurface</item>
         <item name="dialogCornerRadius">16dp</item>
     </style>
@@ -26,7 +27,8 @@
         <item name="android:listPreferredItemPaddingLeft">32dp</item>
         <item name="android:listPreferredItemPaddingStart">32dp</item>
         <item name="android:tint">?attr/colorOnSurface</item>
-        <item name="switchPreferenceCompatStyle">@style/Theme.SettingsLib.SwitchPreferenceCompat</item>
+        <item name="switchPreferenceCompatStyle">@style/Theme.SettingsLib.SwitchPreferenceCompat
+        </item>
         <item name="switchPreferenceStyle">@style/Theme.SettingsLib.SwitchPreference</item>
     </style>
 
@@ -36,5 +38,11 @@
 
     <style name="Theme.SettingsLib.SwitchPreferenceCompat" parent="@style/Preference.SwitchPreferenceCompat.Material">
         <item name="widgetLayout">@layout/settingslib_switch_compat</item>
+    </style>
+
+    <!-- MaterialSwitch style -->
+    <style name="Widget.SettingsLib.MaterialSwitch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="thumbIcon">@drawable/settingslib_switch_thumb_icon</item>
+        <item name="thumbIconTint">@color/settingslib_switch_thumb_icon</item>
     </style>
 </resources>

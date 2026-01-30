@@ -14,7 +14,6 @@ import kotlinx.serialization.Serializable
  * @param album Starred albums
  * @param song Starred songs
  */
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 @Serializable
 data class Starred2(
     val artist: List<ArtistID3>? = null,

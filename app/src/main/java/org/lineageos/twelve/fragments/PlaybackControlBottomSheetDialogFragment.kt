@@ -14,7 +14,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.slider.Slider
@@ -25,7 +24,7 @@ import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.viewmodels.PlaybackControlViewModel
 import java.util.Locale
 
-class PlaybackControlBottomSheetDialogFragment : BottomSheetDialogFragment(
+class PlaybackControlBottomSheetDialogFragment : TwelveBottomSheetDialogFragment(
     R.layout.fragment_playback_control_bottom_sheet_dialog
 ) {
     // View models

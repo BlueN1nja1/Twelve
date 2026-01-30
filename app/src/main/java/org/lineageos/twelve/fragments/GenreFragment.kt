@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -127,9 +127,6 @@ class GenreFragment : Fragment(R.layout.fragment_genre) {
             override fun ViewHolder.onBindView(item: Audio) {
                 view.setOnClickListener {
                     viewModel.playAudio(currentList, bindingAdapterPosition)
-                    findNavController().navigateSafe(
-                        R.id.action_genreFragment_to_fragment_now_playing
-                    )
                 }
                 view.setOnLongClickListener {
                     findNavController().navigateSafe(

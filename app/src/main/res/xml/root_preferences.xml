@@ -10,6 +10,13 @@
         app:title="@string/general_header">
 
         <SwitchPreference
+            app:defaultValue="false"
+            app:iconSpaceReserved="false"
+            app:key="fullscreen_mode"
+            app:summary="@string/fullscreen_mode_summary"
+            app:title="@string/fullscreen_mode" />
+
+        <SwitchPreference
             app:defaultValue="true"
             app:iconSpaceReserved="false"
             app:key="enable_offload"

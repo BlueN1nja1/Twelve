@@ -8,7 +8,6 @@ package org.lineageos.twelve.datasources.jellyfin.models
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 @Serializable
 data class SystemInfo(
     @SerialName("LocalAddress") val localAddress: String?,

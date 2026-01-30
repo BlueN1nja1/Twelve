@@ -13,7 +13,6 @@ import kotlinx.serialization.descriptors.PrimitiveSerialDescriptor
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
 
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 @Serializable(with = ResponseStatus.Serializer::class)
 enum class ResponseStatus(val value: String) {
     OK("ok"),

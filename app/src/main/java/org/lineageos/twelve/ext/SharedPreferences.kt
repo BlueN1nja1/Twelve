@@ -41,6 +41,11 @@ fun <T> SharedPreferences.preferenceFlow(
 }
 
 // Generic prefs
+const val FULLSCREEN_MODE_KEY = "fullscreen_mode"
+private const val FULLSCREEN_MODE_DEFAULT = false
+val SharedPreferences.fullscreenMode: Boolean
+    get() = getBoolean(FULLSCREEN_MODE_KEY, FULLSCREEN_MODE_DEFAULT)
+
 const val ENABLE_OFFLOAD_KEY = "enable_offload"
 private const val ENABLE_OFFLOAD_DEFAULT = true
 var SharedPreferences.enableOffload: Boolean

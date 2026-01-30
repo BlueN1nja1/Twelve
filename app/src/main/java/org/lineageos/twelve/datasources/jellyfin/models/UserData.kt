@@ -12,7 +12,6 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.UseSerializers
 import org.lineageos.twelve.datasources.jellyfin.serializers.UUIDSerializer
 
-@Suppress("PROVIDED_RUNTIME_TOO_LOW")
 @Serializable
 data class UserData(
     @SerialName("IsFavorite") val isFavorite: Boolean? = null,

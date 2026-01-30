@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:orientation="vertical"
-        android:paddingVertical="8dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="1" />
 

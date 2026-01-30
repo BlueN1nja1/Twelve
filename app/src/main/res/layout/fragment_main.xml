@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -26,7 +26,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/settingsMaterialButton"
-                style="@style/Widget.Material3.Button.IconButton"
+                style="?attr/materialIconButtonFilledTonalStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -37,7 +37,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/providerMaterialButton"
-                style="@style/Widget.Material3.Button.TextButton"
+                style="?attr/materialButtonTonalStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
@@ -52,19 +52,10 @@
         android:id="@+id/viewPager2"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/nowPlayingBar"
+        app:layout_constraintBottom_toTopOf="@+id/navigationBarView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
-
-    <org.lineageos.twelve.ui.views.NowPlayingBar
-        android:id="@+id/nowPlayingBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/navigationBarView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/playRandomSongsExtendedFloatingActionButton"
@@ -74,15 +65,13 @@
         android:layout_marginBottom="12dp"
         android:contentDescription="@string/play_random_songs"
         android:text="@string/play_random_songs"
-        android:textColor="?attr/colorOnTertiaryContainer"
         android:tooltipText="@string/play_random_songs"
-        app:backgroundTint="?attr/colorTertiaryContainer"
         app:collapsedSize="46dp"
         app:icon="@drawable/ic_shuffle_play"
-        app:iconTint="?attr/colorOnTertiaryContainer"
         app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
-        app:layout_constraintBottom_toTopOf="@+id/nowPlayingBar"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/navigationBarView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:materialThemeOverlay="@style/ThemeOverlay.Material3Expressive.FloatingActionButton.TertiaryContainer" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationBarView"
