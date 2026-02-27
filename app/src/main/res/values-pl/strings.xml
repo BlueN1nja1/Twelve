@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -141,6 +141,8 @@
     <string name="title_activity_settings">Ustawienia</string>
     <string name="general_header">Ogólne</string>
     <string name="experimental_header">Eksperymentalne</string>
+    <string name="fullscreen_mode">Tryb pełnoekranowy</string>
+    <string name="fullscreen_mode_summary">Włącz tryb pełnoekranowy. Spowoduje to ukrycie paska nawigacyjnego i paska stanu, ale nadal zapewni, że żadna zawartość, którą można dotknąć, nie będzie nakładać się na wycięcia wyświetlacza</string>
     <string name="enable_offload">Włącz odciążenie</string>
     <string name="enable_offload_summary">Używaj ścieżki odciążenia audio do odtwarzania dźwięku. Wyłączenie tej opcji może zwiększyć zużycie energii, ale może być przydatne w przypadku problemów z odtwarzaniem dźwięku lub przetwarzaniem końcowym</string>
     <string name="enable_float_output">Włącz 32-bitowe wyjście zmiennoprzecinkowe</string>
@@ -179,6 +181,7 @@
     <string name="sort_by_title">Tytułu</string>
     <string name="sort_by_unknown">Nieokreślono</string>
     <string name="activity_most_played_albums">Najczęściej słuchane albumy</string>
+    <string name="activity_most_played_songs">Najczęściej odtwarzane utwory</string>
     <string name="activity_random_albums">Losowe albumy</string>
     <string name="activity_random_artists">Losowi wykonawcy</string>
     <string name="activity_random_genres">Losowe gatunki</string>

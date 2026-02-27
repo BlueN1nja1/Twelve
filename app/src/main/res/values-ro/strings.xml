@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -139,6 +139,8 @@
     <string name="title_activity_settings">Setări</string>
     <string name="general_header">General</string>
     <string name="experimental_header">Experimental</string>
+    <string name="fullscreen_mode">Mod ecran complet</string>
+    <string name="fullscreen_mode_summary">Activează modul ecran complet. Acesta va ascunde bara de navigare și bara de stare, dar se va asigura că nici un conținut ce poate fi atins nu se suprapune cu găurile ecranului</string>
     <string name="enable_offload">Activează offload</string>
     <string name="enable_offload_summary">Utilizați calea audio offload pentru redarea audio. Dezactivarea acestei opțiuni poate crește consumul de energie, dar poate fi utilă dacă întâmpinați probleme cu redarea audio sau cu post processing-ul</string>
     <string name="enable_float_output">Activare output cu 32-bit floating point</string>
@@ -177,6 +179,7 @@
     <string name="sort_by_title">Titlu</string>
     <string name="sort_by_unknown">Necunoscut</string>
     <string name="activity_most_played_albums">Cele mai redate albume</string>
+    <string name="activity_most_played_songs">Cele mai ascultate melodii</string>
     <string name="activity_random_albums">Albume aleatoare</string>
     <string name="activity_random_artists">Artişti aleatorii</string>
     <string name="activity_random_genres">Genuri aleatorii</string>

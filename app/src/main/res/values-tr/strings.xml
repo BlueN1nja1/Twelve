@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -10,6 +10,7 @@
     <string name="main_fragment_section_activity">Etkinlik</string>
     <string name="main_fragment_section_search">Ara</string>
     <string name="main_fragment_section_library">Kütüphane</string>
+    <string name="play_random_songs">Rastgele şarkılar çal</string>
     <string name="search_hint">Ara…</string>
     <string name="library_fragment_menu_albums">Albümler</string>
     <string name="library_fragment_menu_artists">Sanatçılar</string>
@@ -59,13 +60,16 @@
     <string name="playback_speed">Oynatma hızı</string>
     <string name="playback_speed_format">%1$sx</string>
     <string name="playback_pitch_slider_description">Oynatma perdesi</string>
+    <string name="playback_pitch_unlock">Perde değişikliğine izin ver</string>
     <string name="playback_warning">Offload özelliği aktifse, oynatma sırasında hız ve perde özellikleri düzgün çalışmayabilir. Uygulama\'nın ayarlarından açmayı deneyin.</string>
     <string name="visualizer">Görselleştirici</string>
+    <string name="audio_potential_issues">Potansiyel sorunlar</string>
     <string name="audio_source">Kaynak</string>
     <string name="audio_transcoding">Dönüştürülüyor</string>
     <string name="audio_output">Çıktı</string>
     <string name="audio_file_type">Dosya tipi</string>
     <string name="audio_file_type_unknown">Bilinmeyen</string>
+    <string name="audio_format_compression">Sıkıştırma</string>
     <string name="audio_sample_rate">Örnekleme hızı</string>
     <string name="audio_sample_rate_format">%1$s kHz</string>
     <string name="audio_sample_rate_unknown">Bilinmiyor</string>
@@ -79,8 +83,34 @@
     <string name="audio_output_mode_offload">Çevresel aygıta aktarım</string>
     <string name="audio_output_mode_passthrough">Doğrudan geçiş</string>
     <string name="audio_bitrate">Bit hızı</string>
+    <string name="audio_peak_bitrate">En yüksek bit hızı</string>
+    <string name="audio_average_bitrate">Ortalama bit hızı</string>
     <string name="audio_bitrate_unknown">Bilinmiyor</string>
     <string name="audio_bitrate_format">%1$s kbps</string>
+    <string name="audio_output_device_name">Ad</string>
+    <string name="audio_output_device_name_unknown">Bilinmeyen</string>
+    <string name="audio_output_device_type">Tür</string>
+    <string name="audio_output_device_type_unknown">Bilinmeyen</string>
+    <string name="audio_output_device_type_builtin">Yerleşik</string>
+    <string name="audio_output_device_type_headphones">Kulaklıklar</string>
+    <string name="audio_output_device_type_external_speakers">Harici hoparlörler</string>
+    <string name="audio_output_device_type_bluetooth">Bluetooth</string>
+    <string name="audio_output_device_type_hdmi">HDMI</string>
+    <string name="audio_output_device_type_usb">USB</string>
+    <string name="audio_output_device_type_remote">Uzaktan</string>
+    <string name="audio_output_device_type_hearing_aid">İşitme cihazı</string>
+    <string name="audio_format_compression_unknown">Bilinmeyen</string>
+    <string name="audio_format_compression_lossy">Kayıplı</string>
+    <string name="audio_format_compression_lossless">Kayıpsız</string>
+    <string name="audio_format_compression_uncompressed">Sıkıştırılmamış</string>
+    <string name="audio_output_issue_downsampling">Ses çıkışındaki muhtemel hatalar</string>
+    <string name="audio_output_issue_downsampling_description">Çıkış aygıtının hedef örnekleme hızını desteklememesi nedeniyle şu anda uygulama sesi küçültüyor</string>
+    <string name="audio_output_issue_pcm_float_mode_disabled">32-bit kayar nokta çıkışı devre dışı bırakıldı</string>
+    <string name="audio_output_issue_pcm_float_mode_disabled_description">Ses kalitesi, 32 bitlik kayan nokta çıkış modundan faydalanabilir. Bunu uygulamanın ayarlarından etkinleştirebilirsiniz.</string>
+    <string name="audio_output_issue_downmixing">Downmixleme</string>
+    <string name="audio_output_issue_downmixing_description">Çıkış aygıtının hedef kanal sayısını desteklememesi nedeniyle şu anda uygulama sesi azaltıyor</string>
+    <string name="audio_output_issue_post_processing_lossy_compression">Kayıplı sıkıştırma işlemi</string>
+    <string name="audio_output_issue_post_processing_lossy_compression_description">Uygulama, ses verisini kayıplı bir kodlamaya sıkıştırıyor. Ses kalitesi etkilenebilir.</string>
     <string name="provider_type_local">Yerel</string>
     <string name="provider_argument_server">Sunucu</string>
     <string name="provider_argument_username">Kullanıcı adı</string>
@@ -145,9 +175,11 @@
     <string name="sort_by_title">Başlık</string>
     <string name="sort_by_unknown">Bilinmiyor</string>
     <string name="activity_most_played_albums">En çok çalınan albümler</string>
+    <string name="activity_most_played_songs">En çok çalınan şarkılar</string>
     <string name="activity_random_albums">Rastgele albümler</string>
     <string name="activity_random_artists">Rastgele sanatçılar</string>
     <string name="activity_random_genres">Rastgele türler</string>
+    <string name="activity_random_playlists">Rastgele oynatma listeleri</string>
     <string name="activity_random_songs">Rastgele şarkılar</string>
     <string name="content_description_play_pause">Oynat/duraklat</string>
     <string name="content_description_thumbnail">Küçük resim</string>

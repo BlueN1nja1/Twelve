@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -141,6 +141,8 @@
     <string name="title_activity_settings">Nastavitve</string>
     <string name="general_header">Splošno</string>
     <string name="experimental_header">Poskusno</string>
+    <string name="fullscreen_mode">Celozaslonski način</string>
+    <string name="fullscreen_mode_summary">Omogoči celozaslonski način. To bo skrilo vrstico za krmarjenje in vrstico stanja, vendar bo še vedno zagotovilo, da se dotikljiva vsebina ne prekriva z izrezi zaslona.</string>
     <string name="enable_offload">Omogoči razbremenitev</string>
     <string name="enable_offload_summary">Uporabi razbremenitev zvočne poti za predvajanje zvoka. Onemogočenje tega lahko poveča porabo energije, vendar je lahko uporabno, če opažate težave s predvajanjem zvoka ali postprodukcijo</string>
     <string name="enable_float_output">Omogoči 32-bitni izhod s plavajočo vejico</string>
@@ -179,6 +181,7 @@
     <string name="sort_by_title">Naslov</string>
     <string name="sort_by_unknown">Neznano</string>
     <string name="activity_most_played_albums">Največkrat predvajani albumi</string>
+    <string name="activity_most_played_songs">Največkrat predvajane skladbe</string>
     <string name="activity_random_albums">Naključni albumi</string>
     <string name="activity_random_artists">Naključni izvajalci</string>
     <string name="activity_random_genres">Naključne zvrsti</string>

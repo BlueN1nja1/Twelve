@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -175,6 +175,7 @@
     <string name="sort_by_title">Τίτλος</string>
     <string name="sort_by_unknown">Άγνωστο</string>
     <string name="activity_most_played_albums">Τα περισσότερο παιγμένα άλμπουμ</string>
+    <string name="activity_most_played_songs">Τα περισσότερο παιγμένα τραγούδια</string>
     <string name="activity_random_albums">Τυχαία άλμπουμ</string>
     <string name="activity_random_artists">Τυχαίοι καλλιτέχνες</string>
     <string name="activity_random_genres">Τυχαία είδη</string>

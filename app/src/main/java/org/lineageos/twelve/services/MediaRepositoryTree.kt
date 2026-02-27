@@ -202,7 +202,7 @@ class MediaRepositoryTree(
         else -> when {
             mediaId.startsWith(PROVIDER_MEDIA_ITEM_ID_PREFIX) -> {
                 mediaIdToProvider(mediaId)?.let { provider ->
-                    repository.setNavigationProvider(provider)
+                    repository.setNavigationProvider(provider.identifier)
                 }
 
                 listOf(providerChangedMediaItem)

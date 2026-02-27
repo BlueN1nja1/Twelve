@@ -1,11 +1,10 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
 package org.lineageos.twelve.models
 
-import kotlinx.parcelize.Parcelize
 import org.lineageos.twelve.datasources.MediaDataSource
 
 /**
@@ -13,21 +12,36 @@ import org.lineageos.twelve.datasources.MediaDataSource
  * Each provider has an associated [MediaDataSource] and related arguments, but those are not
  * exposed outside of the media repository.
  *
- * @param type The provider type
- * @param typeId The ID of the provider relative to the [ProviderType]
+ * @param identifier The provider identifier
  * @param name The name of the provider given by the user
  */
-@Parcelize
-class Provider(
-    override val type: ProviderType,
-    override val typeId: Long,
+data class Provider(
+    val identifier: ProviderIdentifier,
     val name: String,
-) : ProviderIdentifier(type, typeId), UniqueItem<Provider> {
+) : UniqueItem<Provider> {
+    constructor(
+        type: ProviderType,
+        typeId: Long,
+        name: String,
+    ) : this(
+        identifier = ProviderIdentifier(type, typeId),
+        name = name,
+    )
+
+    /**
+     * @see ProviderIdentifier.type
+     */
+    val type by identifier::type
+
+    /**
+     * @see ProviderIdentifier.typeId
+     */
+    val typeId by identifier::typeId
+
     override fun areItemsTheSame(other: Provider) = compareValuesBy(
         this,
         other,
-        Provider::type,
-        Provider::typeId,
+        Provider::identifier,
     ) == 0
 
     override fun areContentsTheSame(other: Provider) = compareValuesBy(

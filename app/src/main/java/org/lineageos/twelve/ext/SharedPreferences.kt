@@ -9,8 +9,8 @@ import android.content.SharedPreferences
 import androidx.core.content.edit
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlinx.serialization.serializer
 import org.lineageos.twelve.models.ProviderIdentifier
 import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.models.SortingRule
@@ -79,11 +79,14 @@ const val DEFAULT_PROVIDER_KEY = "default_provider"
 var SharedPreferences.defaultProvider: ProviderIdentifier?
     get() = getString(DEFAULT_PROVIDER_KEY, null)?.let {
         runCatching {
-            Json.decodeFromString<ProviderIdentifier>(it)
+            Json.decodeFromString(serializer<ProviderIdentifier>(), it)
         }.getOrNull()
     }
     set(value) = edit {
-        putString(DEFAULT_PROVIDER_KEY, Json.encodeToString(value))
+        putString(
+            DEFAULT_PROVIDER_KEY,
+            Json.encodeToString(serializer<ProviderIdentifier?>(), value)
+        )
     }
 
 // Experimental prefs

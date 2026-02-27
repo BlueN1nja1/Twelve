@@ -35,7 +35,6 @@ import org.lineageos.twelve.ext.DEFAULT_PROVIDER_KEY
 import org.lineageos.twelve.ext.defaultProvider
 import org.lineageos.twelve.ext.preferenceFlow
 import org.lineageos.twelve.models.Error
-import org.lineageos.twelve.models.Provider
 import org.lineageos.twelve.models.ProviderIdentifier
 import org.lineageos.twelve.models.ProviderType
 import org.lineageos.twelve.models.Result
@@ -172,8 +171,10 @@ class MediaRepository(
     /**
      * @see MediaDataSource.status
      */
-    fun status(provider: Provider) = withProviderDataSource(provider) {
-        status(provider)
+    fun status(
+        providerIdentifier: ProviderIdentifier
+    ) = withProviderDataSource(providerIdentifier) {
+        status(providerIdentifier)
     }
 
     /**
@@ -347,7 +348,7 @@ class MediaRepository(
         }
 
     /**
-     * Get the [MediaDataSource] associated with the given [Provider].
+     * Get the [MediaDataSource] associated with the given [ProviderIdentifier].
      *
      * @param providerIdentifier The [ProviderIdentifier]
      * @return The corresponding [MediaDataSource]
@@ -361,8 +362,8 @@ class MediaRepository(
     }
 
     /**
-     * Find the [MediaDataSource] that matches the given [Provider] and call the given predicate on
-     * it.
+     * Find the [MediaDataSource] that matches the given [ProviderIdentifier] and call the given
+     * predicate on it.
      *
      * @param providerIdentifier The [ProviderIdentifier]
      * @return A flow containing the result of the predicate. It will emit a not found error if
@@ -404,11 +405,11 @@ class MediaRepository(
     }?.predicate() ?: Result.Error(Error.NOT_FOUND)
 
     private fun <T> withNavigationDataSourceAndProviderFlow(
-        predicate: MediaDataSource.(Provider) -> Flow<Result<T, Error>>
+        predicate: MediaDataSource.(ProviderIdentifier) -> Flow<Result<T, Error>>
     ) = navigationProvider.flatMapLatest {
         it?.let {
-            withProviderDataSource(it) {
-                predicate(it)
+            withProviderDataSource(it.identifier) {
+                predicate(it.identifier)
             }
         } ?: flowOf(Result.Error(Error.NOT_FOUND))
     }

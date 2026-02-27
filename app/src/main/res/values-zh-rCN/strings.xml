@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -135,6 +135,8 @@
     <string name="title_activity_settings">设置</string>
     <string name="general_header">常规</string>
     <string name="experimental_header">实验性</string>
+    <string name="fullscreen_mode">全屏模式</string>
+    <string name="fullscreen_mode_summary">启用全屏模式。此操作将隐藏导航栏和状态栏，同时仍会确保所有可触控内容不会与屏幕刘海或显示缺口区域发生重叠。</string>
     <string name="enable_offload">启用减负</string>
     <string name="enable_offload_summary">使用减负音频路径进行音频播放。禁用此功能可能会增加功耗，但如果您在音频播放或后期处理时遇到问题，此功能可能会有所帮助。</string>
     <string name="enable_float_output">启用32位浮点输出</string>
@@ -173,6 +175,7 @@
     <string name="sort_by_title">标题</string>
     <string name="sort_by_unknown">未知</string>
     <string name="activity_most_played_albums">最常播放的专辑</string>
+    <string name="activity_most_played_songs">播放最多的歌曲</string>
     <string name="activity_random_albums">随机专辑</string>
     <string name="activity_random_artists">随机艺术家</string>
     <string name="activity_random_genres">随机流派</string>

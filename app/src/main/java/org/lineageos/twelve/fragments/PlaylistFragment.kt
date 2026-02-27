@@ -12,12 +12,12 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -25,6 +25,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -56,11 +57,13 @@ import org.lineageos.twelve.viewmodels.PlaylistViewModel
 /**
  * Single playlist viewer.
  */
-class PlaylistFragment : Fragment(R.layout.fragment_playlist) {
+class PlaylistFragment : CollapsingToolbarLayoutFragment(R.layout.fragment_playlist) {
     // View models
     private val viewModel by viewModels<PlaylistViewModel>()
 
     // Views
+    override val appBarLayout by getViewProperty<AppBarLayout>(R.id.appBarLayout)
+    override val coordinatorLayout by getViewProperty<CoordinatorLayout>(R.id.coordinatorLayout)
     private val fullscreenLoadingProgressBar by getViewProperty<FullscreenLoadingProgressBar>(R.id.fullscreenLoadingProgressBar)
     private val infoNestedScrollView by getViewProperty<NestedScrollView?>(R.id.infoNestedScrollView)
     private val linearProgressIndicator by getViewProperty<LinearProgressIndicator>(R.id.linearProgressIndicator)

@@ -46,7 +46,7 @@ class CreatePlaylistViewModel(application: Application) : TwelveViewModel(applic
     }
 
     fun setProviderPosition(position: Int) = setProviderIdentifier(
-        providersWithSelection.value.first[position]
+        providersWithSelection.value.first[position].identifier
     )
 
     fun getPlaylistName() = playlistName.value

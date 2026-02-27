@@ -68,7 +68,7 @@ class PlaylistsFragment : Fragment(R.layout.fragment_playlists) {
                         findNavController().navigateSafe(
                             R.id.action_mainFragment_to_fragment_create_playlist_dialog,
                             CreatePlaylistDialogFragment.createBundle(
-                                providerIdentifier = viewModel.navigationProvider.value
+                                providerIdentifier = viewModel.navigationProvider.value?.identifier
                             )
                         )
                     }
@@ -152,7 +152,7 @@ class PlaylistsFragment : Fragment(R.layout.fragment_playlists) {
             findNavController().navigateSafe(
                 R.id.action_mainFragment_to_fragment_create_playlist_dialog,
                 CreatePlaylistDialogFragment.createBundle(
-                    providerIdentifier = viewModel.navigationProvider.value
+                    providerIdentifier = viewModel.navigationProvider.value?.identifier
                 )
             )
         }

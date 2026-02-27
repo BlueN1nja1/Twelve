@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -135,6 +135,8 @@
     <string name="title_activity_settings">設定</string>
     <string name="general_header">全般</string>
     <string name="experimental_header">試験運用版</string>
+    <string name="fullscreen_mode">全画面モード</string>
+    <string name="fullscreen_mode_summary">全画面モードを有効にします。ナビゲーションバーとステータスバーを非表示にしますが、タッチ可能なコンテンツがディスプレイのカットアウトに重ならないようにします</string>
     <string name="enable_offload">オフロードを有効にする</string>
     <string name="enable_offload_summary">音声の再生でオフロードの音声パスを使用します。これを無効にすると電力使用量が増加する可能性がありますが、音声の再生や後処理に問題が生じた場合に役立ちます。</string>
     <string name="enable_float_output">32ビット浮動小数点出力を有効化</string>
@@ -173,6 +175,7 @@
     <string name="sort_by_title">タイトル</string>
     <string name="sort_by_unknown">不明</string>
     <string name="activity_most_played_albums">最も再生されたアルバム</string>
+    <string name="activity_most_played_songs">最も再生された曲</string>
     <string name="activity_random_albums">ランダム アルバム</string>
     <string name="activity_random_artists">ランダム アーティスト</string>
     <string name="activity_random_genres">ランダム ジャンル</string>

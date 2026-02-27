@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -137,6 +137,8 @@
     <string name="title_activity_settings">Definições</string>
     <string name="general_header">Gerais</string>
     <string name="experimental_header">Experimental</string>
+    <string name="fullscreen_mode">Modo de ecrã inteiro</string>
+    <string name="fullscreen_mode_summary">Ativar o modo de ecrã inteiro. Isto irá ocultar a barra de navegação e a barra de estado, mas garantirá que nenhum conteúdo interativo fique sobreposto às áreas recortadas do ecrã.</string>
     <string name="enable_offload">Ativar descarregamento</string>
     <string name="enable_offload_summary">Utilizar o caminho de descarregamento de áudio para reprodução de áudio. Desativar isto pode aumentar o consumo de energia, mas poderá ser útil se verificar problemas com a reprodução de áudio ou pós-processamento</string>
     <string name="enable_float_output">Ativar saída de ponto flutuante de 32 bits</string>
@@ -175,6 +177,7 @@
     <string name="sort_by_title">Título</string>
     <string name="sort_by_unknown">Desconhecido</string>
     <string name="activity_most_played_albums">Álbuns mais reproduzidos</string>
+    <string name="activity_most_played_songs">Músicas mais ouvidas</string>
     <string name="activity_random_albums">Álbuns aleatórios</string>
     <string name="activity_random_artists">Artistas aleatórios</string>
     <string name="activity_random_genres">Géneros aleatórios</string>

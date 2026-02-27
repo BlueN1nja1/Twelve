@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -137,6 +137,8 @@
     <string name="title_activity_settings">تنظیمات</string>
     <string name="general_header">عمومی</string>
     <string name="experimental_header">آزمایشی</string>
+    <string name="fullscreen_mode">حالت تمام‌صفحه</string>
+    <string name="fullscreen_mode_summary">حالت تمام صفحه را فعال کنید. این کار نوار ناوبری و نوار وضعیت را پنهان می‌کند، اما همچنان مطمئن می‌شوید که هیچ محتوای قابل لمسی با بریدگی‌های صفحه نمایش همپوشانی ندارد.</string>
     <string name="enable_offload">فعال کردن تخلیه</string>
     <string name="enable_offload_summary">برای پخش صدا از تخلیه مسیر صوتی استفاده کنید. غیرفعال کردن آن ممکن است مصرف انرژی را افزایش دهد، اما در صورت بروز مشکلاتی در پخش صدا یا پردازش می تواند مفید باشد</string>
     <string name="enable_float_output">خروجی نقطه شناور 32 بیتی را فعال کنید</string>
@@ -175,6 +177,7 @@
     <string name="sort_by_title">عنوان</string>
     <string name="sort_by_unknown">ناشناخته</string>
     <string name="activity_most_played_albums">بیشترین آلبوم های پخش شده</string>
+    <string name="activity_most_played_songs">آهنگ‌های پر پخش</string>
     <string name="activity_random_albums">آلبوم های تصادفی</string>
     <string name="activity_random_artists">هنرمندان تصادفی</string>
     <string name="activity_random_genres">سبک های تصادفی</string>

@@ -69,7 +69,7 @@ open class ProviderViewModel(application: Application) : TwelveViewModel(applica
 
     val status = provider
         .flatMapLatestData {
-            mediaRepository.status(it).asFlowResult()
+            mediaRepository.status(it.identifier).asFlowResult()
         }
         .flowOn(Dispatchers.IO)
         .stateIn(

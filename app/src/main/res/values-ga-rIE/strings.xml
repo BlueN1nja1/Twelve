@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -143,6 +143,8 @@
     <string name="title_activity_settings">Socruithe</string>
     <string name="general_header">Ginearálta</string>
     <string name="experimental_header">Turgnamhach</string>
+    <string name="fullscreen_mode">Mód lánscáileáin</string>
+    <string name="fullscreen_mode_summary">Cumasaigh mód lánscáileáin. Folóidh sé seo an barra nascleanúna agus an barra stádais, ach cinnteoidh sé fós nach mbeidh aon ábhar intadhallta ag forluí le gearrthóga taispeána.</string>
     <string name="enable_offload">Cumasaigh díluchtú</string>
     <string name="enable_offload_summary">Úsáid an cosán fuaime díluchtaithe le haghaidh athsheinm fuaime. Má dhéantar é seo a dhíchumasú, d’fhéadfadh méadú ar úsáid cumhachta ach d’fhéadfadh sé a bheith úsáideach má bhíonn fadhbanna agat le hathsheinm fuaime nó le próiseáil postála</string>
     <string name="enable_float_output">Cumasaigh aschur snámhphointe 32-giotán</string>
@@ -181,6 +183,7 @@
     <string name="sort_by_title">Teideal</string>
     <string name="sort_by_unknown">Anaithnid</string>
     <string name="activity_most_played_albums">Albam is mó seinnte</string>
+    <string name="activity_most_played_songs">Amhráin is mó a sheinntear</string>
     <string name="activity_random_albums">Albam randamach</string>
     <string name="activity_random_artists">Ealaíontóirí randamacha</string>
     <string name="activity_random_genres">Seánraí randamacha</string>

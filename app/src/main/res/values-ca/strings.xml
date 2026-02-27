@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -137,6 +137,8 @@
     <string name="title_activity_settings">Configuració</string>
     <string name="general_header">General</string>
     <string name="experimental_header">Experimental</string>
+    <string name="fullscreen_mode">Mode de pantalla completa</string>
+    <string name="fullscreen_mode_summary">Activa el mode de pantalla completa. Això amagarà la barra de navegació i la barra d\'estat, però garantirà que cap contingut tàctil se superposi amb els retalls de pantalla.</string>
     <string name="enable_offload">Activa la descàrrega</string>
     <string name="enable_offload_summary">Utilitza la ruta d\'àudio de descàrrega per a la reproducció d\'àudio. Desactivar això pot augmentar l\'ús d\'energia, però pot ser útil si teniu problemes amb la reproducció d\'àudio o el postprocessament</string>
     <string name="enable_float_output">Activa la sortida de coma flotant de 32 bits</string>
@@ -175,6 +177,7 @@
     <string name="sort_by_title">Títol</string>
     <string name="sort_by_unknown">Desconegut</string>
     <string name="activity_most_played_albums">Àlbums més reproduïts</string>
+    <string name="activity_most_played_songs">Cançons més reproduïdes</string>
     <string name="activity_random_albums">Àlbums aleatoris</string>
     <string name="activity_random_artists">Artistes aleatoris</string>
     <string name="activity_random_genres">Gèneres aleatoris</string>

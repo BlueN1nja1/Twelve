@@ -39,6 +39,6 @@ class ProvidersViewModel(application: Application) : TwelveViewModel(application
         )
 
     fun setNavigationProvider(provider: Provider) {
-        mediaRepository.setNavigationProvider(provider)
+        mediaRepository.setNavigationProvider(provider.identifier)
     }
 }

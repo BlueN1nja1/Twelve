@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -171,6 +171,7 @@
     <string name="sort_by_title">Título</string>
     <string name="sort_by_unknown">Desconocido</string>
     <string name="activity_most_played_albums">Álbumes más reproducidos</string>
+    <string name="activity_most_played_songs">Canciones más reproducidas</string>
     <string name="activity_random_albums">Álbumes aleatorios</string>
     <string name="activity_random_artists">Artistas aleatorios</string>
     <string name="activity_random_genres">Géneros aleatorios</string>

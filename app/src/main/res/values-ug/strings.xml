@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -137,6 +137,8 @@
     <string name="title_activity_settings">تەڭشەك</string>
     <string name="general_header">ئادەتتىكى</string>
     <string name="experimental_header">سىناق</string>
+    <string name="fullscreen_mode">تولۇق ئېكران ھالىتى</string>
+    <string name="fullscreen_mode_summary">تولۇق ئېكران ھالىتىنى قوزغىتىدۇ. بۇ يولباشچى بالداق ۋە ھالەت بالداقنى يوشۇرىدۇ ئەمما ھەر قانداق چېكىلىشچان مەزمۇن كۆرسىتىش ئېكرانىنىڭ كېسىلگەن بۆلىكى بىلەن دەستىلەنمەيدۇ</string>
     <string name="enable_offload">قاتتىق كود يېشىشنى قوزغات</string>
     <string name="enable_offload_summary">ئۈن قويۇشقا قاتتىق كود يېشىش ئاۋاز يولىنى ئىشلىتىدۇ بۇنى چەكلىسىڭىز توك ئىشلىتىش مىقدارىنى ئاشۇرۇۋېتىشى مۇمكىن ئەمما ئەگەر ئۈن قويۇش ياكى يازما بىر تەرەپ قىلىش مەسىلىسىگە يولۇقسىڭىز پايدىسى بولۇشى بولۇشى مۇمكىن.</string>
     <string name="enable_float_output">32 بىتلىق لەيلىمە نۇقتا چىقىرىشنى قوزغىتىدۇ</string>
@@ -175,6 +177,7 @@
     <string name="sort_by_title">ماۋزۇ</string>
     <string name="sort_by_unknown">يوچۇن</string>
     <string name="activity_most_played_albums">كۆپ قويۇلغان ناخشا توپلىمى</string>
+    <string name="activity_most_played_songs">كۆپ قويۇلغان ناخشا</string>
     <string name="activity_random_albums">ئىختىيارى ناخشا توپلىمى</string>
     <string name="activity_random_artists">ئىختىيارى ىسەنئەتكار</string>
     <string name="activity_random_genres">ئىختىيارى ئېقىم</string>

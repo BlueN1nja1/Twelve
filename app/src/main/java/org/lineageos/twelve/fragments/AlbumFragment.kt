@@ -12,12 +12,12 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -25,6 +25,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -52,13 +53,15 @@ import org.lineageos.twelve.viewmodels.AlbumViewModel
 /**
  * Single music album viewer.
  */
-class AlbumFragment : Fragment(R.layout.fragment_album) {
+class AlbumFragment : CollapsingToolbarLayoutFragment(R.layout.fragment_album) {
     // View models
     private val viewModel by viewModels<AlbumViewModel>()
 
     // Views
     private val albumTitleTextView by getViewProperty<TextView>(R.id.albumTitleTextView)
+    override val appBarLayout by getViewProperty<AppBarLayout>(R.id.appBarLayout)
     private val artistNameTextView by getViewProperty<TextView>(R.id.artistNameTextView)
+    override val coordinatorLayout by getViewProperty<CoordinatorLayout>(R.id.coordinatorLayout)
     private val fileTypeMaterialCardView by getViewProperty<MaterialCardView>(R.id.fileTypeMaterialCardView)
     private val fileTypeTextView by getViewProperty<TextView>(R.id.fileTypeTextView)
     private val infoNestedScrollView by getViewProperty<NestedScrollView?>(R.id.infoNestedScrollView)

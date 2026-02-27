@@ -12,12 +12,12 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -25,6 +25,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlinx.coroutines.flow.collectLatest
@@ -50,18 +51,20 @@ import org.lineageos.twelve.viewmodels.ArtistViewModel
 /**
  * Single artist viewer.
  */
-class ArtistFragment : Fragment(R.layout.fragment_artist) {
+class ArtistFragment : CollapsingToolbarLayoutFragment(R.layout.fragment_artist) {
     // View models
     private val viewModel by viewModels<ArtistViewModel>()
 
     // Views
     private val albumsLinearLayout by getViewProperty<LinearLayout>(R.id.albumsLinearLayout)
     private val albumsRecyclerView by getViewProperty<RecyclerView>(R.id.albumsRecyclerView)
+    override val appBarLayout by getViewProperty<AppBarLayout>(R.id.appBarLayout)
     private val appearsInAlbumLinearLayout by getViewProperty<LinearLayout>(R.id.appearsInAlbumLinearLayout)
     private val appearsInAlbumRecyclerView by getViewProperty<RecyclerView>(R.id.appearsInAlbumRecyclerView)
     private val appearsInPlaylistLinearLayout by getViewProperty<LinearLayout>(R.id.appearsInPlaylistLinearLayout)
     private val appearsInPlaylistRecyclerView by getViewProperty<RecyclerView>(R.id.appearsInPlaylistRecyclerView)
     private val artistNameTextView by getViewProperty<TextView>(R.id.artistNameTextView)
+    override val coordinatorLayout by getViewProperty<CoordinatorLayout>(R.id.coordinatorLayout)
     private val infoNestedScrollView by getViewProperty<NestedScrollView?>(R.id.infoNestedScrollView)
     private val linearProgressIndicator by getViewProperty<LinearProgressIndicator>(R.id.linearProgressIndicator)
     private val nestedScrollView by getViewProperty<NestedScrollView>(R.id.nestedScrollView)

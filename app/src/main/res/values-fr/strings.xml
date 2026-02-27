@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -137,6 +137,7 @@
     <string name="title_activity_settings">Paramètres</string>
     <string name="general_header">Général</string>
     <string name="experimental_header">Expérimental</string>
+    <string name="fullscreen_mode">Mode plein écran</string>
     <string name="enable_offload">Activer le déchargement</string>
     <string name="enable_offload_summary">Utiliser le chemin de déchargement audio pour la lecture audio. Désactiver ceci peut augmenter la consommation d\'énergie, mais peut être utile si vous rencontrez des problèmes avec la lecture audio ou le post-traitement</string>
     <string name="enable_float_output">Activer la sortie en virgule flottante 32 bits</string>

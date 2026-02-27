@@ -61,7 +61,9 @@ class ProviderSelectorDialogFragment : MaterialDialogFragment(
             view.trailingView?.setOnClickListener {
                 findNavController().navigateSafe(
                     R.id.action_providerSelectorDialogFragment_to_fragment_provider_information_bottom_sheet_dialog,
-                    ManageProviderFragment.createBundle(providerIdentifier = provider),
+                    ManageProviderFragment.createBundle(
+                        providerIdentifier = provider.identifier,
+                    ),
                     NavOptions.Builder()
                         .setPopUpTo(R.id.mainFragment, false)
                         .build(),

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -137,6 +137,8 @@
     <string name="title_activity_settings">Ayarlar</string>
     <string name="general_header">Ümumi</string>
     <string name="experimental_header">Təcrübi</string>
+    <string name="fullscreen_mode">Tam ekran rejimi</string>
+    <string name="fullscreen_mode_summary">Tam ekran rejimini fəallaşdır. Bu, naviqasiya çubuğunu və status çubuğunu gizlədəcək, lakin toxunula bilən məzmunun ekran kəsikləri ilə üst-üstə düşməməsini təmin edəcək.</string>
     <string name="enable_offload">Offload-ı fəallaşdır</string>
     <string name="enable_offload_summary">Səs oxutma üçün offload audio path-ını istifadə edin. Bunu sıradan çıxartmaq, enerji istifadəsini artıra bilər, ancaq səs oxutma və ya son proseslə bağlı problemlə üzləşdikdə faydalı ola bilər</string>
     <string name="enable_float_output">32-bit üzən nöqtə çıxışını fəallaşdır</string>
@@ -175,6 +177,7 @@
     <string name="sort_by_title">Başlıq</string>
     <string name="sort_by_unknown">Bilinmir</string>
     <string name="activity_most_played_albums">Ən çox oxudulan albomlar</string>
+    <string name="activity_most_played_songs">Ən çox oxudulan mahnılar</string>
     <string name="activity_random_albums">Təsadüfi albomlar</string>
     <string name="activity_random_artists">Təsadüfi sənətçi</string>
     <string name="activity_random_genres">Təsadüfi janr</string>

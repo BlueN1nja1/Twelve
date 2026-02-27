@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -142,6 +142,8 @@
     <string name="title_activity_settings">הגדרות</string>
     <string name="general_header">כללי</string>
     <string name="experimental_header">ניסיוני</string>
+    <string name="fullscreen_mode">מצב מסך מלא</string>
+    <string name="fullscreen_mode_summary">הפעלת מצב מסך מלא. פעולה זו תסתיר את סרגל הניווט ואת שורת המצב, אך תבטיח ששום תוכן לחיץ לא יחפוף את אזורי החיתוך של התצוגה.</string>
     <string name="enable_offload">אפשר האצת חומרה</string>
     <string name="enable_offload_summary">שימוש בנתיב שמע מואץ חומרתית לצורך השמעת אודיו. השבתת האפשרות עשויה להגדיל את צריכת החשמל, אך יכולה לסייע בהתקלות בבעיות בהשמעה או בעיבוד אודיו.</string>
     <string name="enable_float_output">הפעלת פלט בנקודה צפה של 32 ביט</string>
@@ -180,6 +182,7 @@
     <string name="sort_by_title">כותרת</string>
     <string name="sort_by_unknown">לא ידוע</string>
     <string name="activity_most_played_albums">האלבום הנשמע ביותר</string>
+    <string name="activity_most_played_songs">השירים המושמעים ביותר</string>
     <string name="activity_random_albums">אלבומים אקראיים</string>
     <string name="activity_random_artists">אמנים אקראיים</string>
     <string name="activity_random_genres">ז\'אנרים אקראיים</string>

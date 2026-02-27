@@ -12,12 +12,12 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.NestedScrollView
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -25,6 +25,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlinx.coroutines.flow.collectLatest
@@ -51,17 +52,19 @@ import org.lineageos.twelve.viewmodels.GenreViewModel
 /**
  * Single genre viewer.
  */
-class GenreFragment : Fragment(R.layout.fragment_genre) {
+class GenreFragment : CollapsingToolbarLayoutFragment(R.layout.fragment_genre) {
     // View models
     private val viewModel by viewModels<GenreViewModel>()
 
     // Views
+    override val appBarLayout by getViewProperty<AppBarLayout>(R.id.appBarLayout)
     private val appearsInAlbumsLinearLayout by getViewProperty<LinearLayout>(R.id.appearsInAlbumsLinearLayout)
     private val appearsInAlbumsRecyclerView by getViewProperty<RecyclerView>(R.id.appearsInAlbumsRecyclerView)
     private val appearsInPlaylistsLinearLayout by getViewProperty<LinearLayout>(R.id.appearsInPlaylistsLinearLayout)
     private val appearsInPlaylistsRecyclerView by getViewProperty<RecyclerView>(R.id.appearsInPlaylistsRecyclerView)
     private val audiosLinearLayout by getViewProperty<LinearLayout>(R.id.audiosLinearLayout)
     private val audiosRecyclerView by getViewProperty<RecyclerView>(R.id.audiosRecyclerView)
+    override val coordinatorLayout by getViewProperty<CoordinatorLayout>(R.id.coordinatorLayout)
     private val genreNameTextView by getViewProperty<TextView>(R.id.genreNameTextView)
     private val infoNestedScrollView by getViewProperty<NestedScrollView?>(R.id.infoNestedScrollView)
     private val linearProgressIndicator by getViewProperty<LinearProgressIndicator>(R.id.linearProgressIndicator)

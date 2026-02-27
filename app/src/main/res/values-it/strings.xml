@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -137,6 +137,8 @@
     <string name="title_activity_settings">Impostazioni</string>
     <string name="general_header">Generali</string>
     <string name="experimental_header">Funzioni sperimentali</string>
+    <string name="fullscreen_mode">Schermo intero</string>
+    <string name="fullscreen_mode_summary">Abilita la modalità a schermo intero. Questo nasconderà la barra di navigazione e la barra di stato, ma assicurerà comunque che nessun contenuto toccabile si sovrapponga con i ritagli dello schermo</string>
     <string name="enable_offload">Abilita offload</string>
     <string name="enable_offload_summary">Utilizzare l\'offload per la riproduzione. Disabilitare questa opzione potrebbe incrementare il consumo di energia ma può essere utile se si riscontrano problemi di riproduzione o elaborazione</string>
     <string name="enable_float_output">Abilita l\'output a 32 bit in virgola mobile</string>
@@ -175,6 +177,7 @@
     <string name="sort_by_title">Titolo</string>
     <string name="sort_by_unknown">Sconosciuto</string>
     <string name="activity_most_played_albums">Album più riprodotti</string>
+    <string name="activity_most_played_songs">Brani più riprodotti</string>
     <string name="activity_random_albums">Album casuali</string>
     <string name="activity_random_artists">Artisti casuali</string>
     <string name="activity_random_genres">Generi casuali</string>

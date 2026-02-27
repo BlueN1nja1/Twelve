@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -137,6 +137,8 @@
     <string name="title_activity_settings">Settings</string>
     <string name="general_header">General</string>
     <string name="experimental_header">Experimental</string>
+    <string name="fullscreen_mode">Full-screen mode</string>
+    <string name="fullscreen_mode_summary">Enable full-screen mode. This will hide the navigation bar and status bar, but will still make sure that no touchable content overlaps with display cutouts</string>
     <string name="enable_offload">Enable offload</string>
     <string name="enable_offload_summary">Use the offload audio path for audio playback. Disabling this may increase power usage but can be useful if you experience issues with audio playback or post processing</string>
     <string name="enable_float_output">Enable 32-bit floating point output</string>
@@ -175,6 +177,7 @@
     <string name="sort_by_title">Title</string>
     <string name="sort_by_unknown">Unknown</string>
     <string name="activity_most_played_albums">Most played albums</string>
+    <string name="activity_most_played_songs">Most played songs</string>
     <string name="activity_random_albums">Random albums</string>
     <string name="activity_random_artists">Random artists</string>
     <string name="activity_random_genres">Random genres</string>
