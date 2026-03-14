@@ -137,6 +137,8 @@
     <string name="title_activity_settings">Configurações</string>
     <string name="general_header">Geral</string>
     <string name="experimental_header">Experimental</string>
+    <string name="fullscreen_mode">Modo de tela cheia</string>
+    <string name="fullscreen_mode_summary">Ative o modo de tela cheia. Isso ocultará a barra de navegação e a barra de status, mas ainda garantirá que nenhum conteúdo interativo se sobreponha aos recortes da tela</string>
     <string name="enable_offload">Ativar descarga</string>
     <string name="enable_offload_summary">Use o caminho de áudio de descarga para reprodução de áudio. Desativar isso pode aumentar o uso de energia, mas pode ser útil se você tiver problemas com a reprodução de áudio ou pós processamento</string>
     <string name="enable_float_output">Ativar saída de ponto flutuante em 32 bits</string>
