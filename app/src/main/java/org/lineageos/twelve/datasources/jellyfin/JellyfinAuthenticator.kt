@@ -56,7 +56,7 @@ class JellyfinAuthenticator(
             // If it did we assume the new token is valid
             if (newToken != null && newToken != token) {
                 return@runBlocking response.request.newBuilder()
-                    .headers(getAuthHeaders(newToken))
+                    .header("Authorization", "MediaBrowser Token=\"$newToken\"")
                     .build()
             }
 
@@ -65,7 +65,7 @@ class JellyfinAuthenticator(
                 tokenSetter(it)
 
                 return@runBlocking response.request.newBuilder()
-                    .headers(getAuthHeaders(it))
+                    .header("Authorization", "MediaBrowser Token=\"$newToken\"")
                     .build()
             }
         }
@@ -100,7 +100,7 @@ class JellyfinAuthenticator(
             json.decodeFromString<AuthenticateUserResult>(body.string())
         } ?: return@runBlocking null
 
-        authResponse.accessToken!!
+        authResponse.accessToken
     }
 
     private fun getAuthenticationRequestHeaders() = Headers.Builder().apply {
@@ -111,9 +111,5 @@ class JellyfinAuthenticator(
                     "DeviceId=\"${deviceIdentifier}\", " +
                     "Version=\"${JellyfinClient.JELLYFIN_API_VERSION}\""
         )
-    }.build()
-
-    private fun getAuthHeaders(token: String) = Headers.Builder().apply {
-        add("Authorization", "MediaBrowser Token=\"${token}\"")
     }.build()
 }

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -14,7 +14,7 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
-        maven("https://raw.githubusercontent.com/lineage-next/gradle-generatebp/v1.28/.m2")
+        maven("https://raw.githubusercontent.com/lineage-next/gradle-generatebp/v1.31/.m2")
     }
 }
 

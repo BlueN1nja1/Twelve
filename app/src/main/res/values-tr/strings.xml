@@ -207,6 +207,8 @@
     <string name="jellyfin_version">Sürüm</string>
     <string name="jellyfin_product_name">Ürün adı</string>
     <string name="jellyfin_operating_system">İşletim sistemi</string>
+    <string name="ampache_server">Sunucu</string>
+    <string name="ampache_version">Sürüm</string>
     <string name="playlist_name">İsim</string>
     <string name="provider">Sağlayıcı</string>
     <string name="create_playlist_error_empty_name">İsim belirtilmedi</string>

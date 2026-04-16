@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -7,7 +7,6 @@ package org.lineageos.twelve.fragments
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -21,6 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.R
+import org.lineageos.twelve.ext.Bundle
 import org.lineageos.twelve.ext.getParcelable
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.selectItem
@@ -132,8 +132,8 @@ class CreatePlaylistDialogFragment : MaterialDialogFragment(
          */
         fun createBundle(
             providerIdentifier: ProviderIdentifier? = null,
-        ) = bundleOf(
-            ARG_PROVIDER_IDENTIFIER to providerIdentifier,
-        )
+        ) = Bundle {
+            putParcelable(ARG_PROVIDER_IDENTIFIER, providerIdentifier)
+        }
     }
 }

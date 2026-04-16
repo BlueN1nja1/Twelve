@@ -205,6 +205,8 @@
     <string name="jellyfin_version">Версия</string>
     <string name="jellyfin_product_name">Име на продукта</string>
     <string name="jellyfin_operating_system">Операционна система</string>
+    <string name="ampache_server">Сървър</string>
+    <string name="ampache_version">Версия</string>
     <string name="playlist_name">Име</string>
     <string name="provider">Доставчик</string>
     <string name="create_playlist_error_empty_name">Няма дефинирано име</string>

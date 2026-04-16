@@ -209,6 +209,8 @@
     <string name="jellyfin_version">نسخه</string>
     <string name="jellyfin_product_name">نام محصول</string>
     <string name="jellyfin_operating_system">سیستم عامل</string>
+    <string name="ampache_server">پایگاه داده</string>
+    <string name="ampache_version">نسخه</string>
     <string name="playlist_name">نام</string>
     <string name="provider">ارائه دهنده</string>
     <string name="create_playlist_error_empty_name">نام مشخص نشده</string>

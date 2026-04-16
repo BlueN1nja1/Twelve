@@ -13,7 +13,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
@@ -31,6 +30,7 @@ import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.R
+import org.lineageos.twelve.ext.Bundle
 import org.lineageos.twelve.ext.getParcelable
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.loadThumbnail
@@ -316,8 +316,8 @@ class GenreFragment : CollapsingToolbarLayoutFragment(R.layout.fragment_genre) {
          */
         fun createBundle(
             genreUri: Uri,
-        ) = bundleOf(
-            ARG_GENRE_URI to genreUri,
-        )
+        ) = Bundle {
+            putParcelable(ARG_GENRE_URI, genreUri)
+        }
     }
 }

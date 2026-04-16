@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -19,6 +19,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import org.lineageos.twelve.database.converters.InstantConverter
 import org.lineageos.twelve.database.converters.UriConverter
+import org.lineageos.twelve.database.dao.AmpacheProviderDao
 import org.lineageos.twelve.database.dao.FavoriteDao
 import org.lineageos.twelve.database.dao.JellyfinProviderDao
 import org.lineageos.twelve.database.dao.MediaStatsDao
@@ -27,6 +28,7 @@ import org.lineageos.twelve.database.dao.PlaylistItemCrossRefDao
 import org.lineageos.twelve.database.dao.PlaylistWithItemsDao
 import org.lineageos.twelve.database.dao.ResumptionPlaylistDao
 import org.lineageos.twelve.database.dao.SubsonicProviderDao
+import org.lineageos.twelve.database.entities.AmpacheProvider
 import org.lineageos.twelve.database.entities.Favorite
 import org.lineageos.twelve.database.entities.JellyfinProvider
 import org.lineageos.twelve.database.entities.LocalMediaStats
@@ -50,13 +52,14 @@ import org.lineageos.twelve.database.entities.SubsonicProvider
         ResumptionPlaylist::class,
 
         /* Providers */
+        AmpacheProvider::class,
         JellyfinProvider::class,
         SubsonicProvider::class,
 
         /* Local Media Stats */
         LocalMediaStats::class,
     ],
-    version = 8,
+    version = 9,
     autoMigrations = [
         AutoMigration(from = 1, to = 2),
         AutoMigration(from = 2, to = 3),
@@ -65,6 +68,7 @@ import org.lineageos.twelve.database.entities.SubsonicProvider
         AutoMigration(from = 5, to = 6),
         AutoMigration(from = 6, to = 7, spec = TwelveDatabase.Companion.MigrationSpec6To7::class),
         // 7 to 8 is done manually
+        AutoMigration(from = 8, to = 9),
     ],
 )
 @TypeConverters(
@@ -72,6 +76,7 @@ import org.lineageos.twelve.database.entities.SubsonicProvider
     UriConverter::class,
 )
 abstract class TwelveDatabase : RoomDatabase() {
+    abstract fun getAmpacheProviderDao(): AmpacheProviderDao
     abstract fun getFavoriteDao(): FavoriteDao
     abstract fun getJellyfinProviderDao(): JellyfinProviderDao
     abstract fun getLocalMediaStatsProviderDao(): MediaStatsDao

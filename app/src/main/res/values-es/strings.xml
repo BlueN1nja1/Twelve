@@ -137,6 +137,8 @@
     <string name="title_activity_settings">Ajustes</string>
     <string name="general_header">General</string>
     <string name="experimental_header">Experimental</string>
+    <string name="fullscreen_mode">Modo pantalla completa</string>
+    <string name="fullscreen_mode_summary">Activa el modo pantalla completa. Esto ocultará las barras de navegación y estado, pero garantizará que ningún contenido táctil se superponga con los recortes de la pantalla.</string>
     <string name="enable_offload">Activar la descarga</string>
     <string name="enable_offload_summary">Utiliza la ruta de descarga de audio para la reproducción de audio. Desactivar esta opción puede aumentar el consumo de energía, pero puede resultar útil si tiene problemas con la reproducción de audio o el post-procesamiento.</string>
     <string name="enable_float_output">Activar salida de coma flotante de 32 bits</string>
@@ -203,6 +205,9 @@
     <string name="jellyfin_version">Versión</string>
     <string name="jellyfin_product_name">Nombre del producto</string>
     <string name="jellyfin_operating_system">Sistema operativo</string>
+    <string name="ampache_server">Servidor</string>
+    <string name="ampache_version">Versión</string>
+    <string name="ampache_compatible">Compatible</string>
     <string name="playlist_name">Nombre</string>
     <string name="provider">Proveedor</string>
     <string name="create_playlist_error_empty_name">Nombre no especificado</string>

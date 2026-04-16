@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -82,7 +82,9 @@ class LocalPlayerViewModel(application: Application) : AndroidViewModel(applicat
             TwelveRenderersFactory(
                 applicationContext,
                 false,
-            ) { }
+                onAudioDeviceInfoChanged = {},
+                onAudioTrackConfigChanged = {}
+            )
         )
         .build()
 

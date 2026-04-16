@@ -213,6 +213,8 @@
     <string name="jellyfin_version">Версия</string>
     <string name="jellyfin_product_name">Название продукта</string>
     <string name="jellyfin_operating_system">Операционная система</string>
+    <string name="ampache_server">Сервер</string>
+    <string name="ampache_version">Версия</string>
     <string name="playlist_name">Название</string>
     <string name="provider">Поставщик</string>
     <string name="create_playlist_error_empty_name">Название не указано</string>

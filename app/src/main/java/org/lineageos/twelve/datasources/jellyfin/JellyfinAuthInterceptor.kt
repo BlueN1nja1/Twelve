@@ -5,7 +5,6 @@
 
 package org.lineageos.twelve.datasources.jellyfin
 
-import okhttp3.Headers
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -17,13 +16,9 @@ class JellyfinAuthInterceptor(
         val token = tokenGetter() ?: return chain.proceed(chain.request())
 
         val request = chain.request().newBuilder()
-            .headers(getAuthHeaders(token))
+            .header("Authorization", "MediaBrowser Token=\"$token\"")
             .build()
 
         return chain.proceed(request)
     }
-
-    private fun getAuthHeaders(token: String) = Headers.Builder().apply {
-        add("Authorization", "MediaBrowser Token=\"${token}\"")
-    }.build()
 }

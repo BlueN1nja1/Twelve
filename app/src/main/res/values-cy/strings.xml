@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="library_fragment_menu_albums">Casgliadau</string>
+    <string name="library_fragment_menu_artists">Artistiaid</string>
+    <string name="artist_albums_header">Casgliadau</string>
+    <string name="audio_add_to_queue">Ychwanegu i\'r ciw</string>
+    <string name="audio_add_or_remove_from_playlists">Ychwanegu neu tynnu o restrau chwarae</string>
+    <string name="delete_playlist">Dileu rhestr chwarae</string>
+    <string name="audio_information">Gwybodaeth sain</string>
+    <string name="audio_effects">Effeithiau sain</string>
+    <string name="audio_bitrate">Didradd</string>
+    <string name="audio_average_bitrate">Didradd cyfartaledd</string>
+    <string name="audio_output_device_type_bluetooth">Bluetooth</string>
+    <string name="add_provider_action">Ychwanegu</string>
+    <string name="add_provider">Ychwanegu darparwr</string>
+    <string name="delete_provider_action">Dileu</string>
+    <string name="now_playing_widget_dummy_artist">Artist</string>
+    <string name="genre_audios_header">Seiniau</string>
+    <string name="sort_by_artist_name">Enw artist</string>
+    <string name="library_item_albums">Casgliadau</string>
+    <string name="library_item_artists">Artistiaid</string>
+    <string name="add_to_favorites">Ychwanegu i ffefrynnau</string>
+</resources>

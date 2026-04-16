@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2025-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -12,9 +12,9 @@ import androidx.media3.common.C
 import androidx.media3.common.Format
 import androidx.media3.common.MimeTypes
 import androidx.media3.common.util.UnstableApi
-import androidx.media3.exoplayer.audio.DefaultAudioSink
+import androidx.media3.exoplayer.audio.AudioSink
 import org.lineageos.twelve.models.OutputConfiguration
-import org.lineageos.twelve.services.ProxyDefaultAudioTrackBufferSizeProvider
+import org.lineageos.twelve.models.OutputConfiguration.Transcoding.OutputMode
 
 /**
  * Audio quality classifier.
@@ -97,24 +97,18 @@ object OutputConfigurationUtils {
     }
 
     fun buildOutputTranscoding(
-        transcodingData: ProxyDefaultAudioTrackBufferSizeProvider.TranscodingData?,
-        audioFormat: AudioFormat?,
+        audioTrackConfig: AudioSink.AudioTrackConfig?,
+        format: Format?,
     ): OutputConfiguration.Transcoding? {
-        return transcodingData?.let {
-            OutputConfiguration.Transcoding(
-                outputMode = outputModeFromMedia3OutputMode(
-                    it.outputMode ?: return null
-                ) ?: return null,
-                encoding = it.encoding?.let { encoding -> encodingFromMedia3Encoding(encoding) },
-                sampleRateHz = audioFormat?.sampleRate?.takeIf { sampleRate ->
-                    sampleRate != AudioFormat.SAMPLE_RATE_UNSPECIFIED
-                },
-                channelCount = audioFormat?.channelCount?.takeIf { channelCount ->
-                    channelCount != 0
-                },
-                bitrateBps = it.bitrateBps.takeIf { bitrateBps -> bitrateBps != Format.NO_VALUE },
-            )
-        }
+        audioTrackConfig ?: return null
+
+        return OutputConfiguration.Transcoding(
+            outputMode = outputModeFromAudioTrackConfig(audioTrackConfig),
+            encoding = encodingFromMedia3Encoding(audioTrackConfig.encoding),
+            sampleRateHz = format?.sampleRate?.takeIf { it != AudioFormat.SAMPLE_RATE_UNSPECIFIED },
+            channelCount = format?.channelCount?.takeIf { it != 0 },
+            bitrateBps = format?.bitrate?.takeIf { it != Format.NO_VALUE },
+        )
     }
 
     fun AudioDeviceInfo.toModel() = OutputConfiguration.Device(
@@ -407,21 +401,19 @@ object OutputConfigurationUtils {
         }
     }
 
-    private fun outputModeFromMedia3OutputMode(
-        media3OutputMode: @DefaultAudioSink.OutputMode Int,
-    ) = when (media3OutputMode) {
-        DefaultAudioSink.OUTPUT_MODE_PCM ->
-            OutputConfiguration.Transcoding.OutputMode.PCM
+    private fun outputModeFromAudioTrackConfig(
+        audioTrackConfig: AudioSink.AudioTrackConfig,
+    ) = when {
+        audioTrackConfig.offload -> OutputMode.OFFLOAD
 
-        DefaultAudioSink.OUTPUT_MODE_OFFLOAD ->
-            OutputConfiguration.Transcoding.OutputMode.OFFLOAD
+        else -> when (audioTrackConfig.encoding) {
+            C.ENCODING_PCM_8BIT,
+            C.ENCODING_PCM_16BIT,
+            C.ENCODING_PCM_24BIT,
+            C.ENCODING_PCM_32BIT,
+            C.ENCODING_PCM_FLOAT -> OutputMode.PCM
 
-        DefaultAudioSink.OUTPUT_MODE_PASSTHROUGH ->
-            OutputConfiguration.Transcoding.OutputMode.PASSTHROUGH
-
-        else -> {
-            Log.e(LOG_TAG, "Unknown output mode: $media3OutputMode")
-            null
+            else -> OutputMode.PASSTHROUGH
         }
     }
 }

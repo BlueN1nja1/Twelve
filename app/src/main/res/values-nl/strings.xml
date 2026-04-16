@@ -153,4 +153,6 @@
     <string name="jellyfin_version">Versie</string>
     <string name="jellyfin_product_name">Productnaam</string>
     <string name="jellyfin_operating_system">Besturingssysteem</string>
+    <string name="ampache_server">Server</string>
+    <string name="ampache_version">Versie</string>
 </resources>

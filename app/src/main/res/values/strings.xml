@@ -157,6 +157,7 @@
     <string name="provider_type_local">Local</string>
     <string name="provider_type_subsonic" translatable="false">Subsonic / OpenSubsonic / Navidrome</string>
     <string name="provider_type_jellyfin" translatable="false">Jellyfin</string>
+    <string name="provider_type_ampache" translatable="false">Ampache</string>
 
     <!-- Provider arguments -->
     <string name="provider_argument_server">Server</string>
@@ -300,6 +301,11 @@
     <string name="jellyfin_version">Version</string>
     <string name="jellyfin_product_name">Product name</string>
     <string name="jellyfin_operating_system">Operating system</string>
+
+    <!-- Data source information - Ampache -->
+    <string name="ampache_server">Server</string>
+    <string name="ampache_version">Version</string>
+    <string name="ampache_compatible">Compatible</string>
 
     <!-- Create playlist fragment -->
     <string name="playlist_name">Name</string>

@@ -214,6 +214,9 @@
     <string name="jellyfin_version">גרסה</string>
     <string name="jellyfin_product_name">שם מוצר</string>
     <string name="jellyfin_operating_system">מערכת הפעלה</string>
+    <string name="ampache_server">שרת</string>
+    <string name="ampache_version">גרסה</string>
+    <string name="ampache_compatible">תואם</string>
     <string name="playlist_name">שם</string>
     <string name="provider">ספק</string>
     <string name="create_playlist_error_empty_name">לא צוין שם</string>

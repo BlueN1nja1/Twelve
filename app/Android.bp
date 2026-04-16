@@ -17,6 +17,14 @@ android_app {
     sdk_version: "36",
     product_specific: true,
 
+    aaptflags: [
+        // DO NOT EDIT THIS SECTION MANUALLY
+        "--version-name",
+        "1.0",
+        "--version-code",
+        "1",
+    ],
+
     use_embedded_native_libs: true,
 
     overrides: [
@@ -59,21 +67,21 @@ android_app {
         "Twelve_androidx.media3_media3-exoplayer-smoothstreaming",
         "Twelve_androidx.media3_media3-session",
         "Twelve_androidx.media3_media3-ui",
-        "Twelve_androidx.navigation_navigation-common-android",
-        "Twelve_androidx.navigation_navigation-fragment-ktx",
-        "Twelve_androidx.navigation_navigation-runtime-android",
-        "Twelve_androidx.navigation_navigation-ui-ktx",
+        "androidx.navigation_navigation-common",
+        "androidx.navigation_navigation-fragment-ktx",
+        "androidx.navigation_navigation-runtime",
+        "androidx.navigation_navigation-ui-ktx",
+        "androidx.navigationevent_navigationevent",
         "androidx.preference_preference",
         "androidx.recyclerview_recyclerview",
         "androidx.room_room-ktx",
-        "androidx.room_room-runtime",
         "androidx.room_room-runtime",
         "androidx.savedstate_savedstate",
         "androidx.sqlite_sqlite",
         "androidx.sqlite_sqlite-framework",
         "androidx.viewpager2_viewpager2",
         "Twelve_com.github.bogerchan_Nier-Visualizer",
-        "com.google.android.material_material",
+        "Twelve_com.google.android.material_material",
         "Twelve_com.squareup.okhttp3_okhttp",
         "Twelve_io.coil-kt.coil3_coil",
         "Twelve_io.coil-kt.coil3_coil-android",

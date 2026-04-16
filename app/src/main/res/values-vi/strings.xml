@@ -207,6 +207,9 @@
     <string name="jellyfin_version">Phiên bản</string>
     <string name="jellyfin_product_name">Tên sản phẩm</string>
     <string name="jellyfin_operating_system">Hệ điều hành</string>
+    <string name="ampache_server">Máy chủ</string>
+    <string name="ampache_version">Phiên bản</string>
+    <string name="ampache_compatible">Tương thích</string>
     <string name="playlist_name">Tên</string>
     <string name="provider">Nhà cung cấp</string>
     <string name="create_playlist_error_empty_name">Không có tên nào được chỉ định</string>

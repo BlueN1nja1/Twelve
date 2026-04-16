@@ -41,3 +41,8 @@ inline fun <reified T : Serializable> Bundle.getSerializable(key: String?, clazz
         @Suppress("DEPRECATION")
         T::class.safeCast(getSerializable(key))
     }
+
+/**
+ * [Bundle] DSL builder.
+ */
+fun Bundle(block: Bundle.() -> Unit) = Bundle().apply(block)

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2025-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -49,8 +49,6 @@ class SubsonicAuthInterceptor(
     companion object {
         private const val PROTOCOL_JSON = "json"
 
-        private val md5MessageDigest = MessageDigest.getInstance("MD5")
-
         private val allowedSaltChars = ('A'..'Z') + ('a'..'z') + ('0'..'9')
 
         private fun generateSalt() = (1..20)
@@ -58,8 +56,9 @@ class SubsonicAuthInterceptor(
             .joinToString("")
 
         @OptIn(ExperimentalStdlibApi::class)
-        private fun getSaltedPassword(password: String, salt: String) = md5MessageDigest.digest(
-            password.toByteArray() + salt.toByteArray()
-        ).toHexString(format = HexFormat {})
+        private fun getSaltedPassword(password: String, salt: String) =
+            MessageDigest.getInstance("MD5")
+                .digest(password.toByteArray() + salt.toByteArray())
+                .toHexString(format = HexFormat {})
     }
 }

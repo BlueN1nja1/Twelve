@@ -12,7 +12,6 @@ import android.net.Uri
 import android.os.Build
 import android.provider.BaseColumns
 import android.provider.MediaStore
-import androidx.core.os.bundleOf
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -23,6 +22,7 @@ import kotlinx.coroutines.flow.mapLatest
 import org.lineageos.twelve.R
 import org.lineageos.twelve.database.TwelveDatabase
 import org.lineageos.twelve.datasources.mediastore.MediaStoreAudioUri
+import org.lineageos.twelve.ext.Bundle
 import org.lineageos.twelve.ext.isRelativeTo
 import org.lineageos.twelve.ext.mapEachRow
 import org.lineageos.twelve.ext.queryFlow
@@ -94,14 +94,20 @@ class MediaStoreDataSource(
                     contentResolver.queryFlow(
                         audiosUri,
                         arrayOf(MediaStore.Audio.AlbumColumns.ALBUM_ID),
-                        bundleOf(
-                            ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                                BaseColumns._ID `in` List(uris.size) { Query.ARG }
-                            },
-                            ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to uris.map {
-                                ContentUris.parseId(it).toString()
-                            }.toTypedArray(),
-                        )
+                        Bundle {
+                            putString(
+                                ContentResolver.QUERY_ARG_SQL_SELECTION,
+                                query {
+                                    BaseColumns._ID `in` List(uris.size) { Query.ARG }
+                                }
+                            )
+                            putStringArray(
+                                ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                                uris.map {
+                                    ContentUris.parseId(it).toString()
+                                }.toTypedArray()
+                            )
+                        }
                     )
                 }
                 .mapEachRow { it.getLong(MediaStore.Audio.AlbumColumns.ALBUM_ID) }
@@ -110,16 +116,22 @@ class MediaStoreDataSource(
                     contentResolver.queryFlow(
                         albumsUri,
                         albumsProjection,
-                        bundleOf(
-                            ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                                MediaStore.Audio.AlbumColumns.ALBUM_ID `in` List(uris.size) {
-                                    Query.ARG
+                        Bundle {
+                            putString(
+                                ContentResolver.QUERY_ARG_SQL_SELECTION,
+                                query {
+                                    MediaStore.Audio.AlbumColumns.ALBUM_ID `in` List(uris.size) {
+                                        Query.ARG
+                                    }
                                 }
-                            },
-                            ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to uris.map {
-                                it.toString()
-                            }.toTypedArray(),
-                        )
+                            )
+                            putStringArray(
+                                ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                                uris.map {
+                                    it.toString()
+                                }.toTypedArray()
+                            )
+                        }
                     ).mapEachRowToAlbum()
                 }
                 .mapLatest {
@@ -226,24 +238,27 @@ class MediaStoreDataSource(
         contentResolver.queryFlow(
             albumsUri,
             albumsProjection,
-            bundleOf(
-                ContentResolver.QUERY_ARG_SORT_COLUMNS to listOfNotNull(
-                    when (sortingRule.strategy) {
-                        SortingStrategy.ARTIST_NAME -> MediaStore.Audio.AlbumColumns.ARTIST
-                        SortingStrategy.CREATION_DATE -> MediaStore.Audio.AlbumColumns.LAST_YEAR
-                        SortingStrategy.NAME -> MediaStore.Audio.AlbumColumns.ALBUM
-                        else -> null
-                    }?.let { column ->
-                        when (sortingRule.reverse) {
-                            true -> "$column DESC"
-                            false -> column
-                        }
-                    },
-                    MediaStore.Audio.AlbumColumns.ALBUM.takeIf {
-                        sortingRule.strategy != SortingStrategy.NAME
-                    },
-                ).toTypedArray(),
-            )
+            Bundle {
+                putStringArray(
+                    ContentResolver.QUERY_ARG_SORT_COLUMNS,
+                    listOfNotNull(
+                        when (sortingRule.strategy) {
+                            SortingStrategy.ARTIST_NAME -> MediaStore.Audio.AlbumColumns.ARTIST
+                            SortingStrategy.CREATION_DATE -> MediaStore.Audio.AlbumColumns.LAST_YEAR
+                            SortingStrategy.NAME -> MediaStore.Audio.AlbumColumns.ALBUM
+                            else -> null
+                        }?.let { column ->
+                            when (sortingRule.reverse) {
+                                true -> "$column DESC"
+                                false -> column
+                            }
+                        },
+                        MediaStore.Audio.AlbumColumns.ALBUM.takeIf {
+                            sortingRule.strategy != SortingStrategy.NAME
+                        },
+                    ).toTypedArray()
+                )
+            }
         ).mapEachRowToAlbum().mapLatest {
             Result.Success(it)
         }
@@ -256,22 +271,25 @@ class MediaStoreDataSource(
         contentResolver.queryFlow(
             artistsUri,
             artistsProjection,
-            bundleOf(
-                ContentResolver.QUERY_ARG_SORT_COLUMNS to listOfNotNull(
-                    when (sortingRule.strategy) {
-                        SortingStrategy.NAME -> MediaStore.Audio.ArtistColumns.ARTIST
-                        else -> null
-                    }?.let { column ->
-                        when (sortingRule.reverse) {
-                            true -> "$column DESC"
-                            false -> column
-                        }
-                    },
-                    MediaStore.Audio.ArtistColumns.ARTIST.takeIf {
-                        sortingRule.strategy != SortingStrategy.NAME
-                    },
-                ).toTypedArray(),
-            )
+            Bundle {
+                putStringArray(
+                    ContentResolver.QUERY_ARG_SORT_COLUMNS,
+                    listOfNotNull(
+                        when (sortingRule.strategy) {
+                            SortingStrategy.NAME -> MediaStore.Audio.ArtistColumns.ARTIST
+                            else -> null
+                        }?.let { column ->
+                            when (sortingRule.reverse) {
+                                true -> "$column DESC"
+                                false -> column
+                            }
+                        },
+                        MediaStore.Audio.ArtistColumns.ARTIST.takeIf {
+                            sortingRule.strategy != SortingStrategy.NAME
+                        },
+                    ).toTypedArray()
+                )
+            }
         ).mapEachRowToArtist().mapLatest {
             Result.Success(it)
         }
@@ -284,24 +302,27 @@ class MediaStoreDataSource(
         contentResolver.queryFlow(
             audiosUri,
             audiosProjection,
-            bundleOf(
-                ContentResolver.QUERY_ARG_SORT_COLUMNS to listOfNotNull(
-                    when (sortingRule.strategy) {
-                        SortingStrategy.ARTIST_NAME -> MediaStore.Audio.AudioColumns.ARTIST
-                        SortingStrategy.CREATION_DATE -> MediaStore.Audio.AudioColumns.YEAR
-                        SortingStrategy.NAME -> MediaStore.Audio.AudioColumns.TITLE
-                        else -> null
-                    }?.let { column ->
-                        when (sortingRule.reverse) {
-                            true -> "$column DESC"
-                            false -> column
-                        }
-                    },
-                    MediaStore.Audio.AudioColumns.TITLE.takeIf {
-                        sortingRule.strategy != SortingStrategy.NAME
-                    },
-                ).toTypedArray(),
-            )
+            Bundle {
+                putStringArray(
+                    ContentResolver.QUERY_ARG_SORT_COLUMNS,
+                    listOfNotNull(
+                        when (sortingRule.strategy) {
+                            SortingStrategy.ARTIST_NAME -> MediaStore.Audio.AudioColumns.ARTIST
+                            SortingStrategy.CREATION_DATE -> MediaStore.Audio.AudioColumns.YEAR
+                            SortingStrategy.NAME -> MediaStore.Audio.AudioColumns.TITLE
+                            else -> null
+                        }?.let { column ->
+                            when (sortingRule.reverse) {
+                                true -> "$column DESC"
+                                false -> column
+                            }
+                        },
+                        MediaStore.Audio.AudioColumns.TITLE.takeIf {
+                            sortingRule.strategy != SortingStrategy.NAME
+                        },
+                    ).toTypedArray()
+                )
+            }
         ).mapEachRowToAudio().mapLatest {
             Result.Success(it)
         }
@@ -314,22 +335,25 @@ class MediaStoreDataSource(
         contentResolver.queryFlow(
             genresUri,
             genresProjection,
-            bundleOf(
-                ContentResolver.QUERY_ARG_SORT_COLUMNS to listOfNotNull(
-                    when (sortingRule.strategy) {
-                        SortingStrategy.NAME -> MediaStore.Audio.GenresColumns.NAME
-                        else -> null
-                    }?.let { column ->
-                        when (sortingRule.reverse) {
-                            true -> "$column DESC"
-                            false -> column
-                        }
-                    },
-                    MediaStore.Audio.GenresColumns.NAME.takeIf {
-                        sortingRule.strategy != SortingStrategy.NAME
-                    },
-                ).toTypedArray(),
-            )
+            Bundle {
+                putStringArray(
+                    ContentResolver.QUERY_ARG_SORT_COLUMNS,
+                    listOfNotNull(
+                        when (sortingRule.strategy) {
+                            SortingStrategy.NAME -> MediaStore.Audio.GenresColumns.NAME
+                            else -> null
+                        }?.let { column ->
+                            when (sortingRule.reverse) {
+                                true -> "$column DESC"
+                                false -> column
+                            }
+                        },
+                        MediaStore.Audio.GenresColumns.NAME.takeIf {
+                            sortingRule.strategy != SortingStrategy.NAME
+                        },
+                    ).toTypedArray()
+                )
+            }
         ).mapEachRowToGenre().mapLatest {
             Result.Success(it)
         }
@@ -357,42 +381,66 @@ class MediaStoreDataSource(
             contentResolver.queryFlow(
                 albumsUri,
                 albumsProjection,
-                bundleOf(
-                    ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                        MediaStore.Audio.AlbumColumns.ALBUM like Query.ARG
-                    },
-                    ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(query),
-                )
+                Bundle {
+                    putString(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION,
+                        query {
+                            MediaStore.Audio.AlbumColumns.ALBUM like Query.ARG
+                        }
+                    )
+                    putStringArray(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                        arrayOf(query)
+                    )
+                }
             ).mapEachRowToAlbum(),
             contentResolver.queryFlow(
                 artistsUri,
                 artistsProjection,
-                bundleOf(
-                    ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                        MediaStore.Audio.ArtistColumns.ARTIST like Query.ARG
-                    },
-                    ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(query),
-                )
+                Bundle {
+                    putString(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION,
+                        query {
+                            MediaStore.Audio.ArtistColumns.ARTIST like Query.ARG
+                        }
+                    )
+                    putStringArray(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                        arrayOf(query)
+                    )
+                }
             ).mapEachRowToArtist(),
             contentResolver.queryFlow(
                 audiosUri,
                 audiosProjection,
-                bundleOf(
-                    ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                        MediaStore.Audio.AudioColumns.TITLE like Query.ARG
-                    },
-                    ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(query),
-                )
+                Bundle {
+                    putString(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION,
+                        query {
+                            MediaStore.Audio.AudioColumns.TITLE like Query.ARG
+                        }
+                    )
+                    putStringArray(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                        arrayOf(query)
+                    )
+                }
             ).mapEachRowToAudio(),
             contentResolver.queryFlow(
                 genresUri,
                 genresProjection,
-                bundleOf(
-                    ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                        MediaStore.Audio.GenresColumns.NAME like Query.ARG
-                    },
-                    ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(query),
-                )
+                Bundle {
+                    putString(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION,
+                        query {
+                            MediaStore.Audio.GenresColumns.NAME like Query.ARG
+                        }
+                    )
+                    putStringArray(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                        arrayOf(query)
+                    )
+                }
             ).mapEachRowToGenre(),
         ) { albums, artists, audios, genres ->
             albums + artists + audios + genres
@@ -405,14 +453,20 @@ class MediaStoreDataSource(
         contentResolver.queryFlow(
             getAudiosUri(volumeName),
             audiosProjection,
-            bundleOf(
-                ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                    BaseColumns._ID eq Query.ARG
-                },
-                ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(
-                    ContentUris.parseId(audioUri).toString(),
-                ),
-            )
+            Bundle {
+                putString(
+                    ContentResolver.QUERY_ARG_SQL_SELECTION,
+                    query {
+                        BaseColumns._ID eq Query.ARG
+                    }
+                )
+                putStringArray(
+                    ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                    arrayOf(
+                        ContentUris.parseId(audioUri).toString(),
+                    )
+                )
+            }
         ).mapEachRowToAudio(volumeName).mapLatest { audios ->
             audios.firstOrNull()?.let {
                 Result.Success(it)
@@ -425,29 +479,44 @@ class MediaStoreDataSource(
             contentResolver.queryFlow(
                 getAlbumsUri(volumeName),
                 albumsProjection,
-                bundleOf(
-                    ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                        BaseColumns._ID eq Query.ARG
-                    },
-                    ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(
-                        ContentUris.parseId(albumUri).toString(),
-                    ),
-                )
+                Bundle {
+                    putString(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION,
+                        query {
+                            BaseColumns._ID eq Query.ARG
+                        }
+                    )
+                    putStringArray(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                        arrayOf(
+                            ContentUris.parseId(albumUri).toString(),
+                        )
+                    )
+                }
             ).mapEachRowToAlbum(volumeName),
             contentResolver.queryFlow(
                 getAudiosUri(volumeName),
                 audiosProjection,
-                bundleOf(
-                    ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                        MediaStore.Audio.AudioColumns.ALBUM_ID eq Query.ARG
-                    },
-                    ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(
-                        ContentUris.parseId(albumUri).toString(),
-                    ),
-                    ContentResolver.QUERY_ARG_SORT_COLUMNS to arrayOf(
-                        MediaStore.Audio.AudioColumns.TRACK,
+                Bundle {
+                    putString(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION,
+                        query {
+                            MediaStore.Audio.AudioColumns.ALBUM_ID eq Query.ARG
+                        }
                     )
-                )
+                    putStringArray(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                        arrayOf(
+                            ContentUris.parseId(albumUri).toString(),
+                        )
+                    )
+                    putStringArray(
+                        ContentResolver.QUERY_ARG_SORT_COLUMNS,
+                        arrayOf(
+                            MediaStore.Audio.AudioColumns.TRACK,
+                        )
+                    )
+                }
             ).mapEachRowToAudio(volumeName)
         ) { albums, audios ->
             albums.firstOrNull()?.let { album ->
@@ -461,57 +530,84 @@ class MediaStoreDataSource(
             contentResolver.queryFlow(
                 getArtistsUri(volumeName),
                 artistsProjection,
-                bundleOf(
-                    ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                        BaseColumns._ID eq Query.ARG
-                    },
-                    ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(
-                        ContentUris.parseId(artistUri).toString(),
-                    ),
-                )
+                Bundle {
+                    putString(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION,
+                        query {
+                            BaseColumns._ID eq Query.ARG
+                        }
+                    )
+                    putStringArray(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                        arrayOf(
+                            ContentUris.parseId(artistUri).toString(),
+                        )
+                    )
+                }
             ).mapEachRowToArtist(volumeName),
             contentResolver.queryFlow(
                 getAlbumsUri(volumeName),
                 albumsProjection,
-                bundleOf(
-                    ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                        MediaStore.Audio.AlbumColumns.ARTIST_ID eq Query.ARG
-                    },
-                    ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(
-                        ContentUris.parseId(artistUri).toString(),
-                    ),
-                )
+                Bundle {
+                    putString(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION,
+                        query {
+                            MediaStore.Audio.AlbumColumns.ARTIST_ID eq Query.ARG
+                        }
+                    )
+                    putStringArray(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                        arrayOf(
+                            ContentUris.parseId(artistUri).toString(),
+                        )
+                    )
+                }
             ).mapEachRowToAlbum(volumeName),
             contentResolver.queryFlow(
                 getAudiosUri(volumeName),
                 audioAlbumIdsProjection,
-                bundleOf(
-                    ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                        MediaStore.Audio.AudioColumns.ARTIST_ID eq Query.ARG
-                    },
-                    ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(
-                        ContentUris.parseId(artistUri).toString(),
-                    ),
-                    ContentResolver.QUERY_ARG_SQL_GROUP_BY to MediaStore.Audio.AudioColumns.ALBUM_ID,
-                )
+                Bundle {
+                    putString(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION,
+                        query {
+                            MediaStore.Audio.AudioColumns.ARTIST_ID eq Query.ARG
+                        }
+                    )
+                    putStringArray(
+                        ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                        arrayOf(
+                            ContentUris.parseId(artistUri).toString(),
+                        )
+                    )
+                    putString(
+                        ContentResolver.QUERY_ARG_SQL_GROUP_BY,
+                        MediaStore.Audio.AudioColumns.ALBUM_ID
+                    )
+                }
             ).mapEachRow {
                 it.getLong(MediaStore.Audio.AudioColumns.ALBUM_ID)
             }.flatMapLatest { albumIds ->
                 contentResolver.queryFlow(
                     getAlbumsUri(volumeName),
                     albumsProjection,
-                    bundleOf(
-                        ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                            (MediaStore.Audio.AudioColumns.ARTIST_ID neq Query.ARG) and
-                                    (BaseColumns._ID `in` List(albumIds.size) { Query.ARG })
-                        },
-                        ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(
-                            ContentUris.parseId(artistUri).toString(),
-                            *albumIds
-                                .map { it.toString() }
-                                .toTypedArray(),
-                        ),
-                    )
+                    Bundle {
+                        putString(
+                            ContentResolver.QUERY_ARG_SQL_SELECTION,
+                            query {
+                                (MediaStore.Audio.AudioColumns.ARTIST_ID neq Query.ARG) and
+                                        (BaseColumns._ID `in` List(albumIds.size) { Query.ARG })
+                            }
+                        )
+                        putStringArray(
+                            ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                            arrayOf(
+                                ContentUris.parseId(artistUri).toString(),
+                                *albumIds
+                                    .map { it.toString() }
+                                    .toTypedArray(),
+                            )
+                        )
+                    }
                 ).mapEachRowToAlbum(volumeName)
             }
         ) { artists, albums, appearsInAlbum ->
@@ -540,63 +636,89 @@ class MediaStoreDataSource(
                 contentResolver.queryFlow(
                     getGenresUri(volumeName),
                     genresProjection,
-                    bundleOf(
-                        ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                            when (genreId) {
-                                0L -> BaseColumns._ID `is` Query.NULL
-                                else -> BaseColumns._ID eq Query.ARG
+                    Bundle {
+                        putString(
+                            ContentResolver.QUERY_ARG_SQL_SELECTION,
+                            query {
+                                when (genreId) {
+                                    0L -> BaseColumns._ID `is` Query.NULL
+                                    else -> BaseColumns._ID eq Query.ARG
+                                }
                             }
-                        },
-                        ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(
-                            *when (genreId) {
-                                0L -> arrayOf()
-                                else -> arrayOf(genreId.toString())
-                            }
-                        ),
-                    )
+                        )
+                        putStringArray(
+                            ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                            arrayOf(
+                                *when (genreId) {
+                                    0L -> arrayOf()
+                                    else -> arrayOf(genreId.toString())
+                                }
+                            )
+                        )
+                    }
                 ).mapEachRowToGenre(volumeName),
                 contentResolver.queryFlow(
                     getAudiosUri(volumeName),
                     audioAlbumIdsProjection,
-                    bundleOf(
-                        ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                            genreSelection
-                        },
-                        ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(
-                            *genreSelectionArgs,
-                        ),
-                        ContentResolver.QUERY_ARG_SQL_GROUP_BY to
-                                MediaStore.Audio.AudioColumns.ALBUM_ID,
-                    )
+                    Bundle {
+                        putString(
+                            ContentResolver.QUERY_ARG_SQL_SELECTION,
+                            query {
+                                genreSelection
+                            }
+                        )
+                        putStringArray(
+                            ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                            arrayOf(
+                                *genreSelectionArgs,
+                            )
+                        )
+                        putString(
+                            ContentResolver.QUERY_ARG_SQL_GROUP_BY,
+                            MediaStore.Audio.AudioColumns.ALBUM_ID
+                        )
+                    }
                 ).mapEachRow {
                     it.getLong(MediaStore.Audio.AudioColumns.ALBUM_ID)
                 }.flatMapLatest { albumIds ->
                     contentResolver.queryFlow(
                         getAlbumsUri(volumeName),
                         albumsProjection,
-                        bundleOf(
-                            ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                                BaseColumns._ID `in` List(albumIds.size) { Query.ARG }
-                            },
-                            ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(
-                                *albumIds
-                                    .map { it.toString() }
-                                    .toTypedArray(),
-                            ),
-                        )
+                        Bundle {
+                            putString(
+                                ContentResolver.QUERY_ARG_SQL_SELECTION,
+                                query {
+                                    BaseColumns._ID `in` List(albumIds.size) { Query.ARG }
+                                }
+                            )
+                            putStringArray(
+                                ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                                arrayOf(
+                                    *albumIds
+                                        .map { it.toString() }
+                                        .toTypedArray(),
+                                )
+                            )
+                        }
                     ).mapEachRowToAlbum(volumeName)
                 },
                 contentResolver.queryFlow(
                     getAudiosUri(volumeName),
                     audiosProjection,
-                    bundleOf(
-                        ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                            genreSelection
-                        },
-                        ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to arrayOf(
-                            *genreSelectionArgs,
-                        ),
-                    )
+                    Bundle {
+                        putString(
+                            ContentResolver.QUERY_ARG_SQL_SELECTION,
+                            query {
+                                genreSelection
+                            }
+                        )
+                        putStringArray(
+                            ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                            arrayOf(
+                                *genreSelectionArgs,
+                            )
+                        )
+                    }
                 ).mapEachRowToAudio(volumeName)
             ) { genres, appearsInAlbums, audios ->
                 val genre = genres.firstOrNull() ?: when (genreId) {
@@ -738,12 +860,18 @@ class MediaStoreDataSource(
         contentResolver.queryFlow(
             getAudiosUri(MediaStore.VOLUME_EXTERNAL),
             audiosProjection,
-            bundleOf(
-                ContentResolver.QUERY_ARG_SQL_SELECTION to query {
-                    BaseColumns._ID `in` List(audioIds.size) { Query.ARG }
-                },
-                ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS to audioIds.toTypedArray(),
-            )
+            Bundle {
+                putString(
+                    ContentResolver.QUERY_ARG_SQL_SELECTION,
+                    query {
+                        BaseColumns._ID `in` List(audioIds.size) { Query.ARG }
+                    }
+                )
+                putStringArray(
+                    ContentResolver.QUERY_ARG_SQL_SELECTION_ARGS,
+                    audioIds.toTypedArray()
+                )
+            }
         )
             .mapEachRowToAudio(MediaStore.VOLUME_EXTERNAL)
             .mapLatest { audios ->

@@ -47,6 +47,7 @@
     <string name="library_item_playlists">Llistes</string>
     <string name="yes">Sí</string>
     <string name="no">Non</string>
+    <string name="ampache_server">Sirvidor</string>
     <string name="playlist_name">Nome</string>
     <string name="provider">Fornidor</string>
     <string name="repeat_all">Repitir too</string>

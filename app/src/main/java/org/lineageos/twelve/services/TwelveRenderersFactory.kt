@@ -1,15 +1,17 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
 package org.lineageos.twelve.services
 
 import android.content.Context
-import android.media.AudioTrack
+import android.media.AudioDeviceInfo
 import androidx.annotation.OptIn
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.DefaultRenderersFactory
+import androidx.media3.exoplayer.audio.AudioSink
+import androidx.media3.exoplayer.audio.AudioTrackAudioOutputProvider
 import androidx.media3.exoplayer.audio.DefaultAudioOffloadSupportProvider
 import androidx.media3.exoplayer.audio.DefaultAudioSink
 
@@ -17,11 +19,12 @@ import androidx.media3.exoplayer.audio.DefaultAudioSink
 class TwelveRenderersFactory(
     context: Context,
     enableAudioFloatOutput: Boolean,
-    private val onAudioTrackUpdate: (AudioTrack?) -> Unit,
+    private val onAudioDeviceInfoChanged: (AudioDeviceInfo?) -> Unit,
+    private val onAudioTrackConfigChanged: (AudioSink.AudioTrackConfig?) -> Unit,
 ) : DefaultRenderersFactory(context) {
     init {
         setEnableAudioFloatOutput(enableAudioFloatOutput)
-        setEnableAudioTrackPlaybackParams(true)
+        setEnableAudioOutputPlaybackParameters(true)
         setExtensionRendererMode(EXTENSION_RENDERER_MODE_ON)
     }
 
@@ -32,10 +35,14 @@ class TwelveRenderersFactory(
     ) = TwelveAudioSink(
         DefaultAudioSink.Builder(context)
             .setEnableFloatOutput(enableFloatOutput)
-            .setEnableAudioTrackPlaybackParams(enableAudioTrackPlaybackParams)
-            .setAudioTrackBufferSizeProvider(ProxyDefaultAudioTrackBufferSizeProvider)
-            .setAudioOffloadSupportProvider(DefaultAudioOffloadSupportProvider(context))
+            .setEnableAudioOutputPlaybackParameters(enableAudioTrackPlaybackParams)
+            .setAudioOutputProvider(
+                AudioTrackAudioOutputProvider.Builder(context)
+                    .setAudioOffloadSupportProvider(DefaultAudioOffloadSupportProvider(context))
+                    .build()
+            )
             .build(),
-        onAudioTrackUpdate,
+        onAudioDeviceInfoChanged,
+        onAudioTrackConfigChanged,
     )
 }

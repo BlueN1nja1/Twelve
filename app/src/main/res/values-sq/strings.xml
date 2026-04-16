@@ -10,6 +10,7 @@
     <string name="main_fragment_section_activity">Aktiviteti</string>
     <string name="main_fragment_section_search">Kërko</string>
     <string name="main_fragment_section_library">Libraria</string>
+    <string name="play_random_songs">Luaj këngë të rastësishme</string>
     <string name="search_hint">Kerko…</string>
     <string name="library_fragment_menu_albums">Albumet</string>
     <string name="library_fragment_menu_artists">Artistët</string>
@@ -28,6 +29,7 @@
     <string name="no_results">Nuk ka resultate.</string>
     <string name="album_unknown">Album i panjohur</string>
     <string name="artist_unknown">Artist i panjohur</string>
+    <string name="audio_unknown">Audio e panjohur</string>
     <string name="genre_unknown">Zhanër i panjohur</string>
     <plurals name="tracks_count">
         <item quantity="one">%d këngë</item>
@@ -107,6 +109,8 @@
     <string name="title_activity_settings">Cilësimet</string>
     <string name="general_header">Të përgjithshme</string>
     <string name="experimental_header">Eksperimentale</string>
+    <string name="fullscreen_mode">Modaliteti me ekran të plotë</string>
+    <string name="fullscreen_mode_summary">Aktivizo modalitetin me ekran të plotë. Kjo do të fshehë shiritin e navigimit dhe shiritin e statusit, por do të sigurojë që asnjë përmbajtje e prekshme të mos mbivendoset me prerjet e ekranit.</string>
     <string name="enable_offload">Shkarko në vënd tjetër</string>
     <string name="enable_offload_summary">Përdorni shtegun e shkarkimit të audios për të luajtur audio. Çaktivizimi mund të rrisë përdorimin e baterisë, por mund të jetë i dobishëm nëse keni probleme me audio ose me përpunimin e audios</string>
     <string name="enable_float_output">Aktivizo daljen me pikë lundruese 32-bit</string>
@@ -140,6 +144,7 @@
     <string name="sort_by_title">Titulli</string>
     <string name="sort_by_unknown">E panjohur</string>
     <string name="activity_most_played_albums">Albumet më të luajtura</string>
+    <string name="activity_most_played_songs">Këngët më të luajtura</string>
     <string name="activity_random_albums">Albume të rastësishme</string>
     <string name="activity_random_artists">Artistë të rastësishëm</string>
     <string name="activity_random_genres">Zhanre të rastësishme</string>
@@ -170,4 +175,7 @@
     <string name="jellyfin_version">Versioni</string>
     <string name="jellyfin_product_name">Emri i produktit</string>
     <string name="jellyfin_operating_system">Sistemi operativ</string>
+    <string name="ampache_server">Server</string>
+    <string name="ampache_version">Versioni</string>
+    <string name="ampache_compatible">Përputhshmëria</string>
 </resources>

@@ -5,7 +5,6 @@
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.lineageos.generatebp)
@@ -46,10 +45,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-    }
-
-    kotlinOptions {
-        jvmTarget = "17"
     }
 }
 
@@ -97,15 +92,16 @@ dependencies {
 generateBp {
     targetSdk = android.defaultConfig.targetSdk!!
     minSdk = android.defaultConfig.minSdk!!
+    versionCode = android.defaultConfig.versionCode!!
+    versionName = android.defaultConfig.versionName!!
     availableInAOSP = { module ->
         when {
             module.group.startsWith("androidx") -> {
                 // We provide our own androidx.media3 and androidx.navigation
-                !module.group.startsWith("androidx.media3") &&
-                !module.group.startsWith("androidx.navigation")
+                !module.group.startsWith("androidx.media3")
             }
             module.group.startsWith("org.jetbrains") -> true
-            module.group == "com.google.android.material" -> true
+            module.group == "com.google.errorprone" -> true
             module.group == "com.google.guava" -> true
             else -> false
         }

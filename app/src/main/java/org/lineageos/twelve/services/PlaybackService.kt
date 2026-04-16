@@ -8,14 +8,12 @@ package org.lineageos.twelve.services
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.res.Resources
-import android.media.AudioTrack
 import android.media.audiofx.AudioEffect
 import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import androidx.annotation.OptIn
 import androidx.core.net.toUri
-import androidx.core.os.bundleOf
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ServiceLifecycleDispatcher
@@ -29,6 +27,7 @@ import androidx.media3.common.Rating
 import androidx.media3.common.listen
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.analytics.AnalyticsListener
 import androidx.media3.session.CommandButton
 import androidx.media3.session.DefaultMediaNotificationProvider
 import androidx.media3.session.LibraryResult
@@ -41,15 +40,6 @@ import androidx.media3.session.SessionResult
 import androidx.preference.PreferenceManager
 import com.google.common.util.concurrent.Futures
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.mapLatest
-import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.guava.await
 import kotlinx.coroutines.guava.future
 import kotlinx.coroutines.launch
@@ -57,12 +47,12 @@ import kotlinx.coroutines.withContext
 import org.lineageos.twelve.MainActivity
 import org.lineageos.twelve.R
 import org.lineageos.twelve.TwelveApplication
+import org.lineageos.twelve.ext.Bundle
 import org.lineageos.twelve.ext.enableFloatOutput
 import org.lineageos.twelve.ext.enableOffload
 import org.lineageos.twelve.ext.mapAsync
 import org.lineageos.twelve.ext.mediaItems
 import org.lineageos.twelve.ext.next
-import org.lineageos.twelve.ext.routedDeviceFlow
 import org.lineageos.twelve.ext.setOffloadEnabled
 import org.lineageos.twelve.ext.skipSilence
 import org.lineageos.twelve.ext.stopPlaybackOnTaskRemoved
@@ -118,7 +108,9 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
                     .setSessionCommand(
                         SessionCommand(
                             name,
-                            bundleOf(ARG_VALUE to !shuffleModeEnabled),
+                            Bundle {
+                                putBoolean(ARG_VALUE, !shuffleModeEnabled)
+                            },
                         )
                     )
                     .build()
@@ -147,7 +139,9 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
                     .setSessionCommand(
                         SessionCommand(
                             name,
-                            bundleOf(ARG_VALUE to repeatMode.next().name),
+                            Bundle {
+                                putString(ARG_VALUE, repeatMode.next().name)
+                            },
                         )
                     )
                     .build()
@@ -180,30 +174,6 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
     private lateinit var player: ExoPlayer
     private lateinit var mediaLibrarySession: MediaLibrarySession
 
-    private val audioTrackFlow = MutableStateFlow<AudioTrack?>(null)
-
-    @kotlin.OptIn(ExperimentalCoroutinesApi::class)
-    private val audioFormat = audioTrackFlow
-        .mapLatest { it?.format }
-        .flowOn(Dispatchers.IO)
-        .shareIn(
-            scope = lifecycleScope,
-            started = SharingStarted.WhileSubscribed(),
-            replay = 1,
-        )
-
-    @kotlin.OptIn(ExperimentalCoroutinesApi::class)
-    private val routedDevice = audioTrackFlow
-        .flatMapLatest { audioTrack ->
-            audioTrack?.routedDeviceFlow() ?: flowOf(null)
-        }
-        .flowOn(Dispatchers.IO)
-        .shareIn(
-            scope = lifecycleScope,
-            started = SharingStarted.WhileSubscribed(),
-            replay = 1,
-        )
-
     private val mediaRepositoryTree by lazy {
         MediaRepositoryTree(
             applicationContext,
@@ -230,6 +200,18 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
 
     private val outputConfigurationRepository by lazy {
         (application as TwelveApplication).outputConfigurationRepository
+    }
+
+    private val analyticsListener by lazy {
+        object : AnalyticsListener {
+            override fun onEvents(player: Player, events: AnalyticsListener.Events) {
+                if (events.contains(AnalyticsListener.EVENT_AUDIO_INPUT_FORMAT_CHANGED)) {
+                    outputConfigurationRepository.updateFormat(
+                        this@PlaybackService.player.audioFormat
+                    )
+                }
+            }
+        }
     }
 
     private val mediaLibrarySessionCallback = object : MediaLibrarySession.Callback {
@@ -296,9 +278,11 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
             onSetRating(session, controller, it.mediaId, rating)
         } ?: Futures.immediateFuture(SessionResult(SessionError.ERROR_INVALID_STATE))
 
+        @OptIn(UnstableApi::class)
         override fun onPlaybackResumption(
             mediaSession: MediaSession,
-            controller: MediaSession.ControllerInfo
+            controller: MediaSession.ControllerInfo,
+            isForPlayback: Boolean
         ) = lifecycleScope.future {
             getResumptionPlaylist()
         }
@@ -415,7 +399,9 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
                 CustomCommand.GET_AUDIO_SESSION_ID -> {
                     SessionResult(
                         SessionResult.RESULT_SUCCESS,
-                        bundleOf(CustomCommand.RSP_VALUE to player.audioSessionId),
+                        Bundle {
+                            putInt(CustomCommand.RSP_VALUE, player.audioSessionId)
+                        },
                     )
                 }
 
@@ -455,8 +441,14 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
             .setRenderersFactory(
                 TwelveRenderersFactory(
                     this,
-                    sharedPreferences.enableFloatOutput
-                ) { audioTrackFlow.value = it }
+                    sharedPreferences.enableFloatOutput,
+                    onAudioDeviceInfoChanged = {
+                        outputConfigurationRepository.updateAudioDeviceInfo(it)
+                    },
+                    onAudioTrackConfigChanged = {
+                        outputConfigurationRepository.updateAudioTrackConfig(it)
+                    },
+                )
             )
             .setSkipSilenceEnabled(sharedPreferences.skipSilence)
             .setWakeMode(C.WAKE_MODE_NETWORK)
@@ -481,6 +473,8 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
                     setSmallIcon(R.drawable.ic_notification_small_icon)
                 }
         )
+
+        player.addAnalyticsListener(analyticsListener)
 
         lifecycleScope.launch {
             player.listen { events ->
@@ -527,18 +521,6 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
                 if (events.contains(Player.EVENT_AUDIO_SESSION_ID)) {
                     openAudioEffectSession()
                 }
-            }
-        }
-
-        lifecycleScope.launch {
-            audioFormat.collectLatest {
-                outputConfigurationRepository.updateAudioFormat(it)
-            }
-        }
-
-        lifecycleScope.launch {
-            routedDevice.collectLatest { audioDeviceInfo ->
-                outputConfigurationRepository.updateAudioDeviceInfo(audioDeviceInfo)
             }
         }
     }
@@ -588,6 +570,8 @@ class PlaybackService : MediaLibraryService(), LifecycleOwner {
         dispatcher.onServicePreSuperOnDestroy()
 
         closeAudioEffectSession()
+
+        player.removeAnalyticsListener(analyticsListener)
 
         player.release()
         mediaLibrarySession.release()

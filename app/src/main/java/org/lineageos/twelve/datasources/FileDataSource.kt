@@ -9,7 +9,6 @@ import android.content.ContentResolver
 import android.net.Uri
 import android.provider.OpenableColumns
 import android.webkit.MimeTypeMap
-import androidx.core.os.bundleOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.asFlow
@@ -20,6 +19,7 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import org.lineageos.twelve.ext.Bundle
 import org.lineageos.twelve.ext.executeAsync
 import org.lineageos.twelve.ext.mapEachRow
 import org.lineageos.twelve.ext.queryFlow
@@ -122,9 +122,9 @@ class FileDataSource(
         SCHEME_CONTENT -> contentResolver.queryFlow(
             audioUri,
             contentQueryProjection,
-            bundleOf(
-                ContentResolver.QUERY_ARG_SQL_LIMIT to 1,
-            ),
+            Bundle {
+                putInt(ContentResolver.QUERY_ARG_SQL_LIMIT, 1)
+            },
         ).mapEachRow { columnIndexCache ->
             val displayName = columnIndexCache.getString(OpenableColumns.DISPLAY_NAME)
 

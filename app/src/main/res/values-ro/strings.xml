@@ -211,6 +211,9 @@
     <string name="jellyfin_version">Versiune</string>
     <string name="jellyfin_product_name">Nume produs</string>
     <string name="jellyfin_operating_system">Sistem de operare</string>
+    <string name="ampache_server">Server</string>
+    <string name="ampache_version">Versiune</string>
+    <string name="ampache_compatible">Compatibil</string>
     <string name="playlist_name">Nume</string>
     <string name="provider">Furnizor</string>
     <string name="create_playlist_error_empty_name">Nici un nume specificat</string>

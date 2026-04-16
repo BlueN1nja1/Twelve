@@ -20,7 +20,7 @@
     <string name="no_playlists_comma">Nincs lejátszólista,</string>
     <string name="create_playlist_suggestion">Létrehoz egy újat?</string>
     <string name="create_playlist_confirm">Létrehozás</string>
-    <string name="no_activity">Ne történjen semmi</string>
+    <string name="no_activity">Nincs aktivitás</string>
     <string name="no_albums">Nincsenek albumok</string>
     <string name="no_artists">Nincsenek előadók</string>
     <string name="no_genres">Nincsenek műfajok</string>
@@ -209,6 +209,9 @@
     <string name="jellyfin_version">Verzió</string>
     <string name="jellyfin_product_name">Terméknév</string>
     <string name="jellyfin_operating_system">Operációs rendszer</string>
+    <string name="ampache_server">Szerver</string>
+    <string name="ampache_version">Verzió</string>
+    <string name="ampache_compatible">Kompatibilis</string>
     <string name="playlist_name">Név</string>
     <string name="provider">Szolgáltató</string>
     <string name="create_playlist_error_empty_name">Nem lett név megadva</string>

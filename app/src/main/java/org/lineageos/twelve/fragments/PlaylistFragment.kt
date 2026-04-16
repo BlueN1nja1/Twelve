@@ -13,7 +13,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.coordinatorlayout.widget.CoordinatorLayout
-import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
@@ -34,6 +33,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.lineageos.twelve.R
+import org.lineageos.twelve.ext.Bundle
 import org.lineageos.twelve.ext.getParcelable
 import org.lineageos.twelve.ext.getViewProperty
 import org.lineageos.twelve.ext.loadThumbnail
@@ -381,8 +381,8 @@ class PlaylistFragment : CollapsingToolbarLayoutFragment(R.layout.fragment_playl
          */
         fun createBundle(
             playlistUri: Uri,
-        ) = bundleOf(
-            ARG_PLAYLIST_URI to playlistUri,
-        )
+        ) = Bundle {
+            putParcelable(ARG_PLAYLIST_URI, playlistUri)
+        }
     }
 }

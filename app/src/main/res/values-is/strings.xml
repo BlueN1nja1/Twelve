@@ -84,4 +84,5 @@
     <string name="genre_appears_in_playlists_header">Birtist í spilunarlistum</string>
     <string name="genre_audios_header">Hljóðskrár</string>
     <string name="queue">Biðröð</string>
+    <string name="ampache_server">Netþjónn</string>
 </resources>

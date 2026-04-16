@@ -13,7 +13,6 @@ import android.os.Environment
 import android.os.storage.StorageManager
 import android.provider.MediaStore
 import android.provider.Settings
-import androidx.core.os.bundleOf
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,9 +24,11 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.shareIn
 import org.lineageos.twelve.database.TwelveDatabase
+import org.lineageos.twelve.datasources.AmpacheDataSource
 import org.lineageos.twelve.datasources.JellyfinDataSource
 import org.lineageos.twelve.datasources.MediaStoreDataSource
 import org.lineageos.twelve.datasources.SubsonicDataSource
+import org.lineageos.twelve.ext.Bundle
 import org.lineageos.twelve.ext.SPLIT_LOCAL_DEVICES_KEY
 import org.lineageos.twelve.ext.preferenceFlow
 import org.lineageos.twelve.ext.splitLocalDevices
@@ -75,9 +76,12 @@ class ProvidersRepository(
                             ProviderType.MEDIASTORE,
                             it.mediaStoreVolumeName.hashCode().toLong(),
                             it.getDescription(context),
-                        ) to bundleOf(
-                            MediaStoreDataSource.ARG_VOLUME_NAME.key to it.mediaStoreVolumeName,
-                        )
+                        ) to Bundle {
+                            putString(
+                                MediaStoreDataSource.ARG_VOLUME_NAME.key,
+                                it.mediaStoreVolumeName
+                            )
+                        }
                     )
                 }
 
@@ -89,9 +93,12 @@ class ProvidersRepository(
                             context.contentResolver,
                             Settings.Global.DEVICE_NAME
                         ) ?: Build.MODEL,
-                    ) to bundleOf(
-                        MediaStoreDataSource.ARG_VOLUME_NAME.key to MediaStore.VOLUME_EXTERNAL,
-                    )
+                    ) to Bundle {
+                        putString(
+                            MediaStoreDataSource.ARG_VOLUME_NAME.key,
+                            MediaStore.VOLUME_EXTERNAL
+                        )
+                    }
                 )
             }
         }
@@ -99,35 +106,56 @@ class ProvidersRepository(
 
     // Subsonic
     private val subsonicProviders = database.getSubsonicProviderDao().getAll()
+        .distinctUntilChanged()
         .mapLatest {
             it.map { provider ->
                 Provider(
                     ProviderType.SUBSONIC,
                     provider.id,
                     provider.name,
-                ) to bundleOf(
-                    SubsonicDataSource.ARG_SERVER.key to provider.url,
-                    SubsonicDataSource.ARG_USERNAME.key to provider.username,
-                    SubsonicDataSource.ARG_PASSWORD.key to provider.password,
-                    SubsonicDataSource.ARG_USE_LEGACY_AUTHENTICATION.key to
-                            provider.useLegacyAuthentication,
-                )
+                ) to Bundle {
+                    putString(SubsonicDataSource.ARG_SERVER.key, provider.url)
+                    putString(SubsonicDataSource.ARG_USERNAME.key, provider.username)
+                    putString(SubsonicDataSource.ARG_PASSWORD.key, provider.password)
+                    putBoolean(
+                        SubsonicDataSource.ARG_USE_LEGACY_AUTHENTICATION.key,
+                        provider.useLegacyAuthentication
+                    )
+                }
             }
         }
 
     // Jellyfin
     private val jellyfinProviders = database.getJellyfinProviderDao().getAll()
+        .distinctUntilChanged()
         .mapLatest {
             it.map { provider ->
                 Provider(
                     ProviderType.JELLYFIN,
                     provider.id,
                     provider.name,
-                ) to bundleOf(
-                    JellyfinDataSource.ARG_SERVER.key to provider.url,
-                    JellyfinDataSource.ARG_USERNAME.key to provider.username,
-                    JellyfinDataSource.ARG_PASSWORD.key to provider.password,
-                )
+                ) to Bundle {
+                    putString(JellyfinDataSource.ARG_SERVER.key, provider.url)
+                    putString(JellyfinDataSource.ARG_USERNAME.key, provider.username)
+                    putString(JellyfinDataSource.ARG_PASSWORD.key, provider.password)
+                }
+            }
+        }
+
+    // Ampache
+    private val ampacheProviders = database.getAmpacheProviderDao().getAll()
+        .distinctUntilChanged()
+        .mapLatest {
+            it.map { provider ->
+                Provider(
+                    ProviderType.AMPACHE,
+                    provider.id,
+                    provider.name,
+                ) to Bundle {
+                    putString(AmpacheDataSource.ARG_SERVER.key, provider.url)
+                    putString(AmpacheDataSource.ARG_USERNAME.key, provider.username)
+                    putString(AmpacheDataSource.ARG_PASSWORD.key, provider.password)
+                }
             }
         }
 
@@ -136,6 +164,7 @@ class ProvidersRepository(
         mediaStoreProviders,
         subsonicProviders,
         jellyfinProviders,
+        ampacheProviders,
     ) { it ->
         buildList {
             it.forEach {
@@ -222,6 +251,18 @@ class ProvidersRepository(
 
             providerType to typeId
         }
+
+        ProviderType.AMPACHE -> {
+            val server = arguments.requireArgument(AmpacheDataSource.ARG_SERVER)
+            val username = arguments.requireArgument(AmpacheDataSource.ARG_USERNAME)
+            val password = arguments.requireArgument(AmpacheDataSource.ARG_PASSWORD)
+
+            val typeId = database.getAmpacheProviderDao().create(
+                name, server, username, password
+            )
+
+            providerType to typeId
+        }
     }
 
     /**
@@ -270,6 +311,20 @@ class ProvidersRepository(
                     password
                 )
             }
+
+            ProviderType.AMPACHE -> {
+                val server = arguments.requireArgument(AmpacheDataSource.ARG_SERVER)
+                val username = arguments.requireArgument(AmpacheDataSource.ARG_USERNAME)
+                val password = arguments.requireArgument(AmpacheDataSource.ARG_PASSWORD)
+
+                database.getAmpacheProviderDao().update(
+                    providerIdentifier.typeId,
+                    name,
+                    server,
+                    username,
+                    password
+                )
+            }
         }
     }
 
@@ -287,6 +342,10 @@ class ProvidersRepository(
             )
 
             ProviderType.JELLYFIN -> database.getJellyfinProviderDao().delete(
+                providerIdentifier.typeId
+            )
+
+            ProviderType.AMPACHE -> database.getAmpacheProviderDao().delete(
                 providerIdentifier.typeId
             )
         }

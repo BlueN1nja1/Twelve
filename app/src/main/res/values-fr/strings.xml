@@ -207,6 +207,8 @@
     <string name="jellyfin_version">Version</string>
     <string name="jellyfin_product_name">Nom du produit</string>
     <string name="jellyfin_operating_system">Système d\'exploitation</string>
+    <string name="ampache_server">Serveur</string>
+    <string name="ampache_version">Version</string>
     <string name="playlist_name">Nom</string>
     <string name="provider">Fournisseur</string>
     <string name="create_playlist_error_empty_name">Aucun nom spécifié</string>

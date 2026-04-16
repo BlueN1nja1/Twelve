@@ -60,6 +60,8 @@
     <string name="jellyfin_version">Versi</string>
     <string name="jellyfin_product_name">Nama produk</string>
     <string name="jellyfin_operating_system">Sistem operasi</string>
+    <string name="ampache_server">Server</string>
+    <string name="ampache_version">Versi</string>
     <string name="playlist_name">Nama</string>
     <string name="provider">Penyedia</string>
     <string name="repeat_all">Ulangi semua</string>

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -60,7 +60,6 @@ import org.lineageos.twelve.models.RepeatMode
 import org.lineageos.twelve.models.Result
 import org.lineageos.twelve.services.PlaybackService
 import org.lineageos.twelve.services.PlaybackService.CustomCommand.Companion.sendCustomCommand
-import org.lineageos.twelve.services.ProxyDefaultAudioTrackBufferSizeProvider
 import org.lineageos.twelve.utils.MimeUtils
 import org.lineageos.twelve.utils.OutputConfigurationUtils
 import org.lineageos.twelve.utils.OutputConfigurationUtils.toModel
@@ -410,12 +409,12 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         )
 
     private val outputTranscoding = combine(
-        ProxyDefaultAudioTrackBufferSizeProvider.transcodingData,
-        outputConfigurationRepository.audioFormat,
-    ) { transcodingData, audioFormat ->
+        outputConfigurationRepository.audioTrackConfig,
+        outputConfigurationRepository.format,
+    ) { audioTrackConfig, format ->
         OutputConfigurationUtils.buildOutputTranscoding(
-            transcodingData = transcodingData,
-            audioFormat = audioFormat,
+            audioTrackConfig = audioTrackConfig,
+            format = format,
         )
     }
         .flowOn(Dispatchers.IO)

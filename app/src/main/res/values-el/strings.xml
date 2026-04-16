@@ -207,6 +207,8 @@
     <string name="jellyfin_version">Έκδοση</string>
     <string name="jellyfin_product_name">Όνομα προϊόντος</string>
     <string name="jellyfin_operating_system">Λειτουργικό σύστημα</string>
+    <string name="ampache_server">Διακομιστής</string>
+    <string name="ampache_version">Έκδοση</string>
     <string name="playlist_name">Όνομα</string>
     <string name="provider">Πάροχος</string>
     <string name="create_playlist_error_empty_name">Δεν καθορίστηκε όνομα</string>

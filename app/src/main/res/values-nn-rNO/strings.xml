@@ -15,9 +15,9 @@
     <string name="library_fragment_menu_albums">Album</string>
     <string name="library_fragment_menu_artists">Artistar</string>
     <string name="library_fragment_menu_genres">Sjangrar</string>
-    <string name="library_fragment_menu_playlists">Spelelistar</string>
+    <string name="library_fragment_menu_playlists">Spelelister</string>
     <string name="create_playlist">Lag ny speleliste</string>
-    <string name="no_playlists_comma">Ingen spelelistar,</string>
+    <string name="no_playlists_comma">Ingen spelelister,</string>
     <string name="create_playlist_suggestion">Vil du laga ein?</string>
     <string name="create_playlist_confirm">Lag</string>
     <string name="no_activity">Ingen hendingar</string>
@@ -47,7 +47,7 @@
     <string name="audio_play_next">Spel neste</string>
     <string name="audio_add_to_queue">Legg i kø</string>
     <string name="audio_remove_from_playlist">Fjern frå spelelista</string>
-    <string name="audio_add_or_remove_from_playlists">Legg til eller fjern frå spelelistar</string>
+    <string name="audio_add_or_remove_from_playlists">Legg til eller fjern frå spelelister</string>
     <string name="open_album">Opna album</string>
     <string name="open_artist">Opna artist</string>
     <string name="open_genre">Opna sjanger</string>
@@ -164,7 +164,7 @@
     <string name="now_playing_widget_dummy_artist">Artist</string>
     <string name="album_disc_header">Plate %1$d</string>
     <string name="genre_appears_in_albums_header">Er med på album</string>
-    <string name="genre_appears_in_playlists_header">Er med i spelelistar</string>
+    <string name="genre_appears_in_playlists_header">Er med i spelelister</string>
     <string name="genre_audios_header">Lydfiler</string>
     <string name="queue">Kø</string>
     <string name="sort_by_artist_name">Artistnamn</string>
@@ -209,6 +209,8 @@
     <string name="jellyfin_version">Versjon</string>
     <string name="jellyfin_product_name">Produktnamn</string>
     <string name="jellyfin_operating_system">Operativsystem</string>
+    <string name="ampache_server">Tenar</string>
+    <string name="ampache_version">Versjon</string>
     <string name="playlist_name">Namn</string>
     <string name="provider">Kjelde</string>
     <string name="create_playlist_error_empty_name">Du må oppgje eit namn</string>
