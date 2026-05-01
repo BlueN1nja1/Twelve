@@ -15,11 +15,11 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "org.lineageos.twelve"
+        applicationId = "com.blueninja1.twelve"
         minSdk = 30
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 199
+        versionName = "2.0.0 Beta 1"
     }
 
     buildTypes {

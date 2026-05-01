@@ -18,7 +18,7 @@ runs:
     - name: Generate Android.bp
       shell: bash
       run: |
-        ./gradlew app:generateBp
+        ./gradlew Twelve:generateBp
         if [[ ! -z $(git status -s) ]]; then
           git status
           exit -1
@@ -26,5 +26,5 @@ runs:
 
     - uses: actions/upload-artifact@v6
       with:
-        name: app-debug.apk
-        path: app/build/outputs/apk/debug/app-debug.apk
+        name: Twelve-debug.apk
+        path: Twelve/build/outputs/apk/debug/app-debug.apk
