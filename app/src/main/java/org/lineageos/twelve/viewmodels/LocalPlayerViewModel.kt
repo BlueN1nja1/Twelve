@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -43,7 +43,6 @@ import org.lineageos.twelve.models.FlowResult
 import org.lineageos.twelve.models.PlaybackProgress
 import org.lineageos.twelve.models.PlaybackState
 import org.lineageos.twelve.models.RepeatMode
-import org.lineageos.twelve.models.Thumbnail
 import org.lineageos.twelve.services.TwelveRenderersFactory
 
 /**
@@ -136,17 +135,17 @@ class LocalPlayerViewModel(application: Application) : AndroidViewModel(applicat
         playbackState,
     ) { mediaMetadata, playbackState ->
         when (playbackState) {
-            PlaybackState.BUFFERING -> FlowResult.Loading()
+            PlaybackState.BUFFERING -> FlowResult.Loading
             else -> mediaMetadata.toThumbnail(applicationContext)?.let {
-                FlowResult.Success<Thumbnail, Error>(it)
-            } ?: FlowResult.Error(Error.NOT_FOUND)
+                FlowResult.Success(it)
+            } ?: FlowResult.Failure(Error.NOT_FOUND)
         }
     }
         .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = FlowResult.Loading()
+            initialValue = FlowResult.Loading
         )
 
     val playbackProgress = exoPlayer.playbackProgressFlow(eventsFlow)

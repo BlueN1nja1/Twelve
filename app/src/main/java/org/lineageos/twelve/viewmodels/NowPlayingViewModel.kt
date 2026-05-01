@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -136,14 +136,14 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         .flatMapLatest { mediaItemUri ->
             mediaItemUri?.let {
                 mediaRepository.audio(it)
-            } ?: flowOf(Result.Error(Error.NOT_FOUND))
+            } ?: flowOf(Result.Failure(Error.NOT_FOUND))
         }
         .asFlowResult()
         .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = FlowResult.Loading()
+            initialValue = FlowResult.Loading
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -204,7 +204,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
             PlaybackState.BUFFERING -> null
             else -> mediaMetadata.toThumbnail(applicationContext)?.let {
                 Result.Success(it)
-            } ?: Result.Error(Error.NOT_FOUND)
+            } ?: Result.Failure(Error.NOT_FOUND)
         }
     }
         .flowOn(Dispatchers.IO)
@@ -351,14 +351,14 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         .flatMapLatest { mediaItemUri ->
             mediaItemUri?.let {
                 mediaRepository.lyrics(it)
-            } ?: flowOf(Result.Error(Error.NOT_FOUND))
+            } ?: flowOf(Result.Failure(Error.NOT_FOUND))
         }
         .asFlowResult()
         .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = FlowResult.Loading()
+            initialValue = FlowResult.Loading
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -395,7 +395,7 @@ open class NowPlayingViewModel(application: Application) : TwelveViewModel(appli
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = FlowResult.Loading()
+            initialValue = FlowResult.Loading
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)

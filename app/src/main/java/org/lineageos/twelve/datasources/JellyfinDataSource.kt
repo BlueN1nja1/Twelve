@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -291,7 +291,7 @@ class JellyfinDataSource(
             }
         }?.let {
             Result.Success(it)
-        } ?: Result.Error(Error.NOT_FOUND)
+        } ?: Result.Failure(Error.NOT_FOUND)
     }.getOrNull()
 
     override fun providerOf(mediaItemUri: Uri) = providersManager.providerOf(mediaItemUri)
@@ -551,7 +551,7 @@ class JellyfinDataSource(
     override fun lyrics(audioUri: Uri) = providersManager.mapWithInstanceOf(audioUri) {
         val id = UUID.fromString(audioUri.lastPathSegment!!)
         client.getLyrics(id).map { it.toModel() }.flatMap { lyrics ->
-            lyrics?.let { Result.Success(it) } ?: Result.Error(Error.NOT_FOUND)
+            lyrics?.let { Result.Success(it) } ?: Result.Failure(Error.NOT_FOUND)
         }
     }
 
@@ -571,7 +571,7 @@ class JellyfinDataSource(
         name: String,
     ) = providersManager.doWithInstanceOf(playlistUri) {
         when {
-            playlistUri == favoritesUri -> Result.Error(Error.IO)
+            playlistUri == favoritesUri -> Result.Failure(Error.IO)
             else -> client.renamePlaylist(
                 UUID.fromString(playlistUri.lastPathSegment!!), name
             ).map {
@@ -584,8 +584,8 @@ class JellyfinDataSource(
         playlistUri: Uri,
     ) = providersManager.doWithInstanceOf(playlistUri) {
         when {
-            playlistUri == favoritesUri -> Result.Error(Error.IO)
-            else -> Result.Error<Unit, _>(Error.NOT_IMPLEMENTED)
+            playlistUri == favoritesUri -> Result.Failure(Error.IO)
+            else -> Result.Failure(Error.NOT_IMPLEMENTED)
         }
     }
 

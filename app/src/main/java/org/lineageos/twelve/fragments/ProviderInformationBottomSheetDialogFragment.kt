@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025-2026 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -129,7 +129,7 @@ class ProviderInformationBottomSheetDialogFragment : TwelveBottomSheetDialogFrag
                         providerIconImageView.setImageResource(provider.type.iconDrawableResId)
                     }
 
-                    is FlowResult.Error -> {
+                    is FlowResult.Failure -> {
                         Log.e(LOG_TAG, "Failed to load data, error: ${it.error}", it.throwable)
 
                         titleTextView.text = ""
@@ -164,7 +164,7 @@ class ProviderInformationBottomSheetDialogFragment : TwelveBottomSheetDialogFrag
                         statusMaterialDivider.isVisible = !isEmpty
                     }
 
-                    is FlowResult.Error -> {
+                    is FlowResult.Failure -> {
                         Log.e(LOG_TAG, "Failed to load data, error: ${it.error}", it.throwable)
 
                         statusAdapter.submitList(emptyList())

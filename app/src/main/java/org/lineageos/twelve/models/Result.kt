@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -8,13 +8,13 @@ package org.lineageos.twelve.models
 /**
  * Result status. This is very similar to Arrow's `Either<A, B>`
  */
-sealed interface Result<T, E> {
+sealed interface Result<out T, out E> {
     /**
      * The result is ready.
      *
      * @param data The obtained data
      */
-    class Success<T, E>(val data: T) : Result<T, E>
+    data class Success<T>(val data: T) : Result<T, Nothing>
 
     /**
      * The request failed.
@@ -22,7 +22,7 @@ sealed interface Result<T, E> {
      * @param error The error
      * @param throwable An optional [Throwable] object
      */
-    class Error<T, E>(val error: E, val throwable: Throwable? = null) : Result<T, E>
+    data class Failure<E>(val error: E, val throwable: Throwable? = null) : Result<Nothing, E>
 
     companion object {
         /**
@@ -30,23 +30,23 @@ sealed interface Result<T, E> {
          */
         fun <T, E> Result<T, E>.getOrNull() = when (this) {
             is Success -> data
-            is Error -> null
+            is Failure -> null
         }
 
         /**
          * Map the successful result to another [Result] object.
-         * On [Error], the original [Result] is returned.
+         * On [Failure], the original [Result] is returned.
          */
         inline fun <T, E, R> Result<T, E>.flatMap(
             mapping: (T) -> Result<R, E>
         ): Result<R, E> = when (this) {
             is Success -> mapping(data)
-            is Error -> Error(error, throwable)
+            is Failure -> this
         }
 
         /**
          * Map the successful result to another type.
-         * On [Error], the original [Result] is returned.
+         * On [Failure], the original [Result] is returned.
          */
         inline fun <T, E, R> Result<T, E>.map(
             mapping: (T) -> R
@@ -61,13 +61,13 @@ sealed interface Result<T, E> {
             block: (T) -> Unit,
         ): R = this.also {
             when (this) {
-                is Success<*, *> -> block(data as T)
-                is Error<*, *> -> Unit
+                is Success<*> -> block(data as T)
+                is Failure<*> -> Unit
             }
         }
 
         /**
-         * Execute a block if the result is [Error].
+         * Execute a block if the result is [Failure].
          *
          * @param block The block to execute
          */
@@ -75,8 +75,8 @@ sealed interface Result<T, E> {
             block: (E) -> Unit,
         ): R = this.also {
             when (this) {
-                is Success<*, *> -> Unit
-                is Error<*, *> -> block(error as E)
+                is Success<*> -> Unit
+                is Failure<*> -> block(error as E)
             }
         }
     }

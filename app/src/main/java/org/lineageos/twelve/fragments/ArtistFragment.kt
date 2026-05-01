@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -259,7 +259,7 @@ class ArtistFragment : CollapsingToolbarLayoutFragment(R.layout.fragment_artist)
                     noElementsNestedScrollView.isVisible = isEmpty
                 }
 
-                is FlowResult.Error -> {
+                is FlowResult.Failure -> {
                     Log.e(LOG_TAG, "Error loading artist, error: ${it.error}", it.throwable)
 
                     toolbar.title = ""

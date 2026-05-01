@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -376,7 +376,7 @@ class MediaRepositoryTree(
             mapNotNull { status ->
                 when (status) {
                     is Result.Success -> status.data
-                    is Result.Error -> {
+                    is Result.Failure -> {
                         Log.e(LOG_TAG, "Failed to get data", status.throwable)
                         null
                     }

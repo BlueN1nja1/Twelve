@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -1267,16 +1267,16 @@ class SubsonicClient(
                     data.subsonicResponse.methodValue()!!
                 }.fold(
                     onSuccess = { Result.Success(it) },
-                    onFailure = { Result.Error(Error.INVALID_RESPONSE) }
+                    onFailure = { Result.Failure(Error.INVALID_RESPONSE) }
                 )
 
-                ResponseStatus.FAILED -> Result.Error(
+                ResponseStatus.FAILED -> Result.Failure(
                     data.subsonicResponse.error?.code?.toError() ?: Error.INVALID_RESPONSE
                 )
             }
         }
 
-        is Result.Error -> Result.Error(error.toError(), throwable)
+        is Result.Failure -> Result.Failure(error.toError(), throwable)
     }
 
     companion object {

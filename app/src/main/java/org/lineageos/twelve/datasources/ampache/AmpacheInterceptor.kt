@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2026 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -65,9 +65,9 @@ class AmpacheInterceptor(
         val response = okHttpClient.newCall(requestWithToken).execute()
 
         // Return the response if not an error
-        val error = parseError(response) as? Result.Error ?: return response
+        val failure = parseError(response) as? Result.Failure ?: return response
 
-        return when (error.error.error.errorCode) {
+        return when (failure.error.error.errorCode) {
             is Error.Information.Code.InvalidHandshake -> {
                 // Do not retry the request with a recent invalid token
                 if (isNewToken) {
@@ -86,15 +86,16 @@ class AmpacheInterceptor(
                 val retryResponse = okHttpClient.newCall(requestWithToken).execute()
 
                 // Return the response if not an error
-                val retryError = parseError(retryResponse) as? Result.Error ?: return retryResponse
+                val retryFailure =
+                    parseError(retryResponse) as? Result.Failure ?: return retryResponse
 
                 // Return the error response
-                makeErrorResponse(request, retryError.error)
+                makeErrorResponse(request, retryFailure.error)
             }
 
             else -> {
-                Log.e(LOG_TAG, "Got error response from server: ${error.error}")
-                makeErrorResponse(request, error.error)
+                Log.e(LOG_TAG, "Got error response from server: ${failure.error}")
+                makeErrorResponse(request, failure.error)
             }
         }
     }
@@ -190,7 +191,7 @@ class AmpacheInterceptor(
                         token to true
                     }
 
-                    is Result.Error -> {
+                    is Result.Failure -> {
                         Log.i(LOG_TAG, "Cannot get new token: ${result.error}")
                         null
                     }
@@ -227,11 +228,11 @@ class AmpacheInterceptor(
     }
 
     /**
-     * Parse the response and return [Result.Error] if the response contains an [Error] object.
+     * Parse the response and return [Result.Failure] if the response contains an [Error] object.
      */
     private fun parseError(response: Response): Result<String, Error> {
         if (!response.isSuccessful) {
-            return Result.Error(
+            return Result.Failure(
                 Error(
                     Error.Information(
                         Error.Information.Code.Other(response.code),
@@ -243,7 +244,7 @@ class AmpacheInterceptor(
             )
         }
 
-        val body = response.body ?: return Result.Error(
+        val body = response.body ?: return Result.Failure(
             Error(
                 Error.Information(
                     Error.Information.Code.Other(response.code),
@@ -262,7 +263,7 @@ class AmpacheInterceptor(
         runCatching {
             val error = json.decodeFromString<Error>(string)
 
-            return Result.Error(error)
+            return Result.Failure(error)
         }
 
         return Result.Success(string)

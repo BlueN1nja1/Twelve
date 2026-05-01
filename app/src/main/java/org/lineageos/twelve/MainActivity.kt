@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -269,7 +269,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
                         nowPlayingBar.updateMediaArtwork(it.data)
                     }
 
-                    is Result.Error -> {
+                    is Result.Failure -> {
                         Log.e(
                             LOG_TAG,
                             "Error while getting media artwork: ${it.error}",

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -187,7 +187,7 @@ class LyricsFragment : Fragment(R.layout.fragment_lyrics) {
                         noElementsNestedScrollView.isVisible = isEmpty
                     }
 
-                    is FlowResult.Error -> {
+                    is FlowResult.Failure -> {
                         Log.e(
                             LOG_TAG,
                             "Error while loading lyrics, error: ${it.error}",

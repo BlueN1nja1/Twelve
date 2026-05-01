@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -84,7 +84,7 @@ class MediaItemViewModel(application: Application) : TwelveViewModel(application
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = FlowResult.Loading(),
+            initialValue = FlowResult.Loading,
         )
 
     val mediaItem = data
@@ -93,7 +93,7 @@ class MediaItemViewModel(application: Application) : TwelveViewModel(application
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = FlowResult.Loading(),
+            initialValue = FlowResult.Loading,
         )
 
     val tracks = data
@@ -117,14 +117,14 @@ class MediaItemViewModel(application: Application) : TwelveViewModel(application
         .flatMapLatest { playlistUri ->
             playlistUri?.let {
                 mediaRepository.playlist(it)
-            } ?: flowOf(Result.Error(Error.NOT_FOUND))
+            } ?: flowOf(Result.Failure(Error.NOT_FOUND))
         }
         .asFlowResult()
         .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,
             started = SharingStarted.WhileSubscribed(),
-            initialValue = FlowResult.Loading(),
+            initialValue = FlowResult.Loading,
         )
 
     val showQueueButtons = combine(

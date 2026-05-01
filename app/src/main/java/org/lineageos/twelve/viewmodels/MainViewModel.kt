@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025-2026 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -56,7 +56,7 @@ class MainViewModel(application: Application) : TwelveViewModel(application) {
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(),
-            FlowResult.Loading()
+            FlowResult.Loading
         )
 
     fun setSearchQuery(query: String, immediate: Boolean = false) {
@@ -65,5 +65,5 @@ class MainViewModel(application: Application) : TwelveViewModel(application) {
 
     suspend fun playAllAudios() = mediaRepository.audios().firstOrNull()?.map { audios ->
         playAudio(audios.shuffled(), 0)
-    } ?: Result.Error(Error.INVALID_RESPONSE)
+    } ?: Result.Failure(Error.INVALID_RESPONSE)
 }

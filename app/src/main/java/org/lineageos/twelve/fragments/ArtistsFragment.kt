@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -155,7 +155,7 @@ class ArtistsFragment : Fragment(R.layout.fragment_artists) {
                             noElementsLinearLayout.isVisible = isEmpty
                         }
 
-                        is FlowResult.Error -> {
+                        is FlowResult.Failure -> {
                             Log.e(
                                 LOG_TAG,
                                 "Failed to load artists, error: ${it.error}",

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -401,7 +401,7 @@ class MediaRepository(
     ) = allDataSources.flatMapLatest {
         it.firstOrNull { dataSource ->
             uris.all { uri -> dataSource.isMediaItemCompatible(uri) }
-        }?.predicate() ?: flowOf(Result.Error(Error.NOT_FOUND))
+        }?.predicate() ?: flowOf(Result.Failure(Error.NOT_FOUND))
     }
 
     /**
@@ -416,7 +416,7 @@ class MediaRepository(
         vararg uris: Uri, predicate: suspend MediaDataSource.() -> Result<T, Error>
     ) = allDataSources.value.firstOrNull { dataSource ->
         uris.all { uri -> dataSource.isMediaItemCompatible(uri) }
-    }?.predicate() ?: Result.Error(Error.NOT_FOUND)
+    }?.predicate() ?: Result.Failure(Error.NOT_FOUND)
 
     private fun <T> withNavigationDataSourceAndProviderFlow(
         predicate: MediaDataSource.(ProviderIdentifier) -> Flow<Result<T, Error>>
@@ -425,7 +425,7 @@ class MediaRepository(
             withProviderDataSource(it.identifier) {
                 predicate(it.identifier)
             }
-        } ?: flowOf(Result.Error(Error.NOT_FOUND))
+        } ?: flowOf(Result.Failure(Error.NOT_FOUND))
     }
 
     private suspend fun MediaDataSource.isMediaItemCompatible(

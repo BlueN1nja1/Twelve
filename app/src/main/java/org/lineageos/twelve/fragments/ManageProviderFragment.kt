@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -235,7 +235,7 @@ class ManageProviderFragment : Fragment(R.layout.fragment_manage_provider) {
                                 providerNameTextInputLayout.editText?.setText(provider.name)
                             }
 
-                            is FlowResult.Error -> {
+                            is FlowResult.Failure -> {
                                 Log.e(
                                     LOG_TAG,
                                     "Failed to load provider, error: ${it.error}",

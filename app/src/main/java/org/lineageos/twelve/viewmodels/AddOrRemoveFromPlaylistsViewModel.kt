@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -35,7 +35,7 @@ class AddOrRemoveFromPlaylistsViewModel(application: Application) : TwelveViewMo
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(),
-            FlowResult.Loading()
+            FlowResult.Loading
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -49,7 +49,7 @@ class AddOrRemoveFromPlaylistsViewModel(application: Application) : TwelveViewMo
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(),
-            FlowResult.Loading()
+            FlowResult.Loading
         )
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -61,7 +61,7 @@ class AddOrRemoveFromPlaylistsViewModel(application: Application) : TwelveViewMo
         .stateIn(
             viewModelScope,
             SharingStarted.Eagerly,
-            FlowResult.Loading()
+            FlowResult.Loading
         )
 
     fun loadAudio(audioUri: Uri) {

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -35,7 +35,7 @@ interface MediaDataSource {
      *
      * @param providerIdentifier The [ProviderIdentifier] of the provider
      * @return [Result.Success] with a list of [DataSourceInformation] if everything is fine,
-     *   else [Result.Error]
+     *   else [Result.Failure]
      */
     fun status(
         providerIdentifier: ProviderIdentifier,
@@ -189,14 +189,14 @@ interface MediaDataSource {
      * Rename a playlist.
      * @param playlistUri The URI of the playlist
      * @param name The new name of the playlist
-     * @return [Result.Success] if success, [Result.Error] with an error otherwise
+     * @return [Result.Success] if success, [Result.Failure] with an error otherwise
      */
     suspend fun renamePlaylist(playlistUri: Uri, name: String): MediaRequestStatus<Unit>
 
     /**
      * Delete a playlist.
      * @param playlistUri The URI of the playlist
-     * @return [Result.Success] if success, [Result.Error] with an error otherwise
+     * @return [Result.Success] if success, [Result.Failure] with an error otherwise
      */
     suspend fun deletePlaylist(playlistUri: Uri): MediaRequestStatus<Unit>
 
@@ -204,7 +204,7 @@ interface MediaDataSource {
      * Add an audio to a playlist.
      * @param playlistUri The URI of the playlist
      * @param audioUri The URI of the audio
-     * @return [Result.Success] if success, [Result.Error] with an error otherwise
+     * @return [Result.Success] if success, [Result.Failure] with an error otherwise
      */
     suspend fun addAudioToPlaylist(playlistUri: Uri, audioUri: Uri): MediaRequestStatus<Unit>
 
@@ -212,7 +212,7 @@ interface MediaDataSource {
      * Remove an audio from a playlist.
      * @param playlistUri The URI of the playlist
      * @param audioUri The URI of the audio
-     * @return [Result.Success] if success, [Result.Error] with an error otherwise
+     * @return [Result.Success] if success, [Result.Failure] with an error otherwise
      */
     suspend fun removeAudioFromPlaylist(playlistUri: Uri, audioUri: Uri): MediaRequestStatus<Unit>
 
@@ -220,7 +220,7 @@ interface MediaDataSource {
      * Notify the source about an audio item being played.
      * @param audioUri The URI of the audio
      * @param positionMs The position of the audio in milliseconds
-     * @return [Result.Success] if success, [Result.Error] with an error otherwise
+     * @return [Result.Success] if success, [Result.Failure] with an error otherwise
      */
     suspend fun onAudioPlayed(audioUri: Uri, positionMs: Long): MediaRequestStatus<Unit>
 
@@ -228,7 +228,7 @@ interface MediaDataSource {
      * Set the favorite status of an audio.
      * @param audioUri The URI of the audio
      * @param isFavorite The new favorite status
-     * @return [Result.Success] if success, [Result.Error] with an error otherwise
+     * @return [Result.Success] if success, [Result.Failure] with an error otherwise
      */
     suspend fun setFavorite(audioUri: Uri, isFavorite: Boolean): MediaRequestStatus<Unit>
 }

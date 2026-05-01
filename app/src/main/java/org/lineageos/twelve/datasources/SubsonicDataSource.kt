@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -317,7 +317,7 @@ class SubsonicDataSource(
                 else -> null
             }?.let {
                 Result.Success(it)
-            } ?: Result.Error(Error.NOT_FOUND)
+            } ?: Result.Failure(Error.NOT_FOUND)
         }
     }.getOrNull()
 
@@ -556,7 +556,7 @@ class SubsonicDataSource(
                 )
             )
         } else {
-            Result.Error(Error.NOT_FOUND)
+            Result.Failure(Error.NOT_FOUND)
         }
     }
 
@@ -616,7 +616,7 @@ class SubsonicDataSource(
         subsonicClient.getLyricsBySongId(audioId).map {
             it.toModel()
         }.flatMap { lyrics ->
-            lyrics?.let { Result.Success(it) } ?: Result.Error(Error.NOT_FOUND)
+            lyrics?.let { Result.Success(it) } ?: Result.Failure(Error.NOT_FOUND)
         }
     }
 
@@ -637,7 +637,7 @@ class SubsonicDataSource(
         name: String,
     ) = providersManager.doWithInstanceOf(playlistUri) {
         when {
-            playlistUri == favoritesUri -> Result.Error(Error.IO)
+            playlistUri == favoritesUri -> Result.Failure(Error.IO)
             else -> subsonicClient.updatePlaylist(playlistUri.lastPathSegment!!, name).map {
                 onPlaylistsChanged()
             }
@@ -648,7 +648,7 @@ class SubsonicDataSource(
         playlistUri: Uri,
     ) = providersManager.doWithInstanceOf(playlistUri) {
         when {
-            playlistUri == favoritesUri -> Result.Error(Error.IO)
+            playlistUri == favoritesUri -> Result.Failure(Error.IO)
             else -> subsonicClient.deletePlaylist(
                 playlistUri.lastPathSegment!!
             ).map {

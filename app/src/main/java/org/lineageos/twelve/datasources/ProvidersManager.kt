@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -115,8 +115,8 @@ class ProvidersManager<T : ProvidersManager.Instance>(
         providersToInstance.firstNotNullOfOrNull { (provider, instance) ->
             provider.takeIf { instance.isMediaItemCompatible(mediaItemUri) }
         }?.let {
-            Result.Success<_, Error>(it as ProviderIdentifier)
-        } ?: Result.Error(Error.NOT_FOUND)
+            Result.Success(it as ProviderIdentifier)
+        } ?: Result.Failure(Error.NOT_FOUND)
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -125,7 +125,7 @@ class ProvidersManager<T : ProvidersManager.Instance>(
         block: suspend T.() -> Flow<Result<R, Error>>,
     ) = providerIdsToInstance.flatMapLatest { providerIdsToType ->
         providerIdsToType[providerIdentifier.typeId]?.block() ?: flowOf(
-            Result.Error(Error.NOT_FOUND)
+            Result.Failure(Error.NOT_FOUND)
         )
     }
 
@@ -140,7 +140,7 @@ class ProvidersManager<T : ProvidersManager.Instance>(
                     it.isMediaItemCompatible(mediaItemUri)
                 }
             }
-        }?.block() ?: flowOf(Result.Error(Error.NOT_FOUND))
+        }?.block() ?: flowOf(Result.Failure(Error.NOT_FOUND))
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -148,7 +148,7 @@ class ProvidersManager<T : ProvidersManager.Instance>(
         providerIdentifier: ProviderIdentifier,
         block: suspend T.() -> Result<R, Error>,
     ) = providerIdsToInstance.mapLatest { providerIdsToType ->
-        providerIdsToType[providerIdentifier.typeId]?.block() ?: Result.Error(Error.NOT_FOUND)
+        providerIdsToType[providerIdentifier.typeId]?.block() ?: Result.Failure(Error.NOT_FOUND)
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -162,14 +162,14 @@ class ProvidersManager<T : ProvidersManager.Instance>(
                     it.isMediaItemCompatible(mediaItemUri)
                 }
             }
-        }?.block() ?: Result.Error(Error.NOT_FOUND)
+        }?.block() ?: Result.Failure(Error.NOT_FOUND)
     }
 
     suspend fun <R> doWithInstanceOf(
         providerIdentifier: ProviderIdentifier,
         block: suspend T.() -> Result<R, Error>,
     ) = providerIdsToInstance.value[providerIdentifier.typeId]?.block()
-        ?: Result.Error(Error.NOT_FOUND)
+        ?: Result.Failure(Error.NOT_FOUND)
 
     suspend fun <R> doWithInstanceOf(
         vararg mediaItemUris: Uri,
@@ -180,5 +180,5 @@ class ProvidersManager<T : ProvidersManager.Instance>(
                 it.isMediaItemCompatible(mediaItemUri)
             }
         }
-    }?.block() ?: Result.Error(Error.NOT_FOUND)
+    }?.block() ?: Result.Failure(Error.NOT_FOUND)
 }

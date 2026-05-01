@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -39,16 +39,16 @@ open class ProviderViewModel(application: Application) : TwelveViewModel(applica
             it?.let { providerIdentifier ->
                 providersRepository.provider(providerIdentifier).mapLatest { maybeProvider ->
                     maybeProvider?.let { provider ->
-                        FlowResult.Success<_, Error>(provider)
-                    } ?: FlowResult.Error(Error.NOT_FOUND)
+                        FlowResult.Success(provider)
+                    } ?: FlowResult.Failure(Error.NOT_FOUND)
                 }
-            } ?: flowOf(FlowResult.Loading())
+            } ?: flowOf(FlowResult.Loading)
         }
         .flowOn(Dispatchers.IO)
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(),
-            FlowResult.Loading()
+            FlowResult.Loading
         )
 
     val canBeManaged = provider
@@ -75,7 +75,7 @@ open class ProviderViewModel(application: Application) : TwelveViewModel(applica
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(),
-            FlowResult.Loading()
+            FlowResult.Loading
         )
 
     fun setProviderIdentifier(providerIdentifier: ProviderIdentifier?) {

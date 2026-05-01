@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2024-2025 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -163,7 +163,7 @@ class Api(
                             }
                         } ?: Result.Success(onEmptyResponse())
                     } else {
-                        Result.Error<T, ApiError>(
+                        Result.Failure(
                             ApiError.HttpError(response.code),
                             Throwable(response.message)
                         )
@@ -171,7 +171,7 @@ class Api(
                 }
             }.fold(
                 onSuccess = { it },
-                onFailure = { e -> Result.Error(handleError(e), e) }
+                onFailure = { e -> Result.Failure(handleError(e), e) }
             )
         }
     }
@@ -187,7 +187,7 @@ class Api(
         repeat(maxAttempts - 1) { _ ->
             when (val result = block()) {
                 is Result.Success -> return result
-                is Result.Error -> when (result.error) {
+                is Result.Failure -> when (result.error) {
                     is ApiError.HttpError -> when (result.error.code) {
                         in 500..599 -> {
                             delay(currentDelay)
@@ -257,6 +257,6 @@ fun ApiError.toError() = when (this) {
 }
 
 fun <T> MethodResult<T>.mapToError() = when (this) {
-    is Result.Success -> Result.Success<T, Error>(data)
-    is Result.Error -> Result.Error(error.toError(), throwable)
+    is Result.Success -> Result.Success(data)
+    is Result.Failure -> Result.Failure(error.toError(), throwable)
 }

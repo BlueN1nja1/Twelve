@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2026 The LineageOS Project
+ * SPDX-FileCopyrightText: The LineageOS Project
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -279,7 +279,7 @@ class AmpacheDataSource(
             }
         }?.let {
             Result.Success(it)
-        } ?: Result.Error(Error.NOT_FOUND)
+        } ?: Result.Failure(Error.NOT_FOUND)
     }.getOrNull()
 
     override fun providerOf(mediaItemUri: Uri) = providersManager.providerOf(mediaItemUri)
@@ -479,7 +479,7 @@ class AmpacheDataSource(
             when (result) {
                 is Result.Success -> result
 
-                is Result.Error -> Result.Success(
+                is Result.Failure -> Result.Success(
                     buildList {
                         client.songs(
                             filter = query,
@@ -629,7 +629,7 @@ class AmpacheDataSource(
         name: String,
     ) = providersManager.doWithInstanceOf(playlistUri) {
         when (playlistUri) {
-            favoritesUri -> Result.Error(Error.IO)
+            favoritesUri -> Result.Failure(Error.IO)
             else -> client.playlistEdit(playlistUri.lastPathSegment!!, name = name).map {
                 onPlaylistsChanged()
             }
@@ -640,7 +640,7 @@ class AmpacheDataSource(
         playlistUri: Uri,
     ) = providersManager.doWithInstanceOf(playlistUri) {
         when (playlistUri) {
-            favoritesUri -> Result.Error(Error.IO)
+            favoritesUri -> Result.Failure(Error.IO)
             else -> client.playlistDelete(playlistUri.lastPathSegment!!).map {
                 onPlaylistsChanged()
             }
@@ -682,7 +682,7 @@ class AmpacheDataSource(
     override suspend fun onAudioPlayed(
         audioUri: Uri,
         positionMs: Long,
-    ): MediaRequestStatus<Unit> = Result.Success<_, Error>(Unit)
+    ): MediaRequestStatus<Unit> = Result.Success(Unit)
 
     override suspend fun setFavorite(
         audioUri: Uri,
