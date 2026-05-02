@@ -5,26 +5,19 @@
 -->
 <resources>
     <!-- Settings activity theme. -->
-    <style name="Theme.SettingsLib" parent="Theme.Material3Expressive.DayNight.NoActionBar">
+    <style name="Theme.SettingsLib" parent="Theme.Material3Expressive.DynamicColors.DayNight.NoActionBar">
         <item name="android:listPreferredItemPaddingLeft">24dp</item>
         <item name="android:listPreferredItemPaddingStart">24dp</item>
         <item name="alertDialogTheme">@style/Theme.SettingsLib.AlertDialog</item>
         <item name="materialAlertDialogTheme">@style/Theme.SettingsLib.AlertDialog</item>
         <item name="materialSwitchStyle">@style/Widget.SettingsLib.MaterialSwitch</item>
         <item name="preferenceTheme">@style/Theme.SettingsLib.PreferenceTheme</item>
+        <item name="colorSurface">@color/colorPrimary</item>
+        <item name="android:colorBackground">@color/colorPrimary</item>
         <item name="colorAccent">@color/accent</item>
         <item name="colorPrimary">@color/accent</item>
-    </style>
-
-    <!-- Collapsing toolbar style -->
-    <style name="Theme.SettingsLib.ToolbarCollapsed" parent="@android:style/TextAppearance.DeviceDefault.Widget.ActionBar.Title">
-        <item name="android:fontFamily">sans-serif</item>
-        <item name="android:textSize">20sp</item>
-    </style>
-
-    <style name="Theme.SettingsLib.ToolbarExpanded" parent="Theme.SettingsLib.ToolbarCollapsed">
-        <item name="android:textSize">36sp</item>
-        <item name="android:drawablePadding">10dp</item>
+        <item name="colorPrimaryContainer">@color/accentSecondary</item>
+        <item name="colorSecondaryContainer">@color/accentInverse</item>
     </style>
 
     <!-- Settings alert dialog theme. -->
