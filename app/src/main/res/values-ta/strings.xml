@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     SPDX-FileCopyrightText: 2024-2026 The LineageOS Project
+     SPDX-FileCopyrightText: The LineageOS Project
      SPDX-License-Identifier: Apache-2.0
 -->
 <resources>
@@ -15,8 +15,8 @@
     <string name="library_fragment_menu_albums">தொகுப்பு</string>
     <string name="library_fragment_menu_artists">கலைஞர்</string>
     <string name="library_fragment_menu_genres">பாணி</string>
-    <string name="library_fragment_menu_playlists">இசைப்பட்டியல்</string>
-    <string name="create_playlist">புதிய இசைப்பட்டியலை உருவாக்குக</string>
+    <string name="library_fragment_menu_playlists">பட்டியல்</string>
+    <string name="create_playlist">புதிய பட்டியலை உருவாக்குக</string>
     <string name="no_playlists_comma">பட்டியல் ஏதுமில்லை,</string>
     <string name="create_playlist_suggestion">புதியதொன்றை உருவாக்கவா?</string>
     <string name="create_playlist_confirm">உருவாக்குக</string>
