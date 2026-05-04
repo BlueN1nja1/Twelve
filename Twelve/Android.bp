@@ -40,7 +40,7 @@ android_app {
         "androidx.room_room-compiler-plugin",
     ],
     javacflags: [
-        "-Aroom.schemaLocation=packages/apps/Twelve/app/schemas",
+        "-Aroom.schemaLocation=packages/apps/Twelve/Twelve/schemas",
     ],
 
     kotlin_plugins: [
