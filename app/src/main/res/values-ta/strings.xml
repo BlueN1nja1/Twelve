@@ -223,7 +223,7 @@
     <string name="lyrics">பாவரிகள்</string>
     <string name="lyrics_not_available">பாவரிகள் கிடைக்கவில்லை</string>
     <string name="follow_current_lyrics_line">நடப்பு வரியைப் பின்பற்றுக</string>
-    <string name="favorites_playlist">பிடித்தவை</string>
-    <string name="add_to_favorites">பிடித்தவையில் சேர்க்க</string>
-    <string name="remove_from_favorites">பிடித்தவையிலிருந்து அகற்றுக</string>
+    <string name="favorites_playlist">விரும்பியவை</string>
+    <string name="add_to_favorites">விரும்பியவைசேர்</string>
+    <string name="remove_from_favorites">விரும்பியவையினீக்கு</string>
 </resources>
